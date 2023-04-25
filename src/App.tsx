@@ -1,12 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
-import TitleCard from './components/home/title-card/title-card.component'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <TitleCard />
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
