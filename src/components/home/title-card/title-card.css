@@ -1,0 +1,15 @@
+.main-card {
+  border: 3px solid #c3c3c3;
+  box-shadow: 0px 5px 28px 9px #6b5c6bb5;
+}
+
+.main-card>.title {
+  padding: 20px 50px;
+}
+
+.main-card>.title
+
+>h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
