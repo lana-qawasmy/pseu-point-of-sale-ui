@@ -5,7 +5,7 @@ const TitleCard = () => {
   return (
     <div className="main-card">
       <div className="title">
-        <h1>Point Of Saless App</h1>
+        <h1>Point Of Sales App</h1>
       </div>
       <div className="logo">
       </div>
@@ -13,4 +13,4 @@ const TitleCard = () => {
   )
 }
 
-export default TitleCard
+export default TitleCard;
