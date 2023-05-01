@@ -1,7 +1,8 @@
 import './input.css';
 
 interface IProps {
-    HtmlType?: string;
+    HtmlType?: 'text' | 'textArea';
+
     Type?: string;
 
     Height?: number;
@@ -20,11 +21,29 @@ interface IProps {
 }
 
 const Input = (props: IProps) => {
-    props = { ...props, };
+    props = {
+        ...props,
+        Height: props.Height ? props.Height : 20,
+        Width: props.Width ? props.Width : 20,
+        Radius: props.Radius ? props.Radius : 50/100,
+        Disable: props.Disable ? props.Disable : false,
+        PlaceHolder: props.PlaceHolder ? props.PlaceHolder : '',
+        Label: props.Label ? props.Label : '',
+        Status: props.Status ? props.Status : 'valid',
+        FontSize: props.FontSize ? props.FontSize : 20,
+        FontWeight: props.FontWeight ? props.FontWeight : 'normal',
+    };
     return (
-        <div className='input'>
-
-        </div>
+        <>
+            {
+                props.HtmlType === 'textArea'
+                    ?
+                    <textarea className='textArea'>
+                    </textarea>
+                    :
+                    <input className='input' />
+            }
+        </>
     );
 };
 

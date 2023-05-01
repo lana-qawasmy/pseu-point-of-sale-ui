@@ -4,7 +4,8 @@ import Input from './components/core/input/input.component';
 const App = () => {
     return (
         <div className="App">
-            <Input />
+            <Input HtmlType='textArea' />
+            <Input HtmlType='text' />
         </div>
     );
 };

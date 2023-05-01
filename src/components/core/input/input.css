@@ -1,6 +1,43 @@
 .input {
     display: flex;
-    height: 40px;
-    width: 70px;
+
+    font-size: 16px;
+    text-align: left;
+
+    margin: 2px 250px;
+    padding: 0px 16px;
+
+    height: 50px;
+    
     border: 1px solid gray;
+    border-radius: 5px;
+
+    outline: none;
+    transition: 0.4s;
+}
+
+.input:focus,
+.input:active,
+.input:hover {
+    border: 1px solid rgb(249, 124, 124);
+}
+
+.textArea {
+    display: flex;
+    
+    text-align: left;
+    font-size: 16px;
+    
+    height: 60px;
+
+    border: 1px solid gray;
+    border-radius: 5px;
+    
+    margin: 50px 250px;
+    padding: 8px;
+
+    resize: none;
+
+    outline: none;
+    transition: 0.4s;
 }
