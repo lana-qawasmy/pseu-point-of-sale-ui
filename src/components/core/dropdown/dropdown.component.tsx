@@ -39,11 +39,13 @@ const Dropdown = (props: IProps) => {
                     id={props.id}
                     name={props.name}
                     className="dropdownWrapper"
-                    style={style} onChange={e => { return props.onChange && props.onChange(e.target.value) }}
-                    required={props.Required} disabled={props.Disabled}>
+                    style={style}
+                    onChange={e => { return props.onChange && props.onChange(e.target.value) }}
+                    required={props.Required}
+                    disabled={props.Disabled}>
                     {
                         props.Placeholder &&
-                        <option className='dropdownOption' value="" disabled hidden>Role</option>
+                        <option className='dropdownOption' value="" disabled>Role</option>
                     }
                     {props.data.map((item) => {
                         return (
