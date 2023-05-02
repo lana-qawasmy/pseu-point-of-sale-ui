@@ -10,7 +10,7 @@ interface IProps {
     Radius?: string,
     width?: string,
     height?: string,
-    onChange?: (val: string) => void
+    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
 const Dropdown = (props: IProps) => {
     let style = {
@@ -40,12 +40,12 @@ const Dropdown = (props: IProps) => {
                     name={props.name}
                     className="dropdownWrapper"
                     style={style}
-                    onChange={e => { return props.onChange && props.onChange(e.target.value) }}
+                    onChange={e => { return props.onChange && props.onChange(e) }}
                     required={props.Required}
                     disabled={props.Disabled}>
                     {
                         props.Placeholder &&
-                        <option className='dropdownOption' value="" disabled>Role</option>
+                        <option className='dropdownOption' value="" disabled selected hidden>Role</option>
                     }
                     {props.data.map((item) => {
                         return (
@@ -59,3 +59,5 @@ const Dropdown = (props: IProps) => {
 };
 
 export default Dropdown;
+
+//.target.value
