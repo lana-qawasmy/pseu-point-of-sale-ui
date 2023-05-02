@@ -26,23 +26,26 @@ const Dropdown = (props: IProps) => {
             <div className='dropdownContainer'
                 style={{ width: `${props.width ? props.width + "px" : "150px"}` }}>
                 {props.Required ?
-                    <div className="drpodpwnRequired"
+                    <div className="dropdownRequired"
                         style={{ width: `${props.width ? props.width + "px" : "150px"}` }}>
                         <span>*</span>
                     </div>
                     :
-                    <div className="drpodpwnRequired"
+                    <div className="dropdownRequired"
                         style={{ width: `${props.width ? props.width + "px" : "150px"}` }}>
                     </div>
                 }
-                <select id={props.id} name={props.name} className="dropdownWrapper"
+                <select
+                    id={props.id}
+                    name={props.name}
+                    className="dropdownWrapper"
                     style={style} onChange={e => { return props.onChange && props.onChange(e.target.value) }}
                     required={props.Required} disabled={props.Disabled}>
                     {
                         props.Placeholder &&
                         <option className='dropdownOption' value="" disabled hidden>Role</option>
                     }
-                    {props.data?.map((item) => {
+                    {props.data.map((item) => {
                         return (
                             <option className='dropdownOption' value={item} key={item}>{item}</option>
                         );

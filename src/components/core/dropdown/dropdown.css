@@ -30,7 +30,7 @@
     display: inline-block;
 }
 
-.drpodpwnRequired {
+.dropdownRequired {
     color: red;
     display: flex;
     font-size: 20px;
