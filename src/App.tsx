@@ -1,24 +1,19 @@
-import { BrowserRouter , Routes , Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Signin from './pages/signin/signin.page';
-import Signup from './pages/signup/signup.page';
-import AddItem from './pages/add-item/add-item.page';
-import PosView from './pages/pos-view/pos-view.page';
-import OrdersHistory from './pages/orders-history/orders-history.page';
-import ViewExistedItems from './pages/view-existed-items/view-existed-items.page';
+import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory } from './pages/index';
 
 const App = () => {
     return (
         <div className="App">
             <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<PosView/>}/>
-                <Route path='/signin' element={<Signin/>}/>
-                <Route path='/signup' element={<Signup/>}/>
-                <Route path='/addItem' element={<AddItem/>}/>
-                <Route path='/ordersHistory' element={<OrdersHistory/>}/>
-                <Route path='/existedItems' element={<ViewExistedItems/>}/>
-            </Routes>
+                <Routes>
+                    <Route path='/' element={<PosView />} />
+                    <Route path='/signin' element={<Signin />} />
+                    <Route path='/signup' element={<Signup />} />
+                    <Route path='/addItem' element={<AddItem />} />
+                    <Route path='/ordersHistory' element={<OrdersHistory />} />
+                    <Route path='/existedItems' element={<ViewExistedItems />} />
+                </Routes>
             </BrowserRouter>
         </div>
     );
