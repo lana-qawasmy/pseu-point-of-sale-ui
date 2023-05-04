@@ -1,0 +1,22 @@
+.buttonContainer{
+ display: inline-block;
+}
+
+.button{
+    border: 2px solid white;
+}
+
+.Primary{
+}
+.Secondary{
+
+}
+.Tertiary{
+
+}
+.Danger{
+
+}
+.Ghost{
+
+}
