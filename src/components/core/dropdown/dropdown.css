@@ -1,0 +1,39 @@
+.dropdownWrapper {
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 16px;
+    transition: 0.5s;
+}
+
+.dropdownWrapper:active {
+    transition: 0.5s;
+    box-shadow: 1px 1px #a3a3a3, -1px -1px 0px #a3a3a3,
+        -1px 1px 0px #a3a3a3, 1px -1px 0px #a3a3a3;
+}
+
+.dropdownWrapper:focus {
+    transition: 0.5s;
+    box-shadow: 1px 1px #a3a3a3, -1px -1px 0px #a3a3a3,
+        -1px 1px 0px #a3a3a3, 1px -1px 0px #a3a3a3;
+}
+
+.dropdownContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.dropDown {
+    display: inline-block;
+}
+
+.dropdownRequired {
+    color: red;
+    display: flex;
+    font-size: 20px;
+    height: 10px;
+    margin-bottom: 10px;
+}
