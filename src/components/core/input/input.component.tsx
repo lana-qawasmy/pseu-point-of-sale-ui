@@ -25,11 +25,11 @@ interface IProps {
 
 const Input = (props: IProps) => {
     const style = {
-        height: `${props.Height ? props.Height : props.Type === 'textArea' ? '80' : '40'}px`,
+        height: `${props.Height ? props.Height : props.Type === 'textArea' ? '80' : '50'}px`,
         width: `${props.Width ? props.Width : props.Type === 'textArea' ? '120' : '120'}px`,
-        borderRadius: `${props.Radius ? props.Radius : '5'}px`,
+        borderRadius: `${props.Radius ? props.Radius : '0'}px`,
         fontWeight: `${props.FontWeight ? props.FontWeight : 'normal'}`,
-        fontSize: `${props.FontSize ? props.FontSize : '16'}px`,
+        fontSize: `${props.FontSize ? props.FontSize : '14'}px`,
         borderColor: `${props.Status === 'invalid'
             ? '#FF3030'
             : props.Color
@@ -48,9 +48,9 @@ const Input = (props: IProps) => {
 
                 }
                 {
-                    (props.Label && props.Label !== '')
+                    (props.Label)
                         ? <span className='label'>
-                            {props.Label}
+                            {props.Label || ''}
                         </span>
                         : false
                 }
@@ -61,13 +61,13 @@ const Input = (props: IProps) => {
                         className={`textArea ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
-                        placeholder={props.PlaceHolder}
+                        placeholder={props.PlaceHolder || ''}
                     />
                     : <input
                         className={`input ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
-                        placeholder={props.PlaceHolder}
+                        placeholder={props.PlaceHolder || ''}
                     />
             }
         </div>
