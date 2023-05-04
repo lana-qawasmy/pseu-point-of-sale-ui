@@ -1,39 +1,79 @@
 .TextInputWrapper {
+    position: relative;
     display: flex;
-    height: fit-content;
-    width: fit-content;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin-bottom: 16px;
+
+    font-family: 'Inter', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+
 }
 
-.input {
+.TextInputWrapper>.inputLabelAndRequired {
+    display: flex;
+    margin-bottom: 2px;
+}
+
+.TextInputWrapper>.inputLabelAndRequired>.required {
+    color: red;
+}
+
+.TextInputWrapper>.inputLabelAndRequired>.label {
+    display: inline-block;
+
+
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 16px;
+    color: #0077B6;
+    text-shadow: 1px 1px 2px gray;
+
+    margin-left: 1px;
+}
+
+.TextInputWrapper>.input {
     display: flex;
 
-    font-size: 16px;
+    font-size: 14px;
     text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 
-    margin: 2px 250px;
     padding: 0px 8px;
 
-    border: 2px solid gray;
+    border: 2px solid #0077B6;
     border-radius: 5px;
 
     outline: none;
     transition: 0.4s;
 }
 
-.input:focus,
-.input:active,
-.textArea:focus,
-.textArea:active {}
+.TextInputWrapper>.input:focus,
+.TextInputWrapper>.input:active,
+.TextInputWrapper>.textArea:focus,
+.TextInputWrapper>.textArea:active {
+    box-shadow: 1px 1px #478eb3c4;
+}
 
-.textArea {
+.TextInputWrapper>.invalid:focus,
+.TextInputWrapper>.invalid:active {
+    box-shadow: 1px 1px #eb5c5cc4;;
+}
+
+.TextInputWrapper>.textArea {
     display: flex;
 
     text-align: left;
     font-size: 16px;
-    border: 2px solid gray;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+
+    border: 2px solid #0077B6;
     border-radius: 5px;
 
-    margin: 50px 250px;
     padding: 8px;
 
     resize: none;
@@ -43,14 +83,14 @@
 
 }
 
-.input:disabled,
-.textarea:disabled {
+.TextInputWrapper>.input:disabled,
+.TextInputWrapper>.textarea:disabled {
     cursor: not-allowed;
     user-select: none;
 }
 
-.textArea.invalid,
-.input.invalid {
+.TextInputWrapper>.textArea.invalid,
+.TextInputWrapper>.input.invalid {
     animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
     border: 2px solid #ff3030;
 }
@@ -68,20 +108,20 @@
     30%,
     50%,
     70% {
-        transform: translateX(-6px);
+        transform: translateX(-2px);
     }
 
     20%,
     40%,
     60% {
-        transform: translateX(6px);
+        transform: translateX(2px);
     }
 
     80% {
-        transform: translateX(4px);
+        transform: translateX(1px);
     }
 
     90% {
-        transform: translateX(-4px);
+        transform: translateX(-1px);
     }
 }

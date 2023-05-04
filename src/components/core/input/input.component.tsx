@@ -3,9 +3,9 @@ import './input.css';
 interface IProps {
     Type?: 'text' | 'textArea';
 
-    Required?: boolean;
-
     Color?: string;
+
+    Required?: boolean;
 
     Height?: number;
     Width?: number;
@@ -19,16 +19,11 @@ interface IProps {
     Status?: 'valid' | 'invalid';
 
     FontSize?: number;
-    FontWeight?: string;
+    FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
+    100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 }
 
 const Input = (props: IProps) => {
-    props = {
-        ...props,
-        Label: props.Label ? props.Label : '',
-        Required: props.Required ? props.Required : false,
-    };
-
     const style = {
         height: `${props.Height ? props.Height : props.Type === 'textArea' ? '80' : '40'}px`,
         width: `${props.Width ? props.Width : props.Type === 'textArea' ? '120' : '120'}px`,
@@ -45,17 +40,30 @@ const Input = (props: IProps) => {
 
     return (
         <div className='TextInputWrapper'>
+            <span className='inputLabelAndRequired'>
+                {
+                    props.Required
+                        ? <span className='required'>*</span>
+                        : false
+
+                }
+                {
+                    (props.Label && props.Label !== '')
+                        ? <span className='label'>
+                            {props.Label}
+                        </span>
+                        : false
+                }
+            </span>
             {
                 props.Type === 'textArea'
-                    ?
-                    <textarea
+                    ? <textarea
                         className={`textArea ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder}
                     />
-                    :
-                    <input
+                    : <input
                         className={`input ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
