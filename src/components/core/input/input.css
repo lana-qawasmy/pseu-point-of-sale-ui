@@ -1,3 +1,9 @@
+.TextInputWrapper {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+}
+
 .input {
     display: flex;
 
@@ -17,9 +23,7 @@
 .input:focus,
 .input:active,
 .textArea:focus,
-.textArea:active {
-    
-}
+.textArea:active {}
 
 .textArea {
     display: flex;
@@ -43,4 +47,41 @@
 .textarea:disabled {
     cursor: not-allowed;
     user-select: none;
+}
+
+.textArea.invalid,
+.input.invalid {
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    border: 2px solid #ff3030;
+}
+
+
+
+@keyframes shake-horizontal {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70% {
+        transform: translateX(-6px);
+    }
+
+    20%,
+    40%,
+    60% {
+        transform: translateX(6px);
+    }
+
+    80% {
+        transform: translateX(4px);
+    }
+
+    90% {
+        transform: translateX(-4px);
+    }
 }

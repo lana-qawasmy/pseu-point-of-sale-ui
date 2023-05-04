@@ -3,6 +3,8 @@ import './input.css';
 interface IProps {
     Type?: 'text' | 'textArea';
 
+    Required?: boolean;
+
     Color?: string;
 
     Height?: number;
@@ -14,7 +16,7 @@ interface IProps {
     PlaceHolder?: string;
     Label?: string;
 
-    Status?: string;
+    Status?: 'valid' | 'invalid';
 
     FontSize?: number;
     FontWeight?: string;
@@ -24,38 +26,43 @@ const Input = (props: IProps) => {
     props = {
         ...props,
         Label: props.Label ? props.Label : '',
-        Status: props.Status ? props.Status : 'valid',
+        Required: props.Required ? props.Required : false,
     };
 
     const style = {
         height: `${props.Height ? props.Height : props.Type === 'textArea' ? '80' : '40'}px`,
-        width: `${props.Width ? props.Width : props.Type === 'textArea' ? '150' : '150'}px`,
+        width: `${props.Width ? props.Width : props.Type === 'textArea' ? '120' : '120'}px`,
         borderRadius: `${props.Radius ? props.Radius : '5'}px`,
         fontWeight: `${props.FontWeight ? props.FontWeight : 'normal'}`,
         fontSize: `${props.FontSize ? props.FontSize : '16'}px`,
-        borderColor: `${props.Color ? props.Color : '#0077B6'}`,
+        borderColor: `${props.Status === 'invalid'
+            ? '#FF3030'
+            : props.Color
+                ? props.Color
+                : '#0077B6'
+            }`,
     };
 
     return (
-        <>
+        <div className='TextInputWrapper'>
             {
                 props.Type === 'textArea'
                     ?
                     <textarea
-                        className='textArea'
+                        className={`textArea ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder}
                     />
                     :
                     <input
-                        className='input'
+                        className={`input ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder}
                     />
             }
-        </>
+        </div>
     );
 };
 
