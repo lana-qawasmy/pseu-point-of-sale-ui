@@ -6,7 +6,9 @@ const App = () => {
         <div className="App">
             <div style={{margin: "40px"}}></div>
             <h1>Primary</h1>
-            <Button HtmlType='button' Type='Primary' />
+            <Button HtmlType='button' Type='Primary' >
+                Add
+            </ Button>
             &nbsp;
             <Button HtmlType='button' Type='Primary' Disabled/>
             <h1>Secondary</h1>

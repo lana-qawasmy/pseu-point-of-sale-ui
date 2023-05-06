@@ -12,7 +12,8 @@ interface Iprops {
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
     FontColor?: string,
     Border?: string,
-    onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+    children?: JSX.Element | string,
 }
 
 const Button = (props: Iprops) => {
@@ -32,7 +33,9 @@ const Button = (props: Iprops) => {
                 className={`${props.Type || 'Primary'}`}
                 style={style}
                 disabled={props.Disabled}
-                onClick={e => {return props.onClick && props.onClick(e)}}>add</button>
+                onClick={e => { return props.onClick && props.onClick(e) }}>
+                {props.children || "Button"}
+            </button>
         </div>
     )
 };
