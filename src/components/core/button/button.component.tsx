@@ -12,6 +12,7 @@ interface Iprops {
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
     FontColor?: string,
     Border?: string,
+    onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 const Button = (props: Iprops) => {
@@ -29,7 +30,9 @@ const Button = (props: Iprops) => {
         <div className='buttonContainer'>
             <button type={props.HtmlType}
                 className={`${props.Type || 'Primary'}`}
-                style={style}>add</button>
+                style={style}
+                disabled={props.Disabled}
+                onClick={e => {return props.onClick && props.onClick(e)}}>add</button>
         </div>
     )
 };
