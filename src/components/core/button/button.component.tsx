@@ -1,7 +1,7 @@
 import './button.css';
 interface Iprops {
-    HtmlType: "button" | "submit" ,
-    Type?: string,
+    HtmlType: "button" | "submit",
+    Type?: 'Primary' | 'Secondary' | 'Tertiary' | 'Danger' | 'Ghost',
     Ratio?: string,
     Size?: string,
     Disabled?: boolean,
@@ -11,22 +11,25 @@ interface Iprops {
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
     FontColor?: string,
+    Border?: string,
 }
 
 const Button = (props: Iprops) => {
     let style = {
         aspectRatio: props.Ratio || "21/9",
         width: (props.Size || "60") + "px",
-        borderRadius: (props.Radius || "0") + "px",
-        backgroundColor: (props.Color || "#0077B6"),
-        color: (props.FontColor || "white"),
-        fontWeight: (props.FontWeight) || "normal",
+        borderRadius: (props.Radius) + "px",
+        backgroundColor: (props.Color),
+        color: (props.FontColor),
+        fontWeight: (props.FontWeight),
         fontSize: (props.FontSize || "14") + "px",
-
+        border: `${props.Border || ""}`,
     }
     return (
-        <div className='buttonContainer'> 
-            <button type={props.HtmlType } className={`"button" ${props.Type}`} style={style}>add</button>
+        <div className='buttonContainer'>
+            <button type={props.HtmlType}
+                className={`${props.Type || 'Primary'}`}
+                style={style}>add</button>
         </div>
     )
 };
