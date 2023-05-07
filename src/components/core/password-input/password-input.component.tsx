@@ -26,25 +26,27 @@ const PasswordInput = (props: IProps) => {
             <label htmlFor="passwordInput">
                 {props.label || ""}
             </label>
-            <button onClick = {() => setShowPassword (!showpassword)}>
-                {
-                    showpassword 
-                    ? <EyeSlash size={32} weight="fill" color= '#023E8A' />
-                    : <Eye size={32} weight="fill" color='#023E8A' />
-                }
+            <div className="inputDiv">
+                <input
+                    type={
+                        showpassword
+                        ? 'text'
+                        : 'password'
+                    }
+                    id='passwordInput'
+                    style={styles}
+                    disabled={props.disabled || false}
+                    placeholder={props.placeholder || ""}
+                />
+                <button onClick = {() => setShowPassword (!showpassword)} className='passwordInput'>
+                    {
+                        showpassword
+                        ? <EyeSlash size={25} weight="fill" color= '#023E8A' />
+                        : <Eye size={25} weight="fill" color='#023E8A' />
+                    }
                 
-            </button>
-            <input
-                type={
-                    showpassword
-                    ? 'text' 
-                    : 'password'
-                }
-                id='passwordInput'
-                style={styles}
-                disabled={props.disabled || false}
-                placeholder={props.placeholder || ""}
-            />
+                </button>
+            </div>
         </div>
     );
 };
