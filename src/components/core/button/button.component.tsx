@@ -3,7 +3,7 @@ interface IProps {
     HtmlType: "button" | "submit",
     Type?: 'Primary' | 'Secondary' | 'Tertiary' | 'Danger' | 'Ghost',
     Ratio?: string,
-    Size?: string,
+    Width?: string,
     Disabled?: boolean,
     Radius?: string,
     Color?: string,
@@ -19,7 +19,7 @@ interface IProps {
 const Button = (props: IProps) => {
     let style = {
         aspectRatio: props.Ratio || "21/9",
-        width: (props.Size || "60") + "px",
+        width: (props.Width || "60") + "px",
         borderRadius: (props.Radius) + "px",
         backgroundColor: (props.Color),
         color: (props.FontColor),

@@ -6,7 +6,7 @@ const App = () => {
         <div className="App">
             <div style={{margin: "40px"}}></div>
             <h1>Primary</h1>
-            <Button HtmlType='button' Type='Primary' Size='150' Ratio='50/10' Radius='15'>
+            <Button HtmlType='button' Type='Primary' Width='150' Ratio='50/10' Radius='15'>
                 Signup
             </ Button>
             &nbsp;
