@@ -1,5 +1,5 @@
 import './button.css';
-interface Iprops {
+interface IProps {
     HtmlType: "button" | "submit",
     Type?: 'Primary' | 'Secondary' | 'Tertiary' | 'Danger' | 'Ghost',
     Ratio?: string,
@@ -16,7 +16,7 @@ interface Iprops {
     children?: JSX.Element | string,
 }
 
-const Button = (props: Iprops) => {
+const Button = (props: IProps) => {
     let style = {
         aspectRatio: props.Ratio || "21/9",
         width: (props.Size || "60") + "px",
