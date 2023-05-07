@@ -11,7 +11,7 @@ const Signup = () => {
             <div className="signupPageBodyContainer">
                 <form className="signupPageFormContainer" onSubmit={() => console.log("submitted!")}>
                     <div className="signupFormHeader">
-                        <div className="userImageIcon"></div>
+                        <div className="userImageIcon"><div></div></div>
                         <div className="uploadImageButton"></div>
                     </div>
                     <div className="signupFormBody">
@@ -22,9 +22,7 @@ const Signup = () => {
                         </div>
                     </div>
                 </form>
-                <div className="signupPageImage">
-
-                </div>
+                <div className="signupPageImage"></div>
             </div>
         </div>
     );
