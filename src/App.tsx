@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory } from './pages/index';
+import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms } from './pages/index';
 
 const App = () => {
     return (
@@ -13,6 +13,7 @@ const App = () => {
                     <Route path='/addItem' element={<AddItem />} />
                     <Route path='/ordersHistory' element={<OrdersHistory />} />
                     <Route path='/existedItems' element={<ViewExistedItems />} />
+                    <Route path='/terms' element={<Terms />} />
                 </Routes>
             </BrowserRouter>
         </div>

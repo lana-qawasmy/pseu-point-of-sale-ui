@@ -1,70 +1,126 @@
-.signupPageContainer>div{
-    border: 1px solid red;
+.signupPageContainer>div {
     font-family: 'Inter', sans-serif;
 }
 
-.signupPageContainer{
+.signupPageContainer {
     display: flex;
     flex-direction: column;
 }
 
-.signupPageTitleContainer{
+.signupPageTitleContainer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-left: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.signupPageTitleContainer>h1{
+.signupPageTitleContainer>h1 {
     margin: 0;
     color: #03045e;
 }
 
-.signupPageTitleContainer>h2{
+.signupPageTitleContainer>h2 {
     color: #04326d;
 }
 
-.signupPageTitleContainer>h2>a{
+.signupPageTitleContainer>h2>a {
     text-decoration: none;
     color: #023e8a;
 }
 
-.signupPageBodyContainer{
+.signupPageBodyContainer {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
-.signupPageFormContainer{
-    width: 30%;
+.signupPageFormContainer {
+    width: 450px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin-left: 30px;
+    justify-content: center;
     background-color: #ffffff;
-    border-radius: 50px;
+    border-radius: 25px;
     box-shadow: #00000059 0px 5px 15px;
 }
 
-.signupFormHeader{
+.signupFormHeader {
     width: 100%;
 }
 
-.userImageIcon{
+.userImageIcon {
     display: flex;
     justify-content: center;
 }
-.userImageIcon>div{
+
+.userImageIcon>label {
     width: 100px;
     height: 100px;
-    background-image: url('../../../public/signupUserIcon.svg');
-    background-position: center;
+    background-image: url('../../../public/signupUserIcon-svg.svg');
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: transparent;
+    cursor: pointer;
 }
-.signupPageImage{
+
+
+.userImageIcon>label:active {
+    transition: 0.4s;
+    transform: scale(0.9);
+}
+
+.signupPageImage {
     margin-right: 30px;
-    height: 650px;
-    width: 50%;
+    height: 500px;
+    width: 40%;
     background-image: url("https://www.wehaveservers.com/img/domain-prices-sec1-img-b.svg");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+div.signupFormBody>div.signupFormBody1 {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.signupFormBody2 {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.signupFormCheckbox>h3 {
+    font-weight: normal;
+    font-size: smaller;
+    color: #1b4479;
+}
+
+.signupFormCheckbox>h3 a {
+    font-weight: bold;
+    color: #03045e;
+    text-decoration: none;
+}
+
+.registerButtonWrapper {
+    display: flex;
+    height: 70px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+input[type=file]::file-selector-button {
+    position: relative;
+    text-align: right;
+    -moz-opacity: 0;
+    opacity: 0;
+    z-index: 2
 }
