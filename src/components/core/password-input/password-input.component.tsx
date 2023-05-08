@@ -12,14 +12,13 @@ interface IProps {
     status?: string,
     fontSize?: number,
     fontWeight?: string,
-    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    getValue?:(value: string)=> void
 }
 
 const PasswordInput = (props: IProps) => {
     const [showpassword, setShowPassword] = useState<boolean>();
     const [value, setValue] = useState<string>('');
     const [valid, setValid] = useState<boolean>();
-    const [hashedValue, setHashedValue] = useState<string>('test');
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
     const styles = {
@@ -37,38 +36,40 @@ const PasswordInput = (props: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setValid(password_validate(value));
-}, [value]);
+        props.getValue && props.getValue(value)
+    }, [value]);
 
-return (
-    <div className='passwordWrapper' >
-        <label htmlFor="passwordInput">
-            {props.label || ""}
-        </label>
-        <div className="inputDiv">
-            <input
-                style={styles}
-                className={valid ? 'validInput' : 'invalidInput'}
-                type={
-                    showpassword
-                        ? 'text'
-                        : 'password'
-                }
-                id='passwordInput'
-                disabled={props.disabled || false}
-                placeholder={props.placeholder || ""}
-                value={value}
-            />
-            <button onClick={() => setShowPassword(!showpassword)} className='passwordInput'>
-                {
-                    showpassword
-                        ? <EyeSlash size={25} weight="fill" color='#023E8A' />
-                        : <Eye size={25} weight="fill" color='#023E8A' />
-                }
+    return (
+        <div className='passwordWrapper' >
+            <label htmlFor="passwordInput">
+                {props.label || ""}
+            </label>
+            <div className="inputDiv">
+                <input
+                    style={styles}
+                    className={valid ? 'validInput' : 'invalidInput'}
+                    type={
+                        showpassword
+                            ? 'text'
+                            : 'password'
+                    }
+                    id='passwordInput'
+                    disabled={props.disabled || false}
+                    placeholder={props.placeholder || ""}
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                />
+                <button onClick={() => setShowPassword(!showpassword)} className='passwordInput'>
+                    {
+                        showpassword
+                            ? <EyeSlash size={25} weight="fill" color='#023E8A' />
+                            : <Eye size={25} weight="fill" color='#023E8A' />
+                    }
 
-            </button>
+                </button>
+            </div>
         </div>
-    </div>
-);
+    );
 };
 
 export default PasswordInput;
