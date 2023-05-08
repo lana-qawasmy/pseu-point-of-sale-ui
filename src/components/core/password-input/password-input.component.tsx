@@ -12,13 +12,13 @@ interface IProps {
     status?: string,
     fontSize?: number,
     fontWeight?: string,
-    getValue?:(value: string)=> void
+    getValue?: (value: string) => void
 }
 
 const PasswordInput = (props: IProps) => {
     const [showpassword, setShowPassword] = useState<boolean>();
     const [value, setValue] = useState<string>('');
-    const [valid, setValid] = useState<boolean>();
+    const [status, setStatus] = useState<string>();
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
     const styles = {
@@ -35,8 +35,13 @@ const PasswordInput = (props: IProps) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        setValid(password_validate(value));
         props.getValue && props.getValue(value)
+        if (value === '')
+            setStatus('none');
+        else if (password_validate(value))
+            setStatus('valid')
+        else
+            setStatus('invalid')
     }, [value]);
 
     return (
@@ -47,7 +52,7 @@ const PasswordInput = (props: IProps) => {
             <div className="inputDiv">
                 <input
                     style={styles}
-                    className={valid ? 'validInput' : 'invalidInput'}
+                    className={status}
                     type={
                         showpassword
                             ? 'text'
@@ -62,8 +67,8 @@ const PasswordInput = (props: IProps) => {
                 <button onClick={() => setShowPassword(!showpassword)} className='passwordInput'>
                     {
                         showpassword
-                            ? <EyeSlash size={25} weight="fill" color='#023E8A' />
-                            : <Eye size={25} weight="fill" color='#023E8A' />
+                            ? <EyeSlash size={23} weight="fill" color='#023E8A' />
+                            : <Eye size={23} weight="fill" color='#023E8A' />
                     }
 
                 </button>
