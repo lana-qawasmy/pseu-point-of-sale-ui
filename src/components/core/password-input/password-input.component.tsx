@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './password-input.css';
 import { Eye, EyeSlash } from 'phosphor-react';
+import { usePassword } from '../../../hooks';
 
 interface IProps {
     height?: number,
@@ -12,14 +13,11 @@ interface IProps {
     status?: string,
     fontSize?: number,
     fontWeight?: string,
-    getValue?: (value: string) => void
+    getValue?: (value: string) => void;
 }
 
 const PasswordInput = (props: IProps) => {
-    const [showpassword, setShowPassword] = useState<boolean>();
-    const [value, setValue] = useState<string>('');
-    const [status, setStatus] = useState<string>();
-    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    const password = usePassword();
 
     const styles = {
         height: (props.height + 'px') || '50px',
@@ -28,21 +26,10 @@ const PasswordInput = (props: IProps) => {
         fontWeight: (props.fontWeight + 'px') || 'normal',
         borderRadius: (props.radius + 'px') || '0px'
     };
-
-    function password_validate(p: string) {
-        return strongRegex.test(p);
-    }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        props.getValue && props.getValue(value)
-        if (value === '')
-            setStatus('none');
-        else if (password_validate(value))
-            setStatus('valid')
-        else
-            setStatus('invalid')
-    }, [value]);
+        props.getValue && props.getValue(password.value);
+    }, [password.value]);
 
     return (
         <div className='passwordWrapper' >
@@ -52,21 +39,21 @@ const PasswordInput = (props: IProps) => {
             <div className="inputDiv">
                 <input
                     style={styles}
-                    className={status}
+                    className={password.status}
                     type={
-                        showpassword
+                        password.showpassword
                             ? 'text'
                             : 'password'
                     }
                     id='passwordInput'
                     disabled={props.disabled || false}
                     placeholder={props.placeholder || ""}
-                    value={value}
-                    onChange={e => setValue(e.target.value)}
+                    value={password.value}
+                    onChange={e => password.setValue(e.target.value)}
                 />
-                <button onClick={() => setShowPassword(!showpassword)} className='passwordInput'>
+                <button onClick={() => password.setShowPassword(!password.showpassword)} className='passwordInput'>
                     {
-                        showpassword
+                        password.showpassword
                             ? <EyeSlash size={23} weight="fill" color='#023E8A' />
                             : <Eye size={23} weight="fill" color='#023E8A' />
                     }
