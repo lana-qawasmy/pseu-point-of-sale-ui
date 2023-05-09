@@ -1,0 +1,136 @@
+.signupPageContainer>div {
+    font-family: 'Inter', sans-serif;
+}
+
+.signupPageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.signupPageTitleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 30%;
+}
+
+.signupPageTitleContainer>h1 {
+    margin: 0;
+    color: #03045e;
+}
+
+.signupPageTitleContainer>h2 {
+    color: #04326d;
+}
+
+.signupPageTitleContainer>h2>a {
+    text-decoration: none;
+    color: #023e8a;
+}
+
+.signupPageBodyContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.signupPageFormContainer {
+    width: 410px;
+    height: 70%;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: #00000059 0px 5px 15px;
+}
+
+.signupFormHeader {
+    width: 100%;
+}
+
+.userImageIcon {
+    display: flex;
+    justify-content: center;
+}
+
+.userImageIcon>label {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    background-image: url('../../../public/signupUserIcon-svg.svg');
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: transparent;
+    cursor: pointer;
+}
+
+
+.userImageIcon>label:active {
+    transition: 0.4s;
+    transform: scale(0.9);
+}
+
+.signupPageImage {
+    margin-right: 30px;
+    height: 500px;
+    width: 40%;
+    background-image: url("https://www.wehaveservers.com/img/domain-prices-sec1-img-b.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+div.signupFormBody>div.signupFormBody1 {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.signupFormBody2 {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.signupFormCheckbox>h3 {
+    font-weight: normal;
+    font-size: smaller;
+    color: #1b4479;
+}
+
+.signupFormCheckbox>h3 a {
+    font-weight: bold;
+    color: #03045e;
+    text-decoration: none;
+}
+
+.registerButtonWrapper {
+    display: flex;
+    height: 70px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+input[type=file]::file-selector-button {
+    position: relative;
+    text-align: right;
+    -moz-opacity: 0;
+    opacity: 0;
+    z-index: 2
+}

@@ -1,7 +1,7 @@
 import './input.css';
 
 interface IProps {
-    Type?: 'text' | 'textArea';
+    Type?: 'text' | 'textArea' | 'email';
 
     Color?: string;
 
@@ -34,7 +34,7 @@ const Input = (props: IProps) => {
             ? '#FF3030'
             : props.Color
                 ? props.Color
-                : '#0077B6'
+                : '#2c64c6'
             }`,
     };
 
@@ -68,6 +68,7 @@ const Input = (props: IProps) => {
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
+                        type={props.Type}
                     />
             }
         </div>
