@@ -5,13 +5,13 @@ import { usePassword } from '../../../hooks';
 
 interface IProps {
     height?: number,
-    width?: number,
-    disabled?: boolean,
-    placeholder?: string,
-    radius?: number;
-    label?: string,
-    fontSize?: number,
-    fontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
+    Width?: number,
+    Disabled?: boolean,
+    Placeholder?: string,
+    Radius?: number;
+    Label?: string,
+    FontSize?: number,
+    FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
     getValue?: (value: string) => void;
 }
@@ -21,10 +21,10 @@ const PasswordInput = (props: IProps) => {
 
     const styles = {
         height: (props.height + 'px') || '50px',
-        width: (props.width + 'px') || '120px',
-        fontSize: (props.fontSize + 'px') || '14px',
-        fontWeight: (props.fontWeight + 'px') || 'normal',
-        borderRadius: (props.radius + 'px') || '0px'
+        width: (props.Width + 'px') || '120px',
+        fontSize: (props.FontSize + 'px') || '14px',
+        fontWeight: (props.FontWeight + 'px') || 'normal',
+        borderRadius: (props.Radius + 'px') || '0px'
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
@@ -34,7 +34,7 @@ const PasswordInput = (props: IProps) => {
     return (
         <div className='passwordWrapper' >
             <label htmlFor="passwordInput">
-                {props.label || ""}
+                {props.Label || ""}
             </label>
             <div className="inputDiv">
                 <input
@@ -46,8 +46,8 @@ const PasswordInput = (props: IProps) => {
                             : 'password'
                     }
                     id='passwordInput'
-                    disabled={props.disabled || false}
-                    placeholder={props.placeholder || ""}
+                    disabled={props.Disabled || false}
+                    placeholder={props.Placeholder || ""}
                     value={password.value}
                     onChange={e => password.setValue(e.target.value)}
                 />
