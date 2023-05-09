@@ -4,6 +4,29 @@ import Input from '../../components/core/input/input.component';
 import Button from '../../components/core/button/button.component';
 
 const Signup = () => {
+
+    const convertBase64 = (file: any) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+    
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+    
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
+
+    const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        let file 
+        event.target.files? file = event.target.files[0] : file = '';
+
+        const base64 = await convertBase64(file);
+        console.log(base64);
+    };
     return (
         <div className="signupPageContainer">
             <div className="signupPageTitleContainer">
@@ -21,7 +44,7 @@ const Signup = () => {
                                 <input
                                     type="file"
                                     id='imageFile'
-                                    accept="image/png, image/gif, image/jpeg" />
+                                    accept="image/png, image/gif, image/jpeg" onChange={e=>{uploadImage(e)}}/>
                             </label >
                         </div>
                     </div>
@@ -33,13 +56,13 @@ const Signup = () => {
                                 Required
                                 Radius={15}
                                 Height={30}
-                                Width={190} />
+                                Width={160} />
                             <Input
                                 Type='email'
                                 PlaceHolder='Email'
                                 Required Radius={15}
                                 Height={30}
-                                Width={190} />
+                                Width={160} />
                         </div>
                         <div className="signupFormBody2">
                             <Input
@@ -47,18 +70,18 @@ const Signup = () => {
                                 PlaceHolder='Password'
                                 Required Radius={15}
                                 Height={30}
-                                Width={400} />
+                                Width={360} />
                             <Input
                                 Type='text'
                                 PlaceHolder='Confirm password'
                                 Required Radius={15}
                                 Height={30}
-                                Width={400} />
+                                Width={360} />
                         </div>
                         <div className="signupFormCheckbox">
                             <h3>
                                 <input type="checkbox" />
-                                I agree to all statments included in the &nbsp;
+                                I agree to all statements included in the &nbsp;
                                 <Link to={'/terms'}>terms of service</Link>
                             </h3>
                         </div>
