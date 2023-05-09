@@ -29,6 +29,7 @@ const PasswordInput = (props: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         props.getValue && props.getValue(password.value);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [password.value]);
 
     return (
