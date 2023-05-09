@@ -117,3 +117,10 @@
 .Ghost:active {
     background-color: #b6b6b6;
 }
+
+
+.buttonContainer>button{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
