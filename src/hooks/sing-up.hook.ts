@@ -51,7 +51,6 @@ const initialState: ISignupState = {
 const useSignUp = () => {
     const [inputState, setInputState] = useState<ISignupState>(initialState);
     const navigate = useNavigate();
-    console.log(inputState);
 
     const convertBase64 = (file: any) => {
         return new Promise((resolve, reject) => {
