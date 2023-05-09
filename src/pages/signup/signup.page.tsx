@@ -1,32 +1,11 @@
 import './signup.css';
 import { Link } from "react-router-dom";
-import Input from '../../components/core/input/input.component';
-import Button from '../../components/core/button/button.component';
+import { Button, Input } from '../../components/core';
+import { useSignUp } from '../../hooks';
 
 const Signup = () => {
+    const { inputState, setInputState, handleSubmitError, addUser, uploadImage } = useSignUp();
 
-    const convertBase64 = (file: any) => {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-    
-            fileReader.onload = () => {
-                resolve(fileReader.result);
-            };
-    
-            fileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-    };
-
-    const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        let file 
-        event.target.files? file = event.target.files[0] : file = '';
-
-        const base64 = await convertBase64(file);
-        console.log(base64);
-    };
     return (
         <div className="signupPageContainer">
             <div className="signupPageTitleContainer">
@@ -34,18 +13,20 @@ const Signup = () => {
                 <h2>Already have an account? <Link to={'/signin'}>Login</Link></h2>
             </div>
             <div className="signupPageBodyContainer">
-                <form className="signupPageFormContainer" onSubmit={(e) => {
-                    e.preventDefault();
-                    console.log("submitted!");
-                }}>
+                <form
+                    className="signupPageFormContainer"
+                    onSubmit={e => addUser(e as any)}
+                    onInvalid={e => handleSubmitError(e as any)}
+                >
                     <div className="signupFormHeader">
                         <div className="userImageIcon">
                             <label htmlFor='imageFile'>
                                 <input
                                     type="file"
                                     id='imageFile'
-                                    accept="image/png, image/gif, image/jpeg" onChange={e=>{uploadImage(e)}}/>
-                            </label >
+                                    accept="image/png, image/gif, image/jpeg" onChange={e => { uploadImage(e); }}
+                                />
+                            </label>
                         </div>
                     </div>
                     <div className="signupFormBody">
@@ -53,35 +34,60 @@ const Signup = () => {
                             <Input
                                 Type='text'
                                 PlaceHolder='Full Name'
+                                name='name'
                                 Required
                                 Radius={15}
                                 Height={30}
-                                Width={160} />
+                                Width={160}
+                                onChange={(e) => {
+                                    setInputState((oldState) => ({ ...oldState, name: { value: e.target.value, valid: true } }));
+                                }}
+                                Status={inputState.name.valid}
+                            />
                             <Input
+                                name='email'
                                 Type='email'
                                 PlaceHolder='Email'
                                 Required Radius={15}
                                 Height={30}
-                                Width={160} />
+                                Width={160}
+                                onChange={(e) => {
+                                    setInputState((oldState) => ({ ...oldState, email: { value: e.target.value, valid: true } }));
+                                }}
+                                Status={inputState.email.valid}
+                            />
                         </div>
                         <div className="signupFormBody2">
                             <Input
+                                name='password'
                                 Type='text'
                                 PlaceHolder='Password'
                                 Required Radius={15}
                                 Height={30}
-                                Width={360} />
+                                Width={360}
+                                onChange={(e) => {
+                                    setInputState((oldState) => ({ ...oldState, password: { value: e.target.value, valid: true } }));
+                                }}
+                                Status={inputState.password.valid}
+                            />
                             <Input
+                                name='passwordConfirmation'
                                 Type='text'
                                 PlaceHolder='Confirm password'
                                 Required Radius={15}
                                 Height={30}
-                                Width={360} />
+                                Width={360}
+                                onChange={(e) => {
+                                    setInputState((oldState) =>
+                                        ({ ...oldState, passwordConfirmation: { value: e.target.value, valid: e.target.validity.valid } }));
+                                }}
+                                Status={inputState.passwordConfirmation.valid}
+                            />
                         </div>
                         <div className="signupFormCheckbox">
                             <h3>
                                 <input type="checkbox" />
-                                I agree to all statements included in the &nbsp;
+                                I agree to all statements included in the&nbsp;
                                 <Link to={'/terms'}>terms of service</Link>
                             </h3>
                         </div>
@@ -93,7 +99,10 @@ const Signup = () => {
                             FontSize='16'
                             Ratio='40/10'
                             Width='130'
-                            Radius='20'>Register</Button>
+                            Radius='20'
+                        >
+                            Register
+                        </Button>
                     </div>
                 </form>
                 <div className="signupPageImage"></div>
