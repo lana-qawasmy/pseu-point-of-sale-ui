@@ -4,7 +4,7 @@ const usePassword = () => {
     const [showpassword, setShowPassword] = useState<boolean>();
     const [value, setValue] = useState<string>('');
     const [status, setStatus] = useState<string>();
-    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"); // eslint-disable-line
 
     function password_validate(p: string) {
         return strongRegex.test(p);
