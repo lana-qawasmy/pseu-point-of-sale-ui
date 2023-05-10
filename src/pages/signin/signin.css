@@ -14,6 +14,13 @@
 .signin > .signinWrapper > .signinForm > .buttonContainer {
     margin-top: 20px;
 }
+.signin > .signinWrapper > .signinForm > span {
+    color: red;
+    font-size: small;
+    width: 100%;
+    text-align: start;
+    padding-left: 8px;
+}
 .signin > .signinWrapper > .signinForm {
     display: flex;
     height: 45%;
@@ -32,6 +39,14 @@
     justify-content: space-between;
     align-items: center;
 }
-.signin > .signinWrapper > h3 {
+.signin > .signinWrapper > p {
     margin-top: 20px;
+    font-size: larger;
+    color: #0077B6;
+}
+
+.signin > .signinWrapper > p > a { 
+    color: #023E8A;
+    text-decoration: none;
+    font-weight: bold;
 }

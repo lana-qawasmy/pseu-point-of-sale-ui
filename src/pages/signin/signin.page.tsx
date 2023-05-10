@@ -16,18 +16,22 @@ const Signin = () => {
                 <form className='signinForm' onSubmit={signin.handleValidation}>
                     <Input Height={40} Width={360} Radius={15} PlaceHolder='Email' name='email' />
                     <PasswordInput height={40} Width={360} Radius={15} Placeholder='Password' name='password' />
+                    {!signin.validLogin && <span>Email or password is incorrect , please try again.</span>}
                     <Button
                         HtmlType='submit'
                         FontWeight={'inherit'}
                         FontSize='16'
                         Ratio='100/10'
                         Width='380'
-                        Radius='20'>Login</Button>
+                        Radius='20'
+                    >
+                        Login
+                    </Button>
                 </form>
-                <h3>
-                    Don't have an account?
-                    <Link to={'/signiup'}>Signup</Link>
-                </h3>
+                <p>
+                    Don't have an account? 
+                    <Link to={'/signup'}>Signup</Link>
+                </p>
             </div>
             <img src={mainPic} alt="main pic" className='mainPic' />
 
