@@ -2,9 +2,8 @@ import './input.css';
 
 interface IProps {
     Type?: 'text' | 'textArea' | 'email';
-
     Color?: string;
-
+    Name?: string;
     Required?: boolean;
 
     Height?: number;
@@ -41,12 +40,8 @@ const Input = (props: IProps) => {
     return (
         <div className='TextInputWrapper'>
             <span className='inputLabelAndRequired'>
-                {
-                    props.Required
-                        ? <span className='required'>*</span>
-                        : false
-
-                }
+                        <span className='required' 
+                        style={props.Required?{color: "red"}:{color: "transparent"}}>*</span>
                 {
                     (props.Label)
                         ? <span className='label'>
@@ -62,6 +57,8 @@ const Input = (props: IProps) => {
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
+                        name={props.Name}
+                        required={props.Required}
                     />
                     : <input
                         className={`input ${props.Status ? props.Status : 'valid'}`}
@@ -69,6 +66,8 @@ const Input = (props: IProps) => {
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
                         type={props.Type}
+                        name={props.Name}
+                        required={props.Required}
                     />
             }
         </div>
