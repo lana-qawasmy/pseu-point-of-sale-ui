@@ -22,11 +22,12 @@ const PasswordInput = (props: IProps) => {
 
     const styles = {
         height: (props.height + 'px') || '50px',
-        width: (props.Width + 'px') || '120px',
+        width: ((props.Width || 120)) + 'px',
         fontSize: (props.FontSize + 'px') || '14px',
         fontWeight: (props.FontWeight + 'px') || 'normal',
         borderRadius: (props.Radius + 'px') || '0px'
     };
+    const eyeStyle = {bottom : ((props.height || 50) / 3.2) + 'px' , left : ((props.Width || 120) * 0.9) + 'px'}
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         props.getValue && props.getValue(password.value);
@@ -54,7 +55,11 @@ const PasswordInput = (props: IProps) => {
                     value={password.value}
                     onChange={e => password.setValue(e.target.value)}
                 />
-                <button onClick={() => password.setShowPassword(!password.showpassword)} className='passwordInput'>
+                <button
+                    onClick={() => password.setShowPassword(!password.showpassword)}
+                    className='passwordInput'
+                    style={eyeStyle}
+                >
                     {
                         password.showpassword
                             ? <EyeSlash size={23} weight="fill" color='#023E8A' />
