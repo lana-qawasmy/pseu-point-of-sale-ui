@@ -8,6 +8,7 @@ interface IProps {
     Width?: number,
     Disabled?: boolean,
     Placeholder?: string,
+    name?: string,
     Radius?: number;
     Label?: string,
     FontSize?: number,
@@ -39,6 +40,7 @@ const PasswordInput = (props: IProps) => {
             </label>
             <div className="inputDiv">
                 <input
+                    name={props.name || 'password'}
                     style={styles}
                     className={password.status}
                     type={

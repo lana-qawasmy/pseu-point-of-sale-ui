@@ -15,6 +15,7 @@ interface IProps {
 
     PlaceHolder?: string;
     Label?: string;
+    name?: string;
 
     Status?: 'valid' | 'invalid';
 
@@ -58,12 +59,14 @@ const Input = (props: IProps) => {
             {
                 props.Type === 'textArea'
                     ? <textarea
+                        name={props.name || 'textarea'}
                         className={`textArea ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
                     />
                     : <input
+                        name={props.name || 'input'}
                         className={`input ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
