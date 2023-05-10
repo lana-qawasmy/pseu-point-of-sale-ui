@@ -46,7 +46,7 @@ const useAddItem = () => {
     image: HTMLInputElement;
     barcode: HTMLInputElement;
     description: HTMLInputElement;
-  }
+  };
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.target as ItemInputElement;
