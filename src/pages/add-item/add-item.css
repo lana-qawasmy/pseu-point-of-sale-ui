@@ -1,4 +1,4 @@
-.addItemPageContainer{
+.addItemPageContainer {
     font-family: 'inter', sans-serif;
     background-color: #f3f4f8;
     width: 100%;
@@ -8,7 +8,7 @@
     align-items: center;
 }
 
-.addItemFormContainer{
+.addItemFormContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -21,7 +21,7 @@
     padding-bottom: 15px;
 }
 
-.addItemFormTitle>span{
+.addItemFormTitle>span {
     font-weight: 700;
     color: #03045e;
     font-size: 25px;
@@ -29,31 +29,76 @@
 }
 
 
-.addItemUploadImageWrapper{
+.addItemUploadImageWrapper {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
-.addItemUploadImageWrapper>.imageWrapper{
+.addItemUploadImageWrapper>.imageWrapper {
     height: 50px;
     width: 50px;
-    background-image: url("../../../public/imageIcon.svg");
+    cursor: pointer;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     margin-right: 10px;
 }
 
-#addItemInputSelector{
-    width: 160px;
+#addItemInputSelector {
+    width: 1px;
     color: transparent;
 }
 
-.imageSelector>label{
+.imageSelector>label {
     display: flex;
-    height: 40px;
-    background-color: red;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    background-color: #adadaf;
     border-radius: 40px;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.imageSelector label:active {
+    transform: scale(0.97);
+    transition: 0.3s;
+
+}
+
+.imageSelector>label input {
+    width: 1px;
+}
+
+.showImageOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #0000008f;
+}
+
+.showImageBody {
+    width: 95%;
+    height: 90%;
+    background-color: white;
+    border-radius: 25px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hidden {
+    display: none;
 }
