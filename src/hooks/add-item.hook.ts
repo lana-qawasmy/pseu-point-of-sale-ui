@@ -1,5 +1,8 @@
 import { useState } from "react";
 import logo from "../pages/add-item/imageIcon.svg";
+import { addItem } from "../service/item.service";
+import { ItemNS } from "../types";
+
 const useAddItem = () => {
   const [imageIcon, setImageIcon] = useState(logo);
   const [uploadStatus, setUploadStatus] = useState({
@@ -48,16 +51,17 @@ const useAddItem = () => {
     e.preventDefault();
     const target = e.target as ItemInputElement;
     const price = parseFloat(target.price.value);
-    const newItem = {
+    const newItem: ItemNS.Item = {
       name: target.itemName.value,
       price: price,
+      description: target.description.value,
       image: target.image.value,
       barcode: target.barcode.value,
-      description: target.description.value,
       addedBy: sessionStorage.getItem("user") || "uknown",
       priceHistory: [{ date: new Date(), price: price }],
     };
     console.log(newItem);
+    addItem(newItem);
   };
   return {
     imageIcon,
