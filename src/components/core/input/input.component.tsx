@@ -1,7 +1,7 @@
 import './input.css';
 
 interface IProps {
-    Type?: 'text' | 'textArea' | 'email';
+    Type?: 'text' | 'textArea' | 'email' | "number";
     Color?: string;
     Name?: string;
     Required?: boolean;

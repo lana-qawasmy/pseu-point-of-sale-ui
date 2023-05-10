@@ -31,6 +31,7 @@ const AddItem = () => {
             Radius={15}
             Required
             PlaceHolder="Price"
+            Type="number"
           />
         </div>
         <div className="addItemInputWrapper">
