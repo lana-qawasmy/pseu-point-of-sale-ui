@@ -30,6 +30,7 @@ interface IFormEvent {
                 valid: boolean;
             };
         },
+        validity: any;
     };
 }
 
@@ -39,13 +40,15 @@ interface ISignupState {
     password: { value: string; valid: boolean; };
     passwordConfirmation: { value: string; valid: boolean; };
     image?: string;
+    checked: boolean;
 }
 
 const initialState: ISignupState = {
     email: { value: '', valid: true },
     name: { value: '', valid: true },
     password: { value: '', valid: true },
-    passwordConfirmation: { value: '', valid: true }
+    passwordConfirmation: { value: '', valid: true },
+    checked: false,
 };
 
 const useSignUp = () => {
@@ -74,48 +77,20 @@ const useSignUp = () => {
         setInputState((oldState) => ({ ...oldState, image: base64 }));
     };
 
-    const handleSubmitError = (event: IFormEvent) => {
-        switch (event.target.name as any) {
-            case 'name': {
-                setInputState((oldState) => ({ ...oldState, name: { ...oldState.name, valid: false } }));
-                break;
-            }
-            case 'email': {
-                setInputState((oldState) => ({ ...oldState, email: { ...oldState.email, valid: false } }));
-                break;
-            }
-            case 'password': {
-                setInputState((oldState) => ({ ...oldState, password: { ...oldState.password, valid: false } }));
-                break;
-            }
-            case 'passwordConfirmation': {
-                setInputState((oldState) => ({ ...oldState, passwordConfirmation: { ...oldState.passwordConfirmation, valid: false } }));
-                break;
-            }
-        }
-    };
-
-
     const addUser = async (event: IFormEvent) => {
         event.preventDefault();
-        setInputState((oldState) => (
-            {
-                ...oldState,
-                name: { ...oldState.name, valid: event.target.name.validity.valid },
-                email: { ...oldState.email, valid: event.target.email.validity.valid },
-                password: { ...oldState.password, valid: event.target.password.validity.valid },
-                passwordConfirmation: {
-                    ...oldState.passwordConfirmation,
-                    valid: event.target.passwordConfirmation.validity.valid && (oldState.password.value === oldState.passwordConfirmation.value)
-                }
-            }
-        ));
+
+        const nameInput = document.getElementById('nameInSignUp') as any;
+        const emailInput = document.getElementById('emailInSignUp') as any;
+        const passwordInput = document.getElementById('passwordInSignUp') as any;
+        const passwordConfirmationInput = document.getElementById('passwordConfirmationInSignUp') as any;
 
         let match: boolean = true;
-        match &&= (inputState.name.valid);
-        match &&= (inputState.email.valid);
-        match &&= (inputState.password.valid);
-        match &&= (inputState.passwordConfirmation.valid);
+        match &&= (nameInput.validity.valid);
+        match &&= (emailInput.validity.valid);
+        match &&= (passwordInput.validity.valid);
+        match &&= (passwordConfirmationInput.validity.valid && (passwordInput.value === passwordConfirmationInput.value));
+        match &&= (inputState.checked);
 
         if (match) {
             const user: UserNS.User = {
@@ -125,18 +100,42 @@ const useSignUp = () => {
                 password: inputState.password.value,
                 image: inputState.image || '',
             };
+
             try {
                 const addUser = await userService.createUser(user);
                 if (addUser) {
-                    navigate('/existedItems', { replace: true });
+                    alert('User is created successfully');
+                    navigate('/', { replace: true });
                 }
                 else {
-                    alert('User is not created, please try again');
+                    alert('User is not created, Invalid email');
                 }
             } catch (error) {
                 console.error(error);
-                alert('User is not created, please try again');
+                alert('User is not created, please try again2');
             }
+        }
+        else {
+            setInputState((oldState) => ({
+                ...oldState,
+                name: {
+                    ...inputState.name,
+                    valid: nameInput.validity.valid,
+                },
+                email: {
+                    ...inputState.email,
+                    valid: emailInput.validity.valid,
+                },
+                password: {
+                    ...inputState.password,
+                    valid: passwordInput.validity.valid,
+                },
+                passwordConfirmation: {
+                    ...inputState.passwordConfirmation,
+                    valid: passwordConfirmationInput.validity.valid && inputState.passwordConfirmation.value === inputState.password.value,
+                },
+            }));
+            alert('User is not created, Invalid Email, passwordConfirmation, or check the terms');
         }
     };
 
@@ -144,7 +143,6 @@ const useSignUp = () => {
     return {
         inputState,
         setInputState,
-        handleSubmitError,
         uploadImage,
         addUser,
     };
