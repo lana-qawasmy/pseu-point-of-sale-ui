@@ -12,6 +12,7 @@ interface IProps {
     Radius?: number;
     Label?: string,
     FontSize?: number,
+    state?: 'none' | 'valid' | 'invalid',
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
     getValue?: (value: string) => void;
@@ -43,7 +44,7 @@ const PasswordInput = (props: IProps) => {
                 <input
                     name={props.name || 'password'}
                     style={styles}
-                    className={password.status}
+                    className={props.state || password.status}
                     type={
                         password.showpassword
                             ? 'text'

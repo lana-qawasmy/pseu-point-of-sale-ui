@@ -15,7 +15,7 @@ const Signin = () => {
                 <img src={logo} alt="" />
                 <form className='signinForm' onSubmit={signin.handleValidation}>
                     <Input Height={40} Width={360} Radius={15} PlaceHolder='Email' name='email' />
-                    <PasswordInput height={40} Width={360} Radius={15} Placeholder='Password' name='password' />
+                    <PasswordInput height={40} Width={360} Radius={15} Placeholder='Password' name='password' state='none'/>
                     {!signin.validLogin && <span>Email or password is incorrect , please try again.</span>}
                     <Button
                         HtmlType='submit'
