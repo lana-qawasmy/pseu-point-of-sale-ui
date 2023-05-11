@@ -4,12 +4,13 @@ import './input.css';
 interface IProps {
     Type?: 'text' | 'textArea' | 'email';
 
+    id?: string;
     name?: string;
 
     Color?: string;
 
     Required?: boolean;
-
+    
     Height?: number;
     Width?: number;
     Radius?: number;
@@ -24,7 +25,7 @@ interface IProps {
     FontSize?: number;
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-    id?: string;
+    
     onChange?(e: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>): void;
 }
 
