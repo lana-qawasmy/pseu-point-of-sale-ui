@@ -24,7 +24,7 @@ interface IProps {
     FontSize?: number;
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-
+    id?: string;
     onChange?(e: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>): void;
 }
 
@@ -47,22 +47,23 @@ const Input = (props: IProps) => {
         <div className='TextInputWrapper'>
             <span className='inputLabelAndRequired'>
                 {
-                    props.Required
-                        ? <span className='required'>*</span>
-                        : false
-
-                }
-                {
                     (props.Label)
                         ? <span className='label'>
                             {props.Label || ''}
                         </span>
                         : false
                 }
+                {
+                    props.Required
+                        ? <span className='required'>&nbsp;*</span>
+                        : false
+
+                }
             </span>
             {
                 props.Type === 'textArea'
                     ? <textarea
+                        id={props.id}
                         className={`textArea ${props.Status !== false ? 'valid' : 'invalid'}`}
                         style={style}
                         disabled={props.Disabled}
@@ -72,6 +73,7 @@ const Input = (props: IProps) => {
                         onChange={e => (props.onChange && props.onChange(e))}
                     />
                     : <input
+                        id={props.id}
                         className={`input ${props.Status !== false ? 'valid' : 'invalid'}`}
                         style={style}
                         disabled={props.Disabled}
