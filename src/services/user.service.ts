@@ -18,6 +18,7 @@ const createUser = async (user: UserNS.User) => {
     });
 };
 
-export default {
+
+export const userService = {
     createUser,
 };
