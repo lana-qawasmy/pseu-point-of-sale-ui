@@ -2,6 +2,7 @@ import './signup.css';
 import { Link } from "react-router-dom";
 import { Button, Input } from '../../components/core';
 import { useSignUp } from '../../hooks';
+import { PasswordAndConfirmation } from '../../components/signup';
 
 const Signup = () => {
     const { inputState, setInputState, addUser, uploadImage } = useSignUp();
@@ -70,46 +71,7 @@ const Signup = () => {
                             />
                         </div>
                         <div className="signupFormBody2">
-                            <Input
-                                id='passwordInSignUp'
-                                name='password'
-                                Type='text'
-                                Label='Password'
-                                PlaceHolder='Password'
-                                Required Radius={15}
-                                Height={30}
-                                Width={360}
-                                onChange={(e) => {
-                                    setInputState((oldState) => ({
-                                        ...oldState,
-                                        password: {
-                                            value: e.target.value,
-                                            valid: true
-                                        }
-                                    }));
-                                }}
-                                Status={inputState.password.valid}
-                            />
-                            <Input
-                                id='passwordConfirmationInSignUp'
-                                Label='Password Confirmation'
-                                name='passwordConfirmation'
-                                Type='text'
-                                PlaceHolder='Confirm password'
-                                Required Radius={15}
-                                Height={30}
-                                Width={360}
-                                onChange={(e) => {
-                                    setInputState((oldState) => ({
-                                        ...oldState,
-                                        passwordConfirmation: {
-                                            value: e.target.value,
-                                            valid: true
-                                        }
-                                    }));
-                                }}
-                                Status={inputState.passwordConfirmation.valid}
-                            />
+                            <PasswordAndConfirmation inputState={inputState} setInputState={setInputState} />
                         </div>
                         <div className="signupFormCheckbox">
                             <h3
@@ -121,7 +83,6 @@ const Signup = () => {
                                     id='checkboxInSignUp'
                                     type="checkbox"
                                     checked={inputState.checked}
-                                    onChange={e => { }}
                                 />
                                 I agree to all statements included in the&nbsp;
                                 <Link to={'/terms'}>terms of service</Link>

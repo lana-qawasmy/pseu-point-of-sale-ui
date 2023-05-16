@@ -34,7 +34,7 @@ interface IFormEvent {
     };
 }
 
-interface ISignupState {
+export interface ISignupState {
     name: { value: string; valid: boolean; };
     email: { value: string; valid: boolean; };
     password: { value: string; valid: boolean; };
@@ -138,7 +138,6 @@ const useSignUp = () => {
             alert('User is not created, Invalid Email, passwordConfirmation, or check the terms');
         }
     };
-
 
     return {
         inputState,
