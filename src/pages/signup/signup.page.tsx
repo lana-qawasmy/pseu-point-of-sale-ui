@@ -4,8 +4,20 @@ import { Button, Input } from '../../components/core';
 import { useSignUp } from '../../hooks';
 import { PasswordAndConfirmation } from '../../components/signup';
 
+import defaultImage from '../../assets/signupUserIcon-svg.svg';
+
 const Signup = () => {
     const { inputState, setInputState, addUser, uploadImage } = useSignUp();
+
+    const style = {
+        backgroundImage: `url(${inputState.image || defaultImage})`,
+        borderRadius: inputState.image ? '50%' : '',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        color: 'transparent',
+        cursor: 'pointer',
+    };
 
     return (
         <div className="signupPageContainer">
@@ -16,13 +28,18 @@ const Signup = () => {
             <div className="signupPageBodyContainer">
                 <form className="signupPageFormContainer">
                     <div className="signupFormHeader">
-                        <div className="userImageIcon">
-                            <label htmlFor='imageFile'>
+                        <div className="userImageIcon" >
+                            <label
+                                htmlFor='imageFile'
+                                style={style}
+                            >
                                 <input
                                     type="file"
                                     id='imageFile'
-                                    accept="image/png, image/gif, image/jpeg" onChange={e => { uploadImage(e); }}
-                                />
+                                    accept="image/png, image/gif, image/jpeg"
+                                    onChange={e => { uploadImage(e); }}
+                                >
+                                </input>
                             </label>
                         </div>
                     </div>
@@ -71,7 +88,10 @@ const Signup = () => {
                             />
                         </div>
                         <div className="signupFormBody2">
-                            <PasswordAndConfirmation inputState={inputState} setInputState={setInputState} />
+                            <PasswordAndConfirmation
+                                inputState={inputState}
+                                setInputState={setInputState}
+                            />
                         </div>
                         <div className="signupFormCheckbox">
                             <h3
@@ -83,6 +103,7 @@ const Signup = () => {
                                     id='checkboxInSignUp'
                                     type="checkbox"
                                     checked={inputState.checked}
+                                    onChange={e => { }}
                                 />
                                 I agree to all statements included in the&nbsp;
                                 <Link to={'/terms'}>terms of service</Link>
@@ -104,8 +125,8 @@ const Signup = () => {
                     </div>
                 </form>
                 <div className="signupPageImage"></div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 export default Signup;
