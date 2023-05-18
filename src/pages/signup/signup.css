@@ -68,7 +68,7 @@
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
-    background-image: url('../../../public/signupUserIcon-svg.svg');
+    background-image: url('../../assets/signupUserIcon-svg.svg');
     background-position: top;
     background-size: contain;
     background-repeat: no-repeat;
