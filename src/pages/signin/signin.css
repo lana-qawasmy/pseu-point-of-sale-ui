@@ -7,8 +7,8 @@
     height: 100vh;
 }
 .signin > img {
-    max-width: 680px;
-    max-height:580px;
+    width: 550px;
+    height:550px;
     overflow: hidden;
 }
 .signin > .signinWrapper > .signinForm > .buttonContainer {
