@@ -60,6 +60,7 @@ const PasswordInput = (props: IProps) => {
                     onClick={() => password.setShowPassword(!password.showpassword)}
                     className='passwordInput'
                     style={eyeStyle}
+                    type='button'
                 >
                     {
                         password.showpassword
