@@ -28,7 +28,7 @@ const PasswordInput = (props: IProps) => {
         fontWeight: (props.FontWeight + 'px') || 'normal',
         borderRadius: (props.Radius + 'px') || '0px'
     };
-    const eyeStyle = {bottom : ((props.height || 50) / 3.2) + 'px' , left : ((props.Width || 120) * 0.93) + 'px'}
+    const eyeStyle = { bottom: ((props.height || 50) / 3.2) + 'px', left: ((props.Width || 120) * 0.93) + 'px' }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         props.getValue && props.getValue(password.value);
