@@ -11,9 +11,9 @@ const login = (email: string, password: string) => {
     }).then(async response => {
         return await response.json();
     }).catch(error => {
-        console.log(error.message);
+        console.error(error.message);
         return null;
     })
 }
 
-export { login };
+export default login;

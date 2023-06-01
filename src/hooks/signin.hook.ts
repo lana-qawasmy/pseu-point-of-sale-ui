@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/signin.service";
+import { login } from "../services";
 import { useState } from "react";
 
 const useSignin = () => {
