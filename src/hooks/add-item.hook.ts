@@ -30,7 +30,6 @@ const useAddItem = () => {
     event.target.files ? (file = event.target.files[0]) : (file = "");
 
     const base64: unknown = await convertBase64(file);
-    console.log(base64);
     base64 !== logo &&
       setUploadStatus({
         backgroundColor: "#2c64c6",
@@ -60,7 +59,6 @@ const useAddItem = () => {
       addedBy: sessionStorage.getItem("user") || "uknown",
       priceHistory: [{ date: new Date(), price: price }],
     };
-    console.log(newItem);
     addItem(newItem);
   };
   return {
