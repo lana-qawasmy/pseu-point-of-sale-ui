@@ -13,11 +13,11 @@ const useSignin = () => {
         const password = e.currentTarget.password.value;
         const user = await login(email, password);
 
-        if (userContext.setUser) {
-            userContext.setUser(user[0]);
-        }
-
+        
         if (user?.length) {
+            if (userContext.setUser) {
+                userContext.setUser(user[0]);
+            }
             setValidLogin(true)
             navigate('/', { replace: true })
             return true;
