@@ -19,6 +19,7 @@ interface IProps {
 
     PlaceHolder?: string;
     Label?: string;
+    name?: string;
 
     Status?: boolean;
 
@@ -65,23 +66,23 @@ const Input = (props: IProps) => {
                 props.Type === 'textArea'
                     ? <textarea
                         id={props.id}
-                        className={`textArea ${props.Status !== false ? 'valid' : 'invalid'}`}
+                        name={props.name || 'textarea'}
+                        className={`textArea ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
                         required={props.Required}
-                        name={props.name || ''}
                         onChange={e => (props.onChange && props.onChange(e))}
                     />
                     : <input
                         id={props.id}
-                        className={`input ${props.Status !== false ? 'valid' : 'invalid'}`}
+                        name={props.name || 'input'}
+                        className={`input ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
                         type={props.Type}
                         required={props.Required}
-                        name={props.name || ''}
                         onChange={e => (props.onChange && props.onChange(e))}
                     />
             }
