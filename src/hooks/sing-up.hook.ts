@@ -35,19 +35,19 @@ interface IFormEvent {
 }
 
 export interface ISignupState {
-    name: { value: string; valid: boolean; };
-    email: { value: string; valid: boolean; };
-    password: { value: string; valid: boolean; };
-    passwordConfirmation: { value: string; valid: boolean; };
+    name: { value: string; valid: 'valid' | 'invalid'; };
+    email: { value: string; valid: 'valid' | 'invalid'; };
+    password: { value: string; valid: 'valid' | 'invalid'; };
+    passwordConfirmation: { value: string; valid: 'valid' | 'invalid'; };
     image?: string;
     checked: boolean;
 }
 
 const initialState: ISignupState = {
-    email: { value: '', valid: true },
-    name: { value: '', valid: true },
-    password: { value: '', valid: true },
-    passwordConfirmation: { value: '', valid: true },
+    email: { value: '', valid: 'valid' },
+    name: { value: '', valid: 'valid' },
+    password: { value: '', valid: 'valid' },
+    passwordConfirmation: { value: '', valid: 'valid' },
     checked: false,
 };
 
@@ -120,22 +120,23 @@ const useSignUp = () => {
                 ...oldState,
                 name: {
                     ...inputState.name,
-                    valid: nameInput.validity.valid,
+                    valid: nameInput.validity.valid ? 'valid' : 'invalid',
                 },
                 email: {
                     ...inputState.email,
-                    valid: emailInput.validity.valid,
+                    valid: emailInput.validity.valid ? 'valid' : 'invalid',
                 },
                 password: {
                     ...inputState.password,
-                    valid: passwordInput.validity.valid,
+                    valid: passwordInput.validity.valid ? 'valid' : 'invalid',
                 },
                 passwordConfirmation: {
                     ...inputState.passwordConfirmation,
-                    valid: passwordConfirmationInput.validity.valid && inputState.passwordConfirmation.value === inputState.password.value,
+                    valid: ((passwordConfirmationInput.validity.valid) && (inputState.passwordConfirmation.value === inputState.password.value))
+                        ? 'valid' : 'invalid',
                 },
             }));
-            alert('User is not created, Invalid Email, passwordConfirmation, or check the terms');
+            alert('User is not created, because of you not agree with out terms, Invalid name, email, or password');
         }
     };
 

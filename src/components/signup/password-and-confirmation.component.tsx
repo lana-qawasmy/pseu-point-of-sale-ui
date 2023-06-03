@@ -23,11 +23,11 @@ const PasswordAndConfirmation = (props: IProps) => {
                         ...oldState,
                         password: {
                             value: e.target.value,
-                            valid: true
+                            valid: 'valid'
                         }
                     }));
                 }}
-                Status={props.inputState.password.valid}
+                Status={props.inputState.password.valid === 'valid'}
             />
             <Input
                 id='passwordConfirmationInSignUp'
@@ -43,11 +43,11 @@ const PasswordAndConfirmation = (props: IProps) => {
                         ...oldState,
                         passwordConfirmation: {
                             value: e.target.value,
-                            valid: true
+                            valid: 'valid'
                         }
                     }));
                 }}
-                Status={props.inputState.passwordConfirmation.valid}
+                Status={props.inputState.passwordConfirmation.valid === 'valid'}
             />
         </>
     );

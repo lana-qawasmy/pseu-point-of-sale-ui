@@ -60,11 +60,11 @@ const Signup = () => {
                                         ...oldState,
                                         name: {
                                             value: e.target.value,
-                                            valid: true
+                                            valid: 'valid'
                                         }
                                     }));
                                 }}
-                                Status={inputState.name.valid}
+                                Status={inputState.name.valid === 'valid'}
                             />
                             <Input
                                 Label='Email'
@@ -80,11 +80,11 @@ const Signup = () => {
                                         ...oldState,
                                         email: {
                                             value: e.target.value,
-                                            valid: true
+                                            valid: 'valid'
                                         }
                                     }));
                                 }}
-                                Status={inputState.email.valid}
+                                Status={inputState.email.valid === 'valid'}
                             />
                         </div>
                         <div className="signupFormBody2">
