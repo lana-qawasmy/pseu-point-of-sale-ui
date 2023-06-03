@@ -60,7 +60,7 @@
 
 .TextInputWrapper>.invalid:focus,
 .TextInputWrapper>.invalid:active {
-    box-shadow: 1px 1px #eb5c5cc4;;
+    box-shadow: 1px 1px #eb5c5cc4;
 }
 
 .TextInputWrapper>.textArea {
