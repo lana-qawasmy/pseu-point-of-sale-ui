@@ -1,6 +1,6 @@
 import { UserNS } from '../types';
 
-const createUser = async (user: UserNS.User) => {
+const signup = async (user: UserNS.User) => {
     return fetch(`${process.env.REACT_APP_SERVER_URL}/user/signup`, {
         method: 'POST',
         headers: {
@@ -18,7 +18,4 @@ const createUser = async (user: UserNS.User) => {
     });
 };
 
-
-export const userService = {
-    createUser,
-};
+export default signup;

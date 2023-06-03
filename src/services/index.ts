@@ -1,1 +1,1 @@
-export { userService } from './user.service';
+export { default as signup } from './signup.service';

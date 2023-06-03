@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { UserNS } from '../types';
-import { userService } from '../services';
+import { signup } from '../services';
 import { useNavigate } from 'react-router-dom';
 
 interface IFormEvent {
@@ -102,7 +102,7 @@ const useSignUp = () => {
             };
 
             try {
-                const addUser = await userService.createUser(user);
+                const addUser = await signup(user);
                 if (addUser) {
                     alert('User is created successfully');
                     navigate('/', { replace: true });
@@ -112,7 +112,7 @@ const useSignUp = () => {
                 }
             } catch (error) {
                 console.error(error);
-                alert('User is not created, please try again2');
+                alert('User is not created, please try again');
             }
         }
         else {
