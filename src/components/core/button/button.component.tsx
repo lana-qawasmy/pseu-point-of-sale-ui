@@ -13,7 +13,7 @@ interface IProps {
     FontColor?: string,
     Border?: string,
     onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
-    children?: JSX.Element | string,
+    children?: JSX.Element | string | any,
 }
 
 const Button = (props: IProps) => {
