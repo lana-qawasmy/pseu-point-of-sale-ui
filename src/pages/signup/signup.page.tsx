@@ -1,32 +1,24 @@
 import './signup.css';
 import { Link } from "react-router-dom";
-import Input from '../../components/core/input/input.component';
-import Button from '../../components/core/button/button.component';
+import { Button, Input } from '../../components/core';
+import { useSignUp } from '../../hooks';
+import { PasswordAndConfirmation } from '../../components/signup';
+
+import defaultImage from '../../assets/signupUserIcon-svg.svg';
 
 const Signup = () => {
+    const { inputState, setInputState, addUser, uploadImage } = useSignUp();
 
-    const convertBase64 = (file: any) => {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-    
-            fileReader.onload = () => {
-                resolve(fileReader.result);
-            };
-    
-            fileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
+    const style = {
+        backgroundImage: `url(${inputState.image || defaultImage})`,
+        borderRadius: inputState.image ? '50%' : '',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        color: 'transparent',
+        cursor: 'pointer',
     };
 
-    const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        let file 
-        event.target.files? file = event.target.files[0] : file = '';
-
-        const base64 = await convertBase64(file);
-        console.log(base64);
-    };
     return (
         <div className="signupPageContainer">
             <div className="signupPageTitleContainer">
@@ -34,71 +26,107 @@ const Signup = () => {
                 <h2>Already have an account? <Link to={'/signin'}>Login</Link></h2>
             </div>
             <div className="signupPageBodyContainer">
-                <form className="signupPageFormContainer" onSubmit={(e) => {
-                    e.preventDefault();
-                    console.log("submitted!");
-                }}>
+                <form className="signupPageFormContainer">
                     <div className="signupFormHeader">
-                        <div className="userImageIcon">
-                            <label htmlFor='imageFile'>
+                        <div className="userImageIcon" >
+                            <label
+                                htmlFor='imageFile'
+                                style={style}
+                            >
                                 <input
                                     type="file"
                                     id='imageFile'
-                                    accept="image/png, image/gif, image/jpeg" onChange={e=>{uploadImage(e)}}/>
-                            </label >
+                                    accept="image/png, image/gif, image/jpeg"
+                                    onChange={e => { uploadImage(e); }}
+                                >
+                                </input>
+                            </label>
                         </div>
                     </div>
                     <div className="signupFormBody">
                         <div className="signupFormBody1">
                             <Input
                                 Type='text'
+                                id='nameInSignUp'
+                                Label='Full Name'
                                 PlaceHolder='Full Name'
+                                name='name'
                                 Required
                                 Radius={15}
                                 Height={30}
-                                Width={160} />
+                                Width={160}
+                                onChange={(e) => {
+                                    setInputState((oldState) => ({
+                                        ...oldState,
+                                        name: {
+                                            value: e.target.value,
+                                            valid: 'valid'
+                                        }
+                                    }));
+                                }}
+                                Status={inputState.name.valid === 'valid'}
+                            />
                             <Input
+                                Label='Email'
+                                name='email'
+                                id='emailInSignUp'
                                 Type='email'
                                 PlaceHolder='Email'
                                 Required Radius={15}
                                 Height={30}
-                                Width={160} />
+                                Width={160}
+                                onChange={(e) => {
+                                    setInputState((oldState) => ({
+                                        ...oldState,
+                                        email: {
+                                            value: e.target.value,
+                                            valid: 'valid'
+                                        }
+                                    }));
+                                }}
+                                Status={inputState.email.valid === 'valid'}
+                            />
                         </div>
                         <div className="signupFormBody2">
-                            <Input
-                                Type='text'
-                                PlaceHolder='Password'
-                                Required Radius={15}
-                                Height={30}
-                                Width={360} />
-                            <Input
-                                Type='text'
-                                PlaceHolder='Confirm password'
-                                Required Radius={15}
-                                Height={30}
-                                Width={360} />
+                            <PasswordAndConfirmation
+                                inputState={inputState}
+                                setInputState={setInputState}
+                            />
                         </div>
                         <div className="signupFormCheckbox">
-                            <h3>
-                                <input type="checkbox" />
-                                I agree to all statements included in the &nbsp;
+                            <h3
+                                onClick={(e) => {
+                                    setInputState((oldState) => ({ ...oldState, checked: !inputState.checked }));
+                                }}
+                            >
+                                <input
+                                    id='checkboxInSignUp'
+                                    type="checkbox"
+                                    checked={inputState.checked}
+                                    onChange={e => { }}
+                                />
+                                I agree to all statements included in the&nbsp;
                                 <Link to={'/terms'}>terms of service</Link>
                             </h3>
                         </div>
                     </div>
                     <div className="registerButtonWrapper">
                         <Button
-                            HtmlType='submit'
+                            HtmlType='button'
                             FontWeight={'inherit'}
                             FontSize='16'
                             Ratio='40/10'
                             Width='130'
-                            Radius='20'>Register</Button>
+                            Radius='20'
+                            onClick={e => addUser(e as any)}
+                        >
+                            Register
+                        </Button>
                     </div>
                 </form>
                 <div className="signupPageImage"></div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 export default Signup;

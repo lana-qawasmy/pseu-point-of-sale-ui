@@ -68,7 +68,7 @@
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
-    background-image: url('../../../public/signupUserIcon-svg.svg');
+    background-image: url('../../assets/signupUserIcon-svg.svg');
     background-position: top;
     background-size: contain;
     background-repeat: no-repeat;
@@ -105,11 +105,24 @@ div.signupFormBody>div.signupFormBody1 {
     align-items: center;
 }
 
+.signupFormCheckbox {
+    cursor: pointer;
+    user-select: none;
+}
 
 .signupFormCheckbox>h3 {
     font-weight: normal;
     font-size: smaller;
     color: #1b4479;
+    display: flex;
+    justify-content: center;
+}
+
+.signupFormCheckbox>h3>input[type=checkbox] {
+    display: inline;
+    margin-right: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
 }
 
 .signupFormCheckbox>h3 a {
@@ -126,6 +139,7 @@ div.signupFormBody>div.signupFormBody1 {
     justify-content: flex-end;
     align-items: center;
 }
+
 
 input[type=file]::file-selector-button {
     position: relative;
