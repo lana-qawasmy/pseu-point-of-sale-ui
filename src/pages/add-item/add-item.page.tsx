@@ -15,7 +15,7 @@ const AddItem = () => {
         </div>
         <div className="addItemInputWrapper">
           <Input
-            Name="itemName"
+            name="itemName"
             Width={210}
             Height={30}
             Radius={15}
@@ -25,7 +25,7 @@ const AddItem = () => {
         </div>
         <div className="addItemInputWrapper">
           <Input
-            Name="price"
+            name="price"
             Width={210}
             Height={30}
             Radius={15}
@@ -36,7 +36,7 @@ const AddItem = () => {
         </div>
         <div className="addItemInputWrapper">
           <Input
-            Name="description"
+            name="description"
             Width={210}
             Height={50}
             Radius={15}
@@ -72,7 +72,7 @@ const AddItem = () => {
         </div>
         <div className="addItemInputWrapper">
           <Input
-            Name="barcode"
+            name="barcode"
             Width={180}
             Height={30}
             Radius={15}

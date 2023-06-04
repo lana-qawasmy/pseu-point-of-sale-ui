@@ -1,11 +1,16 @@
+import { ChangeEvent } from 'react';
 import './input.css';
 
 interface IProps {
-    Type?: 'text' | 'textArea' | 'email' | "number";
-    Color?: string;
-    Name?: string;
-    Required?: boolean;
+    Type?: 'text' | 'textArea' | 'email' | 'number';
 
+    id?: string;
+    name?: string;
+
+    Color?: string;
+
+    Required?: boolean;
+    
     Height?: number;
     Width?: number;
     Radius?: number;
@@ -15,11 +20,13 @@ interface IProps {
     PlaceHolder?: string;
     Label?: string;
 
-    Status?: 'valid' | 'invalid';
+    Status?: boolean;
 
     FontSize?: number;
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+    
+    onChange?(e: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>): void;
 }
 
 const Input = (props: IProps) => {
@@ -29,7 +36,7 @@ const Input = (props: IProps) => {
         borderRadius: `${props.Radius ? props.Radius : '0'}px`,
         fontWeight: `${props.FontWeight ? props.FontWeight : 'normal'}`,
         fontSize: `${props.FontSize ? props.FontSize : '14'}px`,
-        borderColor: `${props.Status === 'invalid'
+        borderColor: `${props.Status === false
             ? '#FF3030'
             : props.Color
                 ? props.Color
@@ -40,8 +47,6 @@ const Input = (props: IProps) => {
     return (
         <div className='TextInputWrapper'>
             <span className='inputLabelAndRequired'>
-                        <span className='required' 
-                        style={props.Required?{color: "red"}:{color: "transparent"}}>*</span>
                 {
                     (props.Label)
                         ? <span className='label'>
@@ -49,25 +54,35 @@ const Input = (props: IProps) => {
                         </span>
                         : false
                 }
+                {
+                    props.Required
+                        ? <span className='required'>&nbsp;*</span>
+                        : false
+
+                }
             </span>
             {
                 props.Type === 'textArea'
                     ? <textarea
+                        id={props.id}
+                        name={props.name || 'textarea'}
                         className={`textArea ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
-                        name={props.Name}
                         required={props.Required}
+                        onChange={e => (props.onChange && props.onChange(e))}
                     />
                     : <input
+                        id={props.id}
+                        name={props.name || 'input'}
                         className={`input ${props.Status ? props.Status : 'valid'}`}
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
                         type={props.Type}
-                        name={props.Name}
                         required={props.Required}
+                        onChange={e => (props.onChange && props.onChange(e))}
                     />
             }
         </div>
