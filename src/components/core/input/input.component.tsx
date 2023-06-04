@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 import './input.css';
 
 interface IProps {
-    Type?: 'text' | 'textArea' | 'email';
+    Type?: 'text' | 'textArea' | 'email' | 'number';
 
     id?: string;
     name?: string;
@@ -19,7 +19,6 @@ interface IProps {
 
     PlaceHolder?: string;
     Label?: string;
-    name?: string;
 
     Status?: boolean;
 
