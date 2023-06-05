@@ -104,8 +104,8 @@ const useSignUp = () => {
             try {
                 const addUser = await signup(user);
                 if (addUser) {
-                    alert('User is created successfully');
-                    navigate('/', { replace: true });
+                    alert('User is created successfully , please signin to get started');
+                    navigate('/signin', { replace: true });
                 }
                 else {
                     alert('User is not created, Invalid email');
