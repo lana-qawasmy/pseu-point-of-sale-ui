@@ -1,9 +1,6 @@
-import { NavigationBar } from "../../components/core";
 const PosView = () => {
     return (
-        <div>PosView
-            <NavigationBar />
-        </div>
+        <div>PosView</div>
     );
 };
 export default PosView;
