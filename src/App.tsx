@@ -10,13 +10,13 @@ const App = () => {
                 <UserProvider>
                     <NavigationBar />
                     <Routes>
-                            <Route path='/' element={<PosView />} />
-                            <Route path='/signin' element={<Signin />} />
-                            <Route path='/signup' element={<Signup />} />
-                            <Route path='/addItem' element={<AddItem />} />
-                            <Route path='/ordersHistory' element={<OrdersHistory />} />
-                            <Route path='/existedItems' element={<ViewExistedItems />} />
-                            <Route path='/terms' element={<Terms />} />
+                        <Route path='/' element={<PosView />} />
+                        <Route path='/signin' element={<Signin />} />
+                        <Route path='/signup' element={<Signup />} />
+                        <Route path='/addItem' element={<AddItem />} />
+                        <Route path='/ordersHistory' element={<OrdersHistory />} />
+                        <Route path='/existedItems' element={<ViewExistedItems />} />
+                        <Route path='/terms' element={<Terms />} />
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
