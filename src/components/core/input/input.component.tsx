@@ -10,7 +10,7 @@ interface IProps {
     Color?: string;
 
     Required?: boolean;
-    
+
     Height?: number;
     Width?: number;
     Radius?: number;
@@ -25,7 +25,7 @@ interface IProps {
     FontSize?: number;
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-    
+
     onChange?(e: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>): void;
 }
 

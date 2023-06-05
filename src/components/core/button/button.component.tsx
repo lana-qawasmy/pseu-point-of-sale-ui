@@ -26,18 +26,18 @@ const Button = (props: IProps) => {
         fontWeight: (props.FontWeight),
         fontSize: (props.FontSize || "14") + "px",
         border: `${props.Border || ""}`,
-    }
+    };
     return (
         <div className='buttonContainer'>
             <button type={props.HtmlType}
                 className={`${props.Type || 'Primary'}`}
                 style={style}
                 disabled={props.Disabled}
-                onClick={e => { return props.onClick && props.onClick(e) }}>
+                onClick={e => { return props.onClick && props.onClick(e); }}>
                 {props.children || "Button"}
             </button>
         </div>
-    )
+    );
 };
 
 export default Button;

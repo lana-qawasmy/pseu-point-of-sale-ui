@@ -1,5 +1,5 @@
 const login = (email: string, password: string) => {
-    return fetch('http://localhost:3001/user/login', {
+    return fetch(`${process.env.REACT_APP_SERVER_URL}/user/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -13,7 +13,7 @@ const login = (email: string, password: string) => {
     }).catch(error => {
         console.error(error.message);
         return null;
-    })
-}
+    });
+};
 
 export default login;
