@@ -4,6 +4,7 @@ import { Eye, EyeSlash } from 'phosphor-react';
 import { usePassword } from '../../../hooks';
 
 interface IProps {
+    id?: string,
     height?: number,
     Width?: number,
     Disabled?: boolean,
@@ -42,6 +43,7 @@ const PasswordInput = (props: IProps) => {
             </label>
             <div className="inputDiv">
                 <input
+                    id={props.id}
                     name={props.name || 'password'}
                     style={styles}
                     className={props.state || password.status}
@@ -50,7 +52,6 @@ const PasswordInput = (props: IProps) => {
                             ? 'text'
                             : 'password'
                     }
-                    id='passwordInput'
                     disabled={props.Disabled || false}
                     placeholder={props.Placeholder || ""}
                     value={password.value}
