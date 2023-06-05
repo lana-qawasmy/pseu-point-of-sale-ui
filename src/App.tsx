@@ -8,7 +8,7 @@ const App = () => {
         <div className="App">
             <BrowserRouter>
                 <UserProvider>
-                <NavigationBar />
+                    <NavigationBar />
                     <Routes>
                             <Route path='/' element={<PosView />} />
                             <Route path='/signin' element={<Signin />} />
