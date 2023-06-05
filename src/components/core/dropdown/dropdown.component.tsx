@@ -10,7 +10,7 @@ interface IProps {
     Radius?: string,
     width?: string,
     height?: string,
-    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
+    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 const Dropdown = (props: IProps) => {
     let style = {
@@ -40,7 +40,7 @@ const Dropdown = (props: IProps) => {
                     name={props.name}
                     className="dropdownWrapper"
                     style={style}
-                    onChange={e => { return props.onChange && props.onChange(e) }}
+                    onChange={e => { return props.onChange && props.onChange(e); }}
                     required={props.Required}
                     disabled={props.Disabled}>
                     {

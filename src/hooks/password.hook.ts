@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const usePassword = () => {
-    const [showpassword, setShowPassword] = useState<boolean>();
+    const [showPassword, setShowPassword] = useState<boolean>();
     const [value, setValue] = useState<string>('');
     const [status, setStatus] = useState<string>();
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"); // eslint-disable-line
@@ -20,7 +20,7 @@ const usePassword = () => {
             setStatus('invalid');
     }, [value]);
     return {
-        showpassword, setShowPassword,
+        showPassword, setShowPassword,
         value, setValue,
         status
     };

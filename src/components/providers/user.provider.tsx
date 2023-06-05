@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { UserNS } from "../../types";
 
 interface IProps {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 interface IState {
     setUser?: React.Dispatch<React.SetStateAction<UserNS.User | undefined>>,
-    user?: UserNS.User
+    user?: UserNS.User;
 }
 
 export const UserContext: React.Context<IState> = React.createContext({});
@@ -17,7 +17,7 @@ const UserProvider = (props: IProps) => {
         <UserContext.Provider value={{ user: user, setUser: setUser }}>
             {props.children}
         </UserContext.Provider>
-    )
+    );
 
-}
+};
 export default UserProvider;

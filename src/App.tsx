@@ -6,9 +6,9 @@ import { UserProvider } from './components/providers';
 const App = () => {
     return (
         <div className="App">
-            <UserProvider>
-                <BrowserRouter>
-                    <Routes>
+            <BrowserRouter>
+                <Routes>
+                    <UserProvider>
                         <Route path='/' element={<PosView />} />
                         <Route path='/signin' element={<Signin />} />
                         <Route path='/signup' element={<Signup />} />
@@ -16,9 +16,9 @@ const App = () => {
                         <Route path='/ordersHistory' element={<OrdersHistory />} />
                         <Route path='/existedItems' element={<ViewExistedItems />} />
                         <Route path='/terms' element={<Terms />} />
-                    </Routes>
-                </BrowserRouter>
-            </UserProvider>
+                    </UserProvider>
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 };
