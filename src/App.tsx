@@ -7,8 +7,8 @@ const App = () => {
     return (
         <div className="App">
             <BrowserRouter>
-                <NavigationBar />
                 <UserProvider>
+                <NavigationBar />
                     <Routes>
                             <Route path='/' element={<PosView />} />
                             <Route path='/signin' element={<Signin />} />
