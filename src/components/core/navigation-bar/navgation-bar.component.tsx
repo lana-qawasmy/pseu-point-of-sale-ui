@@ -20,7 +20,7 @@ const NavigationBar = () => {
     location.pathname !== "/signup" &&
     location.pathname !== "/terms" ? (
     <div className="navigationBarContaier">
-      <div className="logoContainer"></div>
+      <div className="logoContainer" onClick={()=>navigate("/", {replace: false})}></div>
       <div className="optionsContainer">
         <IconContext.Provider
           value={{ color: "#e0e2e8", size: "2em", className: "radioIcons" }}

@@ -23,10 +23,12 @@
     transition: 0.2s;
     user-select: none;
 }
-.buttonContainer>button{
+
+.buttonContainer>button {
     cursor: pointer;
     font-family: 'Inter', sans-serif;
 }
+
 .buttonContainer>button[disabled] {
     cursor: not-allowed;
     opacity: 0.3;
@@ -45,12 +47,15 @@
     -moz-box-shadow: inset 0px 0px 0px 1px #6db8ff;
     box-shadow: inset 0px 0px 0px 1px #6db8ff;
 }
-.buttonContainer>button:hover{
+
+.buttonContainer>button:hover {
     transition: 0.2s;
 }
-.buttonContainer>button:active{
+
+.buttonContainer>button:active {
     transition: 0.2s;
 }
+
 .Secondary {
     background-color: #393939;
     transition: 0.2s;
@@ -119,7 +124,7 @@
 }
 
 
-.buttonContainer>button{
+.buttonContainer>button {
     display: flex;
     align-items: center;
     justify-content: space-evenly;

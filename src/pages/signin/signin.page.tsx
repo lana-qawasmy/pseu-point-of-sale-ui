@@ -1,7 +1,7 @@
-import './signin.css'
-import mainPic from '../../assets/main-page pic.svg'
-import logo from '../../assets/partial-logo.png'
-import { Input, PasswordInput, Button } from '../../components/core'
+import './signin.css';
+import mainPic from '../../assets/main-page pic.svg';
+import logo from '../../assets/partial-logo.png';
+import { Input, PasswordInput, Button } from '../../components/core';
 import { Link } from 'react-router-dom';
 import { useSignin } from '../../hooks';
 
