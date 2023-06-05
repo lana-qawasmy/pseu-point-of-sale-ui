@@ -7,17 +7,17 @@ const App = () => {
     return (
         <div className="App">
             <BrowserRouter>
-                <Routes>
-                    <UserProvider>
-                        <Route path='/' element={<PosView />} />
-                        <Route path='/signin' element={<Signin />} />
-                        <Route path='/signup' element={<Signup />} />
-                        <Route path='/addItem' element={<AddItem />} />
-                        <Route path='/ordersHistory' element={<OrdersHistory />} />
-                        <Route path='/existedItems' element={<ViewExistedItems />} />
-                        <Route path='/terms' element={<Terms />} />
-                    </UserProvider>
-                </Routes>
+                <UserProvider>
+                    <Routes>
+                            <Route path='/' element={<PosView />} />
+                            <Route path='/signin' element={<Signin />} />
+                            <Route path='/signup' element={<Signup />} />
+                            <Route path='/addItem' element={<AddItem />} />
+                            <Route path='/ordersHistory' element={<OrdersHistory />} />
+                            <Route path='/existedItems' element={<ViewExistedItems />} />
+                            <Route path='/terms' element={<Terms />} />
+                    </Routes>
+                </UserProvider>
             </BrowserRouter>
         </div>
     );
