@@ -7,22 +7,22 @@ interface IProps {
 }
 
 const PasswordAndConfirmation = (props: IProps) => {
-    const setPassword = (value: string) => {
+    const setPassword = (value: string , status: 'valid' | 'invalid' | 'none') => {
         props.setInputState((oldState) => ({
             ...oldState,
             password: {
                 value: value,
-                valid: 'valid'
+                valid: status
             }
         }));
     }
 
-    const setPasswordConfirmation = (value: string) => {
+    const setPasswordConfirmation = (value: string , status: 'valid' | 'invalid' | 'none') => {
         props.setInputState((oldState) => ({
             ...oldState,
             passwordConfirmation: {
                 value: value,
-                valid: 'valid'
+                valid: status
             }
         }));
     }

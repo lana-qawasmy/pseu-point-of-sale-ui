@@ -16,7 +16,7 @@ interface IProps {
     state?: 'none' | 'valid' | 'invalid',
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
-    getValue?: (value: string) => void;
+    getValue?: (value: string , status: 'valid' | 'invalid' | 'none') => void;
 }
 
 const PasswordInput = (props: IProps) => {
@@ -32,7 +32,7 @@ const PasswordInput = (props: IProps) => {
     const eyeStyle = { bottom: ((props.height || 50) / 3.2) + 'px', left: ((props.Width || 120) * 0.93) + 'px' };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        props.getValue && props.getValue(password.value);
+        props.getValue && props.getValue(password.value , password.status || 'valid');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [password.value]);
 

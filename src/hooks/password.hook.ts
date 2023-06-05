@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 const usePassword = () => {
     const [showPassword, setShowPassword] = useState<boolean>();
     const [value, setValue] = useState<string>('');
-    const [status, setStatus] = useState<string>();
+    const [status, setStatus] = useState<'valid' | 'invalid' | 'none'>();
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"); // eslint-disable-line
 
     function password_validate(p: string) {
