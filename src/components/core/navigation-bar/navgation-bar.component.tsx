@@ -11,14 +11,14 @@ const NavigationBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const userContext = useContext(UserContext);
-  const logOut = () =>{
+  const logOut = () => {
     userContext.setUser && userContext.setUser(undefined);
-    navigate('/signin', {replace: false});
-  }
+    navigate("/signin", { replace: false });
+  };
 
-  return (
-    location.pathname !== '/signin' && location.pathname !== '/signup' &&
-    location.pathname !== '/terms' ?
+  return location.pathname !== "/signin" &&
+    location.pathname !== "/signup" &&
+    location.pathname !== "/terms" ? (
     <div className="navigationBarContaier">
       <div className="logoContainer"></div>
       <div className="optionsContainer">
@@ -29,7 +29,9 @@ const NavigationBar = () => {
             <button
               type="button"
               className={location.pathname === "/addItem" ? "focus" : ""}
-              onClick={()=>{navigate('/addItem', {replace: false})}}
+              onClick={() => {
+                navigate("/addItem", { replace: false });
+              }}
             >
               <span>.</span>
               <MdAddBox />
@@ -39,7 +41,9 @@ const NavigationBar = () => {
             <button
               type="button"
               className={location.pathname === "/" ? "focus" : ""}
-              onClick={()=>{navigate('/', {replace: false})}}
+              onClick={() => {
+                navigate("/", { replace: false });
+              }}
             >
               <span>.</span>
               <MdSpaceDashboard />
@@ -49,7 +53,9 @@ const NavigationBar = () => {
             <button
               type="button"
               className={location.pathname === "/ordersHistory" ? "focus" : ""}
-              onClick={()=>{navigate('/ordersHistory', {replace: false})}}
+              onClick={() => {
+                navigate("/ordersHistory", { replace: false });
+              }}
             >
               <span>.</span>
               <MdHistory />
@@ -59,7 +65,9 @@ const NavigationBar = () => {
             <button
               type="button"
               className={location.pathname === "/existedItems" ? "focus" : ""}
-              onClick={()=>{navigate('/existedItems', {replace: false})}}
+              onClick={() => {
+                navigate("/existedItems", { replace: false });
+              }}
             >
               <span>.</span>
               <LuView />
@@ -69,11 +77,11 @@ const NavigationBar = () => {
       </div>
       <div className="logoutContainer">
         <button onClick={logOut}>
-            <RiLogoutBoxRFill color= "#e0e2e8" size= "2.3em"/>
-          </button>
+          <RiLogoutBoxRFill color="#e0e2e8" size="2.3em" />
+        </button>
       </div>
     </div>
-    :
+  ) : (
     <></>
   );
 };
