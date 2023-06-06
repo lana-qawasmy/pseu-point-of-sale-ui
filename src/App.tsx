@@ -3,6 +3,7 @@ import './App.css';
 import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms } from './pages/index';
 import { UserProvider } from './components/providers';
 import { NavigationBar } from './components/core';
+import { Notification } from './components/index';
 const App = () => {
     return (
         <div className="App">
@@ -20,6 +21,7 @@ const App = () => {
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
+            <Notification />
         </div>
     );
 };

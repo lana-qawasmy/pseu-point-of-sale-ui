@@ -4,11 +4,12 @@ import { Button, Input } from '../../components/core';
 import { useSignUp } from '../../hooks';
 import { PasswordAndConfirmation } from '../../components/signup';
 
+
 import defaultImage from '../../assets/signupUserIcon-svg.svg';
+
 
 const Signup = () => {
     const { inputState, setInputState, addUser, uploadImage } = useSignUp();
-
     const style = {
         backgroundImage: `url(${inputState.image || defaultImage})`,
         borderRadius: inputState.image ? '50%' : '',
