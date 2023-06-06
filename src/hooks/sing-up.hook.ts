@@ -137,7 +137,7 @@ const useSignUp = () => {
                 },
             }));
             if (inputState.password.valid !== 'valid') {
-                alert('Password is not strong enough , it must be at least 8 characters, containing capital and small letters, special symbols and numbers')
+                alert('Password is not strong enough , it must be at least 8 characters, containing capital and small letters, special symbols and numbers');
             } else {
                 alert('User is not created, because of you not agree with out terms, Invalid name, email, or password');
             }
