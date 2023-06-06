@@ -16,7 +16,7 @@ const useSignin = () => {
 
         if (user?.length) {
             if (userContext.setUser) {
-                userContext.setUser(user[0]);
+                userContext.setUser(user);
             }
             setValidLogin(true);
             navigate('/', { replace: true });
