@@ -8,6 +8,7 @@ interface IProps {
     height?: number,
     Width?: number,
     Disabled?: boolean,
+    Required?: boolean,
     Placeholder?: string,
     name?: string,
     Radius?: number;
@@ -16,7 +17,7 @@ interface IProps {
     state?: 'none' | 'valid' | 'invalid',
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
-    getValue?: (value: string , status: 'valid' | 'invalid' | 'none') => void;
+    getValue?: (value: string, status: 'valid' | 'invalid' | 'none') => void;
 }
 
 const PasswordInput = (props: IProps) => {
@@ -32,7 +33,7 @@ const PasswordInput = (props: IProps) => {
     const eyeStyle = { bottom: ((props.height || 50) / 3.2) + 'px', left: ((props.Width || 120) * 0.93) + 'px' };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        props.getValue && props.getValue(password.value , password.status || 'valid');
+        props.getValue && props.getValue(password.value, password.status || 'valid');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [password.value]);
 
@@ -40,6 +41,12 @@ const PasswordInput = (props: IProps) => {
         <div className='passwordWrapper' >
             <label htmlFor="passwordInput">
                 {props.Label || ""}
+                {props.Required
+                    ? <span
+                        style={{ color: 'red', fontSize: '16px', fontWeight: '300', textShadow: 'none' }}
+                    > *</span>
+                    : ''
+                }
             </label>
             <div className="inputDiv">
                 <input

@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const PasswordAndConfirmation = (props: IProps) => {
-    const setPassword = (value: string , status: 'valid' | 'invalid' | 'none') => {
+    const setPassword = (value: string, status: 'valid' | 'invalid' | 'none') => {
         props.setInputState((oldState) => ({
             ...oldState,
             password: {
@@ -15,9 +15,9 @@ const PasswordAndConfirmation = (props: IProps) => {
                 valid: status
             }
         }));
-    }
+    };
 
-    const setPasswordConfirmation = (value: string , status: 'valid' | 'invalid' | 'none') => {
+    const setPasswordConfirmation = (value: string, status: 'valid' | 'invalid' | 'none') => {
         props.setInputState((oldState) => ({
             ...oldState,
             passwordConfirmation: {
@@ -25,7 +25,7 @@ const PasswordAndConfirmation = (props: IProps) => {
                 valid: status
             }
         }));
-    }
+    };
 
     return (
         <>
@@ -37,6 +37,7 @@ const PasswordAndConfirmation = (props: IProps) => {
                 Radius={15}
                 height={30}
                 Width={360}
+                Required
                 getValue={setPassword}
 
             />
@@ -48,6 +49,7 @@ const PasswordAndConfirmation = (props: IProps) => {
                 Radius={15}
                 height={30}
                 Width={360}
+                Required
                 getValue={setPasswordConfirmation}
 
             />
