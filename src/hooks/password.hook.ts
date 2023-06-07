@@ -10,7 +10,6 @@ const usePassword = () => {
         return strongRegex.test(p);
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (value === '')
             setStatus('none');
@@ -18,6 +17,7 @@ const usePassword = () => {
             setStatus('valid');
         else
             setStatus('invalid');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
     return {
         showPassword, setShowPassword,
