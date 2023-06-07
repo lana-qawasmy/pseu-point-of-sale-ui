@@ -3,6 +3,7 @@ import './App.css';
 import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms } from './pages/index';
 import { UserProvider } from './components/providers';
 import { NavigationBar } from './components/core';
+import Guard from './components/guard/guard.component';
 const App = () => {
     return (
         <div className="App">
@@ -10,12 +11,12 @@ const App = () => {
                 <UserProvider>
                     <NavigationBar />
                     <Routes>
-                        <Route path='/' element={<PosView />} />
+                        <Route path='/' element={<Guard><PosView /></Guard>} />
                         <Route path='/signin' element={<Signin />} />
                         <Route path='/signup' element={<Signup />} />
-                        <Route path='/addItem' element={<AddItem />} />
-                        <Route path='/ordersHistory' element={<OrdersHistory />} />
-                        <Route path='/existedItems' element={<ViewExistedItems />} />
+                        <Route path='/addItem' element={<Guard><AddItem /></Guard>} />
+                        <Route path='/ordersHistory' element={<Guard><OrdersHistory /></Guard>} />
+                        <Route path='/existedItems' element={<Guard><ViewExistedItems /></Guard>} />
                         <Route path='/terms' element={<Terms />} />
                     </Routes>
                 </UserProvider>

@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../assets/imageIcon.svg";
 import { itemService } from "../services";
 import { ItemNS } from "../types";
 import { UserContext } from '../components/providers/user.provider';
-import { useNavigate } from 'react-router-dom';
 interface imageState {
     state: boolean;
     value: string;
@@ -12,7 +11,6 @@ interface imageState {
 const useAddItem = () => {
     const [imageIcon, setImageIcon] = useState<imageState>({ state: false, value: logo });
     const user = useContext(UserContext);
-    const navigate = useNavigate();
 
     const [uploadStatus, setUploadStatus] = useState({
         backgroundColor: "#adadaf",
@@ -83,13 +81,6 @@ const useAddItem = () => {
             alert('Internal sever error');
         }
     };
-
-
-    useEffect(() => {
-        if (!user.user) {
-            navigate('/signup', { replace: true });
-        }
-    });
 
     return {
         imageIcon,
