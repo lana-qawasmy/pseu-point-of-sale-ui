@@ -1,10 +1,17 @@
-import { useState } from "react";
-import logo from "../pages/add-item/imageIcon.svg";
-import { addItem } from "../services/item.service";
+import { useContext, useState } from "react";
+import logo from "../assets/imageIcon.svg";
+import { itemService } from "../services";
 import { ItemNS } from "../types";
+import { UserContext } from '../components/providers/user.provider';
+
 
 const useAddItem = () => {
-    const [imageIcon, setImageIcon] = useState(logo);
+    interface imageState {
+        state: boolean;
+        value: string;
+    }
+    const [imageIcon, setImageIcon] = useState<imageState>({ state: false, value: logo });
+    const user = useContext(UserContext);
     const [uploadStatus, setUploadStatus] = useState({
         backgroundColor: "#adadaf",
         color: "black",
@@ -35,9 +42,12 @@ const useAddItem = () => {
                 backgroundColor: "#2c64c6",
                 color: "white",
             });
-        setImageIcon(
-            typeof base64 == "string" ? base64 : "../../../public/imageIcon.svg"
-        );
+        if (typeof base64 == "string") {
+            setImageIcon({ state: true, value: base64 });
+        }
+        else {
+            alert('Invalid image icon');
+        }
     };
     interface ItemInputElement extends HTMLInputElement {
         price: HTMLInputElement;
@@ -46,27 +56,37 @@ const useAddItem = () => {
         barcode: HTMLInputElement;
         description: HTMLInputElement;
     };
-    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const target = e.target as ItemInputElement;
         const price = parseFloat(target.price.value);
+        if (!imageIcon.state) {
+            alert('The image icon is required');
+            return;
+        }
         const newItem: ItemNS.Item = {
             name: target.itemName.value,
             price: price,
             description: target.description.value,
-            image: target.image.value,
+            image: imageIcon.value,
             barcode: target.barcode.value,
-            addedBy: sessionStorage.getItem("user") || "unknown",
+            addedBy: user.user?._id || "unknown",
             priceHistory: [{ date: new Date(), price: price }],
         };
-        addItem(newItem);
+        const item = await itemService.addItem(newItem);
+        if (item) {
+            alert(item.message);
+        }
+        else {
+            alert('Internal sever error');
+        }
     };
     return {
         imageIcon,
-        setImageIcon,
         uploadStatus,
-        setUploadStatus,
         hideImagePopup,
+        setImageIcon,
+        setUploadStatus,
         setHideImagePopup,
         uploadImage,
         submitHandler,
