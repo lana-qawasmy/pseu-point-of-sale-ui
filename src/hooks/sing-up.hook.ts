@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { UserNS } from '../types';
 import { signup } from '../services';
 import { useNavigate } from 'react-router-dom';
-
+import { useNotification } from './index'
 interface IFormEvent {
     preventDefault(): void;
     target: {
@@ -37,8 +37,8 @@ interface IFormEvent {
 export interface ISignupState {
     name: { value: string; valid: 'valid' | 'invalid'; };
     email: { value: string; valid: 'valid' | 'invalid'; };
-    password: { value: string; valid: 'valid' | 'invalid' | 'none'; };
-    passwordConfirmation: { value: string; valid: 'valid' | 'invalid' | 'none'; };
+    password: { value: string; valid: 'valid' | 'invalid'; };
+    passwordConfirmation: { value: string; valid: 'valid' | 'invalid'; };
     image?: string;
     checked: boolean;
 }
@@ -54,6 +54,7 @@ const initialState: ISignupState = {
 const useSignUp = () => {
     const [inputState, setInputState] = useState<ISignupState>(initialState);
     const navigate = useNavigate();
+    const { setNotification } = useNotification();
 
     const convertBase64 = (file: any) => {
         return new Promise((resolve, reject) => {
@@ -88,8 +89,8 @@ const useSignUp = () => {
         let match: boolean = true;
         match &&= (nameInput.validity.valid);
         match &&= (emailInput.validity.valid);
-        match &&= (inputState.password.valid === 'valid');
-        match &&= ((inputState.passwordConfirmation.valid === 'valid') && (passwordInput.value === passwordConfirmationInput.value));
+        match &&= (passwordInput.validity.valid);
+        match &&= (passwordConfirmationInput.validity.valid && (passwordInput.value === passwordConfirmationInput.value));
         match &&= (inputState.checked);
 
         if (match) {
@@ -104,15 +105,15 @@ const useSignUp = () => {
             try {
                 const addUser = await signup(user);
                 if (addUser) {
-                    alert('User is created successfully , please signin to get started');
-                    navigate('/signin', { replace: true });
+                    setNotification({ message: 'User is created successfully', status: 'success' });
+                    navigate('/', { replace: true });
                 }
                 else {
-                    alert('User is not created, Invalid email');
+                    setNotification({ message: 'User is not created, Invalid email', status: 'error' });
                 }
             } catch (error) {
                 console.error(error);
-                alert('User is not created, please try again');
+                setNotification({ message: 'User is not created, please try again', status: 'error' });
             }
         }
         else {
@@ -136,11 +137,7 @@ const useSignUp = () => {
                         ? 'valid' : 'invalid',
                 },
             }));
-            if (inputState.password.valid !== 'valid') {
-                alert('Password is not strong enough , it must be at least 8 characters, containing capital and small letters, special symbols and numbers');
-            } else {
-                alert('User is not created, because of you not agree with out terms, Invalid name, email, or password');
-            }
+            setNotification({ message: 'User is not created, because of you not agree with out terms, Invalid name, email, or password', status: 'error' });
         }
     };
 
