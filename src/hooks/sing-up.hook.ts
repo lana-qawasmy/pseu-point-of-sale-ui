@@ -37,8 +37,8 @@ interface IFormEvent {
 export interface ISignupState {
     name: { value: string; valid: 'valid' | 'invalid'; };
     email: { value: string; valid: 'valid' | 'invalid'; };
-    password: { value: string; valid: 'valid' | 'invalid'; };
-    passwordConfirmation: { value: string; valid: 'valid' | 'invalid'; };
+    password: { value: string; valid: 'valid' | 'invalid' | 'none'; };
+    passwordConfirmation: { value: string; valid: 'valid' | 'invalid' | 'none'; };
     image?: string;
     checked: boolean;
 }
@@ -88,8 +88,8 @@ const useSignUp = () => {
         let match: boolean = true;
         match &&= (nameInput.validity.valid);
         match &&= (emailInput.validity.valid);
-        match &&= (passwordInput.validity.valid);
-        match &&= (passwordConfirmationInput.validity.valid && (passwordInput.value === passwordConfirmationInput.value));
+        match &&= (inputState.password.valid === 'valid');
+        match &&= ((inputState.passwordConfirmation.valid === 'valid') && (passwordInput.value === passwordConfirmationInput.value));
         match &&= (inputState.checked);
 
         if (match) {
@@ -104,8 +104,8 @@ const useSignUp = () => {
             try {
                 const addUser = await signup(user);
                 if (addUser) {
-                    alert('User is created successfully');
-                    navigate('/', { replace: true });
+                    alert('User is created successfully , please signin to get started');
+                    navigate('/signin', { replace: true });
                 }
                 else {
                     alert('User is not created, Invalid email');
@@ -136,7 +136,11 @@ const useSignUp = () => {
                         ? 'valid' : 'invalid',
                 },
             }));
-            alert('User is not created, because of you not agree with out terms, Invalid name, email, or password');
+            if (inputState.password.valid !== 'valid') {
+                alert('Password is not strong enough , it must be at least 8 characters, containing capital and small letters, special symbols and numbers');
+            } else {
+                alert('User is not created, because of you not agree with out terms, Invalid name, email, or password');
+            }
         }
     };
 

@@ -1,5 +1,5 @@
 import { ISignupState } from '../../hooks/sing-up.hook';
-import { Input } from '../core';
+import { PasswordInput } from '../core';
 
 interface IProps {
     inputState: ISignupState;
@@ -7,47 +7,51 @@ interface IProps {
 }
 
 const PasswordAndConfirmation = (props: IProps) => {
+    const setPassword = (value: string, status: 'valid' | 'invalid' | 'none') => {
+        props.setInputState((oldState) => ({
+            ...oldState,
+            password: {
+                value: value,
+                valid: status
+            }
+        }));
+    };
+
+    const setPasswordConfirmation = (value: string, status: 'valid' | 'invalid' | 'none') => {
+        props.setInputState((oldState) => ({
+            ...oldState,
+            passwordConfirmation: {
+                value: value,
+                valid: status
+            }
+        }));
+    };
+
     return (
         <>
-            <Input
+            <PasswordInput
                 id='passwordInSignUp'
                 name='password'
-                Type='text'
+                Placeholder='Password'
                 Label='Password'
-                PlaceHolder='Password'
-                Required Radius={15}
-                Height={30}
+                Radius={15}
+                height={30}
                 Width={360}
-                onChange={(e) => {
-                    props.setInputState((oldState) => ({
-                        ...oldState,
-                        password: {
-                            value: e.target.value,
-                            valid: 'valid'
-                        }
-                    }));
-                }}
-                Status={props.inputState.password.valid === 'valid'}
+                Required
+                getValue={setPassword}
+
             />
-            <Input
+            <PasswordInput
                 id='passwordConfirmationInSignUp'
-                Label='Confirm password'
                 name='passwordConfirmation'
-                Type='text'
-                PlaceHolder='Confirm password'
-                Required Radius={15}
-                Height={30}
+                Placeholder='Confirm Password'
+                Label='Confirm Password'
+                Radius={15}
+                height={30}
                 Width={360}
-                onChange={(e) => {
-                    props.setInputState((oldState) => ({
-                        ...oldState,
-                        passwordConfirmation: {
-                            value: e.target.value,
-                            valid: 'valid'
-                        }
-                    }));
-                }}
-                Status={props.inputState.passwordConfirmation.valid === 'valid'}
+                Required
+                getValue={setPasswordConfirmation}
+
             />
         </>
     );
