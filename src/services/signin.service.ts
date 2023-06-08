@@ -9,7 +9,12 @@ const login = (email: string, password: string) => {
             password
         })
     }).then(async response => {
-        return await response.json();
+        try {
+            return await response.json();
+        } catch (error) {
+            console.error(error);
+            return error;
+        }
     }).catch(error => {
         console.error(error.message);
         return null;
