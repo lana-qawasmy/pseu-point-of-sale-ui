@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { UserNS } from '../types';
 import { signup } from '../services';
 import { useNavigate } from 'react-router-dom';
-import { useNotification } from './index'
+import { useNotification } from './index';
 interface IFormEvent {
     preventDefault(): void;
     target: {
@@ -35,10 +35,10 @@ interface IFormEvent {
 }
 
 export interface ISignupState {
-    name: { value: string; valid: 'valid' | 'invalid'; };
-    email: { value: string; valid: 'valid' | 'invalid'; };
-    password: { value: string; valid: 'valid' | 'invalid'; };
-    passwordConfirmation: { value: string; valid: 'valid' | 'invalid'; };
+    name: { value: string; valid: 'valid' | 'invalid' | 'none'; };
+    email: { value: string; valid: 'valid' | 'invalid' | 'none'; };
+    password: { value: string; valid: 'valid' | 'invalid' | 'none'; };
+    passwordConfirmation: { value: string; valid: 'valid' | 'invalid' | 'none'; };
     image?: string;
     checked: boolean;
 }

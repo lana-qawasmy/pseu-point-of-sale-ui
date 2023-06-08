@@ -14,7 +14,6 @@ const Guard = (props: IProps) => {
             navigate('/signin', { replace: true });
         }
     });
-    console.log(user);
 
     return (
         <div>
