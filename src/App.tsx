@@ -4,6 +4,8 @@ import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Term
 import { UserProvider } from './components/providers';
 import { NavigationBar } from './components/core';
 import Guard from './components/guard/guard.component';
+import { Notification } from './components';
+
 const App = () => {
     return (
         <div className="App">
@@ -21,6 +23,7 @@ const App = () => {
                     </Routes>
                 </BrowserRouter>
             </UserProvider>
+            <Notification />
         </div>
     );
 };

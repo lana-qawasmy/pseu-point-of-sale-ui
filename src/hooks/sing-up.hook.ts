@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { UserNS } from '../types';
 import { signup } from '../services';
 import { useNavigate } from 'react-router-dom';
-
+import { useNotification } from './index'
 interface IFormEvent {
     preventDefault(): void;
     target: {
@@ -54,6 +54,7 @@ const initialState: ISignupState = {
 const useSignUp = () => {
     const [inputState, setInputState] = useState<ISignupState>(initialState);
     const navigate = useNavigate();
+    const { setNotification } = useNotification();
 
     const convertBase64 = (file: any) => {
         return new Promise((resolve, reject) => {
@@ -104,15 +105,15 @@ const useSignUp = () => {
             try {
                 const addUser = await signup(user);
                 if (addUser) {
-                    alert('User is created successfully');
+                    setNotification({ message: 'User is created successfully', status: 'success' });
                     navigate('/', { replace: true });
                 }
                 else {
-                    alert('User is not created, Invalid email');
+                    setNotification({ message: 'User is not created, Invalid email', status: 'error' });
                 }
             } catch (error) {
                 console.error(error);
-                alert('User is not created, please try again');
+                setNotification({ message: 'User is not created, please try again', status: 'error' });
             }
         }
         else {
@@ -136,7 +137,7 @@ const useSignUp = () => {
                         ? 'valid' : 'invalid',
                 },
             }));
-            alert('User is not created, because of you not agree with out terms, Invalid name, email, or password');
+            setNotification({ message: 'User is not created, because of you not agree with out terms, Invalid name, email, or password', status: 'error' });
         }
     };
 
