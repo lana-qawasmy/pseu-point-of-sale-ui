@@ -1,23 +1,30 @@
 import { ItemNS } from "../types";
 const addItem = async (item: ItemNS.Item, token: string) => {
     try {
-        const stringResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/item/addItem`,
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'authorization': token
-                },
-                method: "POST",
-                body: JSON.stringify(item),
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/item/addItem`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+                'authorization': token
+            },
+            body: JSON.stringify(item),
+        }).then(async (res) => {
+            if (res.status === 201) {
+                return { state: true, value: await res.json() };
             }
-        );
-        return stringResponse;
+            else {
+                return { state: false, value: await res.json() };
+            }
+        }).catch((error) => {
+            console.error(error);
+            return false;
+        });
     } catch (error) {
         console.error(error);
         return false;
     }
 };
+
 // eslint-disable-next-line
 export default {
     addItem
