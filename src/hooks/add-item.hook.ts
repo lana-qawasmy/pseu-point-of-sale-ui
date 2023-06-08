@@ -3,6 +3,7 @@ import logo from "../assets/imageIcon.svg";
 import { itemService } from "../services";
 import { ItemNS } from "../types";
 import { UserContext } from '../components/providers/user.provider';
+import useNotification from './notification.hook';
 interface imageState {
     state: boolean;
     value: string;
@@ -11,7 +12,7 @@ interface imageState {
 const useAddItem = () => {
     const [imageIcon, setImageIcon] = useState<imageState>({ state: false, value: logo });
     const user = useContext(UserContext);
-
+    const { setNotification } = useNotification();
     const [uploadStatus, setUploadStatus] = useState({
         backgroundColor: "#adadaf",
         color: "black",
@@ -46,7 +47,7 @@ const useAddItem = () => {
             setImageIcon({ state: true, value: base64 });
         }
         else {
-            alert('Invalid image icon');
+            setNotification({ message: 'Invalid image icon', status: 'error' });
         }
     };
     interface ItemInputElement extends HTMLInputElement {
@@ -61,7 +62,7 @@ const useAddItem = () => {
         const target = e.target as ItemInputElement;
         const price = parseFloat(target.price.value);
         if (!imageIcon.state) {
-            alert('The image icon is required');
+            setNotification({ message: 'The image icon is required', status: 'warning' });
             return;
         }
         const newItem: ItemNS.Item = {
@@ -73,12 +74,27 @@ const useAddItem = () => {
             addedBy: user.user?._id || "unknown",
             priceHistory: [{ date: new Date(), price: price }],
         };
-        const item = await itemService.addItem(newItem);
-        if (item) {
-            alert(item.message);
+        const response = await itemService.addItem(newItem);
+
+        if (typeof response !== 'boolean') {
+            if (response.state) {
+                setNotification({ message: response.value.message, status: 'success' });
+                target.itemName.value = '';
+                target.price.value = '';
+                target.description.value = '';
+                setImageIcon(() => ({ state: false, value: logo }));
+                target.barcode.value = '';
+                setUploadStatus({
+                    backgroundColor: "#adadaf",
+                    color: "black",
+                });
+            }
+            else {
+                setNotification({ message: response.value.message, status: 'error' });
+            }
         }
         else {
-            alert('Internal sever error');
+            setNotification({ message: 'Internal server error', status: 'error' });
         }
     };
 
