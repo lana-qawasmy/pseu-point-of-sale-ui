@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 export interface INotification {
-    message: string,
-    status: 'info' | 'error' | 'warning' | 'success'
+    message?: string,
+    status?: 'info' | 'error' | 'warning' | 'success',
+    position?: "top-left" | "top-right" | "top-center" | "bottom-left" | "bottom-right" | "bottom-center",
+    autoClose?: number,
+    theme?: "light" | "dark" | "colored"
 }
 
 
@@ -18,54 +21,64 @@ const useNotification = () => {
 
         switch (notification.status) {
             case 'info':
-                toast.info(notification.message, {
+                toast.info(notification.message || "Message", {
                     position: "bottom-right",
-                    autoClose: 5000,
+                    autoClose: notification.autoClose || 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: notification.theme || "light",
                 });
                 break;
             case 'error':
-                toast.error(notification.message, {
-                    position: "bottom-right",
-                    autoClose: 5000,
+                toast.error(notification.message || "Message",{
+                    position: notification.position || "bottom-right",
+                    autoClose: notification.autoClose || 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: notification.theme || "light",
                 });
                 break;
             case 'warning':
-                toast.warn(notification.message, {
+                toast.warn(notification.message || "Message", {
                     position: "bottom-right",
-                    autoClose: 5000,
+                    autoClose: notification.autoClose || 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: notification.theme || "light",
                 });
                 break;
             case 'success':
-                toast.success(notification.message, {
+                toast.success(notification.message || "Message", {
                     position: "bottom-right",
-                    autoClose: 5000,
+                    autoClose: notification.autoClose || 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: notification.theme || "light",
                 });
                 break;
             default:
+                toast.info(notification.message || "Message", {
+                    position: "bottom-right",
+                    autoClose: notification.autoClose || 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: notification.theme || "light",
+                });
                 break;
 
         }
