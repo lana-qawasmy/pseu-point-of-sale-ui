@@ -50,7 +50,7 @@ const Signup = () => {
                                 Type='text'
                                 id='nameInSignUp'
                                 Label='Full Name'
-                                PlaceHolder='Full Name'
+                                PlaceHolder='Arthur Moreno'
                                 name='name'
                                 Required
                                 Radius={15}
@@ -72,7 +72,7 @@ const Signup = () => {
                                 name='email'
                                 id='emailInSignUp'
                                 Type='email'
-                                PlaceHolder='Email'
+                                PlaceHolder='example@gmail.com'
                                 Required Radius={15}
                                 Height={30}
                                 Width={160}
