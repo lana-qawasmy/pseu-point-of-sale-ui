@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import logo from "../pages/add-item/imageIcon.svg";
-import { addItem } from "../services/item.service";
+import { itemService } from "../services";
 import { ItemNS } from "../types";
 import { UserContext } from '../components/providers/user.provider';
 
@@ -48,7 +48,7 @@ const useAddItem = () => {
         barcode: HTMLInputElement;
         description: HTMLInputElement;
     };
-    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const target = e.target as ItemInputElement;
         const price = parseFloat(target.price.value);
@@ -61,7 +61,9 @@ const useAddItem = () => {
             addedBy: sessionStorage.getItem("user") || "unknown",
             priceHistory: [{ date: new Date(), price: price }],
         };
-        addItem(newItem , usercontext.user?.token || '');
+        const response = await itemService.addItem(newItem, usercontext.user?.token || '');
+
+        
     };
     return {
         imageIcon,

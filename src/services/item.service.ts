@@ -19,4 +19,4 @@ const addItem = async (item: ItemNS.Item, token: string) => {
     }
 };
 
-export { addItem };
+export default { addItem };
