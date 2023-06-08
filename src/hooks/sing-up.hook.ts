@@ -74,8 +74,16 @@ const useSignUp = () => {
     const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
         let file;
         file = event.target.files ? event.target.files[0] : '';
-        const base64 = await convertBase64(file) as string;
-        setInputState((oldState) => ({ ...oldState, image: base64 }));
+        try {
+            const base64 = await convertBase64(file) as string;
+            setInputState((oldState) => ({ ...oldState, image: base64 }));
+        } catch (error) {
+            console.error(error);
+            setNotification({
+                message: "image is invalid, try again",
+                status: "error",
+              });
+        }
     };
 
     const addUser = async (event: IFormEvent) => {
