@@ -47,7 +47,7 @@ const AddItem = () => {
                 <div className="addItemUploadImageWrapper">
                     <div
                         className="imageWrapper"
-                        style={{ backgroundImage: `url('${item.imageIcon}')` }}
+                        style={{ backgroundImage: `url('${item.imageIcon.value}')` }}
                         onClick={() => {
                             item.hideImagePopup
                                 ? item.setHideImagePopup(false)
@@ -94,7 +94,7 @@ const AddItem = () => {
             >
                 <div
                     className="showImageBody"
-                    style={{ backgroundImage: `url('${item.imageIcon}')` }}
+                    style={{ backgroundImage: `url('${item.imageIcon.value}')` }}
                     onClick={(e) => {
                         e.stopPropagation();
                     }}
