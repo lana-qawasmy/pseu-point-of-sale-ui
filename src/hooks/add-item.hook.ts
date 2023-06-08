@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../pages/add-item/imageIcon.svg";
 import { addItem } from "../services/item.service";
 import { ItemNS } from "../types";
+import { UserContext } from '../components/providers/user.provider';
 
 const useAddItem = () => {
     const [imageIcon, setImageIcon] = useState(logo);
@@ -9,6 +10,7 @@ const useAddItem = () => {
         backgroundColor: "#adadaf",
         color: "black",
     });
+    const usercontext = useContext(UserContext);
     const [hideImagePopup, setHideImagePopup] = useState(true);
     const convertBase64 = (file: any) => {
         return new Promise((resolve, reject) => {
@@ -59,7 +61,7 @@ const useAddItem = () => {
             addedBy: sessionStorage.getItem("user") || "unknown",
             priceHistory: [{ date: new Date(), price: price }],
         };
-        addItem(newItem);
+        addItem(newItem , usercontext.user?.token || '');
     };
     return {
         imageIcon,

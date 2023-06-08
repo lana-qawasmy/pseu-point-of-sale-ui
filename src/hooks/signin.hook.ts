@@ -14,7 +14,7 @@ const useSignin = () => {
         const user = await login(email, password);
 
 
-        if (user?.length) {
+        if (user) {
             if (userContext.setUser) {
                 userContext.setUser(user);
             }
