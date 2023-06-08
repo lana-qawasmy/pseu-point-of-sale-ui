@@ -19,4 +19,6 @@ const addItem = async (item: ItemNS.Item, token: string) => {
     }
 };
 // eslint-disable-next-line
-export default { addItem };
+export default {
+    addItem
+};
