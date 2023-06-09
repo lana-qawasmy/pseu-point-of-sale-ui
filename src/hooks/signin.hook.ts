@@ -21,9 +21,8 @@ const useSignin = () => {
                     userContext.setUser(user);
                 }
 
-
                 setValidLogin(true);
-                setNotification({ message: `Welcome ${user[0].fullName}`, status: 'info' });
+                setNotification({ message: `Welcome ${user.fullName}`, status: 'info' });
                 navigate("/", { replace: true });
                 return true;
             } else if (user == null) {
