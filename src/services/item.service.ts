@@ -4,7 +4,7 @@ const addItem = async (item: ItemNS.Item, token: string) => {
         return fetch(`${process.env.REACT_APP_SERVER_URL}/item/addItem`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
                 'authorization': token
             },
             body: JSON.stringify(item),
