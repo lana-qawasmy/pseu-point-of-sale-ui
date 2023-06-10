@@ -7,6 +7,7 @@ namespace UserNS {
         image?: string,
         role?: string,
         fullName: string;
+        token?: string;
     }
 }
 export default UserNS;
