@@ -1,7 +1,11 @@
+import { useViewItems } from '../../hooks';
 
 const ViewExistedItems = () => {
+    const { } = useViewItems();
     return (
-        <div>ViewExistedItems</div>
+        <div>
+                
+        </div>
     );
 };
 export default ViewExistedItems;

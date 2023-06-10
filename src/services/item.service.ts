@@ -24,7 +24,27 @@ const addItem = async (item: ItemNS.Item) => {
     }
 };
 
+const getItems = (userId: string, token: string) => {
+    try {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}`, {
+            method: 'GET',
+            headers: {
+                'authorization': token,
+            }
+        }).then(async (response) => {
+            return await response.json();
+        }).catch((error) => {
+            console.error(error);
+            return false;
+        });
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
+
 // eslint-disable-next-line
 export default {
-    addItem
+    addItem,
+    getItems,
 };
