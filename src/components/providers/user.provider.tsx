@@ -4,6 +4,7 @@ import { UserNS } from "../../types";
 interface IProps {
     children: React.ReactNode;
 }
+
 interface IState {
     setUser?: React.Dispatch<React.SetStateAction<UserNS.User | undefined>>,
     user?: UserNS.User;
