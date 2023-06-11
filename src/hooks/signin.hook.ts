@@ -16,16 +16,16 @@ const useSignin = () => {
         const password = e.currentTarget.password.value;
         try {
             const user = await login(email, password);
-            if (user) {
+            if (user.state) {
                 if (userContext.setUser) {
-                    userContext.setUser(user);
+                    userContext.setUser(user.value);
                 }
 
                 setValidLogin(true);
-                setNotification({ message: `Welcome ${user.fullName}`, status: 'info' });
+                setNotification({ message: `Welcome ${user.value.fullName}`, status: 'info' });
                 navigate("/", { replace: true });
                 return true;
-            } else if (user == null) {
+            } else if (user.value == null) {
                 setNotification({ message: "server time out", status: 'error' });
                 return false;
             } else {
