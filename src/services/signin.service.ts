@@ -10,14 +10,14 @@ const login = (email: string, password: string) => {
         })
     }).then(async response => {
         try {
-            return await response.json();
+            return { state: response.status === 200, value: await response.json() };
         } catch (error) {
             console.error(error);
-            return error;
+            return { state: false, value: {} };
         }
     }).catch(error => {
         console.error(error.message);
-        return null;
+        return { state: false, value: {} };
     });
 };
 
