@@ -1,0 +1,20 @@
+.posViewContainer{
+    max-width: 100%;
+    height: 100vh;
+    background-color: #f3f4f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 62px;
+    font-family: 'Inter';
+}
+
+.posViewContainer .posViewTitle{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: flex-start;
+    color: #030494;
+    font-size: 1.5em;
+    font-weight: bold;
+}
