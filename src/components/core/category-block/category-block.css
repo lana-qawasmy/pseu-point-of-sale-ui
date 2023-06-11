@@ -1,0 +1,41 @@
+.categoryBlockContainer{
+    transition: 0.3s;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 100;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7SUc.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      };
+    user-select: none;
+    cursor: pointer;
+    border: none;
+}
+
+.categoryBlockContainer:focus{
+    transition: 0.3s;
+    transform: scale(1.2);
+    background-color: #03045e ;
+    color: #ffffff;
+    border: 7px solid #ffffff;
+    font-weight: 500;
+}
+
+.iconWrapper{
+    font-size: 40px;
+    margin-bottom: 3px;
+}
+
+.categoryText{
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
+}
