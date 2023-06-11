@@ -1,8 +1,11 @@
 
-
+import CategoryBlock from "../../components/core/category-block/category-block.component";
 const PosView = () => {
     return (
-        <div>PosView</div>
+        <>
+            <CategoryBlock />
+        </>
+        // <div>PosView</div>
     );
 };
 export default PosView;
