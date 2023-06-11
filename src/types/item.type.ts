@@ -1,8 +1,8 @@
 
 namespace ItemNS {
     export interface Item {
+        _id?: string;
         name: string,
-        price: number,
         image: string,
         barcode: string,
         description: string,

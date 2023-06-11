@@ -1,0 +1,27 @@
+.mainItemContainer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    width: 200px;
+    border-bottom-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+}
+
+.mainItemContainer>img {
+    display: flex;
+    width: 200px;
+    height: 150px;
+}
+
+.mainItemContainer>.infoWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.mainItemContainer>.infoWrapper>.itemName {
+    display: flex;
+}

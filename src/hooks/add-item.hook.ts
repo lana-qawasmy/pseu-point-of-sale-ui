@@ -80,7 +80,6 @@ const useAddItem = () => {
         }
         const newItem: ItemNS.Item = {
             name: target.itemName.value,
-            price: price,
             description: target.description.value,
             image: imageIcon.value,
             barcode: target.barcode.value,
