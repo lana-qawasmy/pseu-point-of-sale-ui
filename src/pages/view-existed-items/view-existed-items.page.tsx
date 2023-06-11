@@ -5,15 +5,24 @@ import { useViewItems } from '../../hooks';
 const ViewExistedItems = () => {
     const { itemsTable } = useViewItems();
     console.log(itemsTable);
-
+    const handleDelete = (userId: string, itemId: string) => {
+        console.log({ userId });
+        console.log({ itemId });
+    };
     return (
         <div className='viewItemsPage'>
-            <h2>Select Menu</h2>
+            <h2>Menu</h2>
             <div className='itemsContainer'>
                 {
                     itemsTable.map((item) => {
                         return (
-                            <Item key={item._id} item={item} />
+                            <Item
+                                // selected
+                                key={item._id}
+                                item={item}
+                                DeletedPrice={12}
+                                OnDelete={handleDelete}
+                            />
                         );
                     })
                 }

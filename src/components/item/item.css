@@ -1,13 +1,19 @@
 .mainItemContainer {
     display: flex;
     flex-direction: column;
-    border: 1px solid gray;
     width: 200px;
-    border-bottom-right-radius: 14px;
-    border-bottom-left-radius: 14px;
+    border-radius: 14px;
+    background: #fff;
+    position: relative;
+}
+
+.isSelected {
+    border: 1px solid #023e8a;
 }
 
 .mainItemContainer>img {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
     display: flex;
     width: 200px;
     height: 150px;
@@ -19,9 +25,45 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding-left: 15px;
-    margin-top: 20px;
+    margin-top: 16px;
     margin-bottom: 20px;
 }
+
 .mainItemContainer>.infoWrapper>.itemName {
     display: flex;
+    color: #03045e;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.mainItemContainer>.infoWrapper>.itemPrice {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+
+.mainItemContainer>.infoWrapper>.itemPrice>.currentItemPrice {
+    font-weight: 00;
+    font-size: 16px;
+    color: rgb(44, 100, 198);
+}
+
+.mainItemContainer>.infoWrapper>.itemPrice>.deletedItemPrice {
+    position: absolute;
+    top: 6px;
+    left: 55px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: line-through;
+    color: rgb(173, 173, 175);
+}
+
+.mainItemContainer>.goTrashCan{
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+    position: absolute;
+    right: 14px;
+    bottom: 8px;
 }

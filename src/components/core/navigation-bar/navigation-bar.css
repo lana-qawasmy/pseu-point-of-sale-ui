@@ -1,7 +1,7 @@
 .navigationBarContainer {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     height: 100vh;
@@ -9,6 +9,7 @@
     background-color: #FFFFFF;
     margin-right: 3px;
     border-right: 2px solid #F3F4F8;
+    z-index: 2;
 }
 
 .navigationBarContainer .logoContainer {
