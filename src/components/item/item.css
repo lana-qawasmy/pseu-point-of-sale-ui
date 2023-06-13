@@ -7,6 +7,7 @@
     background: #fff;
     position: relative;
     user-select: none;
+    border: 1px solid rgb(243, 244, 248);
 }
 
 .isSelected {
@@ -69,7 +70,13 @@
     position: absolute;
     right: 14px;
     bottom: 8px;
+    z-index: 1;
 }
+
+.mainItemContainer>.goTrashCan>svg {
+    color: #e0e2e8;
+}
+
 
 .mainItemContainer>.grCheckbox {
     display: flex;
@@ -77,6 +84,7 @@
     cursor: pointer;
     position: absolute;
     right: 12px;
+    z-index: 1;
     top: 12px;
     color: #e0e2e8;
 }
@@ -85,8 +93,9 @@
     stroke: #e0e2e8;
 }
 
+
 .mainItemContainer>.grCheckbox path {
-    stroke:  #023e8a;
+    stroke: #023e8a;
 }
 
 .mainItemContainer>.fiEdit {
@@ -94,7 +103,31 @@
     width: fit-content;
     cursor: pointer;
     position: absolute;
+    z-index: 1;
     left: 12px;
     top: 12px;
     color: #e0e2e8;
+}
+
+.mainItemContainer .deleteACK{
+    display: flex;
+    border: 1px solid #023e8a;
+    width: 90px;
+    height: 30px;
+    position: absolute;
+    right: -18px;
+    bottom: -24px;
+    z-index: 1;
+    border-radius: 5px;
+    background-color: #fff;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mainItemContainer .deleteACK .ACKButton{
+    display: flex;
+    color: #03045e;
+    font-weight: 700;
+    background-color:rgb(243, 244, 248) ;
+    border: 1px solid #03045e;
 }
