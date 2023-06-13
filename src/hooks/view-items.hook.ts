@@ -6,8 +6,20 @@ import useNotification from './notification.hook';
 
 const useViewItems = () => {
     const [itemsTable, setItemsTable] = React.useState<ItemNS.Item[]>([]);
+    const [select, setSelect] = React.useState<boolean[]>([]);
     const user = React.useContext(UserContext);
     const { setNotification } = useNotification();
+
+    const handleDelete = async (userId: string, itemId: string) => {
+        const deleteItem = await itemService.deleteItem(userId, itemId, user.user?.token as string);
+        if (deleteItem)
+            getItems();
+    };
+    const handleChangeSelect = (index: number) => {
+        let newSelect = [...select];
+        newSelect[index] = !newSelect[index];
+        setSelect(newSelect);
+    };
 
     const getItems = React.useCallback(async () => {
         let items = await itemService.getItems(user.user?._id as string, user.user?.token as string);
@@ -26,6 +38,9 @@ const useViewItems = () => {
 
     return {
         itemsTable,
+        select,
+        handleChangeSelect,
+        handleDelete,
     };
 };
 

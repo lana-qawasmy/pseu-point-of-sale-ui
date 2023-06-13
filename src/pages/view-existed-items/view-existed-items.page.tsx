@@ -1,27 +1,26 @@
 import './view-existed-items.css';
 import { Item } from '../../components';
 import { useViewItems } from '../../hooks';
+import React from 'react';
 
 const ViewExistedItems = () => {
-    const { itemsTable } = useViewItems();
-    console.log(itemsTable);
-    const handleDelete = (userId: string, itemId: string) => {
-        console.log({ userId });
-        console.log({ itemId });
-    };
+    const { itemsTable, select, handleChangeSelect, handleDelete } = useViewItems();
+
     return (
         <div className='viewItemsPage'>
             <h2>Menu</h2>
             <div className='itemsContainer'>
                 {
-                    itemsTable.map((item) => {
+                    itemsTable.map((item, index) => {
                         return (
                             <Item
-                                // selected
                                 key={item._id}
+                                Selected={select[index]}
                                 item={item}
                                 DeletedPrice={12}
                                 OnDelete={handleDelete}
+                                OnEdit={() => console.log(1)}
+                                OnSelect={() => handleChangeSelect(index)}
                             />
                         );
                     })
