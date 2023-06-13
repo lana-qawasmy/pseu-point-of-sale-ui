@@ -22,7 +22,7 @@ const SearchBar = (props: Iprops) => {
         height: props.Height || '30px',
         width: props.Width || '250px',
         borderRadius: props.Raduis || '2px',
-        padding: props.Padding || '4px 8px',
+        paddingLeft: props.Padding || '4px 8px',
         color: props.FontColor || 'black',
         fontSize: `${props.FontSize} px` || '20px',
         fontWeight: props.FontWeight || 'normal',
