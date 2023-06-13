@@ -14,7 +14,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin-left: 100px;
+    margin-left: 260px;
     margin-top: 20px;
     margin-bottom: 10px;
     height: 30%;
@@ -44,6 +44,8 @@
 
 .signupPageFormContainer {
     width: 410px;
+    margin-left: 60px;
+    margin-top: 7px;
     height: fit-content;
     padding: 16px;
     padding-left: 20px;
@@ -63,6 +65,7 @@
 .userImageIcon {
     display: flex;
     justify-content: center;
+    padding-top: 20px;
 }
 
 .userImageIcon>label {
@@ -94,6 +97,7 @@
 }
 
 div.signupFormBody>div.signupFormBody1 {
+    margin-top: 25px;
     display: flex;
     width: 100%;
     justify-content: space-evenly;
@@ -115,6 +119,7 @@ div.signupFormBody>div.signupFormBody1 {
     font-weight: normal;
     font-size: smaller;
     color: #1b4479;
+    margin-top: -3px;
     display: flex;
     justify-content: center;
 }
@@ -139,6 +144,7 @@ div.signupFormBody>div.signupFormBody1 {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    font-weight: bold;
 }
 
 

@@ -8,7 +8,7 @@
     margin-bottom: 16px;
 
     font-family: 'Inter', sans-serif;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
 
 }
 
@@ -23,14 +23,13 @@
 
 .TextInputWrapper>.inputLabelAndRequired>.label {
     display: inline-block;
-
+    margin-bottom: 4px;
     padding-left: 3px;
-
     text-transform: capitalize;
     font-weight: bold;
     font-size: 16px;
-    color: #0077B6;
-    text-shadow: 1px 1px 2px gray;
+    color: #03045E;
+    /* text-shadow: 1px 1px 2px gray; */
 
     margin-left: 1px;
 }
@@ -43,7 +42,7 @@
     font-family: 'Inter', sans-serif;
     font-family: 'Ubuntu', sans-serif;
 
-    padding: 0px 8px;
+    padding: 0px 10px;
 
     border: 2px solid #0077B6;
     border-radius: 5px;
