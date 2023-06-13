@@ -25,14 +25,14 @@ const Item = (props: IProps) => {
                 </span>
                 <div className='itemPrice'>
                     <span className='currentItemPrice'>
-                        {priceHistory[0].price.toFixed(2)}
-                        {
-                            props.DeletedPrice &&
-                            <span className='deletedItemPrice'>
-                                {props.DeletedPrice.toFixed(2)}
-                            </span>
-                        }
+                        {priceHistory[0].price.toFixed(2)} &nbsp;&nbsp;
                     </span>
+                    {
+                        props.DeletedPrice &&
+                        <span className='deletedItemPrice'>
+                            {props.DeletedPrice.toFixed(2)}
+                        </span>
+                    }
                 </div>
             </div>
             {

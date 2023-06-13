@@ -53,11 +53,10 @@
     position: relative;
 }
 
-.mainItemContainer>.infoWrapper>.itemPrice>.currentItemPrice>.deletedItemPrice {
-    position: absolute;
-    top: 6px;
-    left: 65px;
+.mainItemContainer>.infoWrapper>.itemPrice>.deletedItemPrice {
+    display: flex;
     font-size: 14px;
+    margin-top: 6px;
     font-weight: 400;
     text-decoration: line-through;
     color: rgb(173, 173, 175);
