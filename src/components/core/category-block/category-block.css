@@ -12,6 +12,7 @@
     user-select: none;
     cursor: pointer;
     border: none;
+    padding: 0px 5px 0px;
 }
 
 .categoryBlockContainer:focus{
@@ -29,6 +30,8 @@
 }
 
 .categoryText{
-    font-size: 1.5em;
+    font-size: 15px;
     margin-bottom: 0.3em;
+    width: 90px;
+    overflow-wrap: anywhere;
 }
