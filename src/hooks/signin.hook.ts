@@ -3,6 +3,7 @@ import { login } from "../services";
 import { useContext, useState } from "react";
 import { UserContext } from "../components/providers/user.provider";
 import useNotification from "./notification.hook";
+import React from 'react';
 
 const useSignin = () => {
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const useSignin = () => {
             if (user.state) {
                 if (userContext.setUser) {
                     userContext.setUser(user.value);
+                    sessionStorage.setItem('user', JSON.stringify(user.value));
                 }
 
                 setValidLogin(true);
@@ -37,6 +39,12 @@ const useSignin = () => {
             setNotification({ message: "server time out", status: 'error' });
         }
     };
+
+    React.useMemo(() => {
+        if (userContext.user === undefined) {
+            navigate('/', { replace: true });
+        }
+    }, [userContext, navigate]);
 
     return {
         validLogin,

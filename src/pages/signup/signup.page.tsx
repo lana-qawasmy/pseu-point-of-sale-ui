@@ -5,13 +5,13 @@ import { useSignUp } from '../../hooks';
 import { PasswordAndConfirmation } from '../../components/signup';
 
 
-import defaultImage from '../../assets/signupUserIcon-svg.svg';
+import { mainPagePic } from '../../assets';
 
 
 const Signup = () => {
     const { inputState, setInputState, addUser, uploadImage } = useSignUp();
     const style = {
-        backgroundImage: `url(${inputState.image || defaultImage})`,
+        backgroundImage: `url(${inputState.image || mainPagePic})`,
         borderRadius: inputState.image ? '50%' : '',
         backgroundPosition: 'top',
         backgroundSize: 'cover',

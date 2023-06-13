@@ -3,6 +3,8 @@ import { UserNS } from '../types';
 import { signup } from '../services';
 import { useNavigate } from 'react-router-dom';
 import { useNotification } from './index';
+import { UserContext } from '../components/providers/user.provider';
+import React from 'react';
 interface IFormEvent {
     preventDefault(): void;
     target: {
@@ -53,6 +55,7 @@ const initialState: ISignupState = {
 
 const useSignUp = () => {
     const [inputState, setInputState] = useState<ISignupState>(initialState);
+    const userContext = React.useContext(UserContext);
     const navigate = useNavigate();
     const { setNotification } = useNotification();
 
@@ -82,7 +85,7 @@ const useSignUp = () => {
             setNotification({
                 message: "image is invalid, try again",
                 status: "error",
-              });
+            });
         }
     };
 
@@ -148,6 +151,12 @@ const useSignUp = () => {
             setNotification({ message: 'User is not created, because of you not agree with out terms, Invalid name, email, or password', status: 'error' });
         }
     };
+
+    React.useMemo(() => {
+        if (userContext.user === undefined) {
+            navigate('/', { replace: true });
+        }
+    }, [userContext, navigate]);
 
     return {
         inputState,

@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms } from './pages';
 import { UserProvider } from './components/providers';
-import { NavigationBar } from './components/core';
+import { Header, NavigationBar } from './components/core';
 import Guard from './components/guard/guard.component';
 import { Notification } from './components';
 
@@ -11,6 +11,7 @@ const App = () => {
         <div className="App">
             <UserProvider>
                 <BrowserRouter>
+                    <Header />
                     <NavigationBar />
                     <Routes>
                         <Route path='/' element={<Guard><PosView /></Guard>} />
