@@ -5,3 +5,4 @@ export { default as Button } from './button/button.component';
 export { default as DropDown } from './dropdown/dropdown.component';
 export {default as NavigationBar} from './navigation-bar/navgation-bar.component';
 export {default as CategoryBlock} from './category-block/category-block.component';
+export {default as SearchBar} from './search-bar/search-bar.component';

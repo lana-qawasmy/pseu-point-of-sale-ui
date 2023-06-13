@@ -1,0 +1,33 @@
+.searchWrapper {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.searchWrapper>.searchInput {
+    height: 30px;
+    width: 200px;
+    border: 1px solid #aaa;
+}
+
+.searchWrapper>.magnifying {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    right: 30px;
+}
+
+.searchWrapper > .searchInput:hover {
+    
+    box-shadow: 1px 1px 3px 0.4px #478db367;
+}
+
+.searchWrapper>.searchInput :active,
+.searchWrapper>.searchInput :focus {
+    border: 2px solid #478eb3c4;
+    box-shadow: 1px 1px #478eb3c4;
+}
