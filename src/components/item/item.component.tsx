@@ -61,12 +61,15 @@ const Item = (props: IProps) => {
             {
                 displayACK &&
                 <div className='deleteACK'>
-                    <button className='ACKButton' onClick={() => props.OnDelete && props.OnDelete(addedBy, _id as string)}>
-                        YES
-                    </button>
+
                     <button className='ACKButton' onClick={() => setDisplayACK(false)}>
-                        NO
+                        No
                     </button>
+
+                    <button className='ACKButton' onClick={() => props.OnDelete && props.OnDelete(addedBy, _id as string)}>
+                        Yes
+                    </button>
+
                 </div>
             }
             {
