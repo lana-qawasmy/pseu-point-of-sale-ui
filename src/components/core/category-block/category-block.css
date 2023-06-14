@@ -8,17 +8,11 @@
     width: 100px;
     height: 100px;
     border-radius: 20px;
-    @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 100;
-        font-display: swap;
-        src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7SUc.woff2) format('woff2');
-        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-      };
+    font-family: 'Inter';
     user-select: none;
     cursor: pointer;
     border: none;
+    padding: 0px 5px 0px;
 }
 
 .categoryBlockContainer:focus{
@@ -32,10 +26,12 @@
 
 .iconWrapper{
     font-size: 40px;
-    margin-bottom: 3px;
+    margin-bottom: 7px;
 }
 
 .categoryText{
-    font-size: 1.5em;
+    font-size: 15px;
     margin-bottom: 0.3em;
+    width: 90px;
+    overflow-wrap: anywhere;
 }

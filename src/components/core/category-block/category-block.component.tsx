@@ -10,8 +10,8 @@ interface IProps {
 
 const CategoryBlock = (props: IProps) => {
     let style = {
-        height: `${props.Height || '100'}px`,
-        width: `${props.Width || '100'}px`,
+        minHeight: `${props.Height || '100'}px`,
+        minWidth: `${props.Width || '100'}px`,
     }
     return (
         <button className="categoryBlockContainer" style={style} name={props.Name} onClick={e => props.OnClick && props.OnClick(e)}>
