@@ -1,0 +1,132 @@
+.mainItemContainer {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    min-height: 240px;
+    border-radius: 14px;
+    background: #fff;
+    position: relative;
+    user-select: none;
+    border: 1px solid rgb(243, 244, 248);
+}
+
+.isSelected {
+    border: 1px solid #023e8a;
+}
+
+.mainItemContainer>img {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    display: flex;
+    width: 220px;
+    height: 150px;
+}
+
+.mainItemContainer>.infoWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 15px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+}
+
+.mainItemContainer>.infoWrapper>.itemName {
+    display: flex;
+    color: #03045e;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.mainItemContainer>.infoWrapper>.itemPrice {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+
+.mainItemContainer>.infoWrapper>.itemPrice>.currentItemPrice {
+    font-weight: 00;
+    font-size: 16px;
+    color: rgb(44, 100, 198);
+    position: relative;
+}
+
+.mainItemContainer>.infoWrapper>.itemPrice>.deletedItemPrice {
+    display: flex;
+    font-size: 14px;
+    margin-top: 6px;
+    font-weight: 400;
+    text-decoration: line-through;
+    color: rgb(173, 173, 175);
+}
+
+.mainItemContainer>.goTrashCan {
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+    position: absolute;
+    right: 14px;
+    bottom: 8px;
+    z-index: 1;
+}
+
+.mainItemContainer>.goTrashCan>svg {
+    color: #e0e2e8;
+}
+
+
+.mainItemContainer>.grCheckbox {
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 12px;
+    color: #e0e2e8;
+}
+
+.mainItemContainer>.grCheckbox rect {
+    stroke: #e0e2e8;
+}
+
+
+.mainItemContainer>.grCheckbox path {
+    stroke: #023e8a;
+}
+
+.mainItemContainer>.fiEdit {
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    left: 12px;
+    top: 12px;
+    color: #e0e2e8;
+}
+
+.mainItemContainer .deleteACK{
+    display: flex;
+    border: 1px solid #023e8a;
+    width: 90px;
+    height: 30px;
+    position: absolute;
+    right: -18px;
+    bottom: -24px;
+    z-index: 1;
+    border-radius: 5px;
+    background-color: #fff;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mainItemContainer .deleteACK .ACKButton{
+    display: flex;
+    color: #03045e;
+    font-weight: 700;
+    background-color:rgb(243, 244, 248) ;
+    border: 1px solid #03045e;
+}
