@@ -14,12 +14,15 @@
     border: 1px solid #023e8a;
 }
 
-.mainItemContainer>img {
+.mainItemContainer>.itemImage {
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
     display: flex;
     width: 220px;
     height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .mainItemContainer>.infoWrapper {

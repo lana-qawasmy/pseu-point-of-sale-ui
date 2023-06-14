@@ -18,7 +18,7 @@ const Item = (props: IProps) => {
     const [displayACK, setDisplayACK] = React.useState(false);
     return (
         <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
-            <img src={image} alt="name" />
+            <div style={{backgroundImage: `url('${image}')`}} className='itemImage' />
             <div className='infoWrapper'>
                 <span className='itemName'>
                     {name}
