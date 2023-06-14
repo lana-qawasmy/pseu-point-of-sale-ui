@@ -10,6 +10,7 @@ const useCategoryBar = () => {
     const [newCategoryFields, setNewCategoryFields] = useState({ emoji: '', name: '' });
     const [categoryList, setCategoryList] = useState<[CollectionNS.ICollection]>([{addedBy: '',icon: '',name: '',_id: '',items: ['']}]);
     const [selectedCategory, setSelectedCategory] = useState<boolean[]>([]);
+    const [categoryId, setCategoryId] = useState<string>('');
     const userContext = useContext(UserContext);
     const { setNotification } = useNotification();
     const handleNewCategory = () => {
@@ -46,15 +47,17 @@ const useCategoryBar = () => {
             setSelectedCategory([...array]);
             console.log('new array: ' ,selectedCategory);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[showAddForm])
-    const handlSelectedCategory = (index: number) =>{
+    const handlSelectedCategory = (index: number, id: string) =>{
         let array = [];
         array = categoryList.map((item)=>{return(
             false
         )});
         array[index] = true;
         setSelectedCategory([...array]);
-        console.log('new array: ', array);
+        // console.log('new array: ', array);
+        setCategoryId(id);
     };
     return ({
         handleNewCategory: handleNewCategory,
@@ -67,7 +70,8 @@ const useCategoryBar = () => {
         categoryList: categoryList,
         setSelectedCategory: setSelectedCategory,
         selectedCategory: selectedCategory,
-        handlSelectedCategory: handlSelectedCategory
+        handlSelectedCategory: handlSelectedCategory,
+        categoryId: categoryId
     });
 }
 

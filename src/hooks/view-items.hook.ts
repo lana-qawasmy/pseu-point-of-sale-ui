@@ -1,7 +1,7 @@
 import React from 'react';
 import { UserContext } from '../components/providers/user.provider';
 import { ItemNS } from '../types';
-import { itemService } from '../services';
+import { itemService, collectionServices } from '../services';
 import useNotification from './notification.hook';
 
 const useViewItems = () => {
@@ -15,16 +15,28 @@ const useViewItems = () => {
         if (deleteItem)
             getItems();
     };
-    const handleChangeSelect = (index: number) => {
+    const handleChangeSelect = async (index: number, categoryId: string) => {
         let newSelect = [...select];
         newSelect[index] = !newSelect[index];
         setSelect(newSelect);
+        let selectedIds = [...itemsTable];
+        let filteredIds = selectedIds.filter((item, index) => newSelect[index] === true && item !== undefined).map((item) => item._id);
+        console.log('selected ids: ', filteredIds);
+        console.log('collection id: ', categoryId);
+        if (categoryId !== '') {
+            const x = await collectionServices.updateCollection(user.user?.token as string, categoryId, filteredIds);
+            if (x) {
+                console.log('item updated!!');
+                console.log('here is X: ', x)
+            }
+        }
     };
 
     const getItems = React.useCallback(async () => {
         let items = await itemService.getItems(user.user?._id as string, user.user?.token as string);
         if (items) {
             setItemsTable(items);
+            setSelect(itemsTable.map(() => false));
         }
         else {
             setNotification({ message: 'Error fetching the items', status: 'error' });

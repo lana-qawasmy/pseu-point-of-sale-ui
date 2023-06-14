@@ -2,14 +2,20 @@ import './category-bar.css';
 import { CategoryBlock, Input, Button } from '../core';
 import { useCategoryBar } from '../../hooks';
 interface IProps {
-    disableAddBlock: boolean
+    disableAddBlock: boolean,
+    categoryId?: string,
+    setCategoryId?: React.Dispatch<React.SetStateAction<string>>;
 }
 const CategoryBar = (props: IProps) => {
     const categoryBar = useCategoryBar();
+    const handlSelectedCategory = (index: number, id: string) =>{
+        props.setCategoryId&& props.setCategoryId(id);
+        categoryBar.handlSelectedCategory(index, id as string);
+    }
     return (
         <div className="categoryBarContainer">
             <div className="allBlock">
-                <button className={`${categoryBar.selectedCategory.length == 0?"focus":"categoryBlockContainer"}`} style={{ height: '100px', width: '100px' }} name='add' onClick={e => {categoryBar.setSelectedCategory([])}}>
+                <button className={`${categoryBar.selectedCategory.length === 0?"focus":"categoryBlockContainer"}`} style={{ height: '100px', width: '100px' }} name='add' onClick={e => {categoryBar.setSelectedCategory([])}}>
                     <div className="iconWrapper">📋</div>
                     <div className="categoryText">All</div>
                 </button>
@@ -21,7 +27,7 @@ const CategoryBar = (props: IProps) => {
                             key={item._id}
                             Icon={item.icon}
                             Name={item.name}
-                            OnClick={() => categoryBar.handlSelectedCategory(index)}
+                            OnClick={() => handlSelectedCategory(index, item._id as string)}
                             selected={categoryBar.selectedCategory}
                             index={index}
                         />
