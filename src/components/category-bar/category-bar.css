@@ -21,6 +21,7 @@
 
 .categoryBarContainer .categoryBar {
     height: 100%;
+    min-width: 80%;
     width: auto;
     background-color: #f3f4f8;
     display: flex;

@@ -1,41 +1,30 @@
 import './category-bar.css';
 import { CategoryBlock, Input, Button } from '../core';
 import { useCategoryBar } from '../../hooks';
+import { useEffect, useState } from 'react';
 interface IProps {
     disableAddBlock: boolean
 }
 const CategoryBar = (props: IProps) => {
     const categoryBar = useCategoryBar();
-
+    const [categoryList, setCategoryList] = useState([...categoryBar.categoryList]);
+    useEffect(()=>{
+        setCategoryList([...categoryBar.categoryList]);
+    },[categoryBar.categoryList]);
     return (
         <div className="categoryBarContainer">
             <div className="allBlock">
-                <button className="categoryBlockContainer" style={{ height: '100px', width: '100px' }} name='add' onClick={e => { }}>
+                <button className="categoryBlockContainer" style={{ height: '100px', width: '100px' }} name='add' onClick={e => {}}>
                     <div className="iconWrapper">📋</div>
                     <div className="categoryText">All</div>
                 </button>
             </div>
             <div className="categoryBar">
-                <CategoryBlock Icon={'🔌'} Name='Elechtroincssssssssssss' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
-                <CategoryBlock Icon={'🆗'} Name='New' />
+                {categoryBar.categoryList.map((item,index)=>{
+                    return(
+                        <CategoryBlock key={item._id} Icon={item.icon} Name={item.name} />
+                    )
+                })}
             </div>
             <div className="addNewBlock">
                 <button className="categoryBlockContainer" disabled={props.disableAddBlock} style={{ height: '100px', width: '100px' }} name='add' onClick={categoryBar.handleNewCategory}>

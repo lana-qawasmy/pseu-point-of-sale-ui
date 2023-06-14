@@ -25,7 +25,7 @@ const addCollection = async (collection: CollectionNS.ICollection, token: string
     }
 };
 
-const getCollection = (userId: string, token: string) => {
+const getCollections = (token: string) => {
     try {
         return fetch(`${process.env.REACT_APP_SERVER_URL}/collection/getCollections`, {
             method: 'GET',
@@ -33,7 +33,9 @@ const getCollection = (userId: string, token: string) => {
                 'authorization': token,
             }
         }).then(async (response) => {
-            return await response.json();
+            const resp = await response.json();
+            console.log('response taza: ', resp);
+            return resp;
         }).catch((error) => {
             console.error(error);
             return false;
@@ -46,5 +48,5 @@ const getCollection = (userId: string, token: string) => {
 
 export default {
     addCollection: addCollection,
-    getCollection: getCollection,
+    getCollections: getCollections,
 };
