@@ -8,11 +8,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     background-color: rgb(243, 244, 248);
     padding-left: 90px;
     padding-bottom: 90px;
     padding-right: 30px;
+    font-family: 'Inter';
 }
 
 .viewItemsPage>h2 {
@@ -30,4 +31,5 @@
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 20px;
+    width: 80%;
 }

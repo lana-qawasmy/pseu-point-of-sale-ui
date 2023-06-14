@@ -14,7 +14,7 @@ const PosView = () => {
                     <Link to={'/viewCategories'}>See All</Link>
                 </div>
             </div>
-            <CategoryBar />
+            <CategoryBar disableAddBlock={true}/>
         </div>
     );
 };

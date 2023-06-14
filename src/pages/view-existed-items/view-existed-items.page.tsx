@@ -1,13 +1,14 @@
 import './view-existed-items.css';
 import { Item } from '../../components';
 import { useViewItems } from '../../hooks';
-import React from 'react';
+import {CategoryBar} from '../../components';
 
 const ViewExistedItems = () => {
     const { itemsTable, select, handleChangeSelect, handleDelete } = useViewItems();
 
     return (
         <div className='viewItemsPage'>
+            <CategoryBar disableAddBlock={false}/>
             <h2>Menu</h2>
             <div className='itemsContainer'>
                 {

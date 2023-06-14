@@ -2,7 +2,7 @@
     width: 75%;
     height: 140px;
     background-color: #e2e2fa;
-    border:1px solid #e2e2fa;
+    border: 1px solid #e2e2fa;
     border-radius: 5px;
     display: flex;
 }
@@ -32,21 +32,21 @@
     z-index: 0;
 }
 
-.categoryBarContainer .categoryBar::-webkit-scrollbar{
+.categoryBarContainer .categoryBar::-webkit-scrollbar {
     width: 1px;
     height: 8px;
 }
 
-.categoryBarContainer .categoryBar::-webkit-scrollbar-track{
+.categoryBarContainer .categoryBar::-webkit-scrollbar-track {
     background-color: #f3f4f8;
 }
 
-.categoryBarContainer .categoryBar::-webkit-scrollbar-thumb:hover{
+.categoryBarContainer .categoryBar::-webkit-scrollbar-thumb:hover {
     background-color: #888;
     border-radius: 10px;
 }
 
-.categoryBarContainer .categoryBar button{
+.categoryBarContainer .categoryBar button {
     margin: 0 8px 0 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -61,7 +61,68 @@
     z-index: 1;
 }
 
-.categoryBarContainer .addNewBlock button, .allBlock button{
+.categoryBarContainer .addNewBlock button,
+.allBlock button {
     margin-bottom: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+.addFormContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.274);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addFormWrapper {
+    height: 450px;
+    width: 400px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addFormWrapper h2{
+    color: #03045e;
+}
+
+.addFormBody{
+    width: 90%;
+    height: 90%;
+    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.addFormBody .upperBody, .addFormBody .lowerBody{
+    height: 50%;
+    width: 100%;
+}
+
+.addFormBody .upperBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addFormBody .lowerBody{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.lowerBody .buttonContainer{
+    margin: 0px 9px 20px;
 }
