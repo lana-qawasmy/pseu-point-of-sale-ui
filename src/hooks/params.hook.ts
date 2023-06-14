@@ -9,6 +9,9 @@ const useParams = () => {
     const setParamsOverride = (name: string, value: string) => {
         const newParams = new URLSearchParams(params);
         newParams.set(name, value);
+        if (value === '') {
+            newParams.delete(name)
+        }
         setParams(newParams);
     }
     useEffect(() => {
