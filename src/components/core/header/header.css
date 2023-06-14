@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #FFFFFF;
+    left: 0;
+    height: 72px;
+    padding-right: 34px;
+    border-bottom: 1px solid #F3F4F8;
+}
+
+.header .userName {
+    display: flex;
+    color: #03045e;
+    font-weight: 700;
+}
+
+.header .userImage {
+    display: flex;
+    border: 1px solid #d9dadf;
+    width: 50px;
+    height: 50px;
+    margin-right: 18px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

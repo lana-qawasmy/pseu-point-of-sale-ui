@@ -5,13 +5,13 @@ import { useSignUp } from '../../hooks';
 import { PasswordAndConfirmation } from '../../components/signup';
 
 
-import defaultImage from '../../assets/signupUserIcon-svg.svg';
+import { mainPagePic } from '../../assets';
 
 
 const Signup = () => {
     const { inputState, setInputState, addUser, uploadImage } = useSignUp();
     const style = {
-        backgroundImage: `url(${inputState.image || defaultImage})`,
+        backgroundImage: `url(${inputState.image || mainPagePic})`,
         borderRadius: inputState.image ? '50%' : '',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
@@ -50,7 +50,7 @@ const Signup = () => {
                                 Type='text'
                                 id='nameInSignUp'
                                 Label='Full Name'
-                                PlaceHolder='Full Name'
+                                PlaceHolder='Arthur Moreno'
                                 name='name'
                                 Required
                                 Radius={15}
@@ -72,7 +72,7 @@ const Signup = () => {
                                 name='email'
                                 id='emailInSignUp'
                                 Type='email'
-                                PlaceHolder='Email'
+                                PlaceHolder='example@gmail.com'
                                 Required Radius={15}
                                 Height={30}
                                 Width={160}

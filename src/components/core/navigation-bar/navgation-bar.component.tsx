@@ -13,6 +13,7 @@ const NavigationBar = () => {
     const userContext = useContext(UserContext);
     const logOut = () => {
         userContext.setUser && userContext.setUser(undefined);
+        sessionStorage.removeItem('user');
         navigate("/signin", { replace: false });
     };
 

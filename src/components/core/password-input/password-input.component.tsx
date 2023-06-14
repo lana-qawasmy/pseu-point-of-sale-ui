@@ -60,7 +60,7 @@ const PasswordInput = (props: IProps) => {
                             : 'password'
                     }
                     disabled={props.Disabled || false}
-                    placeholder={props.Placeholder || ""}
+                    placeholder={"******************" || ""}
                     value={password.value}
                     onChange={e => password.setValue(e.target.value)}
                 />

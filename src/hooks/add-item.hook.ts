@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 
-import logo from "../assets/imageIcon.svg";
+import { defaultItemImage } from "../assets";
 import { ItemNS } from "../types";
 import { itemService } from "../services";
 import { UserContext } from "../components/providers/user.provider";
@@ -13,7 +13,7 @@ interface imageState {
 const useAddItem = () => {
     const [imageIcon, setImageIcon] = useState<imageState>({
         state: false,
-        value: logo,
+        value: defaultItemImage,
     });
     const user = useContext(UserContext);
     const { setNotification } = useNotification();
@@ -42,7 +42,7 @@ const useAddItem = () => {
         event.target.files ? (file = event.target.files[0]) : (file = "");
         try {
             const base64 = await convertBase64(file);
-            base64 !== logo &&
+            base64 !== defaultItemImage &&
                 setUploadStatus({
                     backgroundColor: "#2c64c6",
                     color: "white",
@@ -80,7 +80,6 @@ const useAddItem = () => {
         }
         const newItem: ItemNS.Item = {
             name: target.itemName.value,
-            price: price,
             description: target.description.value,
             image: imageIcon.value,
             barcode: target.barcode.value,
@@ -98,7 +97,7 @@ const useAddItem = () => {
                     target.itemName.value = "";
                     target.price.value = "";
                     target.description.value = "";
-                    setImageIcon(() => ({ state: false, value: logo }));
+                    setImageIcon(() => ({ state: false, value: defaultItemImage }));
                     target.barcode.value = "";
                     setUploadStatus({
                         backgroundColor: "#adadaf",
