@@ -1,29 +1,31 @@
 import './category-bar.css';
 import { CategoryBlock, Input, Button } from '../core';
 import { useCategoryBar } from '../../hooks';
-import { useEffect, useState } from 'react';
 interface IProps {
     disableAddBlock: boolean
 }
 const CategoryBar = (props: IProps) => {
     const categoryBar = useCategoryBar();
-    const [categoryList, setCategoryList] = useState([...categoryBar.categoryList]);
-    useEffect(()=>{
-        setCategoryList([...categoryBar.categoryList]);
-    },[categoryBar.categoryList]);
     return (
         <div className="categoryBarContainer">
             <div className="allBlock">
-                <button className="categoryBlockContainer" style={{ height: '100px', width: '100px' }} name='add' onClick={e => {}}>
+                <button className={`${categoryBar.selectedCategory.length == 0?"focus":"categoryBlockContainer"}`} style={{ height: '100px', width: '100px' }} name='add' onClick={e => {categoryBar.setSelectedCategory([])}}>
                     <div className="iconWrapper">📋</div>
                     <div className="categoryText">All</div>
                 </button>
             </div>
             <div className="categoryBar">
-                {categoryBar.categoryList.map((item,index)=>{
-                    return(
-                        <CategoryBlock key={item._id} Icon={item.icon} Name={item.name} />
-                    )
+                {categoryBar.categoryList.map((item, index) => {
+                    return (
+                        <CategoryBlock
+                            key={item._id}
+                            Icon={item.icon}
+                            Name={item.name}
+                            OnClick={() => categoryBar.handlSelectedCategory(index)}
+                            selected={categoryBar.selectedCategory}
+                            index={index}
+                        />
+                    );
                 })}
             </div>
             <div className="addNewBlock">

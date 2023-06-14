@@ -33,9 +33,7 @@ const getCollections = (token: string) => {
                 'authorization': token,
             }
         }).then(async (response) => {
-            const resp = await response.json();
-            console.log('response taza: ', resp);
-            return resp;
+            return await response.json();;
         }).catch((error) => {
             console.error(error);
             return false;

@@ -9,6 +9,7 @@ const useCategoryBar = () => {
     const [showAddForm, setShowAddForm] = useState(false);
     const [newCategoryFields, setNewCategoryFields] = useState({ emoji: '', name: '' });
     const [categoryList, setCategoryList] = useState<[CollectionNS.ICollection]>([{addedBy: '',icon: '',name: '',_id: '',items: ['']}]);
+    const [selectedCategory, setSelectedCategory] = useState<boolean[]>([]);
     const userContext = useContext(UserContext);
     const { setNotification } = useNotification();
     const handleNewCategory = () => {
@@ -34,11 +35,27 @@ const useCategoryBar = () => {
     const newCategoryList = await collectionServices.getCollections(userContext.user?.token as string);
     if (!newCategoryList) {
             setNotification({ message: 'Could not fetch categories', status: 'error' });
+            setSelectedCategory([false]);
         }else{
             setCategoryList(newCategoryList);
-            console.log('here from hook: ',categoryList[0]?.addedBy[0]);
+            let array: any =[];
+            array = categoryList.map((item)=>{return(
+                false
+            )});
+            array.push(false);
+            setSelectedCategory([...array]);
+            console.log('new array: ' ,selectedCategory);
         }
     },[showAddForm])
+    const handlSelectedCategory = (index: number) =>{
+        let array = [];
+        array = categoryList.map((item)=>{return(
+            false
+        )});
+        array[index] = true;
+        setSelectedCategory([...array]);
+        console.log('new array: ', array);
+    };
     return ({
         handleNewCategory: handleNewCategory,
         handleCancelCategory: handleCancelCategory,
@@ -47,7 +64,10 @@ const useCategoryBar = () => {
         setShowAddForm: setShowAddForm,
         newCategoryFields: newCategoryFields,
         setNewCategoryFields: setNewCategoryFields,
-        categoryList: categoryList
+        categoryList: categoryList,
+        setSelectedCategory: setSelectedCategory,
+        selectedCategory: selectedCategory,
+        handlSelectedCategory: handlSelectedCategory
     });
 }
 
