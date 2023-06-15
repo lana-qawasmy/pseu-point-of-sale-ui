@@ -108,25 +108,56 @@
     color: #e0e2e8;
 }
 
-.mainItemContainer .deleteACK{
+.mainItemContainer .deleteACK {
     display: flex;
-    border: 1px solid #023e8a;
+    border: 1px solid rgb(209, 207, 207);
     width: 90px;
     height: 30px;
     position: absolute;
-    right: -18px;
-    bottom: -24px;
+    right: -22px;
+    bottom: -28px;
     z-index: 1;
     border-radius: 5px;
     background-color: #fff;
     justify-content: space-around;
     align-items: center;
+    box-shadow:  10px 10px 10px #e0e2e8;
+
 }
 
-.mainItemContainer .deleteACK .ACKButton{
+.mainItemContainer .deleteACK .ACKButton {
     display: flex;
-    color: #03045e;
-    font-weight: 700;
-    background-color:rgb(243, 244, 248) ;
-    border: 1px solid #03045e;
+    font-weight: 500;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 7px;
+    cursor: pointer;
+}
+
+
+.mainItemContainer .deleteACK .ACKButton:last-child {
+    background-color: red;
+    border: none;
+
+}
+
+.mainItemContainer .deleteACK .ACKButton:first-child {
+    background-color: gray;
+    border: none;
+
+}
+
+.mainItemContainer .deleteACK .ACKButton:first-child:hover {
+    background-color: rgb(44, 100, 198);
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+
+}
+
+.mainItemContainer .deleteACK .ACKButton:last-child:hover {
+    background-color: rgb(255, 29, 29);
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
 }
