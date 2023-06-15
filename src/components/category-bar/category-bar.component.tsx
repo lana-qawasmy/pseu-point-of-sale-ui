@@ -1,16 +1,21 @@
 import './category-bar.css';
 import { CategoryBlock, Input, Button } from '../core';
 import { useCategoryBar } from '../../hooks';
+import { CollectionNS } from '../../types';
 interface IProps {
     disableAddBlock: boolean,
     categoryId?: string,
-    setCategoryId?: React.Dispatch<React.SetStateAction<string>>;
+    setCategoryId?: React.Dispatch<React.SetStateAction<string>>,
+    selectedCategoryItems?: [string],
+    setSelectedCategoryItems?: React.Dispatch<React.SetStateAction<[string]>>
 }
 const CategoryBar = (props: IProps) => {
     const categoryBar = useCategoryBar();
-    const handlSelectedCategory = (index: number, id: string) =>{
+    const handlSelectedCategory = (index: number, id: string, items: [string]) =>{
         props.setCategoryId&& props.setCategoryId(id);
-        categoryBar.handlSelectedCategory(index, id as string);
+            props.setSelectedCategoryItems && props.setSelectedCategoryItems(items);
+
+        categoryBar.handlSelectedCategory(index, id as string,);
     }
     return (
         <div className="categoryBarContainer">
@@ -27,7 +32,7 @@ const CategoryBar = (props: IProps) => {
                             key={item._id}
                             Icon={item.icon}
                             Name={item.name}
-                            OnClick={() => handlSelectedCategory(index, item._id as string)}
+                            OnClick={() => handlSelectedCategory(index, item._id as string, item.items || [''])}
                             selected={categoryBar.selectedCategory}
                             index={index}
                         />

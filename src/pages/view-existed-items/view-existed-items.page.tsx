@@ -2,15 +2,22 @@ import './view-existed-items.css';
 import { Item } from '../../components';
 import { useViewItems } from '../../hooks';
 import {CategoryBar} from '../../components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ViewExistedItems = () => {
-    const { itemsTable, select, handleChangeSelect, handleDelete } = useViewItems();
+    const { itemsTable, select, handleChangeSelect, handleDelete,handleChangeCategory } = useViewItems();
     const [categoryId,setCategoryId] = useState<string>('');
-
+    const [selectedCategoryItems, setSelectedCategoryItems] = useState<[string]>(['']);
+    useEffect(()=>{
+        handleChangeCategory(selectedCategoryItems);
+    },[selectedCategoryItems])
     return (
         <div className='viewItemsPage'>
-            <CategoryBar disableAddBlock={false} categoryId={categoryId} setCategoryId={setCategoryId}/>
+            <CategoryBar disableAddBlock={false} 
+            categoryId={categoryId} 
+            setCategoryId={setCategoryId} 
+            selectedCategoryItems={selectedCategoryItems} 
+            setSelectedCategoryItems={setSelectedCategoryItems}/>
             <h2>Menu</h2>
             <div className='itemsContainer'>
                 {

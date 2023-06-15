@@ -47,12 +47,16 @@ const useViewItems = () => {
     React.useMemo(async () => {
         await getItems();
     }, [getItems]);
-
+    const handleChangeCategory = (selectedCategoryItems: [string]) =>{
+        let array = itemsTable;
+        //continue 
+    }
     return {
         itemsTable,
         select,
         handleChangeSelect,
         handleDelete,
+        handleChangeCategory
     };
 };
 
