@@ -6,7 +6,7 @@ interface IProps {
 
     id?: string;
     name?: string;
-
+    value?: string;
     Color?: string;
 
     Required?: boolean;
@@ -83,6 +83,7 @@ const Input = (props: IProps) => {
                         type={props.Type}
                         required={props.Required}
                         onChange={e => (props.onChange && props.onChange(e))}
+                        value={props.value && props.value}
                     />
             }
         </div>

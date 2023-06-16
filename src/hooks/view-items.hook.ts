@@ -11,9 +11,13 @@ const useViewItems = () => {
     const { setNotification } = useNotification();
 
     const handleDelete = async (userId: string, itemId: string) => {
-        const deleteItem = await itemService.deleteItem(userId, itemId, user.user?.token as string);
-        if (deleteItem)
-            getItems();
+        try {
+            const deleteItem = await itemService.deleteItem(userId, itemId, user.user?.token as string);
+            if (deleteItem)
+                getItems();
+        } catch (error) {
+            console.error(error);
+        }
     };
     const handleChangeSelect = async (index: number, categoryId: string) => {
         let newSelect = [...select];
@@ -21,36 +25,39 @@ const useViewItems = () => {
         setSelect(newSelect);
         let selectedIds = [...itemsTable];
         let filteredIds = selectedIds.filter((item, index) => newSelect[index] === true && item !== undefined).map((item) => item._id);
-        console.log('selected ids: ', filteredIds);
-        console.log('collection id: ', categoryId);
         if (categoryId !== '') {
             const x = await collectionServices.updateCollection(user.user?.token as string, categoryId, filteredIds);
-            if (x) {
-                console.log('item updated!!');
-                console.log('here is X: ', x)
-            }
         }
     };
 
     const getItems = React.useCallback(async () => {
-        let items = await itemService.getItems(user.user?._id as string, user.user?.token as string);
-        if (items) {
-            setItemsTable(items);
-            setSelect(itemsTable.map(() => false));
-        }
-        else {
-            setNotification({ message: 'Error fetching the items', status: 'error' });
+        try {
+            let items = await itemService.getItems(user.user?._id as string, user.user?.token as string);
+            if (items) {
+                setItemsTable(items);
+                setSelect(itemsTable.map(() => false));
+            }
+            else {
+                setNotification({ message: 'Error fetching the items', status: 'error' });
+            }
+        } catch (error) {
+            console.error(error);
         }
         // eslint-disable-next-line
     }, []);
 
+    const handleChangeCategory = (selectedCategoryItems: [string]) => {
+        let array: boolean[] = [];
+        array.length = itemsTable.length
+        array.fill(false, 0, itemsTable.length);
+        array = array.map((item, index) => {
+            return selectedCategoryItems.includes(itemsTable[index]._id || '') || false;
+        });
+        setSelect([...array]);
+    };
     React.useMemo(async () => {
         await getItems();
     }, [getItems]);
-    const handleChangeCategory = (selectedCategoryItems: [string]) =>{
-        let array = itemsTable;
-        //continue 
-    }
     return {
         itemsTable,
         select,

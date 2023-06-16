@@ -10,7 +10,7 @@ const ViewExistedItems = () => {
     const [selectedCategoryItems, setSelectedCategoryItems] = useState<[string]>(['']);
     useEffect(()=>{
         handleChangeCategory(selectedCategoryItems);
-    },[selectedCategoryItems])
+    },[selectedCategoryItems,categoryId])
     return (
         <div className='viewItemsPage'>
             <CategoryBar disableAddBlock={false} 

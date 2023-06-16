@@ -9,11 +9,12 @@ const addCollection = async (collection: CollectionNS.ICollection, token: string
             },
             body: JSON.stringify(collection),
         }).then(async (res) => {
+            const x = await res.json();
             if (res.status === 201) {
-                return { state: true, value: await res.json() };
+                return { state: true, value: x.message };
             }
             else {
-                return { state: false, value: await res.json() };
+                return { state: false, value: x.message };
             }
         }).catch((error) => {
             console.error(error);

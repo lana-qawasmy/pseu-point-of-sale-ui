@@ -57,7 +57,7 @@
     margin: 0;
 }
 
-.optionWrapper button.focus span {
+.optionWrapper button.focusBtn span {
     background-color: #03045e;
 }
 
@@ -78,7 +78,7 @@
 }
 
 
-.optionsContainer button.focus .radioIcons {
+.optionsContainer button.focusBtn .radioIcons {
     fill: #03045e;
     cursor: pointer;
 }
