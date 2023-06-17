@@ -17,13 +17,9 @@
     font-family: 'Inter';
 }
 
-.viewItemsPage>h2 {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    color: #03045e;
+.viewItemsPage > .categoryBarContainer{
+    margin-top: 50px;
 }
-
 .viewItemsPage>.itemsContainer {
     margin-top: 8px;
     display: flex;
@@ -33,4 +29,15 @@
     flex-wrap: wrap;
     gap: 20px;
     width: 80%;
+}
+
+.searchBarWrapper{
+    width: 80%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.searchBarWrapper>div>div{
+    padding-left: 0;
 }
