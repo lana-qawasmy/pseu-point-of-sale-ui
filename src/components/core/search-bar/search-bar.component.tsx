@@ -7,6 +7,7 @@ interface Iprops {
     Width?: number,
     Id: string,
     Name: string,
+    Value: string,
     Padding?: number,
     FontSize?: number,
     Raduis?: number,
@@ -16,6 +17,8 @@ interface Iprops {
     FontColor?: string,
     OnChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+
 
 const SearchBar = (props: Iprops) => {
     const styles = {
@@ -29,11 +32,11 @@ const SearchBar = (props: Iprops) => {
     };
     return (
         <div>
-            searching
             <div className="searchWrapper">
                 <input
                     style={styles}
                     id={props.Id}
+                    value={props.Value}
                     placeholder={props.Placeholder || 'search '}
                     className='searchInput'
                     onChange={e => (props.OnChange && props.OnChange(e))}
