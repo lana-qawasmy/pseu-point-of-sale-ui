@@ -99,7 +99,6 @@
 .addFormBody{
     width: 90%;
     height: 90%;
-    background-color: rebeccapurple;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
