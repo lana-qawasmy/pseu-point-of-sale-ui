@@ -37,7 +37,7 @@ const ViewExistedItems = () => {
                 OnChange={handleSearch}
                 Value={useParams.params.get('searchTerms') || ''}
                 Padding={12}
-                Radius={5}
+                Raduis={5}
             />
             <div className='itemsContainer'>
                 {

@@ -3,13 +3,14 @@ import { UserContext } from '../components/providers/user.provider';
 import { ItemNS } from '../types';
 import { itemService, collectionServices } from '../services';
 import useNotification from './notification.hook';
+import { useParam } from '.';
 
 const useViewItems = () => {
     const [itemsTable, setItemsTable] = React.useState<ItemNS.Item[]>([]);
     const [select, setSelect] = React.useState<boolean[]>([]);
     const user = React.useContext(UserContext);
     const { setNotification } = useNotification();
-
+    const useParams = useParam();
     const handleDelete = async (userId: string, itemId: string) => {
         try {
             const deleteItem = await itemService.deleteItem(userId, itemId, user.user?.token as string);
@@ -30,9 +31,9 @@ const useViewItems = () => {
         }
     };
 
-    const getItems = React.useCallback(async () => {
+    const getItems =  React.useCallback(async () => {
         try {
-            let items = await itemService.getItems(user.user?._id as string, user.user?.token as string);
+            let items = await itemService.getItems(user.user?._id as string, user.user?.token as string,useParams.params.get('searchTerms') || '');
             if (items) {
                 setItemsTable(items);
                 setSelect(itemsTable.map(() => false));
@@ -44,7 +45,7 @@ const useViewItems = () => {
             console.error(error);
         }
         // eslint-disable-next-line
-    }, []);
+    }, [useParams.params]);
 
     const handleChangeCategory = (selectedCategoryItems: [string]) => {
         let array: boolean[] = [];
