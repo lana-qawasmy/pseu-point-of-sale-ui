@@ -29,7 +29,7 @@ const NavigationBar = () => {
                     <div className="optionWrapper">
                         <button
                             type="button"
-                            className={location.pathname === "/addItem" ? "focus" : ""}
+                            className={location.pathname === "/addItem" ? "focusBtn" : ""}
                             onClick={() => {
                                 navigate("/addItem", { replace: false });
                             }}
@@ -41,7 +41,7 @@ const NavigationBar = () => {
                     <div className="optionWrapper">
                         <button
                             type="button"
-                            className={location.pathname === "/" ? "focus" : ""}
+                            className={location.pathname === "/" ? "focusBtn" : ""}
                             onClick={() => {
                                 navigate("/", { replace: false });
                             }}
@@ -53,7 +53,7 @@ const NavigationBar = () => {
                     <div className="optionWrapper">
                         <button
                             type="button"
-                            className={location.pathname === "/ordersHistory" ? "focus" : ""}
+                            className={location.pathname === "/ordersHistory" ? "focusBtn" : ""}
                             onClick={() => {
                                 navigate("/ordersHistory", { replace: false });
                             }}
@@ -65,7 +65,7 @@ const NavigationBar = () => {
                     <div className="optionWrapper">
                         <button
                             type="button"
-                            className={location.pathname === "/existedItems" ? "focus" : ""}
+                            className={location.pathname === "/existedItems" ? "focusBtn" : ""}
                             onClick={() => {
                                 navigate("/existedItems", { replace: false });
                             }}

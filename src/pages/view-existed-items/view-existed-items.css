@@ -8,20 +8,18 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     background-color: rgb(243, 244, 248);
-    padding-left: 90px;
+    padding-left: 60px;
     padding-bottom: 90px;
     padding-right: 30px;
+    padding-top: 72px;
+    font-family: 'Inter';
 }
 
-.viewItemsPage>h2 {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    color: #03045e;
+.viewItemsPage > .categoryBarContainer{
+    margin-top: 50px;
 }
-
 .viewItemsPage>.itemsContainer {
     margin-top: 8px;
     display: flex;
@@ -30,4 +28,16 @@
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 20px;
+    width: 80%;
+}
+
+.searchBarWrapper{
+    width: 80%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.searchBarWrapper>div>div{
+    padding-left: 0;
 }

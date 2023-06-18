@@ -27,7 +27,8 @@ const addItem = async (item: ItemNS.Item, token: string) => {
 
 const getItems = (userId: string, token: string, searchTerms?:string) => {
     try {
-        return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}?searchTerms=${searchTerms}`, {
+        // return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}?searchTerms=${searchTerms}`, {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}/${searchTerms && `?searchTerms=${searchTerms}`}`, {
             method: 'GET',
             headers: {
                 'authorization': token,
