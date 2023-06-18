@@ -10,7 +10,7 @@ interface IProps {
 }
 const CategoryBar = (props: IProps) => {
   const categoryBar = useCategoryBar();
-  const handlSelectedCategory = (
+  const handleSelectedCategory = (
     index: number,
     id: string,
     items: [string]
@@ -18,7 +18,7 @@ const CategoryBar = (props: IProps) => {
     props.setCategoryId && props.setCategoryId(id);
     props.setSelectedCategoryItems && props.setSelectedCategoryItems(items);
 
-    categoryBar.handlSelectedCategory(index, id as string);
+    categoryBar.handleSelectedCategory(index, id as string);
   };
   return (
     <div className="categoryBarContainer">
@@ -47,7 +47,7 @@ const CategoryBar = (props: IProps) => {
               Icon={item.icon}
               Name={item.name}
               OnClick={() =>
-                handlSelectedCategory(
+                handleSelectedCategory(
                   index,
                   item._id as string,
                   item.items || [""]
@@ -97,7 +97,7 @@ const CategoryBar = (props: IProps) => {
                 />
                 <Input
                   Label="Name"
-                  PlaceHolder="Elechtronics"
+                  PlaceHolder="Electronics"
                   Required
                   Width={280}
                   Radius={25}

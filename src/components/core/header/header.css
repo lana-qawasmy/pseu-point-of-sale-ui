@@ -10,7 +10,7 @@
     height: 72px;
     padding-right: 34px;
     border-bottom: 1px solid #F3F4F8;
-    z-index: 1;
+    z-index: 4;
 }
 
 .header .userName {

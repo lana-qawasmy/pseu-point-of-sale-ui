@@ -9,7 +9,7 @@
     background-color: #FFFFFF;
     margin-right: 3px;
     border-right: 2px solid #F3F4F8;
-    z-index: 2;
+    z-index: 5;
 }
 
 .navigationBarContainer .logoContainer {

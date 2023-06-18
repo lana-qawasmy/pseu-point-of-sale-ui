@@ -10,7 +10,7 @@ interface Iprops {
     Value: string,
     Padding?: number,
     FontSize?: number,
-    Raduis?: number,
+    Radius?: number,
     Placeholder?: string,
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
@@ -24,10 +24,10 @@ const SearchBar = (props: Iprops) => {
     const styles = {
         height: props.Height || '30px',
         width: props.Width || '250px',
-        borderRadius: props.Raduis || '2px',
+        borderRadius: props.Radius || '2px',
         paddingLeft: props.Padding || '4px 8px',
         color: props.FontColor || 'black',
-        fontSize: `${props.FontSize} px` || '20px',
+        fontSize: `${props.FontSize}px` || '20px',
         fontWeight: props.FontWeight || 'normal',
     };
     return (

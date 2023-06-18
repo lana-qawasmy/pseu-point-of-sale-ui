@@ -11,6 +11,7 @@ const useViewItems = () => {
     const user = React.useContext(UserContext);
     const { setNotification } = useNotification();
     const useParams = useParam();
+
     const handleDelete = async (userId: string, itemId: string) => {
         try {
             const deleteItem = await itemService.deleteItem(userId, itemId, user.user?.token as string);
@@ -27,13 +28,13 @@ const useViewItems = () => {
         let selectedIds = [...itemsTable];
         let filteredIds = selectedIds.filter((item, index) => newSelect[index] === true && item !== undefined).map((item) => item._id);
         if (categoryId !== '') {
-            const x = await collectionServices.updateCollection(user.user?.token as string, categoryId, filteredIds);
+            await collectionServices.updateCollection(user.user?.token as string, categoryId, filteredIds);
         }
     };
 
-    const getItems =  React.useCallback(async () => {
+    const getItems = React.useCallback(async () => {
         try {
-            let items = await itemService.getItems(user.user?._id as string, user.user?.token as string,useParams.params.get('searchTerms') || '');
+            let items = await itemService.getItems(user.user?._id as string, user.user?.token as string, useParams.params.get('searchTerms') || '');
             if (items) {
                 setItemsTable(items);
                 setSelect(itemsTable.map(() => false));
@@ -49,7 +50,7 @@ const useViewItems = () => {
 
     const handleChangeCategory = (selectedCategoryItems: [string]) => {
         let array: boolean[] = [];
-        array.length = itemsTable.length
+        array.length = itemsTable.length;
         array.fill(false, 0, itemsTable.length);
         array = array.map((item, index) => {
             return selectedCategoryItems.includes(itemsTable[index]._id || '') || false;
