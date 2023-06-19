@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms } from './pages';
+import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms, UserProfile } from './pages';
 import { UserProvider } from './components/providers';
 import { Header, NavigationBar } from './components/core';
 import Guard from './components/guard/guard.component';
@@ -21,6 +21,7 @@ const App = () => {
                         <Route path='/ordersHistory' element={<Guard><OrdersHistory /></Guard>} />
                         <Route path='/existedItems' element={<Guard><ViewExistedItems /></Guard>} />
                         <Route path='/terms' element={<Terms />} />
+                        <Route path='/profile' element={<UserProfile />} />
                     </Routes>
                 </BrowserRouter>
             </UserProvider>
