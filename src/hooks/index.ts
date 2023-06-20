@@ -6,3 +6,4 @@ export { default as useNotification } from './notification.hook';
 export { default as useViewItems } from './view-items.hook';
 export { default as useCategoryBar } from './category-bar.hook';
 export { default as useParam } from './params.hook';
+export { default as useEditUser } from './edit-user.hook';

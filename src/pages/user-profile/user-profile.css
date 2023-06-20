@@ -1,28 +1,52 @@
-.userProfileContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    background-color: #f3f4f8;
-    margin-top: 82px;
-    margin-left: 70px;
+.userProfileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f3f4f8;
+  margin-top: 82px;
+  margin-left: 70px;
 }
 
-.userProfileContainer .imageWrapper{
-    display: flex;
-    height: auto;
-    width: 100%;
-    padding: 30px;
-    padding-left: 250px;
-    justify-content: flex-start;
+.userProfileContainer .imageWrapper {
+  display: inline-block; /* Change to inline-block */
+  position: relative; /* Add position relative */
+  height: auto;
+  width: 100%;
+  padding: 30px;
+  padding-left: 250px;
 }
 
-.imageWrapper .image{
-    height: 200px;
-    width: 200px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 3px solid #fff;
+.imageWrapper .image {
+  height: 200px;
+  width: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 3px solid #fff;
+}
+
+.imageButtonsWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 254px;
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+}
+.imageButtonsWrapper .btn {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.356);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  width: 200px;
+  height: 30px;
+  cursor: pointer;
+  transition-duration: 0.9s;
+}
+.imageButtonsWrapper .btn:hover{
+  transform: translateY(-1px);
+  transition-duration: 0.9s;
 }
