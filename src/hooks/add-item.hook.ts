@@ -10,10 +10,10 @@ interface imageState {
     value: string;
 }
 
-const useAddItem = () => {
+const useAddItem = (initialImage: string | undefined) => {
     const [imageIcon, setImageIcon] = useState<imageState>({
-        state: false,
-        value: defaultItemImage,
+        state: initialImage ? true : false,
+        value: initialImage || defaultItemImage,
     });
     const user = useContext(UserContext);
     const { setNotification } = useNotification();

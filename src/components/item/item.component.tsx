@@ -4,6 +4,8 @@ import { GoTrashcan } from 'react-icons/go';
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 import { FiEdit } from 'react-icons/fi';
 import React from 'react';
+import PopUp from '../core/pop-up/pop-up.component';
+import ItemForm from '../add-item/item-form/item-form.component';
 interface IProps {
     item: ItemNS.Item;
     Selected?: boolean;
@@ -16,9 +18,15 @@ interface IProps {
 const Item = (props: IProps) => {
     const { _id, name, image, priceHistory, addedBy } = props.item;
     const [displayACK, setDisplayACK] = React.useState(false);
+    const [edit, setEdit] = React.useState<boolean>(false);
     return (
         <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
-            <div style={{backgroundImage: `url('${image}')`}} className='itemImage' />
+            {edit &&
+                <PopUp>
+                    <ItemForm edit setEdit={setEdit} item={props.item} />
+                </PopUp>
+            }
+            <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
             <div className='infoWrapper'>
                 <span className='itemName'>
                     {name}
@@ -136,7 +144,7 @@ const Item = (props: IProps) => {
                                 }
                             }
                         }}
-                        onClick={() => props.OnEdit && props.OnEdit()} color='#e0e2e8' />
+                        onClick={() => setEdit(true)} color='#e0e2e8' />
                 </span>
             }
 

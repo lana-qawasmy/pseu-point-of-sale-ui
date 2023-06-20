@@ -1,15 +1,29 @@
 import './item-form.css';
 import { Image } from "phosphor-react";
 import { useAddItem } from '../../../hooks';
-import { Button , Input } from '../../core';
+import { Button, Input } from '../../core';
+import { ItemNS } from '../../../types';
 
-const ItemForm = () => {
-    const item = useAddItem();
+interface IProps {
+    edit?: boolean;
+    setEdit?: React.Dispatch<React.SetStateAction<boolean>>;
+    item?: ItemNS.Item;
+
+}
+
+const ItemForm = (props?: IProps) => {
+    const item = useAddItem(props?.item?.image || undefined);
+    const priceHistorySize = props?.item?.priceHistory.length || 0;
     return (
         <div className="addItemPageContainer">
-            <form onSubmit={item.submitHandler} className="addItemFormContainer">
+            <form onSubmit={e => {
+                item.submitHandler(e);
+                if (props?.setEdit) {
+                    props?.setEdit(false);
+                }
+            }} className="addItemFormContainer">
                 <div className="addItemFormTitle">
-                    <span>Add New Item</span>
+                    <span>{props?.edit ? 'Edit ' : 'Add New '} Item</span>
                 </div>
                 <div className="addItemInputWrapper">
                     <Input
@@ -19,6 +33,7 @@ const ItemForm = () => {
                         Radius={15}
                         Required
                         PlaceHolder="Name"
+                        DefaultValue={props?.item?.name || ''}
                     />
                 </div>
                 <div className="addItemInputWrapper">
@@ -30,6 +45,7 @@ const ItemForm = () => {
                         Required
                         PlaceHolder="Price"
                         Type="number"
+                        DefaultValue={props?.item?.priceHistory[priceHistorySize - 1].price.toString() || ''}
                     />
                 </div>
                 <div className="addItemInputWrapper">
@@ -40,6 +56,7 @@ const ItemForm = () => {
                         Radius={15}
                         Type="textArea"
                         PlaceHolder="Description"
+                        DefaultValue={props?.item?.description || ''}
                     />
                 </div>
                 <div className="addItemUploadImageWrapper">
@@ -76,10 +93,11 @@ const ItemForm = () => {
                         Radius={15}
                         Required
                         PlaceHolder="Barcode"
+                        DefaultValue={props?.item?.barcode || ''}
                     />
                 </div>
                 <div className="addItemSubmitButton">
-                    <Button HtmlType="submit" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90">Add</Button>
+                    <Button HtmlType="submit" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90">{props?.edit ? 'Edit' : 'Add'}</Button>
                 </div>
             </form>
             <div
@@ -99,7 +117,7 @@ const ItemForm = () => {
                 ></div>
             </div>
         </div>
-    )
+    );
 };
 
 export default ItemForm;
