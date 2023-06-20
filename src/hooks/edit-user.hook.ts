@@ -4,29 +4,28 @@ import { useContext } from "react";
 import { UserContext } from "../components/providers/user.provider";
 import image from "../assets/profile-Icon.jpg";
 export interface IEditUserState {
-    name: { value: string; valid: 'valid' | 'invalid' | 'none'; };
-    email: { value: string; valid: 'valid' | 'invalid' | 'none'; };
+    name: string;
+    email: string
     password: { value: string; valid: 'valid' | 'invalid' | 'none'; };
     passwordConfirmation: { value: string; valid: 'valid' | 'invalid' | 'none'; };
     image?: string;
-    checked: boolean;
 }
 
 
 const useEditUser = () =>{
     const [showImageButtons, setShowImageButtons] = useState<boolean>(false);
-    const user = useContext(UserContext);
+    // const user = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);
     const {setNotification} = useNotification();
     const initialState: IEditUserState = {
-        email: { value: '', valid: 'valid' },
-        name: { value: '', valid: 'valid' },
+        email: user?.email || '',
+        name: user?.fullName || '',
         password: { value: '', valid: 'valid' },
         passwordConfirmation: { value: '', valid: 'valid' },
-        checked: false,
-        image: user.user?.image === ""?
+        image: user?.image === ""?
         image
         :
-        user.user?.image,
+        user?.image,
     };
     const [inputState, setInputState] = useState<IEditUserState>(initialState);
     const convertBase64 = (file: any) => {
@@ -65,8 +64,9 @@ const useEditUser = () =>{
 
     return {
         uploadImage,
-        inputState,
-        deleteImage, showImageButtons, setShowImageButtons
+        inputState, setInputState,
+        deleteImage,
+        showImageButtons, setShowImageButtons
     }
 };
 
