@@ -1,19 +1,23 @@
 import './pos-view.css';
-import '../../components/core/category-block/category-block.css'
-import { Link } from 'react-router-dom';
+import '../../components/core/category-block/category-block.css';
+import { CategoryBar } from '../../components';
 
 const PosView = () => {
+    const ha = () => {
+        console.log(1);
+
+    };
     return (
         <div className='posViewContainer'>
-            <div className="posTitlewrapper">
-                <div className="posViewTitle">
-                    Category
-                </div>
-                <div className="seeAllWrapper">
-                    <Link to={'/viewCategories'}>See All</Link>
-                </div>
+            <div className='categoryWrapper'>
+                <CategoryBar
+                    disableAddBlock={true}
+                    categoryList={[]}
+                    handleSelectedCategory={ha}
+                    loading={false}
+                    selectedCategory={null}
+                />
             </div>
-            {/* <CategoryBar disableAddBlock={true}/> */}
         </div>
     );
 };

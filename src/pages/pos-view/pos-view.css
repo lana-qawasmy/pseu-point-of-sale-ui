@@ -9,36 +9,10 @@
     padding-top: 72px;
     font-family: 'Inter';
 }
-
-
-
-.posViewContainer .posTitlewrapper {
-    width: 75%;
-    height: 70px;
+.posViewContainer .categoryWrapper{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    max-width: 100%;
+    width: 100%;
+    padding-top: 35px;
 }
-
-.posViewTitle {
-    width: 50%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: #030494;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.seeAllWrapper {
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-}
-
-.seeAllWrapper>a {
-    text-decoration: none;
-    color: #0292cd;
-}
-

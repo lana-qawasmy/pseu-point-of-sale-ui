@@ -31,17 +31,17 @@ const ViewExistedItems = () => {
     return (
         <div className="viewItemsPage">
             <CategoryBar
+                categoryList={categoryList}
+                disableAddBlock={false}
                 loading={categoriesLoading}
                 selectedCategory={selectedCategory}
-                disableAddBlock={false}
-                handleSelectedCategory={handleSelectedCategory}
-                categoryList={categoryList}
-                handleInputValidation={handleInputValidation}
-                handleSubmitNewCategory={handleSubmitNewCategory}
                 newCategoryFields={newCategoryFields}
                 setNewCategoryFields={setNewCategoryFields}
-                setShowAddForm={setShowAddForm}
                 showAddForm={showAddForm}
+                setShowAddForm={setShowAddForm}
+                handleInputValidation={handleInputValidation}
+                handleSubmitNewCategory={handleSubmitNewCategory}
+                handleSelectedCategory={handleSelectedCategory}
             />
             <div className="searchBarWrapper">
                 <SearchBar

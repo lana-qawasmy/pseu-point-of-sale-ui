@@ -2,6 +2,7 @@ import "./category-bar.css";
 import { CategoryBlock } from "../core";
 import { CollectionNS } from '../../types';
 import AddNewCategoryBlock from '../add-new-category-block/add-new-category-block.component';
+import { Link } from 'react-router-dom';
 interface IProps {
     disableAddBlock: boolean;
     selectedCategory: CollectionNS.ICollection | null;
@@ -72,6 +73,9 @@ const CategoryBar = (props: IProps) => {
                     <div className="iconWrapper">➕</div>
                     <div className="categoryText">Add</div>
                 </button>
+                <div className="seeAllWrapper">
+                    <Link to={'/viewCategories'}>See All</Link>
+                </div>
             </div>
             <AddNewCategoryBlock
                 handleSubmitNewCategory={props.handleSubmitNewCategory}
