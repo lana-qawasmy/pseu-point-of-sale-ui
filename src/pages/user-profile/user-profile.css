@@ -67,15 +67,95 @@
   justify-content: space-between;
 }
 
-.personalInfoContainer div input, .personalInfoContainer div span
-{
-  font-family: 'Inter';
+.personalInfoContainer div input,
+.personalInfoContainer div span {
+  font-family: "Inter";
 }
 
-.personalInfoContainer div input, .personalInfoContainer div input:focus{
+.personalInfoContainer div input,
+.personalInfoContainer div input:focus {
   height: 20px;
   border: transparent;
   border-bottom: 1px solid #b5b5b5;
   background-color: transparent;
+  outline: burlywood;
+}
+
+.userProfileContainer .passwordAnchor {
+  width: 100%;
+  display: flex;
+  margin-left: 217px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.userProfileContainer .passwordAnchor:active {
+  color: rgb(255, 0, 0);
+}
+.userProfileContainer .passwordAnchor:hover {
+  color: #3498db;
+}
+
+.arrowIcon {
+  transition: 0.2s;
+  transition-timing-function: ease-in;
+}
+
+.arrowIcon.flipUp {
+  rotate: 180deg;
+  transition: 0.2s;
+  transition-timing-function: ease-in;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(3px);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-30px);
+  }
+}
+
+.userProfileContainer .passwordContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 213px;
+  margin-top: 6px;
+}
+
+.userProfileContainer .passwordContainer.slideIn {
+  animation: slideIn 0.1s ease-in-out forwards;
+}
+
+.userProfileContainer .passwordContainer.slideOut {
+  animation: slideOut 0.4s ease-in-out forwards;
+}
+
+.userProfileContainer .passwordContainer>div {
+  display: flex;
+  width: 391px;
+  justify-content: space-between;
+  margin-bottom: 21px;
+  font-family: "Inter";
+}
+
+.userProfileContainer .passwordContainer div div input,
+.userProfileContainer .passwordContainer div div input:focus{
+  height: 20px;
+  border: transparent;
+  border-bottom: 1px solid #b5b5b5;
+  background-color: transparent;
+  appearance: none;
   outline: burlywood;
 }

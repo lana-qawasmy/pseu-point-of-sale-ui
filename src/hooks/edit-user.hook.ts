@@ -14,7 +14,8 @@ export interface IEditUserState {
 
 const useEditUser = () =>{
     const [showImageButtons, setShowImageButtons] = useState<boolean>(false);
-    // const user = useContext(UserContext);
+    const [showPassword, setShowPassword] = useState<boolean[]>([false, false, false]);
+    const [showPasswordContainer, setShowPasswordContainer] = useState<boolean>(false);
     const {user, setUser} = useContext(UserContext);
     const {setNotification} = useNotification();
     const initialState: IEditUserState = {
@@ -66,7 +67,9 @@ const useEditUser = () =>{
         uploadImage,
         inputState, setInputState,
         deleteImage,
-        showImageButtons, setShowImageButtons
+        showImageButtons, setShowImageButtons,
+        showPasswordContainer, setShowPasswordContainer,
+        showPassword, setShowPassword
     }
 };
 
