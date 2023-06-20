@@ -1,13 +1,16 @@
 import "./category-bar.css";
-import { CategoryBlock, Input, Button } from "../core";
+import { CategoryBlock } from "../core";
 import { CollectionNS } from '../../types';
+import AddNewCategoryBlock from '../add-new-category-block/add-new-category-block.component';
 interface IProps {
     disableAddBlock: boolean;
     selectedCategory: CollectionNS.ICollection | null;
 
     loading: boolean;
     categoryList: CollectionNS.ICollection[];
+    handleSelectedCategory: (category: CollectionNS.ICollection | null) => void;
 
+    // For add collection block
     handleInputValidation?: (value: string) => void;
     showAddForm?: boolean;
     setShowAddForm?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,8 +23,6 @@ interface IProps {
         name: string;
     }>>;
     handleSubmitNewCategory?: () => Promise<void>;
-
-    handleSelectedCategory: (category: CollectionNS.ICollection | null) => void;
 }
 const CategoryBar = (props: IProps) => {
 
@@ -72,77 +73,14 @@ const CategoryBar = (props: IProps) => {
                     <div className="categoryText">Add</div>
                 </button>
             </div>
-            {
-                props.showAddForm && (
-                    <div
-                        className="addFormContainer"
-                        onClick={() => props.setShowAddForm && props.setShowAddForm(false)}
-                    >
-                        <div className="addFormWrapper" onClick={(e) => e.stopPropagation()}>
-                            <h2>Add a new category</h2>
-                            <div className="addFormBody">
-                                .
-                                <div className="upperBody">
-                                    <Input
-                                        Label="emoji"
-                                        PlaceHolder="🔥"
-                                        Required
-                                        Width={280}
-                                        Radius={25}
-                                        FontSize={20}
-                                        FontWeight={800}
-                                        onChange={(e) => {
-                                            props.handleInputValidation && props.handleInputValidation(e.target.value);
-                                        }}
-                                        value={props.newCategoryFields && props.newCategoryFields.emoji}
-                                        id="emojiInput"
-                                    />
-                                    <Input
-                                        Label="Name"
-                                        PlaceHolder="Electronics"
-                                        Required
-                                        Width={280}
-                                        Radius={25}
-                                        FontSize={20}
-                                        FontWeight={800}
-                                        onChange={(e) => {
-                                            props.setNewCategoryFields && props.setNewCategoryFields({
-                                                name: e.target.value,
-                                                emoji: (props.newCategoryFields && props.newCategoryFields.emoji) || '',
-                                            });
-                                        }}
-                                    />
-                                </div>
-                                <div className="lowerBody">
-                                    <Button
-                                        HtmlType="button"
-                                        Type="Primary"
-                                        FontSize="16"
-                                        Width="150"
-                                        Radius="30"
-                                        onClick={props.handleSubmitNewCategory}
-                                    >
-                                        Create
-                                    </Button>
-                                    <Button
-                                        HtmlType="button"
-                                        Type="Danger"
-                                        FontSize="16"
-                                        Width="150"
-                                        Radius="30"
-                                        onClick={() => {
-                                            props.setShowAddForm && props.setShowAddForm(false);
-                                            props.setNewCategoryFields && props.setNewCategoryFields({ name: '', emoji: '' });
-                                        }}
-                                    >
-                                        Cancel
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
+            <AddNewCategoryBlock
+                handleSubmitNewCategory={props.handleSubmitNewCategory}
+                newCategoryFields={props.newCategoryFields}
+                showAddForm={props.showAddForm}
+                handleInputValidation={props.handleInputValidation}
+                setNewCategoryFields={props.setNewCategoryFields}
+                setShowAddForm={props.setShowAddForm}
+            />
         </div>
     );
 };
