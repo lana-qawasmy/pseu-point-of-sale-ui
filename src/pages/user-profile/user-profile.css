@@ -1,19 +1,19 @@
 .userProfileContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;
+  width: 150vw;
   height: 100vh;
   background-color: #f3f4f8;
   margin-top: 72px;
-  margin-left: 60px;
+  margin-left: -56px;
+  overflow-x: hidden;
 }
 
 .userProfileContainer .imageWrapper {
-  display: inline-block; /* Change to inline-block */
-  position: relative; /* Add position relative */
+  display: inline-block;
+  position: relative; 
   height: auto;
-  width: 100%;
   padding: 30px;
   padding-left: 250px;
 }
@@ -105,14 +105,17 @@
   rotate: 180deg;
   transition: 0.2s;
   transition-timing-function: ease-in;
+  animation: slideOut 0.2s ease-in forwards;
 }
 
 @keyframes slideIn {
   from {
     transform: translateY(0);
+    opacity: 0%;
   }
   to {
     transform: translateY(3px);
+    opacity: 100%;
   }
 }
 
@@ -121,17 +124,18 @@
     transform: translateY(0);
   }
   to {
-    transform: translateY(-30px);
+    transform: translateY(-3px);
   }
 }
 
 .userProfileContainer .passwordContainer {
   display: flex;
-  width: 100%;
+  width: auto;
   flex-direction: column;
   align-items: flex-start;
   margin-left: 213px;
   margin-top: 6px;
+  border-bottom: 1px solid #b5b5b5;
 }
 
 .userProfileContainer .passwordContainer.slideIn {
@@ -142,7 +146,7 @@
   animation: slideOut 0.4s ease-in-out forwards;
 }
 
-.userProfileContainer .passwordContainer>div {
+.userProfileContainer .passwordContainer > div {
   display: flex;
   width: 391px;
   justify-content: space-between;
@@ -151,11 +155,21 @@
 }
 
 .userProfileContainer .passwordContainer div div input,
-.userProfileContainer .passwordContainer div div input:focus{
+.userProfileContainer .passwordContainer div div input:focus {
   height: 20px;
   border: transparent;
   border-bottom: 1px solid #b5b5b5;
   background-color: transparent;
   appearance: none;
   outline: burlywood;
+}
+
+ .userProfileContainer .buttonsWrapper{
+  display: flex;
+  width: 100%;
+  margin-left: 199px;
+  justify-content: flex-start;
+  column-gap: 210px;
+  position: relative;
+  bottom: -32px;
 }

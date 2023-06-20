@@ -8,6 +8,8 @@ import {
 import { BiDownArrow } from "react-icons/bi";
 import { useEditUser } from "../../hooks";
 import { Button } from "../../components/core";
+import { useNavigate } from "react-router-dom";
+
 
 const UserProfile = () => {
   const {
@@ -21,8 +23,10 @@ const UserProfile = () => {
     setShowPasswordContainer,
     showPassword,
     setShowPassword,
+    handlePassword,
+    showPasswordAlert,
   } = useEditUser();
-
+  const navigate = useNavigate();
   return (
     <div className="userProfileContainer">
       <div
@@ -103,7 +107,12 @@ const UserProfile = () => {
           <div>
             <span>Old password</span>
             <div>
-              <input type={showPassword[0]? "text" : "password"} />
+              <input
+                type={showPassword[0] ? "text" : "password"}
+                onChange={(e) => {
+                  handlePassword(e.target.value, 0);
+                }}
+              />
               {showPassword[0] ? (
                 <AiOutlineEye
                   style={{ cursor: "pointer" }}
@@ -120,7 +129,12 @@ const UserProfile = () => {
           <div>
             <span>New password</span>
             <div>
-              <input type={showPassword[1]? "text" : "password"} />
+              <input
+                type={showPassword[1] ? "text" : "password"}
+                onChange={(e) => {
+                  handlePassword(e.target.value, 1);
+                }}
+              />
               {showPassword[1] ? (
                 <AiOutlineEye
                   style={{ cursor: "pointer" }}
@@ -137,7 +151,12 @@ const UserProfile = () => {
           <div>
             <span>Confirm password</span>
             <div>
-              <input type={showPassword[2]? "text" : "password"} />
+              <input
+                type={showPassword[2] ? "text" : "password"}
+                onChange={(e) => {
+                  handlePassword(e.target.value, 2);
+                }}
+              />
               {showPassword[2] ? (
                 <AiOutlineEye
                   style={{ cursor: "pointer" }}
@@ -151,12 +170,33 @@ const UserProfile = () => {
               )}
             </div>
           </div>
+          <div className="alerWrapper"style={{ color: "red", fontSize: "14px" }}>
+              {showPasswordAlert[0] &&
+                <span>At least 8 charachters including upper/lower case, numbers and special characters<br/></span>
+                }
+                {showPasswordAlert[1]&& <span>Passwords are not the same<br/></span>}
+                {showPasswordAlert[2] && <span>The new password is the same as the old one<br/></span>}
+          </div>
           <div className="passwordButtons">
-            <Button HtmlType="button" Type="Ghost" onClick={(e)=>{setShowPasswordContainer(false)}}>Cancel</Button>
-            <Button HtmlType="button" Type="Ghost">Save</Button>
+            <Button
+              HtmlType="button"
+              Type="Ghost"
+              onClick={(e) => {
+                setShowPasswordContainer(false);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button HtmlType="button" Type="Ghost" Disabled={showPasswordAlert.includes(true)}>
+              Save
+            </Button>
           </div>
         </div>
       )}
+      <div className="buttonsWrapper">
+        <Button HtmlType="button" Type="Danger" Width="100" Radius="20" onClick={e=>{navigate('/')}}>Cancel</Button>
+        <Button HtmlType="button" Type="Tertiary" Width="100" Radius="20">Save</Button>
+      </div>
     </div>
   );
 };
