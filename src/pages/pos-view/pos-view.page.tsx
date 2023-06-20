@@ -1,7 +1,6 @@
 import './pos-view.css';
 import '../../components/core/category-block/category-block.css'
 import { Link } from 'react-router-dom';
-import { CategoryBar } from '../../components';
 
 const PosView = () => {
     return (
@@ -14,7 +13,7 @@ const PosView = () => {
                     <Link to={'/viewCategories'}>See All</Link>
                 </div>
             </div>
-            <CategoryBar disableAddBlock={true}/>
+            {/* <CategoryBar disableAddBlock={true}/> */}
         </div>
     );
 };

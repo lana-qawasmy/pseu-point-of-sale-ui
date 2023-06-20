@@ -1,5 +1,5 @@
 import './item.css';
-import { ItemNS } from '../../types';
+import { CollectionNS, ItemNS } from '../../types';
 import { GoTrashcan } from 'react-icons/go';
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 import { FiEdit } from 'react-icons/fi';
@@ -11,6 +11,7 @@ interface IProps {
     OnDelete?: (userId: string, itemId: string) => void;
     OnSelect?: () => void;
     OnEdit?: () => void;
+    selectedCategory: CollectionNS.ICollection | null;
 }
 
 const Item = (props: IProps) => {
@@ -18,7 +19,7 @@ const Item = (props: IProps) => {
     const [displayACK, setDisplayACK] = React.useState(false);
     return (
         <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
-            <div style={{backgroundImage: `url('${image}')`}} className='itemImage' />
+            <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
             <div className='infoWrapper'>
                 <span className='itemName'>
                     {name}
@@ -73,7 +74,7 @@ const Item = (props: IProps) => {
                 </div>
             }
             {
-                (!props.Selected) && props.OnSelect &&
+                (!props.Selected) && props.OnSelect && props.selectedCategory !== null &&
                 <span className='grCheckbox'>
                     <GrCheckbox
                         size={20}
@@ -97,7 +98,7 @@ const Item = (props: IProps) => {
                 </span>
             }
             {
-                props.Selected && props.OnSelect &&
+                props.Selected && props.OnSelect && props.selectedCategory !== null &&
                 <span className='grCheckbox'>
                     <GrCheckboxSelected
                         size={20}
