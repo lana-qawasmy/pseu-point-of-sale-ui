@@ -16,7 +16,6 @@ const useParams = () => {
     }
     useEffect(() => {
         itemService.getItems(
-            userContext.user?._id as string,
             userContext.user?.token as string,
             params.get('searchTerms') || '')
         // eslint-disable-next-line 

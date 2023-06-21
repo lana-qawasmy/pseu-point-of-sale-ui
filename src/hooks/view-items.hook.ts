@@ -210,7 +210,7 @@ const useViewItems = () => {
         try {
             const categories: CollectionNS.ICollection[] = await collectionServices.getCollections(user.user?.token as string) || [];
             const selectedCat = categories.find(cat => cat._id === selectedCategory?._id);
-            const items: ItemNS.Item[] = await itemService.getItems(user.user?._id as string, user.user?.token as string, useParams.params.get('searchTerms') || '') || [];
+            const items: ItemNS.Item[] = await itemService.getItems(user.user?.token as string, useParams.params.get('searchTerms') || '') || [];
             let newItemTable: itemWithSelect[] = [];
             if (items) {
                 items.forEach((item: ItemNS.Item) => {
@@ -232,7 +232,7 @@ const useViewItems = () => {
 
     const getItems = async () => {
         try {
-            let items = await itemService.getItems(user.user?._id as string, user.user?.token as string, useParams.params.get('searchTerms') || '');
+            let items = await itemService.getItems(user.user?.token as string, useParams.params.get('searchTerms') || '');
             if (items) {
                 const newItemTable = getTableWithState(items);
                 return newItemTable;
@@ -244,7 +244,6 @@ const useViewItems = () => {
             console.error(error);
         }
     };
-
 
 
     React.useMemo(async () => {
