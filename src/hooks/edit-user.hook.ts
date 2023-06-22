@@ -140,12 +140,12 @@ const handleSaveInfo = async() =>{
     role: user?.role
   }
   const resp = await updateUser(updatedUser);
-  if(resp){
+  if(typeof(resp) === 'object'){
     setUser && setUser(resp);
     setNotification({message: 'Information updated successfully', status: 'success',autoClose: 2000});
   }else{
     console.log(resp);
-    setNotification({message: 'Something went wrong please try again', status: 'error',autoClose: 2000});
+    setNotification({message: resp, status: 'error',autoClose: 2000});
   }
 };
   return {

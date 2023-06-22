@@ -15,7 +15,7 @@
   position: relative; 
   height: auto;
   padding: 30px;
-  padding-left: 250px;
+  padding-left: 207px;
 }
 
 .imageWrapper .image {
@@ -29,8 +29,8 @@
 
 .imageButtonsWrapper {
   position: absolute;
-  bottom: 0;
-  left: 254px;
+  bottom: -3px;
+  left: 210px;
   margin-bottom: 36px;
   display: flex;
   flex-direction: column;
