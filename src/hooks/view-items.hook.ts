@@ -249,7 +249,6 @@ const useViewItems = () => {
     React.useMemo(async () => {
         loadingItemsAndCollections();
         const newState = await getItemsAndCollections();
-        stopLoadingItemsAndCollections();
         if (newState) {
             setState((oldState) => ({
                 ...oldState,

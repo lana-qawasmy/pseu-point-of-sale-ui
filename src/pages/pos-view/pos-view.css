@@ -17,3 +17,26 @@
     width: 100%;
     padding-top: 35px;
 }
+
+.posViewContainer .itemsContainer {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 80%;
+}
+
+.posViewContainer .searchBarWrapper {
+    width: 80%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.posViewContainer .searchBarWrapper>div>div {
+    padding-left: 0;
+}
+

@@ -93,11 +93,32 @@ const getCollection = (token: string, collectionId: string) => {
     }
 };
 
+const getCollectionItems = (token: string, collectionId: string, searchTerms?: string) => {
+    try {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/collection/getCollectionItems/${collectionId}${searchTerms ? `?searchTerms=${searchTerms}` : ''}`, {
+            method: 'GET',
+            headers: {
+                'authorization': token,
+            }
+        })
+            .then(async (response) => {
+                return await response.json();
+            }).catch((error) => {
+                console.error(error);
+                return false;
+            });
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
+
 const collectionServices = {
     addCollection,
     getCollections,
     getCollection,
     updateCollection,
+    getCollectionItems,
 };
 
 export default collectionServices;
