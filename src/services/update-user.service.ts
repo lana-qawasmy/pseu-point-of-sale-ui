@@ -1,5 +1,9 @@
 import { UserNS } from "../types";
-
+export interface IPasswords {
+    old: string;
+    new: string;
+    _id: string
+  }
 const updateUser = async (user: UserNS.User) => {
   return fetch(`${process.env.REACT_APP_SERVER_URL}/user/updateInfo`, {
     method: "PUT",
@@ -21,8 +25,6 @@ const updateUser = async (user: UserNS.User) => {
         default:
           return "Something went wrong, please try again!";
       }
-    //   if (response.status === 200) return await response.json();
-    //   else return false;
     })
     .catch((error: Error) => {
       console.error(error.message);
@@ -30,4 +32,24 @@ const updateUser = async (user: UserNS.User) => {
     });
 };
 
-export default updateUser;
+const updatePassword = async(passwords: IPasswords) =>{
+    return fetch(`${process.env.REACT_APP_SERVER_URL}/user/updatePassword`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(passwords),
+      }).then(async (response: Response) => {
+            if(response.status === 200){
+                return await response.json();
+            }else if(response.status === 400){
+                return 'Something went wrong, please try again';
+            }
+        })
+        .catch((error: Error) => {
+          console.error(error.message);
+          return undefined;
+        });
+}
+
+export  {updateUser, updatePassword};

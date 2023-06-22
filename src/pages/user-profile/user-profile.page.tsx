@@ -25,7 +25,9 @@ const UserProfile = () => {
     setShowPassword,
     handlePassword,
     showPasswordAlert,
-    handleSaveInfo
+    handleSaveInfo,
+    handleSavePassword,
+    passwords
   } = useEditUser();
   const navigate = useNavigate();
   return (
@@ -113,6 +115,7 @@ const UserProfile = () => {
                 onChange={(e) => {
                   handlePassword(e.target.value, 0);
                 }}
+                onClick={()=>{handlePassword(passwords.old, 0)}}
               />
               {showPassword[0] ? (
                 <AiOutlineEye
@@ -135,6 +138,7 @@ const UserProfile = () => {
                 onChange={(e) => {
                   handlePassword(e.target.value, 1);
                 }}
+                onClick={()=>{handlePassword(passwords.new, 1)}}
               />
               {showPassword[1] ? (
                 <AiOutlineEye
@@ -157,6 +161,7 @@ const UserProfile = () => {
                 onChange={(e) => {
                   handlePassword(e.target.value, 2);
                 }}
+                onClick={()=>{handlePassword(passwords.confirmed, 2)}}
               />
               {showPassword[2] ? (
                 <AiOutlineEye
@@ -188,7 +193,7 @@ const UserProfile = () => {
             >
               Cancel
             </Button>
-            <Button HtmlType="button" Type="Ghost" Disabled={showPasswordAlert.includes(true)}>
+            <Button HtmlType="button" Type="Ghost" Disabled={showPasswordAlert.includes(true)} onClick={handleSavePassword}>
               Save
             </Button>
           </div>

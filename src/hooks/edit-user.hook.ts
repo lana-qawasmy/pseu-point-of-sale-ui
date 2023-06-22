@@ -3,7 +3,7 @@ import useNotification from "./notification.hook";
 import { useContext } from "react";
 import { UserContext } from "../components/providers/user.provider";
 import image from "../assets/profile-Icon.jpg";
-import { updateUser } from "../services";
+import { updateUser, updatePassword } from "../services";
 import { UserNS } from "../types";
 export interface IEditUserState {
   name: string;
@@ -148,6 +148,18 @@ const handleSaveInfo = async() =>{
     setNotification({message: resp, status: 'error',autoClose: 2000});
   }
 };
+const handleSavePassword = async() =>{
+  const _id = user?._id || '';
+  const p1= passwords.old, p2 = passwords.new
+  console.log({_id, p1, p2})
+  const newPassword = await updatePassword({old: passwords.old,new: passwords.new, _id: _id});
+  if(typeof(newPassword) === "object"){
+    setNotification({message: 'Password updated successfully', status: 'success', autoClose: 2000})
+    
+  }if(typeof(newPassword) === "string"){
+    setNotification({message: newPassword, status: 'error', autoClose: 2000})
+  }
+};
   return {
     uploadImage,
     inputState,
@@ -162,6 +174,8 @@ const handleSaveInfo = async() =>{
     handlePassword,
     showPasswordAlert,
     handleSaveInfo,
+    handleSavePassword,
+    passwords
   };
 };
 
