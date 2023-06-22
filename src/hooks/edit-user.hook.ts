@@ -3,6 +3,8 @@ import useNotification from "./notification.hook";
 import { useContext } from "react";
 import { UserContext } from "../components/providers/user.provider";
 import image from "../assets/profile-Icon.jpg";
+import { updateUser } from "../services";
+import { UserNS } from "../types";
 export interface IEditUserState {
   name: string;
   email: string;
@@ -128,7 +130,24 @@ const useEditUser = () => {
       setPasswords((oldState) => ({ ...oldState, old: value }));
     }
   };
-
+const handleSaveInfo = async() =>{
+  const updatedUser: UserNS.User = {
+    fullName: inputState.name,
+    _id: user?._id || '',
+    image: inputState.image,
+    email: inputState.email,
+    password: user?.password || '',
+    role: user?.role
+  }
+  const resp = await updateUser(updatedUser);
+  if(resp){
+    setUser && setUser(resp);
+    setNotification({message: 'Information updated successfully', status: 'success',autoClose: 2000});
+  }else{
+    console.log(resp);
+    setNotification({message: 'Something went wrong please try again', status: 'error',autoClose: 2000});
+  }
+};
   return {
     uploadImage,
     inputState,
@@ -142,6 +161,7 @@ const useEditUser = () => {
     setShowPassword,
     handlePassword,
     showPasswordAlert,
+    handleSaveInfo,
   };
 };
 

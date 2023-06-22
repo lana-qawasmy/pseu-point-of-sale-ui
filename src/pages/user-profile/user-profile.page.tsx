@@ -25,6 +25,7 @@ const UserProfile = () => {
     setShowPassword,
     handlePassword,
     showPasswordAlert,
+    handleSaveInfo
   } = useEditUser();
   const navigate = useNavigate();
   return (
@@ -195,7 +196,7 @@ const UserProfile = () => {
       )}
       <div className="buttonsWrapper">
         <Button HtmlType="button" Type="Danger" Width="100" Radius="20" onClick={e=>{navigate('/')}}>Cancel</Button>
-        <Button HtmlType="button" Type="Tertiary" Width="100" Radius="20">Save</Button>
+        <Button HtmlType="button" Type="Tertiary" Width="100" Radius="20" onClick={handleSaveInfo}>Save</Button>
       </div>
     </div>
   );
