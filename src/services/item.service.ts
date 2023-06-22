@@ -25,7 +25,29 @@ const addItem = async (item: ItemNS.Item, token: string) => {
     }
 };
 
-const getItems = (userId: string, token: string, searchTerms?:string) => {
+const updateItem = (newItem: ItemNS.Item, token: string) => {
+    console.log('initial' , newItem)
+    return fetch(`${process.env.REACT_APP_SERVER_URL}/item/updateItem`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        },
+        body: JSON.stringify(newItem),
+    }).then(async (res) => {
+        if (res.status === 201) {
+            return { state: true, value: await res.json() };
+        }
+        else {
+            return { state: false, value: await res.json() };
+        }
+    }).catch((error) => {
+        console.error(error);
+        return false;
+    });
+}
+
+const getItems = (userId: string, token: string, searchTerms?: string) => {
     try {
         // return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}?searchTerms=${searchTerms}`, {
         return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}/${searchTerms && `?searchTerms=${searchTerms}`}`, {
@@ -72,4 +94,5 @@ export default {
     addItem,
     getItems,
     deleteItem,
+    updateItem
 };

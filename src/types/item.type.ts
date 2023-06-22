@@ -7,7 +7,7 @@ namespace ItemNS {
         barcode: string,
         description: string,
         addedBy: string,
-        priceHistory: [{ date: Date, price: Number; }],
+        priceHistory: [{ date: Date, price: Number; }] | {date: Date , price: Number}[],
     };
 }
 

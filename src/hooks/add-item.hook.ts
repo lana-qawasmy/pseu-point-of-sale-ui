@@ -10,10 +10,11 @@ interface imageState {
     value: string;
 }
 
-const useAddItem = (initialImage: string | undefined) => {
+const useAddItem = (item: ItemNS.Item | undefined) => {
+    const initialItem = item || undefined
     const [imageIcon, setImageIcon] = useState<imageState>({
-        state: initialImage ? true : false,
-        value: initialImage || defaultItemImage,
+        state: initialItem?.image ? true : false,
+        value: initialItem?.image || defaultItemImage,
     });
     const user = useContext(UserContext);
     const { setNotification } = useNotification();
@@ -67,10 +68,11 @@ const useAddItem = (initialImage: string | undefined) => {
         barcode: HTMLInputElement;
         description: HTMLInputElement;
     }
+
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const target = e.target as ItemInputElement;
-        const price = parseFloat(target.price.value);
+        const price: Number = parseFloat(target.price.value);
         if (!imageIcon.state) {
             setNotification({
                 message: "The image icon is required",
@@ -78,16 +80,41 @@ const useAddItem = (initialImage: string | undefined) => {
             });
             return;
         }
-        const newItem: ItemNS.Item = {
-            name: target.itemName.value,
-            description: target.description.value,
-            image: imageIcon.value,
-            barcode: target.barcode.value,
-            addedBy: user.user?._id || "unknown",
-            priceHistory: [{ date: new Date(), price: price }],
-        };
+        const date = new Date()
+        initialItem &&
+            initialItem.priceHistory[initialItem.priceHistory.length - 1].price !== price &&
+            initialItem.priceHistory.push({ date, price: price })
+        const priceHistory =
+            initialItem
+                ? initialItem.priceHistory
+                : [{ date, price: price }]
+
+        console.log(priceHistory)
         try {
-            const response = await itemService.addItem(newItem, user.user?.token || '');
+            let response;
+            if (initialItem) {
+                const newItem: ItemNS.Item = {
+                    _id: initialItem._id,
+                    name: target.itemName.value,
+                    description: target.description.value,
+                    image: imageIcon.value,
+                    barcode: target.barcode.value,
+                    addedBy: user.user?._id || "unknown",
+                    priceHistory: priceHistory,
+                };
+                response = await itemService.updateItem(newItem, user.user?.token || '');
+            }
+            else {
+                const newItem: ItemNS.Item = {
+                    name: target.itemName.value,
+                    description: target.description.value,
+                    image: imageIcon.value,
+                    barcode: target.barcode.value,
+                    addedBy: user.user?._id || "unknown",
+                    priceHistory: priceHistory,
+                };
+                response = await itemService.addItem(newItem, user.user?.token || '');
+            }
             if (typeof response !== "boolean") {
                 if (response.state) {
                     setNotification({

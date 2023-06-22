@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const ItemForm = (props?: IProps) => {
-    const item = useAddItem(props?.item?.image || undefined);
+    const item = useAddItem(props?.item || undefined);
     const priceHistorySize = props?.item?.priceHistory.length || 0;
     return (
         <div className="addItemPageContainer">
