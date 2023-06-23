@@ -31,13 +31,13 @@
     width: 80%;
 }
 
-.searchBarWrapper{
+.viewItemsPage  .searchBarWrapper{
     width: 80%;
     margin-top: 40px;
     display: flex;
     justify-content: flex-start;
 }
 
-.searchBarWrapper>div>div{
+.viewItemsPage  .searchBarWrapper>div>div{
     padding-left: 0;
 }
