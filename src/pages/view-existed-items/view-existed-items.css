@@ -12,13 +12,13 @@
     background-color: rgb(243, 244, 248);
     padding-left: 60px;
     padding-bottom: 90px;
-    padding-right: 30px;
     padding-top: 72px;
     font-family: 'Inter';
 }
 
 .viewItemsPage > .categoryBarContainer{
-    margin-top: 50px;
+    padding-top: 35px;
+    justify-content: center;
 }
 .viewItemsPage>.itemsContainer {
     margin-top: 8px;
@@ -31,13 +31,13 @@
     width: 80%;
 }
 
-.searchBarWrapper{
+.viewItemsPage  .searchBarWrapper{
     width: 80%;
     margin-top: 40px;
     display: flex;
     justify-content: flex-start;
 }
 
-.searchBarWrapper>div>div{
+.viewItemsPage  .searchBarWrapper>div>div{
     padding-left: 0;
 }

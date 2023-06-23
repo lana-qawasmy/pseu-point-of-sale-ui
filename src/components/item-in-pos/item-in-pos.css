@@ -1,0 +1,86 @@
+.mainItemInPOSContainer {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    min-height: 240px;
+    border-radius: 14px;
+    background: #fff;
+    position: relative;
+    user-select: none;
+    border: 1px solid rgb(243, 244, 248);
+    z-index: 0;
+}
+
+.mainItemInPOSContainer:hover {
+    cursor: pointer;
+}
+
+.mainItemInPOSContainer>.itemImage {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    display: flex;
+    width: 220px;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mainItemInPOSContainer>.infoWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 15px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.mainItemInPOSContainer>.infoWrapper>.itemName {
+    display: flex;
+    color: #03045e;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.mainItemInPOSContainer>.infoWrapper>.itemPrice {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+
+.mainItemInPOSContainer>.infoWrapper>.itemPrice>.currentItemPrice {
+    font-weight: 00;
+    font-size: 16px;
+    color: rgb(44, 100, 198);
+    position: relative;
+}
+
+.mainItemInPOSContainer>.infoWrapper>.itemPrice>.deletedItemPrice {
+    display: flex;
+    font-size: 14px;
+    margin-top: 6px;
+    font-weight: 400;
+    text-decoration: line-through;
+    color: rgb(173, 173, 175);
+}
+
+
+.goExternalLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+}
+
+.goExternalLink:hover {
+    stroke: #03045e;
+    cursor: pointer;
+    background-color:#fff ;
+    border-radius: 5px;
+}

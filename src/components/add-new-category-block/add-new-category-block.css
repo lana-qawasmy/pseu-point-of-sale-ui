@@ -1,0 +1,78 @@
+.addFormContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.274);
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addFormWrapper {
+    height: 450px;
+    width: 400px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addFormWrapper h2 {
+    color: #03045e;
+}
+
+.addFormBody {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.addFormBody .upperBody,
+.addFormBody .lowerBody {
+    height: 50%;
+    width: 100%;
+}
+
+.addFormBody .upperBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addFormBody .lowerBody {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.lowerBody .buttonContainer {
+    margin: 0px 9px 20px;
+}
+
+.focus {
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    font-family: 'Inter';
+    user-select: none;
+    cursor: pointer;
+    padding: 0px 5px 0px;
+    transform: scale(1.2);
+    background-color: #03045e;
+    color: #ffffff;
+    border: 7px solid #ffffff;
+    font-weight: 500;
+}
