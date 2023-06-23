@@ -22,7 +22,7 @@ const Item = (props: IProps) => {
     return (
         <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
             {edit &&
-                <PopUp>
+                <PopUp setDisplayPopup={setEdit}>
                     <ItemForm edit setEdit={setEdit} item={props.item} />
                 </PopUp>
             }
