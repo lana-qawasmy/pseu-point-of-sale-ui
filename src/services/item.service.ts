@@ -26,7 +26,6 @@ const addItem = async (item: ItemNS.Item, token: string) => {
 };
 
 const updateItem = (newItem: ItemNS.Item, token: string) => {
-    console.log('initial' , newItem)
     return fetch(`${process.env.REACT_APP_SERVER_URL}/item/updateItem`, {
         method: "PUT",
         headers: {

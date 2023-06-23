@@ -1,12 +1,12 @@
 import React from 'react';
 import { UserContext } from '../components/providers/user.provider';
-import { ItemNS } from '../types';
 import { itemService, collectionServices } from '../services';
 import useNotification from './notification.hook';
 import { useParam } from '.';
+import { ItemsContext } from '../components/providers/items.provider';
 
 const useViewItems = () => {
-    const [itemsTable, setItemsTable] = React.useState<ItemNS.Item[]>([]);
+    const itemsTable = React.useContext(ItemsContext)
     const [select, setSelect] = React.useState<boolean[]>([]);
     const user = React.useContext(UserContext);
     const { setNotification } = useNotification();
@@ -25,7 +25,7 @@ const useViewItems = () => {
         let newSelect = [...select];
         newSelect[index] = !newSelect[index];
         setSelect(newSelect);
-        let selectedIds = [...itemsTable];
+        let selectedIds = itemsTable.items ? [...itemsTable.items] : []
         let filteredIds = selectedIds.filter((item, index) => newSelect[index] === true && item !== undefined).map((item) => item._id);
         if (categoryId !== '') {
             await collectionServices.updateCollection(user.user?.token as string, categoryId, filteredIds);
@@ -35,9 +35,9 @@ const useViewItems = () => {
     const getItems = React.useCallback(async () => {
         try {
             let items = await itemService.getItems(user.user?._id as string, user.user?.token as string, useParams.params.get('searchTerms') || '');
-            if (items) {
-                setItemsTable(items);
-                setSelect(itemsTable.map(() => false));
+            if (items && itemsTable.setItems && itemsTable.items) {
+                itemsTable.setItems(items);
+                setSelect(itemsTable.items.map(() => false));
             }
             else {
                 setNotification({ message: 'Error fetching the items', status: 'error' });
@@ -50,10 +50,10 @@ const useViewItems = () => {
 
     const handleChangeCategory = (selectedCategoryItems: [string]) => {
         let array: boolean[] = [];
-        array.length = itemsTable.length;
-        array.fill(false, 0, itemsTable.length);
+        array.length = itemsTable.items?.length || 0;
+        array.fill(false, 0, itemsTable.items?.length || 0);
         array = array.map((item, index) => {
-            return selectedCategoryItems.includes(itemsTable[index]._id || '') || false;
+            return selectedCategoryItems.includes(itemsTable.items ? itemsTable.items[index]._id || '' : '') || false;
         });
         setSelect([...array]);
     };
@@ -61,7 +61,7 @@ const useViewItems = () => {
         await getItems();
     }, [getItems]);
     return {
-        itemsTable,
+        itemsTable: itemsTable.items || [],
         select,
         handleChangeSelect,
         handleDelete,

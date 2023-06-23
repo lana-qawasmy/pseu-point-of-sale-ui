@@ -5,6 +5,7 @@ import { ItemNS } from "../types";
 import { itemService } from "../services";
 import { UserContext } from "../components/providers/user.provider";
 import useNotification from "./notification.hook";
+import { ItemsContext } from "../components/providers/items.provider";
 interface imageState {
     state: boolean;
     value: string;
@@ -17,6 +18,7 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
         value: initialItem?.image || defaultItemImage,
     });
     const user = useContext(UserContext);
+    const itemsContext = useContext(ItemsContext)
     const { setNotification } = useNotification();
     const [uploadStatus, setUploadStatus] = useState({
         backgroundColor: "#adadaf",
@@ -88,8 +90,6 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
             initialItem
                 ? initialItem.priceHistory
                 : [{ date, price: price }]
-
-        console.log(priceHistory)
         try {
             let response;
             if (initialItem) {
@@ -124,6 +124,17 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
                     target.itemName.value = "";
                     target.price.value = "";
                     target.description.value = "";
+                    try {
+                        let items = await itemService.getItems(user.user?._id as string, user.user?.token as string, '');
+                        if (items && itemsContext.setItems) {
+                            itemsContext.setItems(items);
+                        }
+                        else {
+                            setNotification({ message: 'Error fetching the items', status: 'error' });
+                        }
+                    } catch (error) {
+                        console.error(error);
+                    }
                     setImageIcon(() => ({ state: false, value: defaultItemImage }));
                     target.barcode.value = "";
                     setUploadStatus({
