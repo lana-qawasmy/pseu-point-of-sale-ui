@@ -1,11 +1,9 @@
 import './item.css';
-import { ItemNS } from '../../types';
+import { CollectionNS, ItemNS } from '../../types';
 import { GoTrashcan } from 'react-icons/go';
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 import { FiEdit } from 'react-icons/fi';
 import React from 'react';
-import PopUp from '../core/pop-up/pop-up.component';
-import ItemForm from '../add-item/item-form/item-form.component';
 interface IProps {
     item: ItemNS.Item;
     Selected?: boolean;
@@ -13,12 +11,12 @@ interface IProps {
     OnDelete?: (userId: string, itemId: string) => void;
     OnSelect?: () => void;
     OnEdit?: () => void;
+    selectedCategory: CollectionNS.ICollection | null;
 }
 
 const Item = (props: IProps) => {
     const { _id, name, image, priceHistory, addedBy } = props.item;
     const [displayACK, setDisplayACK] = React.useState(false);
-    const [edit, setEdit] = React.useState<boolean>(false);
     return (
         <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
             <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
@@ -76,7 +74,7 @@ const Item = (props: IProps) => {
                 </div>
             }
             {
-                (!props.Selected) && props.OnSelect &&
+                (!props.Selected) && props.OnSelect && props.selectedCategory !== null &&
                 <span className='grCheckbox'>
                     <GrCheckbox
                         size={20}
@@ -100,7 +98,7 @@ const Item = (props: IProps) => {
                 </span>
             }
             {
-                props.Selected && props.OnSelect &&
+                props.Selected && props.OnSelect && props.selectedCategory !== null &&
                 <span className='grCheckbox'>
                     <GrCheckboxSelected
                         size={20}
@@ -139,7 +137,7 @@ const Item = (props: IProps) => {
                                 }
                             }
                         }}
-                        onClick={() => setEdit(true)} color='#e0e2e8' />
+                        onClick={() => props.OnEdit && props.OnEdit()} color='#e0e2e8' />
                 </span>
             }
 

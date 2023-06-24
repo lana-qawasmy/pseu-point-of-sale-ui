@@ -33,19 +33,20 @@ const getCollections = (token: string) => {
             headers: {
                 'authorization': token,
             }
-        }).then(async (response) => {
-            return await response.json();;
-        }).catch((error) => {
-            console.error(error);
-            return false;
-        });
+        })
+            .then(async (response) => {
+                return await response.json();
+            }).catch((error) => {
+                console.error(error);
+                return false;
+            });
     } catch (error) {
         console.error(error);
         return false;
     }
 };
 
-const updateCollection = (token: string, id: string, itemsIds: any) => {
+const updateCollection = (token: string, collectionId: string, itemId: any) => {
     try {
         return fetch(`${process.env.REACT_APP_SERVER_URL}/collection/updateCollection`, {
             method: 'PUT',
@@ -53,12 +54,13 @@ const updateCollection = (token: string, id: string, itemsIds: any) => {
                 'Content-Type': 'application/json',
                 'authorization': token
             },
-            body: JSON.stringify({ itemsIds, id }), 
-        }).then(async (response) => {
+            body: JSON.stringify({ collectionId, itemId }),
+        })
+            .then(async (response) => {
                 if (response.status === 200) {
                     return await response.json();
                 } else {
-                    return ('Update failed');
+                    return false;
                 }
             })
             .catch((error) => {
@@ -66,14 +68,57 @@ const updateCollection = (token: string, id: string, itemsIds: any) => {
                 return false;
             });
     } catch (error) {
-
+        console.error(error);
+        return false;
     }
-}
+};
+
+const getCollection = (token: string, collectionId: string) => {
+    try {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/collection/getCollection/${collectionId}`, {
+            method: 'GET',
+            headers: {
+                'authorization': token,
+            }
+        })
+            .then(async (response) => {
+                return await response.json();
+            }).catch((error) => {
+                console.error(error);
+                return false;
+            });
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
+
+const getCollectionItems = (token: string, collectionId: string, searchTerms?: string) => {
+    try {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/collection/getCollectionItems/${collectionId}${searchTerms ? `?searchTerms=${searchTerms}` : ''}`, {
+            method: 'GET',
+            headers: {
+                'authorization': token,
+            }
+        })
+            .then(async (response) => {
+                return await response.json();
+            }).catch((error) => {
+                console.error(error);
+                return false;
+            });
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
 
 const collectionServices = {
-    addCollection: addCollection,
-    getCollections: getCollections,
-    updateCollection: updateCollection
-  };
-  
-  export default collectionServices;
+    addCollection,
+    getCollections,
+    getCollection,
+    updateCollection,
+    getCollectionItems,
+};
+
+export default collectionServices;

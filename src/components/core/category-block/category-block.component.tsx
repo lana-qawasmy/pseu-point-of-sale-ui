@@ -1,26 +1,30 @@
+import { CollectionNS } from '../../../types';
 import './category-block.css';
 
 interface IProps {
     Height?: number,
     Width?: number,
     OnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
-    Name: string,
-    Icon: String,
-    selected: boolean[],
-    index: number
+    index: number;
+    category: CollectionNS.ICollection;
+    selectedCategoryId: string | null;
 }
 
 const CategoryBlock = (props: IProps) => {
     let style = {
         minHeight: `${props.Height || '100'}px`,
         minWidth: `${props.Width || '100'}px`,
-    }
+    };
     return (
-        <button className={`${props.selected[props.index]? 'focus' : 'categoryBlockContainer'}`} style={style} name={props.Name} onClick={e => props.OnClick && props.OnClick(e)}>
-            <div className="iconWrapper">{props.Icon}</div>
-            <div className="categoryText">{props.Name}</div>
+        <button
+            className={`${props.selectedCategoryId && props.selectedCategoryId === props.category._id ? 'focus' : 'categoryBlockContainer'}`}
+            style={style} name={props.category.name}
+            onClick={e => props.OnClick && props.OnClick(e)}
+        >
+            <div className="iconWrapper">{props.category.icon}</div>
+            <div className="categoryText">{props.category.name}</div>
         </button>
-    )
+    );
 };
 
 

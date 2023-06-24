@@ -1,41 +1,47 @@
 import "./view-existed-items.css";
 import { Item } from "../../components";
 import { CategoryBar } from "../../components";
-import { useEffect, useState } from "react";
-import { useParam, useViewItems } from "../../hooks";
-import React from "react";
+import { useViewItems } from "../../hooks";
 import { SearchBar } from "../../components/core";
 
 const ViewExistedItems = () => {
     const {
         itemsTable,
-        select,
-        handleChangeSelect,
-        handleDelete,
-        handleChangeCategory,
-    } = useViewItems();
-    const [categoryId, setCategoryId] = useState<string>("");
-    const [selectedCategoryItems, setSelectedCategoryItems] = useState<[string]>([
-        "",
-    ]);
-    useEffect(() => {
-        handleChangeCategory(selectedCategoryItems);
-        // eslint-disable-next-line
-    }, [selectedCategoryItems, categoryId]);
+        useParams,
+        selectedCategory,
 
-    const useParams = useParam();
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        useParams.setParams("searchTerms", e.target.value);
-    };
+        categoryList,
+        showAddForm,
+        newCategoryFields,
+        itemsLoading,
+        categoriesLoading,
+
+        setShowAddForm,
+        setNewCategoryFields,
+        handleInputValidation,
+        handleSubmitNewCategory,
+
+        handleChangeSelectItem,
+        handleDelete,
+        handleSearch,
+        handleSelectedCategory,
+    } = useViewItems();
+
 
     return (
         <div className="viewItemsPage">
             <CategoryBar
+                categoryList={categoryList}
                 disableAddBlock={false}
-                categoryId={categoryId}
-                setCategoryId={setCategoryId}
-                selectedCategoryItems={selectedCategoryItems}
-                setSelectedCategoryItems={setSelectedCategoryItems}
+                loading={categoriesLoading}
+                selectedCategory={selectedCategory}
+                newCategoryFields={newCategoryFields}
+                setNewCategoryFields={setNewCategoryFields}
+                showAddForm={showAddForm}
+                setShowAddForm={setShowAddForm}
+                handleInputValidation={handleInputValidation}
+                handleSubmitNewCategory={handleSubmitNewCategory}
+                handleSelectedCategory={handleSelectedCategory}
             />
             <div className="searchBarWrapper">
                 <SearchBar
@@ -53,19 +59,25 @@ const ViewExistedItems = () => {
                 />
             </div>
             <div className="itemsContainer">
-                {itemsTable.map((item, index) => {
-                    return (
-                        <Item
-                            key={item._id}
-                            Selected={select[index]}
-                            item={item}
-                            DeletedPrice={12}
-                            OnDelete={handleDelete}
-                            OnEdit={() => console.log(1)}
-                            OnSelect={() => handleChangeSelect(index, categoryId)}
-                        />
-                    );
-                })}
+
+                {
+                    itemsLoading
+                        ? <span>Loading...</span>
+                        :
+                        itemsTable.map((item) => {
+                            return item.item.priceHistory[0] && (
+                                <Item
+                                    selectedCategory={selectedCategory}
+                                    key={item.item._id}
+                                    item={item.item}
+                                    DeletedPrice={12}
+                                    Selected={item.selected}
+                                    OnDelete={handleDelete}
+                                    OnEdit={() => console.log(1)}
+                                    OnSelect={() => handleChangeSelectItem(item.item._id, selectedCategory?._id as string)}
+                                />
+                            );
+                        })}
             </div>
         </div>
     );
