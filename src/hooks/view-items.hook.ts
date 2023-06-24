@@ -34,7 +34,7 @@ const useViewItems = () => {
 
     const getItems = React.useCallback(async () => {
         try {
-            let items = await itemService.getItems(user.user?._id as string, user.user?.token as string, useParams.params.get('searchTerms') || '');
+            let items = await itemService.getItems(user.user?.token as string, useParams.params.get('searchTerms') || '');
             if (items && itemsTable.setItems && itemsTable.items) {
                 itemsTable.setItems(items);
                 setSelect(itemsTable.items.map(() => false));

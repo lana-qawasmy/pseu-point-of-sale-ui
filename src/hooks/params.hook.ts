@@ -23,7 +23,6 @@ const useParams = () => {
     const updateItems = async () => {
         try {
             const items: ItemNS.Item[] = await itemService.getItems(
-                userContext.user?._id as string,
                 userContext.user?.token as string,
                 params.get('searchTerms') || '')
             if (items && itemsContext.setItems) {

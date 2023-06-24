@@ -25,32 +25,11 @@ const addItem = async (item: ItemNS.Item, token: string) => {
     }
 };
 
-const updateItem = (newItem: ItemNS.Item, token: string) => {
-    return fetch(`${process.env.REACT_APP_SERVER_URL}/item/updateItem`, {
-        method: "PUT",
-        headers: {
-            'Content-Type': 'application/json',
-            'authorization': token
-        },
-        body: JSON.stringify(newItem),
-    }).then(async (res) => {
-        if (res.status === 201) {
-            return { state: true, value: await res.json() };
-        }
-        else {
-            return { state: false, value: await res.json() };
-        }
-    }).catch((error) => {
-        console.error(error);
-        return false;
-    });
-}
-
-const getItems = (userId: string, token: string, searchTerms?: string) => {
+const getItems = (token: string, searchTerms?: string) => {
     try {
         // return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}?searchTerms=${searchTerms}`, {
-        return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}/${searchTerms && `?searchTerms=${searchTerms}`}`, {
-            method: 'GET',
+            return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${searchTerms && `?searchTerms=${searchTerms}`}`, {
+                method: 'GET',
             headers: {
                 'authorization': token,
             }
@@ -82,12 +61,33 @@ const deleteItem = (userId: string, itemId: string, token: string) => {
                 console.error(error);
                 return false;
             });
-    } catch (error) {
+        } catch (error) {
         console.error(error);
         return false;
     }
 };
 
+
+const updateItem = (newItem: ItemNS.Item, token: string) => {
+    return fetch(`${process.env.REACT_APP_SERVER_URL}/item/updateItem`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        },
+        body: JSON.stringify(newItem),
+    }).then(async (res) => {
+        if (res.status === 201) {
+            return { state: true, value: await res.json() };
+        }
+        else {
+            return { state: false, value: await res.json() };
+        }
+    }).catch((error) => {
+        console.error(error);
+        return false;
+    });
+}
 // eslint-disable-next-line
 export default {
     addItem,
