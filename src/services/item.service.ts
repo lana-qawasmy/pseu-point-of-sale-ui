@@ -28,8 +28,8 @@ const addItem = async (item: ItemNS.Item, token: string) => {
 const getItems = (token: string, searchTerms?: string) => {
     try {
         // return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}?searchTerms=${searchTerms}`, {
-            return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${searchTerms && `?searchTerms=${searchTerms}`}`, {
-                method: 'GET',
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${searchTerms && `?searchTerms=${searchTerms}`}`, {
+            method: 'GET',
             headers: {
                 'authorization': token,
             }
@@ -61,7 +61,7 @@ const deleteItem = (userId: string, itemId: string, token: string) => {
                 console.error(error);
                 return false;
             });
-        } catch (error) {
+    } catch (error) {
         console.error(error);
         return false;
     }
