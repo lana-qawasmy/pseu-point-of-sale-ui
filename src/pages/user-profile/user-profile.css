@@ -1,0 +1,175 @@
+.userProfileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: auto;
+  height: 100vh;
+  background-color: #f3f4f8;
+  margin-top: 72px;
+  margin-left: -56px;
+  overflow-x: hidden;
+}
+
+.userProfileContainer .imageWrapper {
+  display: inline-block;
+  position: relative; 
+  height: auto;
+  padding: 30px;
+  padding-left: 207px;
+}
+
+.imageWrapper .image {
+  height: 200px;
+  width: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 3px solid #fff;
+}
+
+.imageButtonsWrapper {
+  position: absolute;
+  bottom: -3px;
+  left: 210px;
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+}
+.imageButtonsWrapper .btn {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.356);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  width: 200px;
+  height: 30px;
+  cursor: pointer;
+  transition-duration: 0.9s;
+}
+.imageButtonsWrapper .btn:hover {
+  transform: translateY(-1px);
+  transition-duration: 0.9s;
+}
+
+.personalInfoContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 215px;
+  height: 100px;
+  justify-content: space-around;
+}
+
+.personalInfoContainer div {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.personalInfoContainer div input,
+.personalInfoContainer div span {
+  font-family: "Inter";
+}
+
+.personalInfoContainer div input,
+.personalInfoContainer div input:focus {
+  height: 20px;
+  border: transparent;
+  border-bottom: 1px solid #b5b5b5;
+  background-color: transparent;
+  outline: burlywood;
+}
+
+.userProfileContainer .passwordAnchor {
+  width: 100%;
+  display: flex;
+  margin-left: 217px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.userProfileContainer .passwordAnchor:active {
+  color: rgb(255, 0, 0);
+}
+.userProfileContainer .passwordAnchor:hover {
+  color: #3498db;
+}
+
+.arrowIcon {
+  transition: 0.2s;
+  transition-timing-function: ease-in;
+}
+
+.arrowIcon.flipUp {
+  rotate: 180deg;
+  transition: 0.2s;
+  transition-timing-function: ease-in;
+  animation: slideOut 0.2s ease-in forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(0);
+    opacity: 0%;
+  }
+  to {
+    transform: translateY(3px);
+    opacity: 100%;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-3px);
+  }
+}
+
+.userProfileContainer .passwordContainer {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 213px;
+  margin-top: 6px;
+  border-bottom: 1px solid #b5b5b5;
+}
+
+.userProfileContainer .passwordContainer.slideIn {
+  animation: slideIn 0.1s ease-in-out forwards;
+}
+
+.userProfileContainer .passwordContainer.slideOut {
+  animation: slideOut 0.4s ease-in-out forwards;
+}
+
+.userProfileContainer .passwordContainer > div {
+  display: flex;
+  width: 391px;
+  justify-content: space-between;
+  margin-bottom: 21px;
+  font-family: "Inter";
+}
+
+.userProfileContainer .passwordContainer div div input,
+.userProfileContainer .passwordContainer div div input:focus {
+  height: 20px;
+  border: transparent;
+  border-bottom: 1px solid #b5b5b5;
+  background-color: transparent;
+  appearance: none;
+  outline: burlywood;
+}
+
+ .userProfileContainer .buttonsWrapper{
+  display: flex;
+  width: 100%;
+  margin-left: 199px;
+  justify-content: flex-start;
+  column-gap: 210px;
+  position: relative;
+  bottom: -32px;
+}
