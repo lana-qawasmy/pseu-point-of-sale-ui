@@ -1,5 +1,5 @@
 .categoryBarContainer {
-    width: 82%;
+    width: 89%;
     height: 140px;
     border-radius: 5px;
     display: flex;
@@ -59,6 +59,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+    position: relative;
 }
 
 .categoryBarContainer .addNewBlock button,
@@ -91,11 +92,11 @@
     align-items: center;
 }
 
-.addFormWrapper h2{
+.addFormWrapper h2 {
     color: #03045e;
 }
 
-.addFormBody{
+.addFormBody {
     width: 90%;
     height: 90%;
     display: flex;
@@ -104,29 +105,30 @@
     align-items: center;
 }
 
-.addFormBody .upperBody, .addFormBody .lowerBody{
+.addFormBody .upperBody,
+.addFormBody .lowerBody {
     height: 50%;
     width: 100%;
 }
 
-.addFormBody .upperBody{
+.addFormBody .upperBody {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.addFormBody .lowerBody{
+.addFormBody .lowerBody {
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
 
-.lowerBody .buttonContainer{
+.lowerBody .buttonContainer {
     margin: 0px 9px 20px;
 }
 
-.focus{
+.focus {
     transition: 0.3s;
     display: flex;
     flex-direction: column;
@@ -140,8 +142,24 @@
     cursor: pointer;
     padding: 0px 5px 0px;
     transform: scale(1.2);
-    background-color: #03045e ;
+    background-color: #03045e;
     color: #ffffff;
     border: 7px solid #ffffff;
     font-weight: 500;
+}
+
+.categoryBarContainer .addNewBlock .seeAllWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    width: fit-content;
+    top: -15px;
+    right: 20px;
+    z-index: 5;
+}
+
+.categoryBarContainer .addNewBlock .seeAllWrapper>a {
+    text-decoration: none;
+    color: #0292cd;
 }
