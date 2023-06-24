@@ -18,6 +18,8 @@ const PosView = () => {
     handleSearch,
     handleSelectedCategory,
     handleSelectedItems,
+    selectedItems,
+    setSelectedItems,
   } = usePOSView();
   return (
     <div className="posPage">
@@ -66,7 +68,7 @@ const PosView = () => {
           )}
         </div>
       </div>
-      <SellBar />
+      <SellBar selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
     </div>
   );
 };

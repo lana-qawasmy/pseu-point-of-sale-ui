@@ -135,6 +135,8 @@ const usePOSView = () => {
         handleSelectedCategory,
         handleSearch,
         handleSelectedItems,
+        selectedItems,
+        setSelectedItems,
     };
 };
 
