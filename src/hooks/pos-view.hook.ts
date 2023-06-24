@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserContext } from '../components/providers/user.provider';
 import { CollectionNS, ItemNS } from '../types';
 import useNotification from './notification.hook';
@@ -20,6 +20,7 @@ const usePOSView = () => {
     const user = React.useContext(UserContext);
     const [selectedCategory, setSelectedCategory] = React.useState<CollectionNS.ICollection | null>(null);
     const [selectedItems, setSelectedItems] = React.useState<{item: ItemNS.Item, number: number}[]>([]);
+    const [price, setPrice] = useState<number>(0);
     const navigate = useNavigate();
     const [state, setState] = React.useState<IState>({
         items: [],
@@ -106,6 +107,15 @@ const usePOSView = () => {
         }
     };
 
+    useEffect(()=>{
+        let newPrice= 0
+        for(let i = 0; i<selectedItems.length; i++){
+            newPrice += selectedItems[i].number * (selectedItems[i].item.priceHistory[0].price as number);
+            setPrice(newPrice);
+        };
+        console.log(selectedItems)
+    },[selectedItems]);
+
     React.useMemo(async () => {
         loadingItemsAndCollections();
         let items: ItemNS.Item[];
@@ -137,6 +147,7 @@ const usePOSView = () => {
         handleSelectedItems,
         selectedItems,
         setSelectedItems,
+        price,
     };
 };
 

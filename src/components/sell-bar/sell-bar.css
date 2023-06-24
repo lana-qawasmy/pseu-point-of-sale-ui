@@ -1,10 +1,15 @@
 .sellBarContainer{
     background-color: white;
     width: 25%;
+    height: 90vh;
     margin-top: 74px;
     display: flex;
     flex-direction: column;
     font-family: Inter;
+}
+
+.sellBarContainer span, .sellBarContainer h2{
+    color: #030463;
 }
 
 .sectionOne {
@@ -49,4 +54,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.sectionThree .row span{
+    font-size: 25px;
+    font-weight: 700;
 }

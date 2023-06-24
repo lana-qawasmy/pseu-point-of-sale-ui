@@ -1,23 +1,39 @@
 import "./sell-card.css";
-
-const SellCard = () => {
+import { ItemNS } from "../../types";
+import { useSellCard } from "../../hooks";
+interface Iprops {
+    selectedItems: {
+      item: ItemNS.Item;
+      number: number;
+    }[];
+    setSelectedItems: React.Dispatch<
+      React.SetStateAction<
+        {
+          item: ItemNS.Item;
+          number: number;
+        }[]
+      >
+    >;
+    index: number;
+  }
+const SellCard = (props: Iprops) => {
+    const {index, selectedItems, setSelectedItems} = props;
+    const {handleCounter,handleDrag,handleDragStart,handleDragEnd} = useSellCard({index, selectedItems, setSelectedItems});
   return (
-    <div className="cardContainer">
-      <div className="cardWrapper">
-        <div className="image"></div>
+      <div className="cardWrapper" onDrag={handleDrag} onDragStart={handleDragStart} onDragEnd={handleDragEnd} draggable="true">
+        <div className="image" style={{backgroundImage: `url('${selectedItems[index].item.image}')`}}></div>
         <div className="rightSection">
-            <span>Hot pizza :))</span>
+            <span>{selectedItems[index].item.name}</span>
             <div className="bottom">
             <div className="counter">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
+                <button onClick={()=>handleCounter('decrement')}>-</button>
+                <span>{selectedItems[index].number}</span>
+                <button onClick={()=>handleCounter('increment')}>+</button>
             </div>
-            <span>18.5</span>
+            <span>{(selectedItems[index].item.priceHistory[0].price) as number}</span>
             </div>
         </div>
       </div>
-    </div>
   );
 };
 

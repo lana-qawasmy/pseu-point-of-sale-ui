@@ -5,8 +5,6 @@ import { usePOSView } from "../../hooks";
 import { SearchBar } from "../../components/core";
 
 const PosView = () => {
-    
-
     const {
     selectedCategory,
     categoriesList,
@@ -20,6 +18,7 @@ const PosView = () => {
     handleSelectedItems,
     selectedItems,
     setSelectedItems,
+    price,
   } = usePOSView();
   return (
     <div className="posPage">
@@ -68,7 +67,7 @@ const PosView = () => {
           )}
         </div>
       </div>
-      <SellBar selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
+      <SellBar selectedItems={selectedItems} setSelectedItems={setSelectedItems} price = {price}/>
     </div>
   );
 };
