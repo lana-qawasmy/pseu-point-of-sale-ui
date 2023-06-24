@@ -1,6 +1,7 @@
 import "./sell-bar.css";
 import { ItemNS } from "../../types";
 import { Button } from "../core";
+import SellCard from "../sell-card/sell-card.component";
 interface Iprops {
   selectedItems: {
     item: ItemNS.Item;
@@ -20,9 +21,7 @@ const SellBar = (props: Iprops) => {
     <div className="sellBarContainer">
       <div className="sectionOne">
         <h2>Details Items</h2>
-        <div className="cardContainer">
-        <div className="cardWrapper"></div>
-        </div>
+        <SellCard />
       </div>
       <div className="sectionTwo">
         <div className="row">
