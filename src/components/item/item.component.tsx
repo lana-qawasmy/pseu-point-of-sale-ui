@@ -21,11 +21,6 @@ const Item = (props: IProps) => {
     const [edit, setEdit] = React.useState<boolean>(false);
     return (
         <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
-            {edit &&
-                <PopUp setDisplayPopup={setEdit}>
-                    <ItemForm edit setEdit={setEdit} item={props.item} />
-                </PopUp>
-            }
             <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
             <div className='infoWrapper'>
                 <span className='itemName'>
