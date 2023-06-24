@@ -67,31 +67,9 @@ const deleteItem = (userId: string, itemId: string, token: string) => {
     }
 };
 
-
-const updateItem = (newItem: ItemNS.Item, token: string) => {
-    return fetch(`${process.env.REACT_APP_SERVER_URL}/item/updateItem`, {
-        method: "PUT",
-        headers: {
-            'Content-Type': 'application/json',
-            'authorization': token
-        },
-        body: JSON.stringify(newItem),
-    }).then(async (res) => {
-        if (res.status === 201) {
-            return { state: true, value: await res.json() };
-        }
-        else {
-            return { state: false, value: await res.json() };
-        }
-    }).catch((error) => {
-        console.error(error);
-        return false;
-    });
-}
 // eslint-disable-next-line
 export default {
     addItem,
     getItems,
     deleteItem,
-    updateItem
 };
