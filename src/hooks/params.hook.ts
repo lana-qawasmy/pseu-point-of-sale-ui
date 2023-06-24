@@ -34,7 +34,9 @@ const useParams = () => {
         }
     }
     useEffect(() => {
-        updateItems()
+        itemService.getItems(
+            userContext.user?.token as string,
+            params.get('searchTerms') || '')
         // eslint-disable-next-line 
     }, [params])
 
