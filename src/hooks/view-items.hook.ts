@@ -240,10 +240,6 @@ const useViewItems = () => {
             else {
                 setNotification({ message: 'Error fetching the items', status: 'error' });
             }
-            return {
-                newItemTable,
-                categories
-            };
         } catch (error) {
             console.error(error);
         }
