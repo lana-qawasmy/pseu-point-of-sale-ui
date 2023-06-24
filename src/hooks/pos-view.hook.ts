@@ -19,6 +19,7 @@ interface IState {
 const usePOSView = () => {
     const user = React.useContext(UserContext);
     const [selectedCategory, setSelectedCategory] = React.useState<CollectionNS.ICollection | null>(null);
+    const [selectedItems, setSelectedItems] = React.useState<{item: ItemNS.Item, number: number}[]>([]);
     const navigate = useNavigate();
     const [state, setState] = React.useState<IState>({
         items: [],
@@ -90,6 +91,21 @@ const usePOSView = () => {
         }
     };
 
+    const handleSelectedItems = (item: ItemNS.Item) =>{
+        if(!(selectedItems.length > 0)){
+            setSelectedItems([{item: item, number: 1}]);
+        }else{
+            let tempArray = [...selectedItems];
+            const isThere = tempArray.findIndex(tempItem => tempItem.item === item);
+            if(isThere === -1){
+                setSelectedItems([...tempArray, {item: item, number: 1}]);
+            } else{
+                tempArray[isThere]= {item: item, number: tempArray[isThere].number +1};
+                setSelectedItems([...tempArray]);
+            };
+        }
+    };
+
     React.useMemo(async () => {
         loadingItemsAndCollections();
         let items: ItemNS.Item[];
@@ -118,6 +134,7 @@ const usePOSView = () => {
         navigate,
         handleSelectedCategory,
         handleSearch,
+        handleSelectedItems,
     };
 };
 
