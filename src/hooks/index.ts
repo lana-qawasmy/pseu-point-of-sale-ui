@@ -5,4 +5,6 @@ export { default as useSignin } from './signin.hook';
 export { default as useNotification } from './notification.hook';
 export { default as useViewItems } from './view-items.hook';
 export { default as useParam } from './params.hook';
+export { default as useEditUser } from './edit-user.hook';
 export { default as usePOSView } from './pos-view.hook';
+export { default as useSellCard } from './sell-card.hook';

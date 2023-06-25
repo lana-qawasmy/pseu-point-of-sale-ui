@@ -1,5 +1,9 @@
+.posPage{
+    display: flex;
+    margin-left: 63px;
+}
 .posViewContainer {
-    max-width: 100%;
+    width: 65%;
     min-height: 90vh;
     background-color: #f3f4f8;
     display: flex;
@@ -12,10 +16,11 @@
 
 .posViewContainer .categoryWrapper {
     display: flex;
-    justify-content: center;
-    max-width: 100%;
+    justify-content: flex-start;
+    max-width: 90%;
     width: 100%;
     padding-top: 35px;
+    margin-left: 64px;
 }
 
 .posViewContainer .itemsContainer {
