@@ -7,7 +7,7 @@ interface IProps {
 }
 const PopUp = (props: IProps) => {
     return (
-        <div className="popUpWrapper blur" onClick={() => props.setDisplayPopup && props.setDisplayPopup(false)}>
+        <div className="popUpWrapper blur" >
             <div className='popUp'>
                 {props.children}
             </div>
