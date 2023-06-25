@@ -53,7 +53,7 @@ const ItemInPOS = (props: IProps) => {
                 </span>
                 <div className='itemPrice'>
                     <span className='currentItemPrice'>
-                        {priceHistory[0].price && priceHistory[0].price.toFixed(2)} &nbsp;&nbsp;
+                        {priceHistory[0].price && priceHistory[0].price.toFixed(2)}$ &nbsp;&nbsp;
                     </span>
                     {
                         props.DeletedPrice &&
