@@ -1,0 +1,62 @@
+.sellBarContainer{
+    background-color: white;
+    width: 25%;
+    height: 90vh;
+    margin-top: 74px;
+    display: flex;
+    flex-direction: column;
+    font-family: Inter;
+}
+
+.sellBarContainer span, .sellBarContainer h2{
+    color: #030463;
+}
+
+.sectionOne {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 35%;
+    border-bottom: 5px dotted #e0e2e8;
+}
+
+.sectionTwo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 35%;
+    border-bottom: 5px dotted #e0e2e8;
+}
+
+.sectionOne h2{
+    width: 60%;
+    text-align: left;
+}
+
+.row{
+    margin-bottom: 22px;
+    margin-top: 22px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    column-gap: 180px;
+}
+
+.sectionThree{
+    display: flex;
+    flex-direction: column;
+    row-gap: 85px;
+}
+
+.sectionThree .buttonContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionThree .row span{
+    font-size: 25px;
+    font-weight: 700;
+}
