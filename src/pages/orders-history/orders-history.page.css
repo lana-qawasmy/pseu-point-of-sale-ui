@@ -6,7 +6,7 @@
     margin-left: 63px;
     margin-top: 72px;
 
-    --primaryColor: rgb(3, 4, 94);
+    --primaryColor: #080961;
 }
 
 .orderHistoryPage h2 {
@@ -33,4 +33,7 @@
 }
 .orderHistoryPage .orderBar span {
     color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 20px;
 }
