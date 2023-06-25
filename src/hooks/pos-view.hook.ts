@@ -113,7 +113,9 @@ const usePOSView = () => {
             newPrice += selectedItems[i].number * (selectedItems[i].item.priceHistory[0].price as number);
             setPrice(newPrice);
         };
-        console.log(selectedItems)
+        if(selectedItems.length === 0){
+            setPrice(0);
+        }
     },[selectedItems]);
 
     React.useMemo(async () => {

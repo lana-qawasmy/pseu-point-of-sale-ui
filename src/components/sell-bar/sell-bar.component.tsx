@@ -24,8 +24,10 @@ const SellBar = (props: Iprops) => {
     const tax = 0.10;
     const discount = 5;
     useEffect(()=>{
+        if(price !==0)
         setTotalPrice((price + (price * tax)) - discount);
-    },[price]);
+        else setTotalPrice(0);
+      },[price]);
     const itemsNumber = useMemo(()=>{
         let count = 0;
         selectedItems.map(item=>{
@@ -58,21 +60,21 @@ const SellBar = (props: Iprops) => {
         </div>
         <div className="row">
           <span>Subtotal</span>
-          <span>{price.toFixed(2)}</span>
+          <span>{price.toFixed(2)}$</span>
         </div>
         <div className="row">
           <span>discount</span>
-          <span>-{discount.toFixed(2)}</span>
+          <span>-{discount.toFixed(2)}$</span>
         </div>
         <div className="row">
           <span>Tax({(tax * 10).toFixed(2)}%)</span>
-          <span>{(tax * price).toFixed(2)}</span>
+          <span>{(tax * price).toFixed(2)}$</span>
         </div>
       </div>
       <div className="sectionThree">
         <div className="row">
           <span>Total</span>
-          <span>{totalPrice}</span>
+          <span>{totalPrice.toFixed(2)}$</span>
         </div>
         <Button
           HtmlType="button"
