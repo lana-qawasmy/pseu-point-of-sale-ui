@@ -1,12 +1,12 @@
 import Button from "../../components/core/button/button.component";
 import Input from "../../components/core/input/input.component";
 import "./add-item.css";
-import { Image } from "phosphor-react";
+import {  Image } from "phosphor-react";
 import useAddItem from "../../hooks/add-item.hook";
-
+import { useBarcode } from "../../hooks";
 const AddItem = () => {
     const item = useAddItem();
-
+    const Barcode = useBarcode();
     return (
         <div className="addItemPageContainer">
             <form onSubmit={item.submitHandler} className="addItemFormContainer">
@@ -78,6 +78,8 @@ const AddItem = () => {
                         Radius={15}
                         Required
                         PlaceHolder="Barcode"
+                        onChange={e => item.setBarcodeInput(e.target.value)}
+                        value={Barcode.result || item.barcodeInput}
                     />
                 </div>
                 <div className="addItemSubmitButton">
