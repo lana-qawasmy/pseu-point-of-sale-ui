@@ -2,8 +2,9 @@ import React from 'react';
 import { SearchBar } from '../../components/core';
 import { useParam } from '../../hooks';
 import './orders-history.page.css';
+import Order from '../../components/order/order.component';
 const OrdersHistory = () => {
-    const [oredersList, setOrdersList] = React.useState([]);
+    const [ordersList, setOrdersList] = React.useState([]);
     const useParams = useParam();
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         useParams.setParams("searchTerms", e.target.value);
@@ -25,11 +26,30 @@ const OrdersHistory = () => {
                     Radius={5}
                 />
             </span>
-            <div className='orderBar'>
-                <span>
-                    Order NO.
-                </span>
-            </div>
+            <table className='ordersTable'>
+                <tr className='headerInOrdersTable'>
+                    <th>Order No.</th>
+                    <th>Casher Name</th>
+                    <th>Total</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                </tr>
+                <Order
+                    orderNo={15}
+                    casherName='Momin'
+                    total={15}
+                    time={new Date().toLocaleTimeString()}
+                    date={new Date().toLocaleDateString()}
+
+                />
+                <Order
+                    orderNo={16}
+                    casherName='Abdullah'
+                    total={50.2}
+                    time={new Date().toLocaleTimeString()}
+                    date={new Date().toLocaleDateString()}
+                />
+            </table>
         </div>
     );
 };

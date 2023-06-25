@@ -1,0 +1,21 @@
+.orderContainer {
+    --primaryColor: #080961;
+    --primaryFont: 'Inter';
+    border-radius: 2px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    background-color: #fff;
+    font-family: var(--primaryFont);
+}
+
+.orderContainer td {
+    color: var(--primaryColor);
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 20%;
+    border-radius: 2px;
+}
