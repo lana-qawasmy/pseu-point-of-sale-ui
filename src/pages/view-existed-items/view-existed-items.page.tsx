@@ -64,7 +64,7 @@ const ViewExistedItems = () => {
                     itemsLoading
                         ? <span>Loading...</span>
                         :
-                        itemsTable.map((item) => {
+                        itemsTable?.map((item) => {
                             return item.item.priceHistory[0] && (
                                 <Item
                                     selectedCategory={selectedCategory}

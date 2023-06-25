@@ -51,6 +51,7 @@ const PosView = () => {
           {itemsLoading ? (
             <span>Loading...</span>
           ) : (
+            itemsTable &&
             itemsTable.map((item,index) => {
               return (
                 item.priceHistory[0] && (

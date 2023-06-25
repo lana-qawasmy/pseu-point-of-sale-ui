@@ -47,6 +47,7 @@ const CategoryBar = (props: IProps) => {
         {props.loading ? (
           <span> Loading...</span>
         ) : (
+          props.categoryList &&
           props.categoryList.map(
             (category: CollectionNS.ICollection, index: number) => {
               return (
