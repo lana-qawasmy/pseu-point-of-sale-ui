@@ -4,6 +4,7 @@ import { CollectionNS, ItemNS } from '../types';
 import { itemService, collectionServices } from '../services';
 import useNotification from './notification.hook';
 import { useParam } from '.';
+import { ItemsContext } from '../components/providers/items.provider';
 
 interface itemWithSelect {
     item: ItemNS.Item;
@@ -21,15 +22,29 @@ interface IState {
 
 const useViewItems = () => {
     const user = React.useContext(UserContext);
-
+    const itemContext = React.useContext(ItemsContext);
+    const initialItems: itemWithSelect[] = itemContext.items?.map(item => {
+        const newItems: itemWithSelect = { item: item, selected: false };
+        return newItems || [];
+    }) || [];
     const [state, setState] = React.useState<IState>({
-        items: [], categories: [], loading: { categoriesLoading: false, itemsLoading: false }
+        items: initialItems, categories: [], loading: { categoriesLoading: false, itemsLoading: false }
     });
     const [selectedCategory, setSelectedCategory] = React.useState<CollectionNS.ICollection | null>(null);
 
     const [showAddForm, setShowAddForm] = React.useState(false);
     const [newCategoryFields, setNewCategoryFields] = React.useState({ emoji: "", name: "" });
 
+    React.useEffect(() => {
+        console.log('changed')
+        if (itemContext.items){
+            setState((oldState) => ({
+                ...oldState,
+                items : getTableWithState(itemContext.items || [])
+            }));
+        }
+        // eslint-disable-next-line 
+    }, [itemContext.items]);
 
     const { setNotification } = useNotification();
     const useParams = useParam();
@@ -316,4 +331,3 @@ const useViewItems = () => {
 };
 
 export default useViewItems;
-
