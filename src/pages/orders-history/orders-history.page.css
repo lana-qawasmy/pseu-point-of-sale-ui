@@ -1,0 +1,36 @@
+.orderHistoryPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 63px;
+    margin-top: 72px;
+
+    --primaryColor: rgb(3, 4, 94);
+}
+
+.orderHistoryPage h2 {
+    display: flex;
+    color: var(--primaryColor);
+    padding-top: 20px;
+    padding-left: 40px;
+    margin: 0;
+}
+
+.orderHistoryPage .searchBarInOrderHistoryPage {
+    padding-left: 20px;
+}
+
+.orderHistoryPage .orderBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primaryColor);
+    height: 40px;
+    width: 90%;
+    margin-left: 37px;
+    border-radius: 2px;
+}
+.orderHistoryPage .orderBar span {
+    color: #fff;
+}
