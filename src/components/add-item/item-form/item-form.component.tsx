@@ -98,6 +98,8 @@ const ItemForm = (props?: IProps) => {
                 </div>
                 <div className="addItemSubmitButton">
                     <Button HtmlType="submit" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90">{props?.edit ? 'Edit' : 'Add'}</Button>
+                    {props?.edit && <Button HtmlType="button" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90" onClick={e => props.setEdit&& props.setEdit(false)}>Cancel</Button>}
+                    
                 </div>
             </form>
             <div

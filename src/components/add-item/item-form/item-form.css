@@ -103,3 +103,10 @@
 .hidden {
     display: none;
 }
+.addItemSubmitButton {
+    display: flex;
+    width: 100%;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+}
