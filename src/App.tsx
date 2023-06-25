@@ -4,6 +4,7 @@ import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Term
 import { UserProvider } from './components/providers';
 import { Header, NavigationBar } from './components/core';
 import Guard from './components/guard/guard.component';
+import { RoleGuard} from './components/core';
 import { Notification } from './components';
 
 const App = () => {
@@ -17,9 +18,9 @@ const App = () => {
                         <Route path='/' element={<Guard><PosView /></Guard>} />
                         <Route path='/signin' element={<Signin />} />
                         <Route path='/signup' element={<Signup />} />
-                        <Route path='/addItem' element={<Guard><AddItem /></Guard>} />
+                        <Route path='/addItem' element={<Guard><RoleGuard role={['manager']}><AddItem /></RoleGuard></Guard>} />
                         <Route path='/ordersHistory' element={<Guard><OrdersHistory /></Guard>} />
-                        <Route path='/existedItems' element={<Guard><ViewExistedItems /></Guard>} />
+                        <Route path='/existedItems' element={<Guard><RoleGuard role={['manager']}><ViewExistedItems /></RoleGuard></Guard>} />
                         <Route path='/terms' element={<Terms />} />
                         <Route path='/profile' element={<UserProfile />} />
                     </Routes>
