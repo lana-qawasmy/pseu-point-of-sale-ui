@@ -30,7 +30,7 @@ const SellCard = (props: Iprops) => {
                 <span>{selectedItems[index].number}</span>
                 <button onClick={()=>handleCounter('increment')}>+</button>
             </div>
-            <span>{(selectedItems[index].item.priceHistory[0].price) as number}</span>
+            <span>{(selectedItems[index].item.priceHistory[0].price) as number}$</span>
             </div>
         </div>
       </div>
