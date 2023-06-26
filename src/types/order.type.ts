@@ -4,7 +4,7 @@ export namespace OrderNS {
     export interface IOrder {
         _id?: string;
         orderNumber?: number;
-        casherName: string;
+        cashierName: string;
         total: number;
         time?: string;
         date?: string;

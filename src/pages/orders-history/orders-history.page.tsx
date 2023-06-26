@@ -33,7 +33,7 @@ const OrdersHistory = () => {
                         return <Order
                             key={order._id + 'orderPage'}
                             orderNo={order.orderNumber as number}
-                            casherName={order.casherName}
+                            cashierName={order.cashierName}
                             total={order.total}
                             time={order.time as string}
                             date={order.date as string}

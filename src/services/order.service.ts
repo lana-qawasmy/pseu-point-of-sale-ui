@@ -23,7 +23,7 @@ const getOrders = (token: string, page: number) => {
 };
 
 const addOrder = (token: string, order: OrderNS.IOrder) => {
-    const casherName = order.casherName;
+    const cashierName = order.cashierName;
     const discountCode = order.discountCode;
     const items = order.items;
     const tax = order.tax;
@@ -37,7 +37,7 @@ const addOrder = (token: string, order: OrderNS.IOrder) => {
                 'authorization': token
             },
             body: JSON.stringify({
-                casherName,
+                cashierName,
                 discountCode,
                 items,
                 tax,

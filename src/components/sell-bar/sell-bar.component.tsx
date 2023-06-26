@@ -49,7 +49,7 @@ const SellBar = (props: IProps) => {
         }
         const items = selectedItems.map((item) => ({ item: item.item._id as string, quantity: item.number }));
         const order: OrderNS.IOrder = {
-            casherName: user.user?.fullName || 'unknown',
+            cashierName: user.user?.fullName || 'unknown',
             total: totalPrice,
             items: items,
             tax: tax,
