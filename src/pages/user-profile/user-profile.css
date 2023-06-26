@@ -10,9 +10,15 @@
   overflow-x: hidden;
 }
 
+.profilePage {
+  margin-left: 60px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .userProfileContainer .imageWrapper {
   display: inline-block;
-  position: relative; 
+  position: relative;
   height: auto;
   padding: 30px;
   padding-left: 207px;
@@ -164,7 +170,7 @@
   outline: burlywood;
 }
 
- .userProfileContainer .buttonsWrapper{
+.userProfileContainer .buttonsWrapper {
   display: flex;
   width: 100%;
   margin-left: 199px;

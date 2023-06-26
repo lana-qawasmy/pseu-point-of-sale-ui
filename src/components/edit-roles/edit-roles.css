@@ -1,0 +1,23 @@
+.editRolesContainer {
+    background-color: rebeccapurple;
+    width: 700px;
+    height: 500px;
+    margin-top: 101px;
+  }
+  
+  .userSearchWrapper {
+    display: flex;
+    width: fit-content;
+    height: 30px;
+    border: 1px solid #f2f2f2;
+    border-radius: 20px;
+    align-items: center;
+    background-color: white;
+  }
+  
+  .userSearchWrapper > input {
+    border: none;
+    outline: none;
+    padding-left: 30px;
+    background-color: transparent;
+  }
