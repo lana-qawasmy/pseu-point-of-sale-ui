@@ -14,7 +14,7 @@ const Order = (props: IProps) => {
         <tr className='orderContainer'>
             <td>{orderNo}</td>
             <td>{casherName}</td>
-            <td>{total.toFixed(2).toString()}$</td>
+            <td>{total.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$</td>
             <td>{time}</td>
             <td>{date}</td>
         </tr>

@@ -1,17 +1,11 @@
-import React from 'react';
-import { SearchBar } from '../../components/core';
-import { useParam } from '../../hooks';
 import './orders-history.page.css';
+import { SearchBar } from '../../components/core';
 import Order from '../../components/order/order.component';
-const OrdersHistory = () => {
-    const [ordersList, setOrdersList] = React.useState([]);
-    const useParams = useParam();
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        useParams.setParams("searchTerms", e.target.value);
-    };
-    React.useMemo(() => {
+import { useOrderHistory } from '../../hooks';
+import { OrderNS } from '../../types/order.type';
 
-    }, []);
+const OrdersHistory = () => {
+    const { params, handleSearch, ordersList } = useOrderHistory();
     return (
         <div className='orderHistoryPage'>
             <h2>Order History</h2>
@@ -19,7 +13,7 @@ const OrdersHistory = () => {
                 <SearchBar
                     Id='searchInOrderHistory'
                     Name='Search3'
-                    Value={useParams.params.get("searchTerms") || ""}
+                    Value={params.get("searchTerms") || ""}
                     Padding={12}
                     OnChange={handleSearch}
                     Placeholder='Search'
@@ -34,21 +28,18 @@ const OrdersHistory = () => {
                     <th>Time</th>
                     <th>Date</th>
                 </tr>
-                <Order
-                    orderNo={15}
-                    casherName='Momin'
-                    total={15}
-                    time={new Date().toLocaleTimeString()}
-                    date={new Date().toLocaleDateString()}
-
-                />
-                <Order
-                    orderNo={16}
-                    casherName='Abdullah'
-                    total={50.2}
-                    time={new Date().toLocaleTimeString()}
-                    date={new Date().toLocaleDateString()}
-                />
+                {
+                    ordersList?.map((order: OrderNS.IOrder) => {
+                        return <Order
+                            key={order._id + 'orderPage'}
+                            orderNo={order.orderNumber as number}
+                            casherName={order.casherName}
+                            total={order.total}
+                            time={order.time as string}
+                            date={order.date as string}
+                        />;
+                    })
+                }
             </table>
         </div>
     );
