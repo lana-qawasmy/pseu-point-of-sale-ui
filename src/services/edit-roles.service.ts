@@ -1,6 +1,6 @@
-const getUsers = (token: string) =>{
+const getUsers = (token: string, searchTerms?: string) =>{
         try {
-            return fetch(`${process.env.REACT_APP_SERVER_URL}/user/getUsers`, {
+            return fetch(`${process.env.REACT_APP_SERVER_URL}/user/getUsers/${searchTerms && `?searchTerms=${searchTerms}`}`, {
                 method: 'GET',
                 headers: {
                     'authorization': token,
