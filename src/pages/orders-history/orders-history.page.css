@@ -7,6 +7,7 @@
     margin-top: 72px;
 
     --primaryColor: #080961;
+    --secondaryColor: gray;
     --primaryFont: 'Inter';
     font-family: var(--primaryFont);
 }
@@ -58,4 +59,20 @@
     justify-content: center;
     align-items: center;
     flex-basis: 20%;
+}
+
+.orderHistoryPage .ordersTable .buttonsInOrdersTable {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.orderHistoryPage .ordersTable .buttonsInOrdersTable .pageNumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondaryColor);
+}
+.orderHistoryPage .ordersTable .buttonsInOrdersTable .pageNumber span{
+    color: var(--primaryColor);
 }

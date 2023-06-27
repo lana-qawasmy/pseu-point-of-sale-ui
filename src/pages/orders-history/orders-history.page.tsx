@@ -1,11 +1,18 @@
 import './orders-history.page.css';
-import { SearchBar } from '../../components/core';
+import { Button, SearchBar } from '../../components/core';
 import Order from '../../components/order/order.component';
 import { useOrderHistory } from '../../hooks';
 import { OrderNS } from '../../types/order.type';
 
 const OrdersHistory = () => {
-    const { params, handleSearch, ordersList } = useOrderHistory();
+    const {
+        params,
+        ordersList,
+        page,
+        numberOfPages,
+        setPage,
+        handleSearch,
+    } = useOrderHistory();
     return (
         <div className='orderHistoryPage'>
             <h2>Order History</h2>
@@ -40,6 +47,37 @@ const OrdersHistory = () => {
                         />;
                     })
                 }
+                <tr className='buttonsInOrdersTable' >
+                    <Button
+                        HtmlType='button'
+                        Radius={'3'}
+                        Ratio='10/4'
+                        Width='120'
+                        Disabled={page === 0}
+                        Color='#080961'
+                        onClick={() => setPage((currentPage) => currentPage - 1)}
+                    >
+                        Previous Page
+                    </Button>
+                    <span className='pageNumber'>
+                        Page:
+                        <span>
+                            &nbsp;{page}
+                        </span>
+                    </span>
+                    <Button
+                        Color='#080961'
+                        HtmlType='button'
+                        Radius={'3'}
+                        Ratio='10/4'
+                        Width='120'
+                        Type='Primary'
+                        Disabled={numberOfPages - 1 === page}
+                        onClick={() => setPage((currentPage) => currentPage + 1)}
+                    >
+                        Next Page
+                    </Button>
+                </tr>
             </table>
         </div>
     );
