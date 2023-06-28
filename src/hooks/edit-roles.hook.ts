@@ -3,12 +3,13 @@ import { useContext } from "react";
 import { UserContext } from "../components/providers/user.provider";
 import { UserNS } from "../types";
 import { updateUser } from "../services";
-
+import useNotification from "./notification.hook";
 import { rolesServices } from "../services";
 const useEditRoles = () =>{
     const {user} = useContext(UserContext);
     const [usersList, setUsersList] = useState<UserNS.User[]>([]);
     const [search,setSearch] = useState<string>('');
+    const {setNotification} = useNotification()
     const getUsers = async()=>{
         const users = await rolesServices.getUsers(user?.token || '', search);
         setUsersList([...users]);
@@ -16,7 +17,11 @@ const useEditRoles = () =>{
     };
     const updateUserRole = async(user: UserNS.User) => {
         const updatedUser = await updateUser(user);
-        console.log({updatedUser});
+        if(updatedUser){
+            setNotification({message: 'Role updated', status: 'success', autoClose: 2000});
+        }else{
+            setNotification({message: 'Something went wrong please try again', status: 'error', autoClose: 3000});
+        }
     }
     const handleChangeRole = (value: string, user: UserNS.User, index: number) =>{
         console.log('whaaat');
@@ -37,7 +42,7 @@ const useEditRoles = () =>{
     return{
         search,setSearch,
         usersList,setUsersList,
-        handleChangeRole
+        handleChangeRole,
     }
 }
 
