@@ -1,13 +1,11 @@
 import "./edit-roles.css";
 import { BsSearch } from "react-icons/bs";
 import { useEditRoles } from "../../hooks";
-import { MdOutlineFileDownloadDone } from "react-icons/md";
 const EditRoles = () => {
   const {
     search,
     setSearch,
     usersList,
-    setUsersList,
     handleChangeRole,
   } = useEditRoles();
   return (

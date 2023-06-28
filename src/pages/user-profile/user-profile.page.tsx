@@ -10,8 +10,11 @@ import { BiDownArrow } from "react-icons/bi";
 import { useEditUser } from "../../hooks";
 import { Button } from "../../components/core";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../components/providers/user.provider";
 
 const UserProfile = () => {
+  const {user} = useContext(UserContext);
   const {
     uploadImage,
     inputState,
@@ -251,7 +254,10 @@ const UserProfile = () => {
           </Button>
         </div>
       </div>
-      <EditRoles />
+      {
+        user?.role === 'manager' &&
+        <EditRoles />
+      }
     </div>
   );
 };

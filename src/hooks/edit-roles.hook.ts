@@ -37,11 +37,12 @@ const useEditRoles = () =>{
     React.useMemo(async()=>{
         console.log({search});
         getUsers();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[search]);
 
     return{
         search,setSearch,
-        usersList,setUsersList,
+        usersList, 
         handleChangeRole,
     }
 }
