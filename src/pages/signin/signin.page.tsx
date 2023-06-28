@@ -6,7 +6,8 @@ import { useSignin } from '../../hooks';
 
 const Signin = () => {
     const signin = useSignin();
-    return signin.user ? (
+
+    return !signin.user ? (
         <div className='signin'>
             <div className='signinWrapper'>
                 <img src={partialLogo} alt="" />
