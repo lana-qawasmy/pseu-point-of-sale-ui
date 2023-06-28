@@ -15,12 +15,14 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
+    text-transform: capitalize;
     align-items: center;
     flex-basis: 20%;
     border-radius: 2px;
 }
 
-.orderContainer td.silver {
+.orderContainer td.upperSilver {
+    text-transform: uppercase;
     color: var(--secondaryColor);
     font-weight: 400;
 }

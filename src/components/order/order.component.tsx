@@ -17,10 +17,10 @@ const Order = (props: IProps) => {
     return (
         <tr className='orderContainer'>
             <td>{orderNo}</td>
-            <td>{cashierName}</td>
+            <td>{cashierName.toLowerCase()}</td>
             <td>{total.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$</td>
-            <td className='silver'>{splitTime}</td>
-            <td className='silver'>{splitDate}</td>
+            <td className='upperSilver'>{splitTime}</td>
+            <td className='upperSilver'>{splitDate}</td>
         </tr>
     );
 };
