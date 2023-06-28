@@ -1,8 +1,8 @@
 import { OrderNS } from '../types/order.type';
 
-const getOrders = (token: string, page: number) => {
+const getOrders = (token: string, page: number, start: string, end: string, searchTerms?: string) => {
     try {
-        return fetch(`${process.env.REACT_APP_SERVER_URL}/order/getOrders?page=${page}`, {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/order/getOrders?page=${page}&startDate=${start}&endDate=${end}${searchTerms ? `&searchTerms=${searchTerms}` : ''}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

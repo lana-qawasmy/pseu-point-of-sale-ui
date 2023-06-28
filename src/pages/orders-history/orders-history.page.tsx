@@ -10,42 +10,71 @@ const OrdersHistory = () => {
         ordersList,
         page,
         numberOfPages,
+        dateRange,
         setPage,
         handleSearch,
+        handleStartDateChange,
+        handleEndDateChange,
     } = useOrderHistory();
+
+
+
     return (
         <div className='orderHistoryPage'>
             <h2>Order History</h2>
-            <span className='searchBarInOrderHistoryPage'>
-                <SearchBar
-                    Id='searchInOrderHistory'
-                    Name='Search3'
-                    Value={params.get("searchTerms") || ""}
-                    Padding={12}
-                    OnChange={handleSearch}
-                    Placeholder='Search'
-                    Radius={5}
-                />
-            </span>
             <table className='ordersTable'>
+                <tr className='filterBarInOrderHistoryPage'>
+                    <span className='searchBarInOrderHistoryPage'>
+                        <SearchBar
+                            Id='searchInOrderHistory'
+                            Name='Search3'
+                            Value={params.get("searchTerms") || ""}
+                            Padding={12}
+                            OnChange={handleSearch}
+                            Placeholder='Search'
+                            Radius={5}
+                        />
+                    </span>
+                    <span className='dateSearchInOrderHistoryPage'>
+                        <input
+                            type="date"
+                            min={'2000-01-01'}
+                            max={dateRange.end}
+                            onChange={(e) => handleStartDateChange(e)}
+                        />
+                        <span>
+                            &nbsp;&nbsp;To&nbsp;&nbsp;
+                        </span>
+                        <input
+                            type="date"
+                            min={dateRange.start}
+                            max={new Date().toISOString().split('T')[0]}
+                            onChange={(e) => handleEndDateChange(e)}
+                        />
+                    </span>
+                </tr>
                 <tr className='headerInOrdersTable'>
                     <th>Order No.</th>
-                    <th>Casher Name</th>
+                    <th>Cashier Name</th>
                     <th>Total</th>
                     <th>Time</th>
                     <th>Date</th>
                 </tr>
                 {
-                    ordersList?.map((order: OrderNS.IOrder) => {
-                        return <Order
-                            key={order._id + 'orderPage'}
-                            orderNo={order.orderNumber as number}
-                            cashierName={order.cashierName}
-                            total={order.total}
-                            time={order.time as string}
-                            date={order.date as string}
-                        />;
-                    })
+                    ordersList.length > 0 ?
+                        ordersList?.map((order: OrderNS.IOrder) => {
+                            return <Order
+                                key={order._id + 'orderPage'}
+                                orderNo={order.orderNumber as number}
+                                cashierName={order.cashierName}
+                                total={order.total}
+                                time={order.time as string}
+                                date={order.date as string}
+                            />;
+                        })
+                        : <div className='emptyOrders'>
+                            There isn't any orders
+                        </div>
                 }
                 <tr className='buttonsInOrdersTable' >
                     <Button
@@ -60,10 +89,7 @@ const OrdersHistory = () => {
                         Previous Page
                     </Button>
                     <span className='pageNumber'>
-                        Page:
-                        <span>
-                            &nbsp;{page}
-                        </span>
+                        <strong>Page:&nbsp;{page + 1}</strong>
                     </span>
                     <Button
                         Color='#080961'
@@ -72,7 +98,7 @@ const OrdersHistory = () => {
                         Ratio='10/4'
                         Width='120'
                         Type='Primary'
-                        Disabled={numberOfPages - 1 === page}
+                        Disabled={numberOfPages - 1 <= page}
                         onClick={() => setPage((currentPage) => currentPage + 1)}
                     >
                         Next Page

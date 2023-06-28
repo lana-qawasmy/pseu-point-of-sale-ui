@@ -7,7 +7,7 @@
     margin-top: 72px;
 
     --primaryColor: #080961;
-    --secondaryColor: gray;
+    --secondaryColor: #ADADAF;
     --primaryFont: 'Inter';
     font-family: var(--primaryFont);
 }
@@ -20,8 +20,49 @@
     margin: 0;
 }
 
-.orderHistoryPage .searchBarInOrderHistoryPage {
-    padding-left: 22px;
+.orderHistoryPage .ordersTable {
+    display: flex;
+    margin-top: 20px;
+}
+
+.orderHistoryPage .ordersTable .emptyOrders {
+    font-weight: bold;
+    color: var(--primaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 570px;
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .searchBarInOrderHistoryPage {
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: 50%;
+}
+
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .searchBarInOrderHistoryPage .searchWrapper {
+    padding: 0px;
+}
+
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-basis: 50%;
+}
+
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage span {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--primaryColor);
 }
 
 .orderHistoryPage .orderBar {
@@ -71,8 +112,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--secondaryColor);
-}
-.orderHistoryPage .ordersTable .buttonsInOrdersTable .pageNumber span{
     color: var(--primaryColor);
 }
