@@ -19,3 +19,8 @@
     flex-basis: 20%;
     border-radius: 2px;
 }
+
+.orderContainer td.silver {
+    color: var(--secondaryColor);
+    font-weight: 400;
+}
