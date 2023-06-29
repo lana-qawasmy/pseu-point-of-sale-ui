@@ -74,7 +74,7 @@ const CollectionBar = (props: IProps) => {
                     <div className="collectionText">Add</div>
                 </button>
                 <div className="seeAllWrapper">
-                    <Link to={'/viewCategories'}>See All</Link>
+                    <Link to={'/viewCollections'}>See All</Link>
                 </div>
             </div>
             <AddNewCollectionBlock

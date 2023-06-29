@@ -9,10 +9,10 @@ import { useNavigate } from 'react-router-dom';
 
 interface IState {
     items: ItemNS.Item[];
-    categories: CollectionNS.ICollection[];
+    collections: CollectionNS.ICollection[];
     loading: {
         itemsLoading: boolean;
-        categoriesLoading: boolean;
+        collectionsLoading: boolean;
     };
 }
 
@@ -22,9 +22,9 @@ const usePOSView = () => {
     const navigate = useNavigate();
     const [state, setState] = React.useState<IState>({
         items: [],
-        categories: [],
+        collections: [],
         loading: {
-            categoriesLoading: false,
+            collectionsLoading: false,
             itemsLoading: false
         },
     });
@@ -41,7 +41,7 @@ const usePOSView = () => {
             ...oldState,
             loading: {
                 itemsLoading: true,
-                categoriesLoading: true
+                collectionsLoading: true
             }
         }));
     };
@@ -49,10 +49,10 @@ const usePOSView = () => {
         setState((oldState) => ({
             ...oldState,
             items: items,
-            categories: collections,
+            collections: collections,
             loading: {
                 itemsLoading: false,
-                categoriesLoading: false
+                collectionsLoading: false
             }
         }));
     };
@@ -100,8 +100,8 @@ const usePOSView = () => {
             else {
                 items = await getItems();
             }
-            let categories = await collectionServices.getCollections(user.user?.token as string);
-            stopLoadingItemsAndCollections(items, categories);
+            let collections = await collectionServices.getCollections(user.user?.token as string);
+            stopLoadingItemsAndCollections(items, collections);
         } catch (error) {
             console.error(error);
         }
@@ -111,9 +111,9 @@ const usePOSView = () => {
     return {
         selectedCollection,
         itemsLoading: state.loading.itemsLoading,
-        categoriesLoading: state.loading.categoriesLoading,
+        collectionsLoading: state.loading.collectionsLoading,
         itemsTable: state.items,
-        categoriesList: state.categories,
+        collectionsList: state.collections,
         useParams,
         navigate,
         handleSelectedCollection,

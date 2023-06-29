@@ -14,7 +14,7 @@ const ViewExistedItems = () => {
         showAddForm,
         newCollectionFields,
         itemsLoading,
-        categoriesLoading,
+        collectionsLoading,
 
         setShowAddForm,
         setNewCollectionFields,
@@ -33,7 +33,7 @@ const ViewExistedItems = () => {
             <CollectionBar
                 collectionList={collectionList}
                 disableAddBlock={false}
-                loading={categoriesLoading}
+                loading={collectionsLoading}
                 selectedCollection={selectedCollection}
                 newCollectionFields={newCollectionFields}
                 setNewCollectionFields={setNewCollectionFields}

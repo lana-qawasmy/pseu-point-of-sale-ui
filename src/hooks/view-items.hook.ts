@@ -12,10 +12,10 @@ interface itemWithSelect {
 
 interface IState {
     items: itemWithSelect[];
-    categories: CollectionNS.ICollection[];
+    collections: CollectionNS.ICollection[];
     loading: {
         itemsLoading: boolean;
-        categoriesLoading: boolean;
+        collectionsLoading: boolean;
     };
 }
 
@@ -23,7 +23,7 @@ const useViewItems = () => {
     const user = React.useContext(UserContext);
 
     const [state, setState] = React.useState<IState>({
-        items: [], categories: [], loading: { categoriesLoading: false, itemsLoading: false }
+        items: [], collections: [], loading: { collectionsLoading: false, itemsLoading: false }
     });
     const [selectedCollection, setSelectedCollection] = React.useState<CollectionNS.ICollection | null>(null);
 
@@ -48,7 +48,7 @@ const useViewItems = () => {
             ...oldState,
             loading: {
                 itemsLoading: true,
-                categoriesLoading: true
+                collectionsLoading: true
             }
         }));
     };
@@ -57,7 +57,7 @@ const useViewItems = () => {
             ...oldState,
             loading: {
                 itemsLoading: false,
-                categoriesLoading: false
+                collectionsLoading: false
             }
         }));
     };
@@ -108,7 +108,7 @@ const useViewItems = () => {
         if (newState) {
             setState((oldState) => ({
                 ...oldState,
-                categories: newState?.categories,
+                collections: newState?.collections,
                 items: newState.newItemTable
             }));
         }
@@ -131,7 +131,7 @@ const useViewItems = () => {
                         items: newItems,
                         loading: {
                             itemsLoading: false,
-                            categoriesLoading: false
+                            collectionsLoading: false
                         }
                     }));
                 }
@@ -149,7 +149,7 @@ const useViewItems = () => {
                 setNotification({ message: message });
                 const newCollection = await getCollection(collectionId);
                 setSelectedCollection((oldState) => newCollection);
-                const newCollectionList = state.categories.map((cat) => {
+                const newCollectionList = state.collections.map((cat) => {
                     if (cat._id === newCollection._id)
                         return newCollection;
                     else
@@ -158,10 +158,10 @@ const useViewItems = () => {
                 setState((oldState) => ({
                     ...oldState,
                     items: getTableWithState(oldState.items.map(item => item.item)),
-                    categories: newCollectionList,
+                    collections: newCollectionList,
                     loading: {
                         itemsLoading: false,
-                        categoriesLoading: false,
+                        collectionsLoading: false,
                     }
                 }));
             }
@@ -174,7 +174,7 @@ const useViewItems = () => {
     const getCollection = async (collectionId: string) => {
         try {
             const newCollection = await collectionServices.getCollection(user.user?.token as string, collectionId) || [];
-            const newCollectionList = state.categories.map((collection) => {
+            const newCollectionList = state.collections.map((collection) => {
                 if (collection._id === collectionId)
                     return newCollection;
                 else
@@ -182,7 +182,7 @@ const useViewItems = () => {
             });
             setState((oldState) => ({
                 ...oldState,
-                categories: newCollectionList
+                collections: newCollectionList
             }));
             return newCollection;
         } catch (error) {
@@ -200,7 +200,7 @@ const useViewItems = () => {
             items: newItemTable,
             loading: {
                 itemsLoading: false,
-                categoriesLoading: false
+                collectionsLoading: false
             },
         }));
     };
@@ -208,8 +208,8 @@ const useViewItems = () => {
 
     const getItemsAndCollections = async () => {
         try {
-            const categories: CollectionNS.ICollection[] = await collectionServices.getCollections(user.user?.token as string) || [];
-            const selectedCat = categories.find(cat => cat._id === selectedCollection?._id);
+            const collections: CollectionNS.ICollection[] = await collectionServices.getCollections(user.user?.token as string) || [];
+            const selectedCat = collections.find(cat => cat._id === selectedCollection?._id);
             const items: ItemNS.Item[] = await itemService.getItems(user.user?.token as string, useParams.params.get('searchTerms') || '') || [];
             let newItemTable: itemWithSelect[] = [];
             if (items) {
@@ -223,7 +223,7 @@ const useViewItems = () => {
             }
             return {
                 newItemTable,
-                categories
+                collections
             };
         } catch (error) {
             console.error(error);
@@ -252,11 +252,11 @@ const useViewItems = () => {
         if (newState) {
             setState((oldState) => ({
                 ...oldState,
-                categories: newState.categories,
+                collections: newState.collections,
                 items: newState.newItemTable,
                 loading: {
                     itemsLoading: false,
-                    categoriesLoading: false
+                    collectionsLoading: false
                 }
             }));
         }
@@ -284,7 +284,7 @@ const useViewItems = () => {
             ...oldState,
             items: getTableWithState(state.items.map(item => item.item)),
             loading: {
-                categoriesLoading: false,
+                collectionsLoading: false,
                 itemsLoading: false,
             }
         }));
@@ -293,9 +293,9 @@ const useViewItems = () => {
 
     return {
         itemsTable: state.items,
-        collectionList: state.categories,
+        collectionList: state.collections,
         itemsLoading: state.loading.itemsLoading,
-        categoriesLoading: state.loading.categoriesLoading,
+        collectionsLoading: state.loading.collectionsLoading,
 
         useParams,
         selectedCollection,

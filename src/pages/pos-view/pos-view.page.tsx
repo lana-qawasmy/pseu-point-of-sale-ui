@@ -7,8 +7,8 @@ import { SearchBar } from '../../components/core';
 const PosView = () => {
     const {
         selectedCollection,
-        categoriesList,
-        categoriesLoading,
+        collectionsList,
+        collectionsLoading,
         itemsTable,
         itemsLoading,
         useParams,
@@ -21,9 +21,9 @@ const PosView = () => {
             <div className='collectionWrapper'>
                 <CollectionBar
                     disableAddBlock={true}
-                    collectionList={categoriesList}
+                    collectionList={collectionsList}
                     handleSelectedCollection={handleSelectedCollection}
-                    loading={categoriesLoading}
+                    loading={collectionsLoading}
                     selectedCollection={selectedCollection}
                 />
             </div>
