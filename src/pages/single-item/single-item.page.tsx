@@ -1,7 +1,7 @@
 import "./single-item.css";
 import { useSingleItem } from "../../hooks";
 const SingleItem = () => {
-  const { id, item } = useSingleItem();
+  const { item } = useSingleItem();
   return (
     <>
       {item && (
@@ -18,9 +18,9 @@ const SingleItem = () => {
               </span>
               <div className="price">
                 <span className="certainPrice">
-                  {item.priceHistory[0].price.toFixed(2).toString()}
+                  {item.priceHistory[0].price.toFixed(2).toString()} $
                 </span>
-                <span className="discount">22.05</span>
+                <span className="discount">22.05 $</span>
               </div>
               <span className="description">{item.description}</span>
             </div>
