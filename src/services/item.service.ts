@@ -27,7 +27,6 @@ const addItem = async (item: ItemNS.Item, token: string) => {
 
 const getItems = (token: string, searchTerms?: string) => {
     try {
-        // return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${userId}?searchTerms=${searchTerms}`, {
         return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItems/${searchTerms && `?searchTerms=${searchTerms}`}`, {
             method: 'GET',
             headers: {
@@ -44,6 +43,32 @@ const getItems = (token: string, searchTerms?: string) => {
         return false;
     }
 };
+
+
+const getItem = (token: string,id: string) => {
+    try {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/item/getItem/${id}`, {
+            method: 'GET',
+            headers: {
+                'authorization': token,
+            }
+        }).then(async (response) => {
+            if(response.status ===200)return await response.json();
+            else{
+                const message = await response.json();
+                return message.message;
+            } 
+        }).catch((error) => {
+            console.error(error);
+            return undefined;
+        });
+    } catch (error) {
+        console.error(error);
+        return undefined;
+    }
+};
+
+
 
 const deleteItem = (userId: string, itemId: string, token: string) => {
     try {
@@ -93,5 +118,6 @@ export default {
     addItem,
     getItems,
     deleteItem,
-    updateItem
+    updateItem,
+    getItem
 };

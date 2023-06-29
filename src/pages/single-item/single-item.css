@@ -1,0 +1,7 @@
+.singleItemPage{
+    max-width: 100%;
+    height: auto;
+    margin-top: 76px;
+    margin-left: 60px;
+    overflow: auto;
+}
