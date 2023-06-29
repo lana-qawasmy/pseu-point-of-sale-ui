@@ -18,7 +18,7 @@ interface IState {
 
 const usePOSView = () => {
     const user = React.useContext(UserContext);
-    const [selectedCategory, setSelectedCategory] = React.useState<CollectionNS.ICollection | null>(null);
+    const [selectedCollection, setSelectedCollection] = React.useState<CollectionNS.ICollection | null>(null);
     const navigate = useNavigate();
     const [state, setState] = React.useState<IState>({
         items: [],
@@ -59,8 +59,8 @@ const usePOSView = () => {
 
 
 
-    const handleSelectedCategory = async (category: CollectionNS.ICollection | null) => {
-        setSelectedCategory(category);
+    const handleSelectedCollection = async (collection: CollectionNS.ICollection | null) => {
+        setSelectedCollection(collection);
     };
 
 
@@ -82,7 +82,7 @@ const usePOSView = () => {
         try {
             const items = await collectionServices.getCollectionItems(
                 user.user?.token as string,
-                (selectedCategory && selectedCategory._id as string) || '',
+                (selectedCollection && selectedCollection._id as string) || '',
                 useParams.params.get('searchTerms') || '');
             return items;
         } catch (error) {
@@ -94,7 +94,7 @@ const usePOSView = () => {
         loadingItemsAndCollections();
         let items: ItemNS.Item[];
         try {
-            if (selectedCategory !== null) {
+            if (selectedCollection !== null) {
                 items = await getItemsForACollection() || [];
             }
             else {
@@ -106,17 +106,17 @@ const usePOSView = () => {
             console.error(error);
         }
         // eslint-disable-next-line
-    }, [useParams.params, selectedCategory]);
+    }, [useParams.params, selectedCollection]);
 
     return {
-        selectedCategory,
+        selectedCollection,
         itemsLoading: state.loading.itemsLoading,
         categoriesLoading: state.loading.categoriesLoading,
         itemsTable: state.items,
         categoriesList: state.categories,
         useParams,
         navigate,
-        handleSelectedCategory,
+        handleSelectedCollection,
         handleSearch,
     };
 };

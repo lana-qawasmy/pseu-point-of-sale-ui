@@ -10,7 +10,7 @@
     font-family: 'Inter';
 }
 
-.posViewContainer .categoryWrapper {
+.posViewContainer .collectionWrapper {
     display: flex;
     justify-content: center;
     max-width: 100%;

@@ -11,7 +11,7 @@ interface IProps {
     OnDelete?: (userId: string, itemId: string) => void;
     OnSelect?: () => void;
     OnEdit?: () => void;
-    selectedCategory: CollectionNS.ICollection | null;
+    selectedCollection: CollectionNS.ICollection | null;
 }
 
 const Item = (props: IProps) => {
@@ -74,7 +74,7 @@ const Item = (props: IProps) => {
                 </div>
             }
             {
-                (!props.Selected) && props.OnSelect && props.selectedCategory !== null &&
+                (!props.Selected) && props.OnSelect && props.selectedCollection !== null &&
                 <span className='grCheckbox'>
                     <GrCheckbox
                         size={20}
@@ -98,7 +98,7 @@ const Item = (props: IProps) => {
                 </span>
             }
             {
-                props.Selected && props.OnSelect && props.selectedCategory !== null &&
+                props.Selected && props.OnSelect && props.selectedCollection !== null &&
                 <span className='grCheckbox'>
                     <GrCheckboxSelected
                         size={20}

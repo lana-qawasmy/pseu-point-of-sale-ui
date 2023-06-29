@@ -4,7 +4,7 @@ import { GoLinkExternal } from 'react-icons/go';
 import { NavigateFunction } from 'react-router-dom';
 
 interface IProps {
-    selectedCategory: CollectionNS.ICollection | null;
+    selectedCollection: CollectionNS.ICollection | null;
     item: ItemNS.Item;
     DeletedPrice?: number;
     OnSelect: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;

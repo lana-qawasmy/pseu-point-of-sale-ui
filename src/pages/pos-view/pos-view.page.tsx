@@ -1,12 +1,12 @@
 import './pos-view.css';
-import '../../components/core/category-block/category-block.css';
-import { CategoryBar, ItemInPOS } from '../../components';
+import '../../components/core/collection-block/collection-block.css';
+import { CollectionBar, ItemInPOS } from '../../components';
 import { usePOSView } from '../../hooks';
 import { SearchBar } from '../../components/core';
 
 const PosView = () => {
     const {
-        selectedCategory,
+        selectedCollection,
         categoriesList,
         categoriesLoading,
         itemsTable,
@@ -14,17 +14,17 @@ const PosView = () => {
         useParams,
         navigate,
         handleSearch,
-        handleSelectedCategory,
+        handleSelectedCollection,
     } = usePOSView();
     return (
         <div className='posViewContainer'>
-            <div className='categoryWrapper'>
-                <CategoryBar
+            <div className='collectionWrapper'>
+                <CollectionBar
                     disableAddBlock={true}
-                    categoryList={categoriesList}
-                    handleSelectedCategory={handleSelectedCategory}
+                    collectionList={categoriesList}
+                    handleSelectedCollection={handleSelectedCollection}
                     loading={categoriesLoading}
-                    selectedCategory={selectedCategory}
+                    selectedCollection={selectedCollection}
                 />
             </div>
             <div className="searchBarWrapper">
@@ -53,7 +53,7 @@ const PosView = () => {
                                 <ItemInPOS
                                     navigate={navigate}
                                     key={item._id as string}
-                                    selectedCategory={selectedCategory || null}
+                                    selectedCollection={selectedCollection || null}
                                     item={item}
                                     OnSelect={() => console.log(1)}
                                 />

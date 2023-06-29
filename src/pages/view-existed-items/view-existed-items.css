@@ -16,7 +16,7 @@
     font-family: 'Inter';
 }
 
-.viewItemsPage > .categoryBarContainer{
+.viewItemsPage > .collectionBarContainer{
     padding-top: 35px;
     justify-content: center;
 }

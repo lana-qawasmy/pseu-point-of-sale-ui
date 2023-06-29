@@ -1,6 +1,6 @@
 import "./view-existed-items.css";
 import { Item } from "../../components";
-import { CategoryBar } from "../../components";
+import { CollectionBar } from "../../components";
 import { useViewItems } from "../../hooks";
 import { SearchBar } from "../../components/core";
 
@@ -8,40 +8,40 @@ const ViewExistedItems = () => {
     const {
         itemsTable,
         useParams,
-        selectedCategory,
+        selectedCollection,
 
-        categoryList,
+        collectionList,
         showAddForm,
-        newCategoryFields,
+        newCollectionFields,
         itemsLoading,
         categoriesLoading,
 
         setShowAddForm,
-        setNewCategoryFields,
+        setNewCollectionFields,
         handleInputValidation,
-        handleSubmitNewCategory,
+        handleSubmitNewCollection,
 
         handleChangeSelectItem,
         handleDelete,
         handleSearch,
-        handleSelectedCategory,
+        handleSelectedCollection,
     } = useViewItems();
 
 
     return (
         <div className="viewItemsPage">
-            <CategoryBar
-                categoryList={categoryList}
+            <CollectionBar
+                collectionList={collectionList}
                 disableAddBlock={false}
                 loading={categoriesLoading}
-                selectedCategory={selectedCategory}
-                newCategoryFields={newCategoryFields}
-                setNewCategoryFields={setNewCategoryFields}
+                selectedCollection={selectedCollection}
+                newCollectionFields={newCollectionFields}
+                setNewCollectionFields={setNewCollectionFields}
                 showAddForm={showAddForm}
                 setShowAddForm={setShowAddForm}
                 handleInputValidation={handleInputValidation}
-                handleSubmitNewCategory={handleSubmitNewCategory}
-                handleSelectedCategory={handleSelectedCategory}
+                handleSubmitNewCollection={handleSubmitNewCollection}
+                handleSelectedCollection={handleSelectedCollection}
             />
             <div className="searchBarWrapper">
                 <SearchBar
@@ -67,14 +67,14 @@ const ViewExistedItems = () => {
                         itemsTable.map((item) => {
                             return item.item.priceHistory[0] && (
                                 <Item
-                                    selectedCategory={selectedCategory}
+                                    selectedCollection={selectedCollection}
                                     key={item.item._id}
                                     item={item.item}
                                     DeletedPrice={12}
                                     Selected={item.selected}
                                     OnDelete={handleDelete}
                                     OnEdit={() => console.log(1)}
-                                    OnSelect={() => handleChangeSelectItem(item.item._id, selectedCategory?._id as string)}
+                                    OnSelect={() => handleChangeSelectItem(item.item._id, selectedCollection?._id as string)}
                                 />
                             );
                         })}
