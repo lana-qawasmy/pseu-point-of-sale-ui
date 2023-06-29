@@ -1,7 +1,72 @@
 .singleItemPage{
     max-width: 100%;
-    height: auto;
-    margin-top: 76px;
-    margin-left: 60px;
+    height: 78vh;
+    margin-top: 189px;
+    margin-left: 179px;
     overflow: auto;
+    background-color: #f3f4f8;
+    display: flex;
+}
+
+.singleItemContainer{
+    display: flex;
+    column-gap: 49px;
+    align-items: self-start;
+    height: auto;
+}
+
+.singleItemContainer>.image{
+    background-color: rebeccapurple;
+    width: 400px;
+    aspect-ratio: 4/3;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 8px;
+}
+
+.singleItemContainer>.content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;
+}
+
+.singleItemContainer>.content>h2{
+    color: #030480;
+    margin-top: 0;
+}
+
+.singleItemContainer>.content>.quantity{
+    display: flex;
+    column-gap: 10px;
+    color: #030480;
+}
+
+.singleItemContainer>.content>.quantity>.number{
+    font-weight: bold;
+    color: #030480;
+}
+
+.singleItemContainer>.content>.price{
+    display: flex;
+    column-gap: 10px;
+    font-weight: bold;
+    font-size: 19px;
+    margin: 15px 0px 15px;
+}
+
+.singleItemContainer>.content>.price>.certainPrice{
+    color: #2c64c6;
+}
+.singleItemContainer>.content>.price>.discount{
+    text-decoration: line-through;
+    color: #adadae;
+}
+
+.singleItemContainer>.content>.description{
+    width: 100%;
+    height: 250px;
+    text-align: left;
+    overflow-y: auto
 }
