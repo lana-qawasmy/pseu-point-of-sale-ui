@@ -35,6 +35,7 @@ const PriceHistory = (props: Iprops) =>{
                 className={`arrowIcon ${showPriceHistoryList ? "flipUp" : ""}`}
                 /></div>
             </div>
+            <hr />
             <div className={`listContainer ${showPriceHistoryList ? "slideIn" : "slideOut"}`}>
                 {showPriceHistoryList&&
                     sortedList.map((item,index)=>{

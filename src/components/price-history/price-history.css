@@ -13,10 +13,8 @@
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.459);
     cursor: pointer;
     transition: 0.3s;
-    padding: 0px 20px 0px 20px;
 }
 
 .priceHistoryContainer > .priceHistoryAnchor:hover{
@@ -72,4 +70,9 @@
     justify-content: flex-end;
     color: #adadae;
     padding-right: 30px;
+}
+
+.priceHistoryContainer>hr{
+    margin: 0;
+    outline: 1px black;
 }
