@@ -1,5 +1,6 @@
 import "./single-item.css";
 import { useSingleItem } from "../../hooks";
+import { PriceHistory } from "../../components";
 const SingleItem = () => {
   const { item } = useSingleItem();
   return (
@@ -25,6 +26,7 @@ const SingleItem = () => {
               <span className="description">{item.description}</span>
             </div>
           </div>
+          <PriceHistory priceHistory={item.priceHistory as { date: Date; price: Number; }[]}/>
         </div>
       )}
     </>
