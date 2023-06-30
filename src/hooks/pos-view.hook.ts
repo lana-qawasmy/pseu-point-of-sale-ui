@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { UserContext } from "../components/providers/user.provider";
 import { CollectionNS, ItemNS } from "../types";
 import useNotification from "./notification.hook";
-import { useParam } from ".";
+import { useBarcode, useParam } from ".";
 import { collectionServices, itemService } from "../services";
 import { useNavigate } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const usePOSView = () => {
       itemsLoading: false,
     },
   });
-
+  const barcode = useBarcode();
   const { setNotification } = useNotification();
   const useParams = useParam();
 
@@ -71,21 +71,23 @@ const usePOSView = () => {
   };
 
   const getItems = async () => {
-    try {
-      let items = await itemService.getItems(
-        user.user?.token as string,
-        useParams.params.get("searchTerms") || ""
-      );
-      if (items) {
-        return items;
-      } else {
-        setNotification({
-          message: "Error fetching the items",
-          status: "error",
-        });
+    if(user.user){
+      try {
+        let items = await itemService.getItems(
+          user.user?.token as string,
+          useParams.params.get("searchTerms") || ""
+        );
+        if (items) {
+          return items;
+        } else {
+          setNotification({
+            message: "Error fetching the items",
+            status: "error",
+          });
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -132,6 +134,14 @@ const usePOSView = () => {
       setPrice(0);
     }
   }, [selectedItems]);
+
+  useEffect(()=>{
+    let newArray = state.items;
+    const item = newArray.filter((item)=>{return item.barcode === barcode.result});
+    if(item.length === 1){
+        handleSelectedItems(item[0]);
+    }// eslint-disable-next-line react-hooks/exhaustive-deps
+  },[barcode.result])
 
   React.useMemo(async () => {
     loadingItemsAndCollections();

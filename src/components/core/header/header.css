@@ -17,6 +17,7 @@
     display: flex;
     color: #03045e;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .header .userImage {
@@ -29,4 +30,5 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
