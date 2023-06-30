@@ -6,3 +6,4 @@ export {default as ItemForm } from './add-item/item-form/item-form.component'
 export { default as SellBar } from './sell-bar/sell-bar.component';
 export { default as SellCard } from './sell-card/sell-card.component';
 export { default as PriceHistory } from './price-history/price-history.component';
+export { default as EditRoles } from './edit-roles/edit-roles.component';
