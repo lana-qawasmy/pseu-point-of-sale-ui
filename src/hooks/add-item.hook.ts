@@ -17,6 +17,7 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
         state: initialItem?.image ? true : false,
         value: initialItem?.image || defaultItemImage,
     });
+    const [barcodeInput, setBarcodeInput] = useState<string>('')
     const user = useContext(UserContext);
     const itemsContext = useContext(ItemsContext)
     const { setNotification } = useNotification();
@@ -162,6 +163,7 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
         setHideImagePopup,
         uploadImage,
         submitHandler,
+        barcodeInput, setBarcodeInput
     };
 };
 

@@ -21,9 +21,11 @@ const Header = () => {
                         < div
                             className='userImage'
                             style={{ backgroundImage: `url('${userContext.user?.image || defaultUserImage}')` }}
-                            onClick={()=>navigate('/profile')}
+                            onClick={() => navigate('/profile')}
                         />
-                        < span className='userName' > {userContext.user?.fullName}</span >
+                        < span className='userName' onClick={() => navigate('/profile')} >
+                            {userContext.user?.fullName}
+                        </span >
                     </div > : null
             }
         </>

@@ -16,16 +16,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 35%;
+    height: 49%;
     border-bottom: 5px dotted #e0e2e8;
 }
 
 .sectionTwo{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 35%;
+    height: 30%;
     border-bottom: 5px dotted #e0e2e8;
 }
 
@@ -36,17 +36,20 @@
 
 .row{
     margin-bottom: 22px;
+    height: 1px;
     margin-top: 22px;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    column-gap: 180px;
+    column-gap: 72px;
+    row-gap: 29px;
 }
 
 .sectionThree{
+    margin-top: 14px;
     display: flex;
     flex-direction: column;
-    row-gap: 85px;
+    row-gap: 35px;
 }
 
 .sectionThree .buttonContainer{
