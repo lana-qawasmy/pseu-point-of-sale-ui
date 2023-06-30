@@ -4,11 +4,6 @@ import { orderService } from '../services';
 import { UserContext } from '../components/providers/user.provider';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-interface dateRange {
-    start: string;
-    end: string;
-}
-
 const useOrderHistory = () => {
     const [ordersList, setOrdersList] = React.useState([]);
     const [page, setPage] = React.useState(0);
@@ -53,10 +48,6 @@ const useOrderHistory = () => {
         setParamsOverride('endDate', end);
     };
     const getOrders = async (start: string, end: string, searchTerms?: string) => {
-        console.log({ start });
-        console.log({ end });
-        console.log({ searchTerms });
-
         try {
             const orders = await orderService.getOrders(user.user?.token as string, page, start, end, searchTerms);
             setOrdersList(orders.orders);
@@ -83,6 +74,7 @@ const useOrderHistory = () => {
             return navigate('/signin', { replace: false });
         const date = new Date().toISOString().split('T')[0];
         setParamsOverride2('startDate', '2000-01-01', 'endDate', date);
+        // eslint-disable-next-line
     }, [user, navigate]);
 
     return {
