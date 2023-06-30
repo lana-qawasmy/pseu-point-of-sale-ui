@@ -45,7 +45,6 @@ const UserProfile = () => {
             className="image"
             style={{ backgroundImage: `url("${inputState.image}")` }}
           ></div>
-          {/* {showImageButtons && ( */}
           {showImageButtons && (
             <div className="imageButtonsWrapper">
               <label htmlFor="imageFile" className="btn">
