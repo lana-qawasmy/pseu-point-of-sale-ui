@@ -1,8 +1,8 @@
 .editRolesContainer {
-    width: 700px;
-    height: 500px;
-    margin-top: 101px;
-    font-family: Inter;
+  width: 500px;
+  height: 500px;
+  margin-top: 101px;
+  font-family: Inter;
   }
   .editRolesContainer>h1{
     color: #03045e;

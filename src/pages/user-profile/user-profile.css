@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: flex-start;
   width: auto;
-  height: 100vh;
+  min-height: 90vh;
   background-color: #f3f4f8;
   margin-top: 72px;
-  margin-left: -56px;
+  margin-left: 63px;
   overflow-x: hidden;
 }
 
@@ -14,6 +14,7 @@
   margin-left: 60px;
   display: flex;
   justify-content: space-around;
+  column-gap: 30px;
 }
 
 .userProfileContainer .imageWrapper {
@@ -21,7 +22,7 @@
   position: relative;
   height: auto;
   padding: 30px;
-  padding-left: 207px;
+
 }
 
 .imageWrapper .image {
@@ -36,7 +37,7 @@
 .imageButtonsWrapper {
   position: absolute;
   bottom: -3px;
-  left: 210px;
+  left: 33px;
   margin-bottom: 36px;
   display: flex;
   flex-direction: column;
@@ -62,7 +63,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 215px;
   height: 100px;
   justify-content: space-around;
 }
@@ -90,7 +90,7 @@
 .userProfileContainer .passwordAnchor {
   width: 100%;
   display: flex;
-  margin-left: 217px;
+  -webkit-user-select: none;
   user-select: none;
   cursor: pointer;
 }
@@ -139,7 +139,6 @@
   width: auto;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 213px;
   margin-top: 6px;
   border-bottom: 1px solid #b5b5b5;
 }
@@ -173,7 +172,6 @@
 .userProfileContainer .buttonsWrapper {
   display: flex;
   width: 100%;
-  margin-left: 199px;
   justify-content: flex-start;
   column-gap: 210px;
   position: relative;

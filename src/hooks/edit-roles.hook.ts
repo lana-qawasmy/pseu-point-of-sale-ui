@@ -9,11 +9,14 @@ const useEditRoles = () =>{
     const {user} = useContext(UserContext);
     const [usersList, setUsersList] = useState<UserNS.User[]>([]);
     const [search,setSearch] = useState<string>('');
-    const {setNotification} = useNotification()
+    const {setNotification} = useNotification();
+    
     const getUsers = async()=>{
         const users = await rolesServices.getUsers(user?.token || '', search);
+        const newUsers : UserNS.User[] = [...users];
+            const index = newUsers.findIndex(item=> item._id === user?._id);
+            users.splice(index,1);
         setUsersList([...users]);
-        console.log('Users: ', users);
     };
     const updateUserRole = async(user: UserNS.User) => {
         const updatedUser = await updateUser(user);

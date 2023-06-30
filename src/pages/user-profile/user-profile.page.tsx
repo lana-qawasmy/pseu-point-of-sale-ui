@@ -45,7 +45,8 @@ const UserProfile = () => {
             className="image"
             style={{ backgroundImage: `url("${inputState.image}")` }}
           ></div>
-          {showImageButtons && (
+          {/* {showImageButtons && ( */}
+          {(
             <div className="imageButtonsWrapper">
               <label htmlFor="imageFile" className="btn">
                 Change <AiOutlineEdit />
@@ -255,7 +256,7 @@ const UserProfile = () => {
         </div>
       </div>
       {
-        user?.role === 'manager' &&
+        user?.role === 'admin' &&
         <EditRoles />
       }
     </div>
