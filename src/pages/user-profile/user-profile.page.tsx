@@ -46,7 +46,7 @@ const UserProfile = () => {
             style={{ backgroundImage: `url("${inputState.image}")` }}
           ></div>
           {/* {showImageButtons && ( */}
-          {(
+          {showImageButtons && (
             <div className="imageButtonsWrapper">
               <label htmlFor="imageFile" className="btn">
                 Change <AiOutlineEdit />
