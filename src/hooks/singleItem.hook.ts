@@ -24,7 +24,6 @@ const useSingleItem = () => {
         priceHistory: response.priceHistory,
         _id: response._id,
       });
-      console.log(item);
     } else {
       setNotification({ message: response, status: "error", autoClose: 2000 });
       navigate("/");
@@ -34,7 +33,6 @@ const useSingleItem = () => {
     getItem();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(id);
 
   return {
     id,

@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import React from 'react';
 import './price-history.css';
 import { IoIosArrowDropdown } from 'react-icons/io';
 interface Iprops{
@@ -14,15 +14,22 @@ const PriceHistory = (props: Iprops) =>{
         });
         return formattedDate;
       }
-    const [showPriceHistoryList,setShowPriceHistoryList] = useState<boolean>(false)
+    const [showPriceHistoryList,setShowPriceHistoryList] = React.useState<boolean>(false)
     const {priceHistory} = props;
-    const[sortedList, setSortedList] = useState([...priceHistory]);
-    useEffect(()=>{
-        priceHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        setSortedList([...priceHistory]);
+    const[sortedList, setSortedList] = React.useState([...priceHistory]);
+    React.useMemo(()=>{
+        if (priceHistory.length > 1){
+           if(new Date(priceHistory[1].date).getTime() > new Date(priceHistory[0].date).getTime()){
+               setSortedList([...priceHistory.reverse()]);
+            }else{
+                setSortedList([...priceHistory]);
+            }
+        }else{
+            setSortedList([...priceHistory]);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
-    console.log(priceHistory)
+
     return(
         <div className="priceHistoryContainer">
             <div className="priceHistoryAnchor"
