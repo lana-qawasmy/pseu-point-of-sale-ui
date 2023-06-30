@@ -10,7 +10,6 @@ const OrdersHistory = () => {
         ordersList,
         page,
         numberOfPages,
-        dateRange,
         setPage,
         handleSearch,
         handleStartDateChange,
@@ -39,16 +38,18 @@ const OrdersHistory = () => {
                         <input
                             type="date"
                             min={'2000-01-01'}
-                            max={dateRange.end}
+                            max={params.get('endDate') || ''}
+                            defaultValue={params.get('startDate') || ''}
                             onChange={(e) => handleStartDateChange(e)}
                         />
                         <span>
-                            &nbsp;&nbsp;To&nbsp;&nbsp;
+                            To
                         </span>
                         <input
                             type="date"
-                            min={dateRange.start}
+                            min={params.get('startDate') || ''}
                             max={new Date().toISOString().split('T')[0]}
+                            defaultValue={params.get('endDate') || ''}
                             onChange={(e) => handleEndDateChange(e)}
                         />
                     </span>

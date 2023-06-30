@@ -1,4 +1,3 @@
-import { reverse } from 'dns';
 import './order.css';
 
 interface IProps {
@@ -13,7 +12,8 @@ const Order = (props: IProps) => {
     const { orderNo, cashierName, total, time, date } = props;
     const timeArray = time.split(':');
     const splitTime = timeArray[0] + ':' + timeArray[1] + ' ' + timeArray[2][3] + timeArray[2][4];
-    let splitDate = date.split('T')[0].split('-').reverse().join('/');
+    let splitDate = date.split('T')[0].split('-').reverse().map((dateComponent) => (dateComponent[0] === '0') ? dateComponent[1] : dateComponent).join('/');
+
     return (
         <tr className='orderContainer'>
             <td>{orderNo}</td>

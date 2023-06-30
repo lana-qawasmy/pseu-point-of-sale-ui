@@ -54,15 +54,42 @@
 
 .orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    flex-basis: 50%;
+    flex-basis: 30%;
 }
 
 .orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage span {
     font-size: 15px;
+    flex-basis: 50%;
     font-weight: bold;
     color: var(--primaryColor);
+}
+
+
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage input[type="date"] {
+    flex-basis: 100%;
+    height: 100%;
+    background-color: var(--primaryColor);
+    padding: 8px;
+    font-family: var(--primaryFont);
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage input[type="date"]:disabled {
+    color: #fff;
+}
+
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage ::-webkit-calendar-picker-indicator {
+    background-color: #fff;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 3px;
 }
 
 .orderHistoryPage .orderBar {
