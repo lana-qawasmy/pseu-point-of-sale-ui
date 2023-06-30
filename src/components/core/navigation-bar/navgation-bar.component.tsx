@@ -25,7 +25,7 @@ const NavigationBar = () => {
             <div className="optionsContainer">
                 <IconContext.Provider
                     value={{ color: "#e0e2e8", size: "2em", className: "radioIcons" }}
-                >
+                >{(userContext.user?.role === 'manager' || userContext.user?.role === 'admin') &&
                     <div className="optionWrapper">
                         <button
                             type="button"
@@ -38,6 +38,7 @@ const NavigationBar = () => {
                             <MdAddBox />
                         </button>
                     </div>
+                }
                     <div className="optionWrapper">
                         <button
                             type="button"
@@ -62,6 +63,7 @@ const NavigationBar = () => {
                             <MdHistory />
                         </button>
                     </div>
+                    {(userContext.user?.role === 'manager' || userContext.user?.role === 'admin') &&
                     <div className="optionWrapper">
                         <button
                             type="button"
@@ -74,6 +76,7 @@ const NavigationBar = () => {
                             <LuView />
                         </button>
                     </div>
+                    }
                 </IconContext.Provider>
             </div>
             <div className="logoutContainer">
