@@ -1,6 +1,6 @@
 import './item-form.css';
 import { Image } from "phosphor-react";
-import { useAddItem } from '../../../hooks';
+import { useBarcode,useAddItem } from '../../../hooks';
 import { Button, Input } from '../../core';
 import { ItemNS } from '../../../types';
 
@@ -14,6 +14,7 @@ interface IProps {
 const ItemForm = (props?: IProps) => {
     const item = useAddItem(props?.item || undefined);
     const priceHistorySize = props?.item?.priceHistory.length || 0;
+    const Barcode = useBarcode();
     return (
         <div className="addItemPageContainer">
             <form onSubmit={e => {
@@ -93,7 +94,8 @@ const ItemForm = (props?: IProps) => {
                         Radius={15}
                         Required
                         PlaceHolder="Barcode"
-                        DefaultValue={props?.item?.barcode || ''}
+                        onChange={e => item.setBarcodeInput(e.target.value)}
+                        DefaultValue={props?.item?.barcode || Barcode.result || item.barcodeInput}
                     />
                 </div>
                 <div className="addItemSubmitButton">
