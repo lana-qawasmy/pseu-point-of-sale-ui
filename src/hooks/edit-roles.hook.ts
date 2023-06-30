@@ -27,7 +27,6 @@ const useEditRoles = () =>{
         }
     }
     const handleChangeRole = (value: string, user: UserNS.User, index: number) =>{
-        console.log('whaaat');
         let newUser = user;
         if(value === 'cashier') newUser.role = 'cashier';
         else newUser.role = 'manager';
@@ -35,10 +34,8 @@ const useEditRoles = () =>{
         let newArray = [...usersList];
         newArray[index] = newUser;
         setUsersList([...newArray]);
-        console.log("users List: ",usersList)
     };
     React.useMemo(async()=>{
-        console.log({search});
         getUsers();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[search]);
