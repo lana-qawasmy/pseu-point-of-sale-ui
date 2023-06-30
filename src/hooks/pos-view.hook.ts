@@ -71,21 +71,23 @@ const usePOSView = () => {
   };
 
   const getItems = async () => {
-    try {
-      let items = await itemService.getItems(
-        user.user?.token as string,
-        useParams.params.get("searchTerms") || ""
-      );
-      if (items) {
-        return items;
-      } else {
-        setNotification({
-          message: "Error fetching the items",
-          status: "error",
-        });
+    if(user.user){
+      try {
+        let items = await itemService.getItems(
+          user.user?.token as string,
+          useParams.params.get("searchTerms") || ""
+        );
+        if (items) {
+          return items;
+        } else {
+          setNotification({
+            message: "Error fetching the items",
+            status: "error",
+          });
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
