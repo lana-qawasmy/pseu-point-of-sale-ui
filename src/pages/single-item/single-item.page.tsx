@@ -1,8 +1,9 @@
 import "./single-item.css";
-import { useSingleItem } from "../../hooks";
+import { useSingleItem, formatPrice } from "../../hooks";
 import { PriceHistory } from "../../components";
 const SingleItem = () => {
   const { item } = useSingleItem();
+
   return (
     <>
       {item && (
@@ -19,9 +20,9 @@ const SingleItem = () => {
               </span>
               <div className="price">
                 <span className="certainPrice">
-                  {item.priceHistory[0].price.toFixed(2).toString()} $
+                  {formatPrice(item.priceHistory[0].price)} $
                 </span>
-                <span className="discount">22.05 $</span>
+                <span className="discount">{formatPrice(22.0)} $</span>
               </div>
               <span className="description">{item.description}</span>
             </div>
