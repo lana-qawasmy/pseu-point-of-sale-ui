@@ -77,7 +77,7 @@ const OrdersHistory = () => {
                             There isn't any orders
                         </div>
                 }
-                <tr className='buttonsInOrdersTable' >
+                <div className='buttonsInOrdersTable' >
                     <Button
                         HtmlType='button'
                         Radius={'3'}
@@ -104,7 +104,7 @@ const OrdersHistory = () => {
                     >
                         Next Page
                     </Button>
-                </tr>
+                </div>
             </table>
         </div>
     );
