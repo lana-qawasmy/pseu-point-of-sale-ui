@@ -10,9 +10,9 @@ interface IProps {
     item: ItemNS.Item;
     Selected?: boolean;
     DeletedPrice?: number;
+    Editable?: boolean;
     OnDelete?: (userId: string, itemId: string) => void;
     OnSelect?: () => void;
-    OnEdit?: () => void;
     selectedCategory: CollectionNS.ICollection | null;
 }
 
@@ -35,12 +35,12 @@ const Item = (props: IProps) => {
                 </span>
                 <div className='itemPrice'>
                     <span className='currentItemPrice'>
-                        {priceHistory[0].price.toFixed(2)}$ &nbsp;&nbsp;
+                        {priceHistory[0].price.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$ &nbsp;&nbsp;
                     </span>
                     {
                         props.DeletedPrice &&
                         <span className='deletedItemPrice'>
-                            {props.DeletedPrice.toFixed(2)}$
+                            {props.DeletedPrice.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$
                         </span>
                     }
                 </div>
@@ -117,7 +117,7 @@ const Item = (props: IProps) => {
                 </span>
             }
             {
-                props.OnEdit &&
+                props.Editable &&
                 <span className='fiEdit'>
                     <FiEdit
                         size={20}

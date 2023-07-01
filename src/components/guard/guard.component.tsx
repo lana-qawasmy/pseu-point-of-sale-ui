@@ -9,6 +9,7 @@ interface IProps {
 const Guard = (props: IProps) => {
     const user = React.useContext(UserContext);
     const navigate = useNavigate();
+
     React.useEffect(() => {
         if (!user.user) {
             navigate('/signin', { replace: true });
@@ -17,7 +18,7 @@ const Guard = (props: IProps) => {
 
     return (
         <div>
-            {props.children}
+            {user.user && props.children}
         </div>
     );
 };
