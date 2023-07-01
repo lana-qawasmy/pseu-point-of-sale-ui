@@ -1,6 +1,22 @@
 import './terms.page.css';
+import { useNavigate } from 'react-router-dom';
+import { useNotification } from '../../hooks';
 
 const Terms = () => {
+
+    const navigate = useNavigate();
+    const { setNotification } = useNotification();
+
+    const navigateSignup = () => {
+
+        navigate('/signup');
+    };
+
+    const alarmUser = () => {
+
+        setNotification({ message: "You should accept the terms of service 🔫 🕱" });
+    };
+
     return (
         <div className="wrapper flex_align_justify">
             <div className="terms_service">
@@ -128,11 +144,11 @@ const Terms = () => {
                     </ol>
                 </div>
                 <div className="tc_item tc_foot flex_align">
-                    <button className="decline_btn">Decline</button>
-                    <button className="accept_btn">Accept</button>
+                    <button className="decline_btn" onClick={alarmUser}>Decline</button>
+                    <button className="accept_btn" onClick={navigateSignup}>Accept</button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
-export default Terms;
+export default Terms; 
