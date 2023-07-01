@@ -1,6 +1,7 @@
 .posPage{
     display: flex;
-    margin-left: 63px;
+    justify-content: space-between;
+    margin-left: 63px
 }
 .posViewContainer {
     width: 65%;

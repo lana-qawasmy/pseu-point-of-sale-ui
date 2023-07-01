@@ -1,10 +1,11 @@
 
 .cardContainer{
     height: 100%;
-    width: 80%;
+    width: 100%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 10px;
 }
 .cardContainer::-webkit-scrollbar {
@@ -22,7 +23,7 @@
     border-radius: 10px;
 }
 .cardWrapper{
-    width: 95%;
+    width: 80%;
     height: 85px;
     background-color: white;
     border: 2px solid #dadde3;
@@ -31,6 +32,7 @@
     flex-wrap: nowrap;
     align-items: center;
     cursor: grab;
+    -webkit-user-select: none;
     user-select: none;
 }
 .cardWrapper .image{

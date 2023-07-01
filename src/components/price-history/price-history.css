@@ -1,0 +1,78 @@
+.priceHistoryContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 75%;
+    background-color: white;
+    border-radius: 25px;
+    padding: 0px 40px 0px 40px;
+    user-select: none;
+}
+
+.priceHistoryContainer > .priceHistoryAnchor {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.priceHistoryContainer > .priceHistoryAnchor:hover{
+    transform: translateY(-7%);
+    transition: 0.3s;
+}
+
+.priceHistoryContainer > .priceHistoryAnchor > .leftSection {
+    width: 50%;
+    display: flex;
+    color: #030480;
+    align-items: center;
+}
+
+.priceHistoryContainer > .priceHistoryAnchor > .rightSection {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: flex-end;
+}
+
+.priceHistoryContainer>.listContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    outline: red;
+}
+
+.priceElement{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0px 30px 0px 30px;
+    font-size: 20px;
+}
+
+.priceElement>.priceLeftSection,.priceElement>.priceRightSection{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    height: 100%;
+}
+
+.priceElement>.priceLeftSection{
+    justify-content: flex-start;
+    color: #2c64c6;
+}
+
+.priceElement>.priceRightSection{
+    justify-content: flex-end;
+    color: #adadae;
+    padding-right: 30px;
+}
+
+.priceHistoryContainer>hr{
+    margin: 0;
+    outline: 1px black;
+}

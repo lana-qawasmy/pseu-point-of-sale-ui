@@ -19,6 +19,7 @@ interface IProps {
 
     PlaceHolder?: string;
     Label?: string;
+    DefaultValue?: string;
 
     Status?: boolean;
 
@@ -70,6 +71,7 @@ const Input = (props: IProps) => {
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
+                        defaultValue={props.DefaultValue || ''}
                         required={props.Required}
                         onChange={e => (props.onChange && props.onChange(e))}
                     />
@@ -80,6 +82,7 @@ const Input = (props: IProps) => {
                         style={style}
                         disabled={props.Disabled}
                         placeholder={props.PlaceHolder || ''}
+                        defaultValue={props.DefaultValue || ''}
                         type={props.Type}
                         required={props.Required}
                         onChange={e => (props.onChange && props.onChange(e))}
