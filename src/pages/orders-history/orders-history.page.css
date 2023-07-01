@@ -5,7 +5,7 @@
     align-items: flex-start;
     margin-left: 63px;
     margin-top: 72px;
-
+    row-gap: 20px;
     --primaryColor: #080961;
     --secondaryColor: #ADADAF;
     --primaryFont: 'Inter';
@@ -22,7 +22,19 @@
 
 .orderHistoryPage .ordersTable {
     display: flex;
-    margin-top: 20px;
+    flex-direction: column;
+    font-size: 15px;
+    row-gap: 20px;
+    padding-left: 40px;
+    color: #fff;
+    width: 95%;
+    font-family: var(--primaryFont);
+}
+
+.orderHistoryPage .ordersTable thead {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
 }
 
 .orderHistoryPage .ordersTable .emptyOrders {
@@ -59,7 +71,7 @@
     flex-basis: 30%;
 }
 
-.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage span {
+.orderHistoryPage .ordersTable .filterBarInOrderHistoryPage .dateSearchInOrderHistoryPage strong {
     font-size: 15px;
     flex-basis: 50%;
     font-weight: bold;
@@ -103,18 +115,13 @@
     border-radius: 2px;
 }
 
-.orderHistoryPage .ordersTable {
-    font-size: 15px;
+.orderHistoryPage .ordersTable tbody {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    padding-left: 40px;
-    color: #fff;
-    width: 95%;
-    font-family: var(--primaryFont);
 }
 
-.orderHistoryPage .ordersTable .headerInOrdersTable {
+.orderHistoryPage .ordersTable thead .headerInOrdersTable {
     border-radius: 2px;
     width: 100%;
     height: 40px;
@@ -129,13 +136,15 @@
     flex-basis: 20%;
 }
 
-.orderHistoryPage .ordersTable .buttonsInOrdersTable {
+.orderHistoryPage  .buttonsInOrdersTable {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-left: 40px;
+    width: 92.8%;
 }
 
-.orderHistoryPage .ordersTable .buttonsInOrdersTable .pageNumber {
+.orderHistoryPage  .buttonsInOrdersTable .pageNumber {
     display: flex;
     justify-content: center;
     align-items: center;

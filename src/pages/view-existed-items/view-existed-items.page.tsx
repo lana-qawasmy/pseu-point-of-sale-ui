@@ -73,7 +73,7 @@ const ViewExistedItems = () => {
                                     DeletedPrice={12}
                                     Selected={item.selected}
                                     OnDelete={handleDelete}
-                                    OnEdit={() => console.log(1)}
+                                    Editable={true}
                                     OnSelect={() => handleChangeSelectItem(item.item._id, selectedCategory?._id as string)}
                                 />
                             );

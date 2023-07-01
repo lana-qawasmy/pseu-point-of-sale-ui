@@ -36,7 +36,6 @@ const useViewItems = () => {
     const [newCategoryFields, setNewCategoryFields] = React.useState({ emoji: "", name: "" });
 
     React.useEffect(() => {
-        console.log('changed')
         if (itemContext.items){
             setState((oldState) => ({
                 ...oldState,

@@ -10,9 +10,9 @@ interface IProps {
     item: ItemNS.Item;
     Selected?: boolean;
     DeletedPrice?: number;
+    Editable?: boolean;
     OnDelete?: (userId: string, itemId: string) => void;
     OnSelect?: () => void;
-    OnEdit?: () => void;
     selectedCategory: CollectionNS.ICollection | null;
 }
 
@@ -117,7 +117,7 @@ const Item = (props: IProps) => {
                 </span>
             }
             {
-                props.OnEdit &&
+                props.Editable &&
                 <span className='fiEdit'>
                     <FiEdit
                         size={20}
