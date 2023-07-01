@@ -35,11 +35,16 @@
 }
 
 .row{
-    margin-bottom: 22px;
-    margin-top: 22px;
+    margin-bottom: 12px;
+    margin-top: 12px;
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.discount {
+    justify-content: center;
+    column-gap: 25px;
 }
 
 .sectionThree{

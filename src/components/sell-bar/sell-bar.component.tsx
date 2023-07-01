@@ -3,6 +3,9 @@ import { ItemNS } from "../../types";
 import { Button, Input } from "../core";
 import SellCard from "../sell-card/sell-card.component";
 import React, { useEffect, useMemo, useState } from "react";
+import { UserContext } from "../providers/user.provider";
+import { discountService } from "../../services";
+import { useNotification } from "../../hooks";
 interface Iprops {
     selectedItems: {
         item: ItemNS.Item;
@@ -21,14 +24,17 @@ interface Iprops {
 const SellBar = (props: Iprops) => {
     const { selectedItems, setSelectedItems, price } = props;
     const [totalPrice, setTotalPrice] = useState<number>(0);
+    const userContext = React.useContext(UserContext)
     const tax = 0.10;
-    const discount = 5;
+    const [discount, setDiscount] = React.useState<number>(0)
+    const [discountCode, setDiscountCode] = React.useState<string>();
+    const notification = useNotification()
     // const [discountObject , setDiscount] = React.useState({})
     useEffect(() => {
         if (price !== 0)
-            setTotalPrice((price + (price * tax)) - discount);
+            setTotalPrice((price + (price * tax)) - (price * (discount / 100)));
         else setTotalPrice(0);
-    }, [price]);
+    }, [price , discount]);
     const itemsNumber = useMemo(() => {
         let count = 0;
         selectedItems.map(item => {
@@ -37,6 +43,23 @@ const SellBar = (props: Iprops) => {
         });
         return count;
     }, [selectedItems]);
+
+    const handleDiscount = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try {
+            const discountValue = await discountService.getDiscount(discountCode || '', userContext.user?.token || '')
+            if (discountValue?.value)
+                setDiscount(discountValue.value)
+            else {
+                setDiscount(0)
+                notification.setNotification({ message: 'Discount code you entered is not valid! ', status: 'error' })
+            }
+
+        } catch (error) {
+            setDiscount(0)
+            notification.setNotification({ message: 'Discount code you entered is not valid! ', status: 'error' })
+        }
+    }
     return (
         <div className="sellBarContainer">
             <div className="sectionOne">
@@ -63,14 +86,28 @@ const SellBar = (props: Iprops) => {
                     <span>Subtotal</span>
                     <span>{price.toFixed(2)}$</span>
                 </div>
-                <div className="row">
-                    <span> code</span>
-                    <Input PlaceHolder='FDETH' Height={30} Radius={10} />
-                    <Button HtmlType='button' Width='300'>Add discount</Button>
-                </div>
+                <form className="row discount" onSubmit={handleDiscount}>
+                    <Input
+                        PlaceHolder='Discount code'
+                        Height={39}
+                        Radius={10}
+                        Color="#03045e"
+                        name="code"
+                        onChange={e => setDiscountCode(e.target.value)}
+                    />
+                    <Button
+                        HtmlType='submit'
+                        Width='100'
+                        Radius="10"
+                        Color="#03045e"
+                        FontSize="12"
+                    >
+                        Apply discount
+                    </Button>
+                </form>
                 <div className="row">
                     <span>discount</span>
-                    <span>-{discount.toFixed(2)}$</span>
+                    <span>{discount}%</span>
                 </div>
                 <div className="row">
                     <span>Tax({(tax * 10).toFixed(2)}%)</span>
