@@ -1,13 +1,9 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms,SingleItem, UserProfile } from './pages';
-
-import { UserProvider } from './components/providers';
-import { Header, NavigationBar } from './components/core';
-import Guard from './components/guard/guard.component';
-import { RoleGuard} from './components/core';
-import { Notification } from './components';
-import ItemsProvider from './components/providers/items.provider';
+import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms, SingleItem, UserProfile } from './pages';
+import { UserProvider, ItemsProvider } from './components/providers';
+import { Header, NavigationBar, RoleGuard } from './components/core';
+import { Notification, Guard } from './components';
 
 const App = () => {
     return (
@@ -21,7 +17,7 @@ const App = () => {
                             <Route path='/' element={<Guard><PosView /></Guard>} />
                             <Route path='/signin' element={<Signin />} />
                             <Route path='/signup' element={<Signup />} />
-                            <Route path='/addItem' element={<Guard><RoleGuard role={['manager','admin']}><AddItem /></RoleGuard></Guard>} />
+                            <Route path='/addItem' element={<Guard><RoleGuard role={['manager', 'admin']}><AddItem /></RoleGuard></Guard>} />
                             <Route path='/ordersHistory' element={<Guard><OrdersHistory /></Guard>} />
                             <Route path='/existedItems' element={<Guard><RoleGuard role={['manager', 'admin']}><ViewExistedItems /></RoleGuard></Guard>} />
                             <Route path='/terms' element={<Terms />} />
