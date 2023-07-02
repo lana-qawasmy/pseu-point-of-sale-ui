@@ -8,6 +8,7 @@ export { default as useParam } from './params.hook';
 export { default as useEditUser } from './edit-user.hook';
 export { default as usePOSView } from './pos-view.hook';
 export { default as useSellCard } from './sell-card.hook';
+export { default as useDiscount } from './discount.hook';
 export { default as useOrderHistory } from './order-history.hook';
 export { default as useBarcode } from './barcode-scanner';
 export { default as useSingleItem } from './singleItem.hook';
