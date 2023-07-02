@@ -26,6 +26,7 @@ interface IProps {
     handleSubmitNewCollection?: () => Promise<void>;
 }
 const CollectionBar = (props: IProps) => {
+    console.log(props.disableAddBlock);
 
     return (
         <div className="collectionBarContainer">
@@ -62,29 +63,36 @@ const CollectionBar = (props: IProps) => {
                         })
                 }
             </div>
-            <div className="addNewBlock">
-                <button
-                    className="collectionBlockContainer"
-                    disabled={props.disableAddBlock}
-                    style={{ height: "100px", width: "100px" }}
-                    name="add"
-                    onClick={() => props.setShowAddForm && props.setShowAddForm(true)}
-                >
-                    <div className="iconWrapper">➕</div>
-                    <div className="collectionText">Add</div>
-                </button>
-                <div className="seeAllWrapper">
-                    <Link to={'/viewCollections'}>See All</Link>
+
+
+            {!props.disableAddBlock && <>
+                <div className="addNewBlock">
+                    <button
+                        className="collectionBlockContainer"
+                        disabled={props.disableAddBlock}
+                        style={{ height: "100px", width: "100px" }}
+                        name="add"
+                        onClick={() => props.setShowAddForm && props.setShowAddForm(true)}
+                    >
+                        <div className="iconWrapper">➕</div>
+                        <div className="collectionText">Add</div>
+                    </button>
+                    <div className="seeAllWrapper">
+                        <Link to={'/viewCollections'}>See All</Link>
+                    </div>
                 </div>
-            </div>
-            <AddNewCollectionBlock
-                handleSubmitNewCollection={props.handleSubmitNewCollection}
-                newCollectionFields={props.newCollectionFields}
-                showAddForm={props.showAddForm}
-                handleInputValidation={props.handleInputValidation}
-                setNewCollectionFields={props.setNewCollectionFields}
-                setShowAddForm={props.setShowAddForm}
-            />
+                <AddNewCollectionBlock
+                    handleSubmitNewCollection={props.handleSubmitNewCollection}
+                    newCollectionFields={props.newCollectionFields}
+                    showAddForm={props.showAddForm}
+                    handleInputValidation={props.handleInputValidation}
+                    setNewCollectionFields={props.setNewCollectionFields}
+                    setShowAddForm={props.setShowAddForm}
+                />
+            </>
+            }
+
+
         </div>
     );
 };
