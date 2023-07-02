@@ -3,10 +3,12 @@ import React from 'react';
 import { UserContext } from '../../providers/user.provider';
 import { useLocation } from 'react-router-dom';
 import { defaultUserImage } from '../../../assets';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const userContext = React.useContext(UserContext);
     const location = useLocation();
+    const navigate = useNavigate();
     let match = true;
     match &&= location.pathname !== "/signin";
     match &&= location.pathname !== "/signup";
@@ -19,8 +21,11 @@ const Header = () => {
                         < div
                             className='userImage'
                             style={{ backgroundImage: `url('${userContext.user?.image || defaultUserImage}')` }}
+                            onClick={() => navigate('/profile')}
                         />
-                        < span className='userName' > {userContext.user?.fullName}</span >
+                        < span className='userName' onClick={() => navigate('/profile')} >
+                            {userContext.user?.fullName}
+                        </span >
                     </div > : null
             }
         </>

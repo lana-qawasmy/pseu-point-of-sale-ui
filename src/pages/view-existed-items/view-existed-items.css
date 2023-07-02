@@ -8,9 +8,9 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     background-color: rgb(243, 244, 248);
-    padding-left: 60px;
+    padding-left: 63px;
     padding-bottom: 90px;
     padding-top: 72px;
     font-family: 'Inter';
@@ -18,22 +18,24 @@
 
 .viewItemsPage > .collectionBarContainer{
     padding-top: 35px;
+    padding-left: 20px;
     justify-content: center;
 }
 .viewItemsPage>.itemsContainer {
-    margin-top: 8px;
+    margin-left: 70px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 20px;
-    width: 80%;
+    width: 90%;
 }
 
 .viewItemsPage  .searchBarWrapper{
-    width: 80%;
-    margin-top: 40px;
+    width: 90%;
+    margin-top: 15px;
+    margin-left: 70px;
     display: flex;
     justify-content: flex-start;
 }

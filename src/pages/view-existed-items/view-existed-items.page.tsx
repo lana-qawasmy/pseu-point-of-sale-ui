@@ -64,7 +64,7 @@ const ViewExistedItems = () => {
                     itemsLoading
                         ? <span>Loading...</span>
                         :
-                        itemsTable.map((item) => {
+                        itemsTable?.map((item) => {
                             return item.item.priceHistory[0] && (
                                 <Item
                                     selectedCollection={selectedCollection}
@@ -73,7 +73,7 @@ const ViewExistedItems = () => {
                                     DeletedPrice={12}
                                     Selected={item.selected}
                                     OnDelete={handleDelete}
-                                    OnEdit={() => console.log(1)}
+                                    Editable={true}
                                     OnSelect={() => handleChangeSelectItem(item.item._id, selectedCollection?._id as string)}
                                 />
                             );

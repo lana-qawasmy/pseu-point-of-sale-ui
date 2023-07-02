@@ -7,3 +7,5 @@ export { default as NavigationBar } from './navigation-bar/navgation-bar.compone
 export { default as CollectionBlock } from './collection-block/collection-block.component';
 export { default as SearchBar } from './search-bar/search-bar.component';
 export { default as Header } from './header/header.component';
+export { default as RoleGuard } from './guard-manager/guard-manager.component';
+export { default as PopUp } from './pop-up/pop-up.component';

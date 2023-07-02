@@ -21,13 +21,17 @@
     right: 30px;
 }
 
-.searchWrapper > .searchInput:hover {
-    
+.searchWrapper>.searchInput:hover {
+
     box-shadow: 1px 1px 3px 0.4px #478db367;
 }
 
-.searchWrapper>.searchInput :active,
-.searchWrapper>.searchInput :focus {
+.searchWrapper>.searchInput:active,
+.searchWrapper>.searchInput:focus {
     border: 2px solid #478eb3c4;
     box-shadow: 1px 1px #478eb3c4;
+}
+
+.searchWrapper>.searchInput:focus-visible {
+    border: 2px solid #0e96dfc4;
 }

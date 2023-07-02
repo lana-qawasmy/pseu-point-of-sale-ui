@@ -45,6 +45,7 @@ const PosView = () => {
             <div className="itemsContainer">
 
                 {
+                    
                     itemsLoading
                         ? <span>Loading...</span>
                         :

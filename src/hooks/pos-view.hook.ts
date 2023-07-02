@@ -1,11 +1,10 @@
-import React from 'react';
-import { UserContext } from '../components/providers/user.provider';
-import { CollectionNS, ItemNS } from '../types';
-import useNotification from './notification.hook';
-import { useParam } from '.';
-import { collectionServices, itemService } from '../services';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useEffect, useState } from "react";
+import { UserContext } from "../components/providers/user.provider";
+import { CollectionNS, ItemNS } from "../types";
+import useNotification from "./notification.hook";
+import { useBarcode, useParam } from ".";
+import { collectionServices, itemService } from "../services";
+import { useNavigate } from "react-router-dom";
 
 interface IState {
     items: ItemNS.Item[];
@@ -29,8 +28,14 @@ const usePOSView = () => {
         },
     });
 
+    const [selectedItems, setSelectedItems] = React.useState<
+        { item: ItemNS.Item; number: number }[]
+    >([]);
+    const [price, setPrice] = useState<number>(0);
+    const barcode = useBarcode();
     const { setNotification } = useNotification();
     const useParams = useParam();
+
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         useParams.setParams("searchTerms", e.target.value);
@@ -76,7 +81,7 @@ const usePOSView = () => {
         } catch (error) {
             console.error(error);
         }
-    };
+    }
 
     const getItemsForACollection = async () => {
         try {
@@ -108,16 +113,62 @@ const usePOSView = () => {
         // eslint-disable-next-line
     }, [useParams.params, selectedCollection]);
 
+
+    const handleSelectedItems = (item: ItemNS.Item) => {
+        if (!(selectedItems.length > 0)) {
+            setSelectedItems([{ item: item, number: 1 }]);
+        } else {
+            let tempArray = [...selectedItems];
+            const isThere = tempArray.findIndex((tempItem) => tempItem.item === item);
+            if (isThere === -1) {
+                setSelectedItems([...tempArray, { item: item, number: 1 }]);
+            } else {
+                tempArray[isThere] = {
+                    item: item,
+                    number: tempArray[isThere].number + 1,
+                };
+                setSelectedItems([...tempArray]);
+            }
+        }
+    };
+
+    useEffect(() => {
+        let newPrice = 0;
+        for (let i = 0; i < selectedItems.length; i++) {
+            newPrice +=
+                selectedItems[i].number *
+                (selectedItems[i].item.priceHistory[0].price as number);
+            setPrice(newPrice);
+        }
+        if (selectedItems.length === 0) {
+            setPrice(0);
+        }
+    }, [selectedItems]);
+
+    useEffect(() => {
+        let newArray = state.items;
+        const item = newArray.filter((item) => { return item.barcode === barcode.result });
+        if (item.length === 1) {
+            handleSelectedItems(item[0]);
+        }// eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [barcode.result])
+
+
+
     return {
         selectedCollection,
         itemsLoading: state.loading.itemsLoading,
         collectionsLoading: state.loading.collectionsLoading,
         itemsTable: state.items,
         collectionsList: state.collections,
+        selectedItems,
+        price,
         useParams,
         navigate,
         handleSelectedCollection,
         handleSearch,
+        handleSelectedItems,
+        setSelectedItems,
     };
 };
 
