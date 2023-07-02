@@ -1,4 +1,4 @@
-.sellBarContainer{
+.sellBarContainer {
     background-color: white;
     width: 25%;
     height: 90vh;
@@ -8,7 +8,8 @@
     font-family: Inter;
 }
 
-.sellBarContainer span, .sellBarContainer h2{
+.sellBarContainer span,
+.sellBarContainer h2 {
     color: #030463;
 }
 
@@ -20,7 +21,7 @@
     border-bottom: 5px dotted #e0e2e8;
 }
 
-.sectionTwo{
+.sectionTwo {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -29,12 +30,12 @@
     border-bottom: 5px dotted #e0e2e8;
 }
 
-.sectionOne h2{
+.sectionOne h2 {
     width: 60%;
     text-align: left;
 }
 
-.row{
+.row {
     margin-bottom: 12px;
     margin-top: 12px;
     width: 100%;
@@ -42,25 +43,20 @@
     justify-content: space-around;
 }
 
-.discount {
-    justify-content: center;
-    column-gap: 25px;
-}
-
-.sectionThree{
+.sectionThree {
     display: flex;
     flex-direction: column;
     row-gap: 85px;
 }
 
-.sectionThree .buttonContainer{
+.sectionThree .buttonContainer {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.sectionThree .row span{
+.sectionThree .row span {
     font-size: 25px;
     font-weight: 700;
 }

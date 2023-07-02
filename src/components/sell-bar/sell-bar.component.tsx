@@ -3,9 +3,7 @@ import { ItemNS } from "../../types";
 import { Button, Input } from "../core";
 import SellCard from "../sell-card/sell-card.component";
 import React, { useEffect, useMemo, useState } from "react";
-import { UserContext } from "../providers/user.provider";
-import { discountService } from "../../services";
-import { useNotification } from "../../hooks";
+import { useDiscount } from "../../hooks";
 interface Iprops {
     selectedItems: {
         item: ItemNS.Item;
@@ -24,17 +22,14 @@ interface Iprops {
 const SellBar = (props: Iprops) => {
     const { selectedItems, setSelectedItems, price } = props;
     const [totalPrice, setTotalPrice] = useState<number>(0);
-    const userContext = React.useContext(UserContext)
+    const discount = useDiscount();
     const tax = 0.10;
-    const [discount, setDiscount] = React.useState<number>(0)
-    const [discountCode, setDiscountCode] = React.useState<string>();
-    const notification = useNotification()
     // const [discountObject , setDiscount] = React.useState({})
     useEffect(() => {
         if (price !== 0)
-            setTotalPrice((price + (price * tax)) - (price * (discount / 100)));
+            setTotalPrice((price + (price * tax)) - (price * (discount.discount / 100)));
         else setTotalPrice(0);
-    }, [price , discount]);
+    }, [price, discount]);
     const itemsNumber = useMemo(() => {
         let count = 0;
         selectedItems.map(item => {
@@ -44,22 +39,6 @@ const SellBar = (props: Iprops) => {
         return count;
     }, [selectedItems]);
 
-    const handleDiscount = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        try {
-            const discountValue = await discountService.getDiscount(discountCode || '', userContext.user?.token || '')
-            if (discountValue?.value)
-                setDiscount(discountValue.value)
-            else {
-                setDiscount(0)
-                notification.setNotification({ message: 'Discount code you entered is not valid! ', status: 'error' })
-            }
-
-        } catch (error) {
-            setDiscount(0)
-            notification.setNotification({ message: 'Discount code you entered is not valid! ', status: 'error' })
-        }
-    }
     return (
         <div className="sellBarContainer">
             <div className="sectionOne">
@@ -86,14 +65,22 @@ const SellBar = (props: Iprops) => {
                     <span>Subtotal</span>
                     <span>{price.toFixed(2)}$</span>
                 </div>
-                <form className="row discount" onSubmit={handleDiscount}>
+                <div className="row">
+                    <span>Tax({(tax * 10).toFixed(2)}%)</span>
+                    <span>{(tax * price).toFixed(2)}$</span>
+                </div>
+                <div className="row">
+                    <span>discount</span>
+                    <span>{discount.discount}%</span>
+                </div>
+                <form className="row" onSubmit={discount.handleDiscount}>
                     <Input
                         PlaceHolder='Discount code'
                         Height={39}
                         Radius={10}
                         Color="#03045e"
                         name="code"
-                        onChange={e => setDiscountCode(e.target.value)}
+                        onChange={e => discount.setDiscountCode(e.target.value)}
                     />
                     <Button
                         HtmlType='submit'
@@ -105,14 +92,6 @@ const SellBar = (props: Iprops) => {
                         Apply discount
                     </Button>
                 </form>
-                <div className="row">
-                    <span>discount</span>
-                    <span>{discount}%</span>
-                </div>
-                <div className="row">
-                    <span>Tax({(tax * 10).toFixed(2)}%)</span>
-                    <span>{(tax * price).toFixed(2)}$</span>
-                </div>
             </div>
             <div className="sectionThree">
                 <div className="row">
