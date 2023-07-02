@@ -1,6 +1,6 @@
 import './item-form.css';
 import { Image } from "phosphor-react";
-import { useBarcode,useAddItem } from '../../../hooks';
+import { useBarcode, useAddItem } from '../../../hooks';
 import { Button, Input } from '../../core';
 import { ItemNS } from '../../../types';
 
@@ -13,6 +13,7 @@ interface IProps {
 
 const ItemForm = (props?: IProps) => {
     const item = useAddItem(props?.item || undefined);
+    console.log(props?.item)
     const priceHistorySize = props?.item?.priceHistory.length || 0;
     const Barcode = useBarcode();
     return (
@@ -47,6 +48,18 @@ const ItemForm = (props?: IProps) => {
                         PlaceHolder="Price"
                         Type="number"
                         DefaultValue={props?.item?.priceHistory[priceHistorySize - 1].price.toString() || ''}
+                    />
+                </div>
+                <div className="addItemInputWrapper">
+                    <Input
+                        name="quantity"
+                        Width={210}
+                        Height={30}
+                        Radius={15}
+                        Required
+                        PlaceHolder="Quantity"
+                        Type="number"
+                        DefaultValue={props?.item?.quantity.toString() || ''}
                     />
                 </div>
                 <div className="addItemInputWrapper">
@@ -100,8 +113,8 @@ const ItemForm = (props?: IProps) => {
                 </div>
                 <div className="addItemSubmitButton">
                     <Button HtmlType="submit" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90">{props?.edit ? 'Edit' : 'Add'}</Button>
-                    {props?.edit && <Button HtmlType="button" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90" onClick={e => props.setEdit&& props.setEdit(false)}>Cancel</Button>}
-                    
+                    {props?.edit && <Button HtmlType="button" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90" onClick={e => props.setEdit && props.setEdit(false)}>Cancel</Button>}
+
                 </div>
             </form>
             <div
