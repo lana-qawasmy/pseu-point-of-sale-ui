@@ -13,7 +13,6 @@ interface IProps {
 
 const ItemForm = (props?: IProps) => {
     const item = useAddItem(props?.item || undefined);
-    console.log(props?.item)
     const priceHistorySize = props?.item?.priceHistory.length || 0;
     const Barcode = useBarcode();
     return (
