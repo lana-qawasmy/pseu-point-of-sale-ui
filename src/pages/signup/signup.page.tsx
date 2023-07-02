@@ -107,7 +107,11 @@ const Signup = () => {
                                     onChange={e => { }}
                                 />
                                 I agree to all statements included in the&nbsp;
-                                <Link to={'/terms'}>terms of service</Link>
+                                <Link to={'/terms'}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >terms of service
+                                </Link>
                             </h3>
                         </div>
                     </div>
