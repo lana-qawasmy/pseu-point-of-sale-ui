@@ -36,11 +36,25 @@
     text-transform: capitalize;
 }
 
-.mainItemContainer>.infoWrapper>.itemName {
+.mainItemContainer>.infoWrapper>.nameWrapper {
+    margin-bottom: 15px;
+}
+
+.mainItemContainer>.infoWrapper>.nameWrapper>.in {
+    font-size: 14px;
+    color: rgb(0, 173, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.mainItemContainer>.infoWrapper>.nameWrapper>.out {
+    font-size: 14px;
+    color: rgb(255, 0, 0);
+}
+.mainItemContainer>.infoWrapper>.nameWrapper>.itemName {
     display: flex;
     color: #03045e;
     font-weight: 700;
-    margin-bottom: 15px;
 }
 
 .mainItemContainer>.infoWrapper>.itemPrice {
@@ -125,7 +139,7 @@
     background-color: #fff;
     justify-content: space-around;
     align-items: center;
-    box-shadow:  10px 10px 10px #e0e2e8;
+    box-shadow: 10px 10px 10px #e0e2e8;
 
 }
 

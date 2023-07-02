@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const Item = (props: IProps) => {
-    const { _id, name, image, priceHistory, addedBy } = props.item;
+    const { _id, name, image, priceHistory, addedBy , quantity } = props.item;
     const [displayACK, setDisplayACK] = React.useState(false);
     const [edit , setEdit] = React.useState<boolean>(false)
     return (
@@ -30,8 +30,14 @@ const Item = (props: IProps) => {
 
             <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
             <div className='infoWrapper'>
-                <span className='itemName'>
-                    {name}
+                <span className="nameWrapper">
+                    <span className='itemName'>
+                        {name}
+                    </span>
+                    {quantity 
+                    ? <span className='in'><span>In stock,</span> <span style={{color:'#999'}}>{quantity} pieces left</span></span> 
+                    : <span className='out'>Out of stock</span>}
+                    
                 </span>
                 <div className='itemPrice'>
                     <span className='currentItemPrice'>
