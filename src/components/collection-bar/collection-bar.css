@@ -1,11 +1,11 @@
-.categoryBarContainer {
+.collectionBarContainer {
     width: 89%;
     height: 140px;
     border-radius: 5px;
     display: flex;
 }
 
-.categoryBarContainer .allBlock {
+.collectionBarContainer .allBlock {
     height: 100%;
     min-width: 120px;
     background-color: #f3f4f8;
@@ -17,7 +17,7 @@
 
 
 
-.categoryBarContainer .categoryBar {
+.collectionBarContainer .collectionBar {
     height: 100%;
     min-width: 80%;
     width: auto;
@@ -31,27 +31,27 @@
     z-index: 0;
 }
 
-.categoryBarContainer .categoryBar::-webkit-scrollbar {
+.collectionBarContainer .collectionBar::-webkit-scrollbar {
     width: 1px;
     height: 8px;
     background-color: #888;
 }
 
-.categoryBarContainer .categoryBar::-webkit-scrollbar-track {
+.collectionBarContainer .collectionBar::-webkit-scrollbar-track {
     background-color: #f3f4f8;
 }
 
-.categoryBarContainer .categoryBar::-webkit-scrollbar-thumb:hover {
+.collectionBarContainer .collectionBar::-webkit-scrollbar-thumb:hover {
     background-color: #888;
     border-radius: 10px;
 }
 
-.categoryBarContainer .categoryBar button {
+.collectionBarContainer .collectionBar button {
     margin: 0 8px 0 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.categoryBarContainer .addNewBlock {
+.collectionBarContainer .addNewBlock {
     height: 100%;
     min-width: 120px;
     background-color: #f3f4f8;
@@ -62,7 +62,7 @@
     position: relative;
 }
 
-.categoryBarContainer .addNewBlock button,
+.collectionBarContainer .addNewBlock button,
 .allBlock button {
     margin-bottom: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -148,7 +148,7 @@
     font-weight: 500;
 }
 
-.categoryBarContainer .addNewBlock .seeAllWrapper {
+.collectionBarContainer .addNewBlock .seeAllWrapper {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -159,7 +159,7 @@
     z-index: 5;
 }
 
-.categoryBarContainer .addNewBlock .seeAllWrapper>a {
+.collectionBarContainer .addNewBlock .seeAllWrapper>a {
     text-decoration: none;
     color: #0292cd;
 }

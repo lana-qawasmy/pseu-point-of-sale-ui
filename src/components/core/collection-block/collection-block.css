@@ -1,4 +1,4 @@
-.categoryBlockContainer{
+.collectionBlockContainer{
     transition: 0.3s;
     background-color: #ffffff;
     display: flex;
@@ -40,7 +40,7 @@
     margin-bottom: 7px;
 }
 
-.categoryText{
+.collectionText{
     font-size: 15px;
     margin-bottom: 0.3em;
     width: 90px;

@@ -88,21 +88,21 @@ const SellBar = (props: IProps) => {
                 </div>
                 <div className="row">
                     <span>Subtotal</span>
-                    <span>{price.toFixed(2)}$</span>
+                    <span>{price.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <div className="row">
                     <span>discount</span>
-                    <span>-{discount.toFixed(2)}$</span>
+                    <span>-{discount.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <div className="row">
-                    <span>Tax({(tax * 10).toFixed(2)}%)</span>
-                    <span>{(tax * price).toFixed(2)}$</span>
+                    <span>Tax({(tax * 10).toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}%)</span>
+                    <span>{(tax * price).toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
             </div>
             <div className="sectionThree">
                 <div className="row">
                     <span>Total</span>
-                    <span>{totalPrice.toFixed(2)}$</span>
+                    <span>{totalPrice.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <Button
                     HtmlType="button"

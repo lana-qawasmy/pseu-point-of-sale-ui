@@ -66,8 +66,8 @@ const OrdersHistory = () => {
                 </thead>
                 <tbody>
                     {
-                        ordersList.length > 0 ?
-                            ordersList?.map((order: OrderNS.IOrder) => {
+                        ordersList ?
+                            ordersList.map((order: OrderNS.IOrder) => {
                                 return <Order
                                     key={order._id + 'orderPage'}
                                     orderNo={order.orderNumber as number}
