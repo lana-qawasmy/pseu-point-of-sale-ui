@@ -14,8 +14,8 @@
 
 .navigationBarContainer .logoContainer {
     background-image: url('../../../assets/Logo.svg');
-    width: 50px;
-    height: 70px;
+    width: 55px;
+    height: 125px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -24,11 +24,12 @@
 
 .navigationBarContainer .optionsContainer {
     width: 100%;
-    height: 70%;
+    height: 90%;
+    margin-top: 180px;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .optionsContainer .optionWrapper {
@@ -36,7 +37,6 @@
     height: 70px;
     cursor: pointer;
     display: flex;
-    align-items: center;
 }
 
 .optionWrapper span {
@@ -72,25 +72,29 @@
     align-items: center;
 }
 
-.optionsContainer button .radioIcons {
+button .radioIcons {
     margin: 4px 0px 4px;
     margin-left: 15px;
 }
 
 
-.optionsContainer button.focusBtn .radioIcons {
+button.focusBtn .radioIcons {
     fill: #03045e;
     cursor: pointer;
 }
 
 .logoutContainer {
     display: flex;
-    height: 30%;
+    flex-direction: column;
+    height: 45%;
     justify-content: center;
 }
 
 
-.logoutContainer button {
+.logoutContainer .logoutButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     border: none;
     background-color: transparent;

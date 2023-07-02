@@ -1,36 +1,41 @@
 import "./sell-bar.css";
+import React from "react";
 import { ItemNS } from "../../types";
 import { Button, Input } from "../core";
 import SellCard from "../sell-card/sell-card.component";
-import React, { useEffect, useMemo, useState } from "react";
+import  { useNotification } from '../../hooks';
+import { OrderNS } from '../../types/order.type';
+import { UserContext } from '../providers/user.provider';
+import { orderService } from '../../services';
 import { useDiscount } from "../../hooks";
 interface Iprops {
-    selectedItems: {
-        item: ItemNS.Item;
-        number: number;
-    }[];
-    setSelectedItems: React.Dispatch<
-        React.SetStateAction<
-            {
-                item: ItemNS.Item;
-                number: number;
-            }[]
-        >
-    >;
-    price: number;
+      selectedItems: {
+            item: ItemNS.Item;
+            number: number;
+      }[];
+      setSelectedItems: React.Dispatch<
+            React.SetStateAction<
+                  {
+                        item: ItemNS.Item;
+                        number: number;
+                  }[]
+            >
+      >;
+      price: number;
 }
 const SellBar = (props: Iprops) => {
-    const { selectedItems, setSelectedItems, price } = props;
-    const [totalPrice, setTotalPrice] = useState<number>(0);
-    const discount = useDiscount();
+    const {selectedItems, setSelectedItems, price} = props
+    const [totalPrice, setTotalPrice] = React.useState<number>(0);
     const tax = 0.10;
-    // const [discountObject , setDiscount] = React.useState({})
-    useEffect(() => {
-        if (price !== 0)
-            setTotalPrice((price + (price * tax)) - (price * (discount.discount / 100)));
+    const discount = useDiscount();
+    const { setNotification } = useNotification();
+    const user = React.useContext(UserContext);
+    React.useEffect(()=>{
+        if(price !==0)
+        setTotalPrice((price + (price * tax)) - (price * (discount.discount / 100)));
         else setTotalPrice(0);
-    }, [price, discount]);
-    const itemsNumber = useMemo(() => {
+      },[price , discount]);
+    const itemsNumber = React.useMemo(()=>{
         let count = 0;
         selectedItems.map(item => {
             count += item.number;
@@ -38,6 +43,27 @@ const SellBar = (props: Iprops) => {
         });
         return count;
     }, [selectedItems]);
+
+    const handleTransaction = async () => {
+        if (itemsNumber === 0) {
+            return setNotification({ message: 'There isn\'t any item in the list', status: 'warning' });
+        }
+        const items = selectedItems.map((item) => ({ item: item.item._id as string, quantity: item.number }));
+        const order: OrderNS.IOrder = {
+            cashierName: user.user?.fullName || 'unknown',
+            total: totalPrice,
+            items: items,
+            tax: tax,
+        };
+        const addOrder = await orderService.addOrder(user.user?.token as string, order);
+        if (addOrder) {
+            setNotification({ message: 'Order performed successfully', status: 'success' });
+            setSelectedItems([]);
+        }
+        else {
+            setNotification({ message: 'Something went wrong', status: 'error' });
+        }
+    };
 
     return (
         <div className="sellBarContainer">
@@ -63,7 +89,7 @@ const SellBar = (props: Iprops) => {
                 </div>
                 <div className="row">
                     <span>Subtotal</span>
-                    <span>{price.toFixed(2)}$</span>
+                    <span>{price.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <div className="row">
                     <span>Tax({(tax * 10).toFixed(2)}%)</span>
@@ -96,7 +122,7 @@ const SellBar = (props: Iprops) => {
             <div className="sectionThree">
                 <div className="row">
                     <span>Total</span>
-                    <span>{totalPrice.toFixed(2)}$</span>
+                    <span>{totalPrice.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <Button
                     HtmlType="button"
@@ -108,6 +134,7 @@ const SellBar = (props: Iprops) => {
                     FontColor="white"
                     FontWeight={700}
                     FontSize="21"
+                    onClick={() => handleTransaction()}
                 >
                     Process Transaction
                 </Button>

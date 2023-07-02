@@ -1,5 +1,7 @@
 import './item.css';
 import { CollectionNS, ItemNS } from '../../types';
+import { PopUp } from '../core';
+import {ItemForm} from '../'
 import { GoTrashcan } from 'react-icons/go';
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 import { FiEdit } from 'react-icons/fi';
@@ -8,17 +10,25 @@ interface IProps {
     item: ItemNS.Item;
     Selected?: boolean;
     DeletedPrice?: number;
+    Editable?: boolean;
     OnDelete?: (userId: string, itemId: string) => void;
     OnSelect?: () => void;
     OnEdit?: () => void;
-    selectedCategory: CollectionNS.ICollection | null;
+    selectedCollection: CollectionNS.ICollection | null;
 }
 
 const Item = (props: IProps) => {
     const { _id, name, image, priceHistory, addedBy } = props.item;
     const [displayACK, setDisplayACK] = React.useState(false);
+    const [edit , setEdit] = React.useState<boolean>(false)
     return (
         <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
+             {edit &&
+                <PopUp setDisplayPopup={setEdit}>
+                    <ItemForm edit setEdit={setEdit} item={props.item} />
+                </PopUp>
+            }
+
             <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
             <div className='infoWrapper'>
                 <span className='itemName'>
@@ -26,12 +36,12 @@ const Item = (props: IProps) => {
                 </span>
                 <div className='itemPrice'>
                     <span className='currentItemPrice'>
-                        {priceHistory[0].price.toFixed(2)}$ &nbsp;&nbsp;
+                        {priceHistory[0].price.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$ &nbsp;&nbsp;
                     </span>
                     {
                         props.DeletedPrice &&
                         <span className='deletedItemPrice'>
-                            {props.DeletedPrice.toFixed(2)}$
+                            {props.DeletedPrice.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$
                         </span>
                     }
                 </div>
@@ -74,7 +84,7 @@ const Item = (props: IProps) => {
                 </div>
             }
             {
-                (!props.Selected) && props.OnSelect && props.selectedCategory !== null &&
+                (!props.Selected) && props.OnSelect && props.selectedCollection !== null &&
                 <span className='grCheckbox'>
                     <GrCheckbox
                         size={20}
@@ -98,7 +108,7 @@ const Item = (props: IProps) => {
                 </span>
             }
             {
-                props.Selected && props.OnSelect && props.selectedCategory !== null &&
+                props.Selected && props.OnSelect && props.selectedCollection !== null &&
                 <span className='grCheckbox'>
                     <GrCheckboxSelected
                         size={20}
@@ -108,7 +118,7 @@ const Item = (props: IProps) => {
                 </span>
             }
             {
-                props.OnEdit &&
+                props.Editable &&
                 <span className='fiEdit'>
                     <FiEdit
                         size={20}
@@ -137,7 +147,7 @@ const Item = (props: IProps) => {
                                 }
                             }
                         }}
-                        onClick={() => props.OnEdit && props.OnEdit()} color='#e0e2e8' />
+                        onClick={() => setEdit(true)} color='#e0e2e8' />
                 </span>
             }
 

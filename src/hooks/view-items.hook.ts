@@ -4,6 +4,7 @@ import { CollectionNS, ItemNS } from '../types';
 import { itemService, collectionServices } from '../services';
 import useNotification from './notification.hook';
 import { useParam } from '.';
+import { ItemsContext } from '../components/providers/items.provider';
 
 interface itemWithSelect {
     item: ItemNS.Item;
@@ -12,24 +13,37 @@ interface itemWithSelect {
 
 interface IState {
     items: itemWithSelect[];
-    categories: CollectionNS.ICollection[];
+    collections: CollectionNS.ICollection[];
     loading: {
         itemsLoading: boolean;
-        categoriesLoading: boolean;
+        collectionsLoading: boolean;
     };
 }
 
 const useViewItems = () => {
     const user = React.useContext(UserContext);
-
+    const itemContext = React.useContext(ItemsContext);
+    const initialItems: itemWithSelect[] = itemContext.items?.map(item => {
+        const newItems: itemWithSelect = { item: item, selected: false };
+        return newItems || [];
+    }) || [];
     const [state, setState] = React.useState<IState>({
-        items: [], categories: [], loading: { categoriesLoading: false, itemsLoading: false }
+        items: initialItems, collections: [], loading: { collectionsLoading: false, itemsLoading: false }
     });
-    const [selectedCategory, setSelectedCategory] = React.useState<CollectionNS.ICollection | null>(null);
+    const [selectedCollection, setSelectedCollection] = React.useState<CollectionNS.ICollection | null>(null);
 
     const [showAddForm, setShowAddForm] = React.useState(false);
-    const [newCategoryFields, setNewCategoryFields] = React.useState({ emoji: "", name: "" });
+    const [newCollectionFields, setNewCollectionFields] = React.useState({ emoji: "", name: "" });
 
+    React.useEffect(() => {
+        if (itemContext.items) {
+            setState((oldState) => ({
+                ...oldState,
+                items: getTableWithState(itemContext.items || [])
+            }));
+        }
+        // eslint-disable-next-line 
+    }, [itemContext.items]);
 
     const { setNotification } = useNotification();
     const useParams = useParam();
@@ -48,7 +62,7 @@ const useViewItems = () => {
             ...oldState,
             loading: {
                 itemsLoading: true,
-                categoriesLoading: true
+                collectionsLoading: true
             }
         }));
     };
@@ -57,7 +71,7 @@ const useViewItems = () => {
             ...oldState,
             loading: {
                 itemsLoading: false,
-                categoriesLoading: false
+                collectionsLoading: false
             }
         }));
     };
@@ -65,7 +79,7 @@ const useViewItems = () => {
     const getTableWithState = (items: ItemNS.Item[]) => {
         let newItemTable: itemWithSelect[] = [];
         items.forEach((item: ItemNS.Item) => {
-            let isSelected = selectedCategory?.items?.includes(item._id as string) || false;
+            let isSelected = selectedCollection?.items?.includes(item._id as string) || false;
             newItemTable.push({ item: item, selected: isSelected });
         });
         return newItemTable;
@@ -79,21 +93,21 @@ const useViewItems = () => {
         inputElement?.addEventListener("keydown", (event) => {
             if (event.key === "Backspace") {
                 event.preventDefault();
-                setNewCategoryFields({ name: newCategoryFields.name, emoji: "" });
+                setNewCollectionFields({ name: newCollectionFields.name, emoji: "" });
             }
         });
-        isMatch && setNewCategoryFields({ name: newCategoryFields.name, emoji: value });
+        isMatch && setNewCollectionFields({ name: newCollectionFields.name, emoji: value });
     };
 
-    const handleSubmitNewCategory = async () => {
-        const newCategory: CollectionNS.ICollection = {
+    const handleSubmitNewCollection = async () => {
+        const newCollection: CollectionNS.ICollection = {
             addedBy: user.user?._id as string,
-            icon: newCategoryFields.emoji,
-            name: newCategoryFields.name,
+            icon: newCollectionFields.emoji,
+            name: newCollectionFields.name,
         };
         setShowAddForm(false);
         const addedItemResponse = await collectionServices.addCollection(
-            newCategory,
+            newCollection,
             user.user?.token as string
         );
         setNotification({
@@ -101,14 +115,14 @@ const useViewItems = () => {
             status: addedItemResponse.state ? "success" : "error",
             autoClose: 2000,
         });
-        setNewCategoryFields({ name: '', emoji: '' });
+        setNewCollectionFields({ name: '', emoji: '' });
 
         loadingItemsAndCollections();
         const newState = await getItemsAndCollections();
         if (newState) {
             setState((oldState) => ({
                 ...oldState,
-                categories: newState?.categories,
+                collections: newState?.collections,
                 items: newState.newItemTable
             }));
         }
@@ -131,7 +145,7 @@ const useViewItems = () => {
                         items: newItems,
                         loading: {
                             itemsLoading: false,
-                            categoriesLoading: false
+                            collectionsLoading: false
                         }
                     }));
                 }
@@ -141,57 +155,57 @@ const useViewItems = () => {
         }
     };
 
-    const handleChangeSelectItem = async (itemId: string | undefined, categoryId: string) => {
+    const handleChangeSelectItem = async (itemId: string | undefined, collectionId: string) => {
         loadingItemsAndCollections();
-        if (selectedCategory !== null) {
-            const message = await collectionServices.updateCollection(user.user?.token as string, categoryId, itemId);
+        if (selectedCollection !== null) {
+            const message = await collectionServices.updateCollection(user.user?.token as string, collectionId, itemId);
             if (message) {
                 setNotification({ message: message });
-                const newCategory = await getCollection(categoryId);
-                setSelectedCategory((oldState) => newCategory);
-                const newCategoryList = state.categories.map((cat) => {
-                    if (cat._id === newCategory._id)
-                        return newCategory;
+                const newCollection = await getCollection(collectionId);
+                setSelectedCollection((oldState) => newCollection);
+                const newCollectionList = state.collections.map((cat) => {
+                    if (cat._id === newCollection._id)
+                        return newCollection;
                     else
                         return cat;
                 });
                 setState((oldState) => ({
                     ...oldState,
                     items: getTableWithState(oldState.items.map(item => item.item)),
-                    categories: newCategoryList,
+                    collections: newCollectionList,
                     loading: {
                         itemsLoading: false,
-                        categoriesLoading: false,
+                        collectionsLoading: false,
                     }
                 }));
             }
             else {
-                setNotification({ message: 'Failed to update category', status: 'error' });
+                setNotification({ message: 'Failed to update collection', status: 'error' });
             }
         }
     };
 
-    const getCollection = async (categoryId: string) => {
+    const getCollection = async (collectionId: string) => {
         try {
-            const newCategory = await collectionServices.getCollection(user.user?.token as string, categoryId) || [];
-            const newCategoryList = state.categories.map((category) => {
-                if (category._id === categoryId)
-                    return newCategory;
+            const newCollection = await collectionServices.getCollection(user.user?.token as string, collectionId) || [];
+            const newCollectionList = state.collections.map((collection) => {
+                if (collection._id === collectionId)
+                    return newCollection;
                 else
-                    return category;
+                    return collection;
             });
             setState((oldState) => ({
                 ...oldState,
-                categories: newCategoryList
+                collections: newCollectionList
             }));
-            return newCategory;
+            return newCollection;
         } catch (error) {
             setNotification({ message: 'Something went wrong please Refresh the page', status: 'warning' });
         }
     };
 
-    const handleSelectedCategory = async (category: CollectionNS.ICollection | null) => {
-        setSelectedCategory(category);
+    const handleSelectedCollection = async (collection: CollectionNS.ICollection | null) => {
+        setSelectedCollection(collection);
 
         const newItemTable = getTableWithState(state.items.map(item => item.item)) || [];
 
@@ -200,7 +214,7 @@ const useViewItems = () => {
             items: newItemTable,
             loading: {
                 itemsLoading: false,
-                categoriesLoading: false
+                collectionsLoading: false
             },
         }));
     };
@@ -208,8 +222,8 @@ const useViewItems = () => {
 
     const getItemsAndCollections = async () => {
         try {
-            const categories: CollectionNS.ICollection[] = await collectionServices.getCollections(user.user?.token as string) || [];
-            const selectedCat = categories.find(cat => cat._id === selectedCategory?._id);
+            const collections: CollectionNS.ICollection[] = await collectionServices.getCollections(user.user?.token as string) || [];
+            const selectedCat = collections.find(cat => cat._id === selectedCollection?._id);
             const items: ItemNS.Item[] = await itemService.getItems(user.user?.token as string, useParams.params.get('searchTerms') || '') || [];
             let newItemTable: itemWithSelect[] = [];
             if (items) {
@@ -223,7 +237,7 @@ const useViewItems = () => {
             }
             return {
                 newItemTable,
-                categories
+                collections
             };
         } catch (error) {
             console.error(error);
@@ -252,11 +266,11 @@ const useViewItems = () => {
         if (newState) {
             setState((oldState) => ({
                 ...oldState,
-                categories: newState.categories,
+                collections: newState.collections,
                 items: newState.newItemTable,
                 loading: {
                     itemsLoading: false,
-                    categoriesLoading: false
+                    collectionsLoading: false
                 }
             }));
         }
@@ -284,36 +298,35 @@ const useViewItems = () => {
             ...oldState,
             items: getTableWithState(state.items.map(item => item.item)),
             loading: {
-                categoriesLoading: false,
+                collectionsLoading: false,
                 itemsLoading: false,
             }
         }));
         // eslint-disable-next-line
-    }, [selectedCategory]);
+    }, [selectedCollection]);
 
     return {
         itemsTable: state.items,
-        categoryList: state.categories,
+        collectionList: state.collections,
         itemsLoading: state.loading.itemsLoading,
-        categoriesLoading: state.loading.categoriesLoading,
+        collectionsLoading: state.loading.collectionsLoading,
 
         useParams,
-        selectedCategory,
+        selectedCollection,
 
         showAddForm,
-        newCategoryFields,
+        newCollectionFields,
 
         setShowAddForm,
-        setNewCategoryFields,
+        setNewCollectionFields,
 
         handleInputValidation,
-        handleSubmitNewCategory,
+        handleSubmitNewCollection,
         handleChangeSelectItem,
         handleDelete,
         handleSearch,
-        handleSelectedCategory,
+        handleSelectedCollection,
     };
 };
 
 export default useViewItems;
-

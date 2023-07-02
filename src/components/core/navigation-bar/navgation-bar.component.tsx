@@ -1,7 +1,8 @@
 import "./navigation-bar.css";
 import { IconContext } from "react-icons";
 import { MdAddBox, MdSpaceDashboard, MdHistory } from "react-icons/md";
-import { LuView } from "react-icons/lu";
+import { FaClipboardList, FaBoxOpen } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
@@ -25,7 +26,7 @@ const NavigationBar = () => {
             <div className="optionsContainer">
                 <IconContext.Provider
                     value={{ color: "#e0e2e8", size: "2em", className: "radioIcons" }}
-                >
+                >{(userContext.user?.role === 'manager' || userContext.user?.role === 'admin') &&
                     <div className="optionWrapper">
                         <button
                             type="button"
@@ -38,6 +39,7 @@ const NavigationBar = () => {
                             <MdAddBox />
                         </button>
                     </div>
+                    }
                     <div className="optionWrapper">
                         <button
                             type="button"
@@ -62,24 +64,53 @@ const NavigationBar = () => {
                             <MdHistory />
                         </button>
                     </div>
-                    <div className="optionWrapper">
-                        <button
-                            type="button"
-                            className={location.pathname === "/existedItems" ? "focusBtn" : ""}
-                            onClick={() => {
-                                navigate("/existedItems", { replace: false });
-                            }}
-                        >
-                            <span>.</span>
-                            <LuView />
-                        </button>
-                    </div>
+                    {(userContext.user?.role === 'manager' || userContext.user?.role === 'admin') &&
+                        <div className="optionWrapper">
+                            <button
+                                type="button"
+                                className={location.pathname === "/existedItems" ? "focusBtn" : ""}
+                                onClick={() => {
+                                    navigate("/existedItems", { replace: false });
+                                }}
+                            >
+                                <span>.</span>
+                                <FaClipboardList />
+                            </button>
+                        </div>
+                    }
+                    {location.pathname.includes('/viewSingleItem') &&
+                        <div className="optionWrapper">
+                            <button
+                                type="button"
+                                className={location.pathname.includes('/viewSingleItem') ? "focusBtn" : ""}
+                                onClick={() => {
+                                    navigate("/addItem", { replace: false });
+                                }}
+                            >
+                                <span>.</span>
+                                <FaBoxOpen />
+                            </button>
+                        </div>
+                    }
                 </IconContext.Provider>
             </div>
             <div className="logoutContainer">
-                <button onClick={logOut}>
-                    <RiLogoutBoxRFill color="#e0e2e8" size="2.3em" />
-                </button>
+                <div className="optionWrapper">
+
+                    <button
+                        type="button"
+                        className={location.pathname === "/profile" ? "focusBtn" : ""}
+                        onClick={() => {
+                            navigate("/profile", { replace: false });
+                        }}
+                    >
+                        <span>.</span>
+                        <CgProfile size={'2em'} color={`${location.pathname === "/profile" ? '#03045e' : '#e0e2e8'}`} className='radioIcons' />
+                    </button>
+                    <button onClick={logOut} className='logoutButton'>
+                        <RiLogoutBoxRFill color="#e0e2e8" size="2.3em" />
+                    </button>
+                </div>
             </div>
         </div>
     ) : (

@@ -1,0 +1,13 @@
+.blur {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background-color: #f3f4f87a;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}

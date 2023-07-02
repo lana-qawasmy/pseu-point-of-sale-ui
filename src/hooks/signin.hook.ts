@@ -40,13 +40,14 @@ const useSignin = () => {
         }
     };
 
-    React.useMemo(() => {
-        if (userContext.user === undefined) {
+    React.useEffect(() => {
+        if (userContext.user) {
             navigate('/', { replace: true });
         }
     }, [userContext, navigate]);
 
     return {
+        user: userContext.user,
         validLogin,
         handleValidation,
     };
