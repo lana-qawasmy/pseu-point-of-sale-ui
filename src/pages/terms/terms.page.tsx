@@ -1,21 +1,21 @@
 import './terms.page.css';
-import { useNavigate } from 'react-router-dom';
-import { useNotification } from '../../hooks';
+// import { useNavigate } from 'react-router-dom';
+// import { useNotification } from '../../hooks';
 
 const Terms = () => {
 
-    const navigate = useNavigate();
-    const { setNotification } = useNotification();
+    // const navigate = useNavigate();
+    // const { setNotification } = useNotification();
 
-    const navigateSignup = () => {
+    // const navigateSignup = () => {
 
-        navigate('/signup');
-    };
+    //     navigate('/signup');
+    // };
 
-    const alarmUser = () => {
+    // const alarmUser = () => {
 
-        setNotification({ message: "You should accept the terms of service 🔫 🕱" });
-    };
+    //     setNotification({ message: "You should accept the terms of service 🔫 🕱" });
+    // };
 
     return (
         <div className="wrapper flex_align_justify">
@@ -143,10 +143,10 @@ const Terms = () => {
 
                     </ol>
                 </div>
-                <div className="tc_item tc_foot flex_align">
+                {/* <div className="tc_item tc_foot flex_align">
                     <button className="decline_btn" onClick={alarmUser}>Decline</button>
                     <button className="accept_btn" onClick={navigateSignup}>Accept</button>
-                </div>
+                </div> */}
             </div>
         </div >
     );
