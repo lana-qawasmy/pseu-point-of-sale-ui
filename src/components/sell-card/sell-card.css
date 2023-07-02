@@ -68,16 +68,16 @@
     margin-bottom: 4px;
 }
 
-.bottom span {
+.bottom .priceSpan {
     position: absolute;
-    right: 20px;
+    right: 15px;
     font-family: 'Inter';
 }
 
 .rightSection .counter {
     display: flex;
     column-gap: 10px;
-    width: 70%;
+    width: 30%;
 }
 
 

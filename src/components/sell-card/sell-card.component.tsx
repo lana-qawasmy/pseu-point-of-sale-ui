@@ -27,10 +27,10 @@ const SellCard = (props: IProps) => {
         <div className="bottom">
           <div className="counter">
             <button onClick={() => handleCounter('decrement')}>-</button>
-            <span>{selectedItems[index].number}</span>
+            <span className="numberOfElements">{selectedItems[index].number}</span>
             <button onClick={() => handleCounter('increment')}>+</button>
           </div>
-          <span>
+          <span className="priceSpan">
             {(selectedItems[index].item.priceHistory[0].price.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 }))}$
           </span>
         </div>
