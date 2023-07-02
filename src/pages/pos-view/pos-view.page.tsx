@@ -15,6 +15,7 @@ const PosView = () => {
         price,
         useParams,
         setSelectedItems,
+        handleSelectedItems,
         navigate,
         handleSearch,
         handleSelectedCollection,
@@ -60,7 +61,7 @@ const PosView = () => {
                                         key={item._id as string}
                                         selectedCollection={selectedCollection || null}
                                         item={item}
-                                        OnSelect={() => console.log(1)}
+                                        OnSelect={() => handleSelectedItems(item)}
                                     />
                                 );
                             })}

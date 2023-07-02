@@ -26,8 +26,6 @@ interface IProps {
     handleSubmitNewCollection?: () => Promise<void>;
 }
 const CollectionBar = (props: IProps) => {
-    console.log(props.disableAddBlock);
-
     return (
         <div className="collectionBarContainer">
             <div className="allBlock">
