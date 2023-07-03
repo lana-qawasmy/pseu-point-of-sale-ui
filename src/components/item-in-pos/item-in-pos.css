@@ -42,6 +42,22 @@
     color: #03045e;
     font-weight: 700;
     margin-bottom: 15px;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.mainItemInPOSContainer>.infoWrapper>.itemName>.inStock,
+.mainItemInPOSContainer>.infoWrapper>.itemName>.outOfStock {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.mainItemInPOSContainer>.infoWrapper>.itemName>.inStock {
+    color: rgb(0, 173, 0);
+}
+
+.mainItemInPOSContainer>.infoWrapper>.itemName>.outOfStock {
+    color: rgb(255, 0, 0);
 }
 
 .mainItemInPOSContainer>.infoWrapper>.itemPrice {
@@ -81,6 +97,6 @@
 .goExternalLink:hover {
     stroke: #03045e;
     cursor: pointer;
-    background-color:#fff ;
+    background-color: #fff;
     border-radius: 5px;
 }

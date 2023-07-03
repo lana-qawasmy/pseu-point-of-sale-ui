@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const ItemInPOS = (props: IProps) => {
-    const { _id, name, image, priceHistory } = props.item;
+    const { _id, name, image, priceHistory, quantity } = props.item;
 
     const handleLinkClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.stopPropagation();
@@ -49,7 +49,12 @@ const ItemInPOS = (props: IProps) => {
             <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
             <div className='infoWrapper'>
                 <span className='itemName'>
-                    {name}
+                    <span className="name">{name}</span>
+                    {
+                        quantity
+                            ? <span className='inStock'>In stock</span>
+                            : <span className='outOfStock'>Out of stock</span>
+                    }
                 </span>
                 <div className='itemPrice'>
                     <span className='currentItemPrice'>
