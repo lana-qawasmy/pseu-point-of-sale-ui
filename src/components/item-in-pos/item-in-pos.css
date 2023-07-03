@@ -15,6 +15,14 @@
     cursor: pointer;
 }
 
+.soldOut {
+    opacity: .5;
+}
+
+.soldOut:hover {
+    cursor: no-drop;
+}
+
 .mainItemInPOSContainer>.itemImage {
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
