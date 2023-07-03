@@ -59,13 +59,12 @@ const ViewExistedItems = () => {
                 />
             </div>
             <div className="itemsContainer">
-
                 {
                     itemsLoading
                         ? <span>Loading...</span>
                         :
-                        itemsTable?.map((item) => {
-                            return item.item.priceHistory[0] && (
+                        itemsTable && itemsTable?.map((item) => {
+                            return (
                                 <Item
                                     selectedCollection={selectedCollection}
                                     key={item.item._id}

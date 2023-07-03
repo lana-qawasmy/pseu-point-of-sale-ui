@@ -48,13 +48,11 @@ const PosView = () => {
                     />
                 </div>
                 <div className="itemsContainer">
-
                     {
-
                         itemsLoading
                             ? <span>Loading...</span>
                             :
-                            itemsTable.map((item) => {
+                            itemsTable?.map((item) => {
                                 return item.priceHistory[0] && (
                                     <ItemInPOS
                                         navigate={navigate}
