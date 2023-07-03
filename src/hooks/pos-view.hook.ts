@@ -71,7 +71,7 @@ const usePOSView = () => {
   };
 
   const getItems = async () => {
-    if(user.user){
+    if (user.user) {
       try {
         let items = await itemService.getItems(
           user.user?.token as string,
@@ -105,11 +105,16 @@ const usePOSView = () => {
   };
 
   const handleSelectedItems = (item: ItemNS.Item) => {
+    console.log('in progress...')
+    setState((oldState) => ({
+      ...oldState,
+      items: state.items.map(thisItem => (item.name !== thisItem.name ? thisItem : { ...thisItem, quantity: thisItem.quantity - 1 })),
+    }));
     if (!(selectedItems.length > 0)) {
       setSelectedItems([{ item: item, number: 1 }]);
     } else {
       let tempArray = [...selectedItems];
-      const isThere = tempArray.findIndex((tempItem) => tempItem.item === item);
+      const isThere = tempArray.findIndex((tempItem) => tempItem.item.name === item.name);
       if (isThere === -1) {
         setSelectedItems([...tempArray, { item: item, number: 1 }]);
       } else {
@@ -133,15 +138,15 @@ const usePOSView = () => {
     if (selectedItems.length === 0) {
       setPrice(0);
     }
-  }, [selectedItems]);
+  }, [selectedItems, state.items]);
 
-  useEffect(()=>{
+  useEffect(() => {
     let newArray = state.items;
-    const item = newArray.filter((item)=>{return item.barcode === barcode.result});
-    if(item.length === 1){
-        handleSelectedItems(item[0]);
+    const item = newArray.filter((item) => { return item.barcode === barcode.result });
+    if (item.length === 1) {
+      handleSelectedItems(item[0]);
     }// eslint-disable-next-line react-hooks/exhaustive-deps
-  },[barcode.result])
+  }, [barcode.result])
 
   React.useMemo(async () => {
     loadingItemsAndCollections();

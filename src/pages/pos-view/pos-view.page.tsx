@@ -5,7 +5,7 @@ import { usePOSView } from "../../hooks";
 import { SearchBar } from "../../components/core";
 
 const PosView = () => {
-    const {
+  const {
     selectedCategory,
     categoriesList,
     categoriesLoading,
@@ -52,7 +52,7 @@ const PosView = () => {
             <span>Loading...</span>
           ) : (
             itemsTable &&
-            itemsTable.map((item,index) => {
+            itemsTable.map((item, index) => {
               return (
                 item.priceHistory[0] && (
                   <ItemInPOS
@@ -68,7 +68,7 @@ const PosView = () => {
           )}
         </div>
       </div>
-      <SellBar selectedItems={selectedItems} setSelectedItems={setSelectedItems} price = {price}/>
+      <SellBar selectedItems={selectedItems} setSelectedItems={setSelectedItems} price={price} />
     </div>
   );
 };
