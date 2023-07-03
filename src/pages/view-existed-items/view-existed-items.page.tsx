@@ -70,7 +70,6 @@ const ViewExistedItems = () => {
                                     selectedCategory={selectedCategory}
                                     key={item.item._id}
                                     item={item.item}
-                                    DeletedPrice={12}
                                     Selected={item.selected}
                                     OnDelete={handleDelete}
                                     Editable={true}

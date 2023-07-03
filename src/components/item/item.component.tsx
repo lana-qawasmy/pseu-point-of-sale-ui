@@ -1,7 +1,7 @@
 import './item.css';
 import { CollectionNS, ItemNS } from '../../types';
 import { PopUp } from '../core';
-import {ItemForm} from '../'
+import { ItemForm } from '../'
 import { GoTrashcan } from 'react-icons/go';
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 import { FiEdit } from 'react-icons/fi';
@@ -17,12 +17,12 @@ interface IProps {
 }
 
 const Item = (props: IProps) => {
-    const { _id, name, image, priceHistory, addedBy , quantity } = props.item;
+    const { _id, name, image, priceHistory, addedBy, quantity } = props.item;
     const [displayACK, setDisplayACK] = React.useState(false);
-    const [edit , setEdit] = React.useState<boolean>(false)
+    const [edit, setEdit] = React.useState<boolean>(false)
     return (
         <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
-             {edit &&
+            {edit &&
                 <PopUp setDisplayPopup={setEdit}>
                     <ItemForm edit setEdit={setEdit} item={props.item} />
                 </PopUp>
@@ -34,21 +34,15 @@ const Item = (props: IProps) => {
                     <span className='itemName'>
                         {name}
                     </span>
-                    {quantity 
-                    ? <span className='in'><span>In stock,</span> <span style={{color:'#999'}}>{quantity} pieces left</span></span> 
-                    : <span className='out'>Out of stock</span>}
-                    
+                    {quantity
+                        ? <span className='in'><span>In stock,</span> <span style={{ color: '#999' }}>{quantity} pieces left</span></span>
+                        : <span className='out'>Out of stock</span>}
+
                 </span>
                 <div className='itemPrice'>
                     <span className='currentItemPrice'>
                         {priceHistory[0].price.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$ &nbsp;&nbsp;
                     </span>
-                    {
-                        props.DeletedPrice &&
-                        <span className='deletedItemPrice'>
-                            {props.DeletedPrice.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$
-                        </span>
-                    }
                 </div>
             </div>
             {
