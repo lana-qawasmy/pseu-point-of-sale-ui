@@ -3,7 +3,7 @@ import { SearchBar, Spinner } from '../../components/core';
 import { Order } from '../../components';
 import { useOrderHistory } from '../../hooks';
 import { OrderNS } from '../../types/order.type';
-import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
+import { MdArrowBackIosNew, MdArrowForwardIos, MdDateRange } from 'react-icons/md';
 
 const OrdersHistory = () => {
     const {
@@ -36,24 +36,34 @@ const OrdersHistory = () => {
                             />
                         </td>
                         <td className='dateSearchInOrderHistoryPage'>
-                            <input
-                                type="date"
-                                min={'2000-01-01'}
-                                max={params.get('endDate') || ''}
-                                defaultValue={params.get('startDate') || ''}
-                                onChange={(e) => handleStartDateChange(e)}
-                            />
+                            <td className='dateInputWrapper'>
+                                <input
+                                    id='dateStartPicker'
+                                    type="date"
+                                    min={'2000-01-01'}
+                                    max={params.get('endDate') || ''}
+                                    defaultValue={params.get('startDate') || ''}
+                                    onChange={(e) => handleStartDateChange(e)}
+                                />
+                                <td className='datePickerIcon'>
+                                    <MdDateRange size={22} color='#757575' />
+                                </td>
+                            </td>
                             <strong>
                                 To
                             </strong>
-
-                            <input
-                                type="date"
-                                min={params.get('startDate') || ''}
-                                max={new Date().toISOString().split('T')[0]}
-                                defaultValue={params.get('endDate') || ''}
-                                onChange={(e) => handleEndDateChange(e)}
-                            />
+                            <td className='dateInputWrapper'>
+                                <input
+                                    type="date"
+                                    min={params.get('startDate') || ''}
+                                    max={new Date().toISOString().split('T')[0]}
+                                    defaultValue={params.get('endDate') || ''}
+                                    onChange={(e) => handleEndDateChange(e)}
+                                />
+                                <td className='datePickerIcon'>
+                                    <MdDateRange size={22} color='#757575' />
+                                </td>
+                            </td>
                         </td>
                     </tr>
                     <tr className='headerInOrdersTable'>
@@ -105,7 +115,7 @@ const OrdersHistory = () => {
                         }
                     }}
                 >
-                    <MdArrowBackIosNew color='#adadaf' id={'moveToPrevPageInHistoryPage'} />
+                    <MdArrowBackIosNew color='#adadaf' size={20} id={'moveToPrevPageInHistoryPage'} />
                 </span>
                 <span className='pageNumber'>
                     <strong>Page&nbsp;{page + 1}</strong>
@@ -126,7 +136,7 @@ const OrdersHistory = () => {
                         }
                     }}
                 >
-                    <MdArrowForwardIos color='#adadaf' id={'moveToNextPageInHistoryPage'} />
+                    <MdArrowForwardIos color='#adadaf' size={20} id={'moveToNextPageInHistoryPage'} />
                 </span>
             </div>
         </div>
