@@ -106,7 +106,7 @@ const usePOSView = () => {
       let items: ItemNS.Item[]
       const update = await itemService.updateItem({ ...item, quantity: item.quantity - 1 }, user.user?.token as string)
       if (update) {
-        if (setNotification !== null) {
+        if (selectedCollection !== null) {
           items = (await getItemsForACollection()) || [];
         } else {
           items = await getItems();
