@@ -1,8 +1,9 @@
 import './orders-history.page.css';
-import { Button, SearchBar } from '../../components/core';
-import Order from '../../components/order/order.component';
+import { SearchBar, Spinner } from '../../components/core';
+import { Order } from '../../components';
 import { useOrderHistory } from '../../hooks';
 import { OrderNS } from '../../types/order.type';
+import { MdArrowBackIosNew, MdArrowForwardIos, MdDateRange } from 'react-icons/md';
 
 const OrdersHistory = () => {
     const {
@@ -10,13 +11,12 @@ const OrdersHistory = () => {
         ordersList,
         page,
         numberOfPages,
+        loading,
         setPage,
         handleSearch,
         handleStartDateChange,
         handleEndDateChange,
     } = useOrderHistory();
-
-
 
     return (
         <div className='orderHistoryPage'>
@@ -36,24 +36,34 @@ const OrdersHistory = () => {
                             />
                         </td>
                         <td className='dateSearchInOrderHistoryPage'>
-                            <input
-                                type="date"
-                                min={'2000-01-01'}
-                                max={params.get('endDate') || ''}
-                                defaultValue={params.get('startDate') || ''}
-                                onChange={(e) => handleStartDateChange(e)}
-                            />
+                            <td className='dateInputWrapper'>
+                                <input
+                                    id='dateStartPicker'
+                                    type="date"
+                                    min={'2000-01-01'}
+                                    max={params.get('endDate') || ''}
+                                    defaultValue={params.get('startDate') || ''}
+                                    onChange={(e) => handleStartDateChange(e)}
+                                />
+                                <td className='datePickerIcon'>
+                                    <MdDateRange size={22} color='#757575' />
+                                </td>
+                            </td>
                             <strong>
                                 To
                             </strong>
-
-                            <input
-                                type="date"
-                                min={params.get('startDate') || ''}
-                                max={new Date().toISOString().split('T')[0]}
-                                defaultValue={params.get('endDate') || ''}
-                                onChange={(e) => handleEndDateChange(e)}
-                            />
+                            <td className='dateInputWrapper'>
+                                <input
+                                    type="date"
+                                    min={params.get('startDate') || ''}
+                                    max={new Date().toISOString().split('T')[0]}
+                                    defaultValue={params.get('endDate') || ''}
+                                    onChange={(e) => handleEndDateChange(e)}
+                                />
+                                <td className='datePickerIcon'>
+                                    <MdDateRange size={22} color='#757575' />
+                                </td>
+                            </td>
                         </td>
                     </tr>
                     <tr className='headerInOrdersTable'>
@@ -64,54 +74,70 @@ const OrdersHistory = () => {
                         <th>Date</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={`${loading ? 'loading' : ''}`}>
                     {
-                        ordersList ?
-                            ordersList.map((order: OrderNS.IOrder) => {
-                                return <Order
-                                    key={order._id + 'orderPage'}
-                                    orderNo={order.orderNumber as number}
-                                    cashierName={order.cashierName}
-                                    total={order.total}
-                                    time={order.time as string}
-                                    date={order.date as string}
-                                />;
-                            })
-                            : <tr>
-                                <td className='emptyOrders'>
-                                    There isn't any orders
-                                </td>
-                            </tr>
+                        loading ?
+                            <span className='loading'><Spinner /></span>
+                            : ordersList ?
+                                ordersList.map((order: OrderNS.IOrder) => {
+                                    return <Order
+                                        _id={order._id as string}
+                                        key={order._id + 'orderPage'}
+                                        orderNo={order.orderNumber as number}
+                                        cashierName={order.cashierName}
+                                        total={order.total}
+                                        time={order.time as string}
+                                        date={order.date as string}
+                                    />;
+                                }) :
+                                <tr>
+                                    <td className='emptyOrders'>
+                                        There isn't any orders
+                                    </td>
+                                </tr>
                     }
                 </tbody>
             </table>
             <div className='buttonsInOrdersTable' >
-                <Button
-                    HtmlType='button'
-                    Radius={'3'}
-                    Ratio='10/4'
-                    Width='120'
-                    Disabled={page === 0}
-                    Color='#080961'
-                    onClick={() => setPage((currentPage) => currentPage - 1)}
+                <span
+                    className={`arrow ${page === 0 ? 'disabled' : ''}`}
+                    onClick={() => page !== 0 && setPage((currentPage) => currentPage - 1)}
+                    onMouseOver={() => {
+                        let x = document.getElementById('moveToPrevPageInHistoryPage');
+                        if (x) {
+                            x.style.fill = '#080961';
+                        }
+                    }}
+                    onMouseLeave={() => {
+                        let x = document.getElementById('moveToPrevPageInHistoryPage');
+                        if (x) {
+                            x.style.fill = '#adadaf';
+                        }
+                    }}
                 >
-                    Previous Page
-                </Button>
-                <span className='pageNumber'>
-                    <strong>Page:&nbsp;{page + 1}</strong>
+                    <MdArrowBackIosNew color='#adadaf' size={20} id={'moveToPrevPageInHistoryPage'} />
                 </span>
-                <Button
-                    Color='#080961'
-                    HtmlType='button'
-                    Radius={'3'}
-                    Ratio='10/4'
-                    Width='120'
-                    Type='Primary'
-                    Disabled={numberOfPages - 1 <= page}
-                    onClick={() => setPage((currentPage) => currentPage + 1)}
+                <span className='pageNumber'>
+                    <strong>Page&nbsp;{page + 1}</strong>
+                </span>
+                <span
+                    className={`arrow ${numberOfPages - 1 <= page ? 'disabled' : ''}`}
+                    onClick={() => (numberOfPages - 1 > page) && setPage((currentPage) => currentPage + 1)}
+                    onMouseOver={() => {
+                        let x = document.getElementById('moveToNextPageInHistoryPage');
+                        if (x) {
+                            x.style.fill = '#080961';
+                        }
+                    }}
+                    onMouseLeave={() => {
+                        let x = document.getElementById('moveToNextPageInHistoryPage');
+                        if (x) {
+                            x.style.fill = '#adadaf';
+                        }
+                    }}
                 >
-                    Next Page
-                </Button>
+                    <MdArrowForwardIos color='#adadaf' size={20} id={'moveToNextPageInHistoryPage'} />
+                </span>
             </div>
         </div>
     );

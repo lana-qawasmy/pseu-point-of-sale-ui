@@ -2,7 +2,7 @@ import "./view-existed-items.css";
 import { Item } from "../../components";
 import { CollectionBar } from "../../components";
 import { useViewItems } from "../../hooks";
-import { SearchBar } from "../../components/core";
+import { SearchBar, Spinner } from "../../components/core";
 
 const ViewExistedItems = () => {
     const {
@@ -58,10 +58,10 @@ const ViewExistedItems = () => {
                     Padding={10}
                 />
             </div>
-            <div className="itemsContainer">
+            <div className={`itemsContainer ${itemsLoading ? 'loading' : ''}`}>
                 {
                     itemsLoading
-                        ? <span>Loading...</span>
+                        ? <span className='loading'><Spinner /></span>
                         :
                         itemsTable && itemsTable?.map((item) => {
                             return (

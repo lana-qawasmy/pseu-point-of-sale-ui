@@ -79,11 +79,11 @@ const NavigationBar = () => {
                             </button>
                         </div>
                     }
-                    {location.pathname.includes('/viewSingleItem') &&
+                    {(location.pathname.includes('/viewSingleItem') || location.pathname.includes('/viewSingleOrder')) &&
                         <div className="optionWrapper">
                             <button
                                 type="button"
-                                className={location.pathname.includes('/viewSingleItem') ? "focusBtn" : ""}
+                                className={(location.pathname.includes('/viewSingleItem') || location.pathname.includes('/viewSingleOrder')) ? "focusBtn" : ""}
                                 onClick={() => {
                                     navigate("/addItem", { replace: false });
                                 }}

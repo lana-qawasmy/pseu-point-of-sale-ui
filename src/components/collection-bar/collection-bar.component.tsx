@@ -1,5 +1,5 @@
 import "./collection-bar.css";
-import { CollectionBlock } from "../core";
+import { CollectionBlock, Spinner } from "../core";
 import { CollectionNS } from '../../types';
 import AddNewCollectionBlock from '../add-new-collection-block/add-new-collection-block.component';
 import { Link } from 'react-router-dom';
@@ -42,7 +42,7 @@ const CollectionBar = (props: IProps) => {
             <div className="collectionBar">
                 {
                     props.loading
-                        ? <span> Loading...</span>
+                        ? <span className='loading'><Spinner /></span>
                         : props.collectionList.map((collection: CollectionNS.ICollection, index: number) => {
                             return (
                                 <CollectionBlock

@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms, SingleItem, UserProfile } from './pages';
+import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms, SingleItem, UserProfile, SingleOrder } from './pages';
 import { UserProvider, ItemsProvider } from './components/providers';
 import { Header, NavigationBar, RoleGuard } from './components/core';
 import { Notification, Guard } from './components';
@@ -22,6 +22,7 @@ const App = () => {
                             <Route path='/existedItems' element={<Guard><RoleGuard role={['manager', 'admin']}><ViewExistedItems /></RoleGuard></Guard>} />
                             <Route path='/terms' element={<Terms />} />
                             <Route path='/viewSingleItem/:id' element={<SingleItem />} />
+                            <Route path='/viewSingleOrder/:id' element={<SingleOrder />} />
                             <Route path='/profile' element={<UserProfile />} />
                         </Routes>
                     </BrowserRouter>

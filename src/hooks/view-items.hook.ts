@@ -28,22 +28,12 @@ const useViewItems = () => {
         return newItems || [];
     }) || [];
     const [state, setState] = React.useState<IState>({
-        items: initialItems, collections: [], loading: { collectionsLoading: false, itemsLoading: false }
+        items: initialItems, collections: [], loading: { collectionsLoading: true, itemsLoading: true }
     });
     const [selectedCollection, setSelectedCollection] = React.useState<CollectionNS.ICollection | null>(null);
 
     const [showAddForm, setShowAddForm] = React.useState(false);
     const [newCollectionFields, setNewCollectionFields] = React.useState({ emoji: "", name: "" });
-
-    React.useEffect(() => {
-        if (itemContext.items) {
-            setState((oldState) => ({
-                ...oldState,
-                items: getTableWithState(itemContext.items || [])
-            }));
-        }
-        // eslint-disable-next-line 
-    }, [itemContext.items]);
 
     const { setNotification } = useNotification();
     const useParams = useParam();
@@ -63,15 +53,6 @@ const useViewItems = () => {
             loading: {
                 itemsLoading: true,
                 collectionsLoading: true
-            }
-        }));
-    };
-    const stopLoadingItemsAndCollections = () => {
-        setState((oldState) => ({
-            ...oldState,
-            loading: {
-                itemsLoading: false,
-                collectionsLoading: false
             }
         }));
     };
@@ -123,10 +104,13 @@ const useViewItems = () => {
             setState((oldState) => ({
                 ...oldState,
                 collections: newState?.collections,
-                items: newState.newItemTable
+                items: newState.newItemTable,
+                loading: {
+                    collectionsLoading: false,
+                    itemsLoading: false
+                }
             }));
         }
-        stopLoadingItemsAndCollections();
     };
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -259,7 +243,6 @@ const useViewItems = () => {
         }
     };
 
-
     React.useMemo(async () => {
         loadingItemsAndCollections();
         const newState = await getItemsAndCollections();
@@ -275,35 +258,7 @@ const useViewItems = () => {
             }));
         }
         // eslint-disable-next-line
-    }, [showAddForm]);
-
-    React.useMemo(async () => {
-        loadingItems();
-        const newItems = await getItems();
-        if (newItems) {
-            setState((oldState) => ({
-                ...oldState,
-                items: newItems,
-                loading: {
-                    ...oldState.loading,
-                    itemsLoading: false
-                }
-            }));
-        }
-        // eslint-disable-next-line
-    }, [useParams.params]);
-
-    React.useMemo(() => {
-        setState((oldState) => ({
-            ...oldState,
-            items: getTableWithState(state.items.map(item => item.item)),
-            loading: {
-                collectionsLoading: false,
-                itemsLoading: false,
-            }
-        }));
-        // eslint-disable-next-line
-    }, [selectedCollection]);
+    }, [showAddForm, useParams.params, selectedCollection]);
 
     return {
         itemsTable: state.items,
