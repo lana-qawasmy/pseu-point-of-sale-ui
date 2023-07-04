@@ -16,7 +16,7 @@ const SingleItem = () => {
             <div className="content">
               <h2>{item.name}</h2>
               <span className="quantity">
-                <span className="number">43</span>Pieces available
+                <span className="number">{item.quantity}</span>Piece(s) available
               </span>
               <div className="price">
                 <span className="certainPrice">
