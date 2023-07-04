@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import './order.css';
 
 interface IProps {
+    _id: string;
     orderNo: number;
     cashierName: string;
     total: number;
@@ -9,13 +11,16 @@ interface IProps {
 }
 
 const Order = (props: IProps) => {
-    const { orderNo, cashierName, total, time, date } = props;
+    const { _id, orderNo, cashierName, total, time, date } = props;
     const timeArray = time.split(':');
     const splitTime = timeArray[0] + ':' + timeArray[1] + ' ' + timeArray[2][3] + timeArray[2][4];
     let splitDate = date.split('T')[0].split('-').reverse().map((dateComponent) => (dateComponent[0] === '0') ? dateComponent[1] : dateComponent).join('/');
-
+    const navigate = useNavigate();
     return (
-        <tr className='orderContainer'>
+        <tr
+            className='orderContainer'
+            onClick={() => navigate(`/singleOrderPage/${_id}`, { replace: false })}
+        >
             <td>{orderNo}</td>
             <td>{cashierName.toLowerCase()}</td>
             <td>{total.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$</td>

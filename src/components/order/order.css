@@ -7,6 +7,13 @@
     display: flex;
     background-color: #fff;
     font-family: var(--primaryFont);
+    user-select: none;
+}
+.orderContainer:hover {
+    cursor: pointer;
+    transform: scale(1.04, 1.1);
+    transition: 0.4s;
+    box-shadow: 0.05em 0.05em 5px var(--primaryColor);
 }
 
 .orderContainer td {

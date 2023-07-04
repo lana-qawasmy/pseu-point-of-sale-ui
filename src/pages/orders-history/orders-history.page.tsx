@@ -1,6 +1,6 @@
 import './orders-history.page.css';
-import { Button, SearchBar, Spinner } from '../../components/core';
-import Order from '../../components/order/order.component';
+import { SearchBar, Spinner } from '../../components/core';
+import { Order } from '../../components';
 import { useOrderHistory } from '../../hooks';
 import { OrderNS } from '../../types/order.type';
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
@@ -17,8 +17,6 @@ const OrdersHistory = () => {
         handleStartDateChange,
         handleEndDateChange,
     } = useOrderHistory();
-
-
 
     return (
         <div className='orderHistoryPage'>
@@ -73,6 +71,7 @@ const OrdersHistory = () => {
                             : ordersList ?
                                 ordersList.map((order: OrderNS.IOrder) => {
                                     return <Order
+                                        _id={order._id as string}
                                         key={order._id + 'orderPage'}
                                         orderNo={order.orderNumber as number}
                                         cashierName={order.cashierName}
@@ -106,7 +105,7 @@ const OrdersHistory = () => {
                         }
                     }}
                 >
-                    <MdArrowBackIosNew color='#adadaf' id={'moveToPrevPageInHistoryPage'}/>
+                    <MdArrowBackIosNew color='#adadaf' id={'moveToPrevPageInHistoryPage'} />
                 </span>
                 <span className='pageNumber'>
                     <strong>Page&nbsp;{page + 1}</strong>
@@ -127,7 +126,7 @@ const OrdersHistory = () => {
                         }
                     }}
                 >
-                    <MdArrowForwardIos color='#adadaf'  id={'moveToNextPageInHistoryPage'}/>
+                    <MdArrowForwardIos color='#adadaf' id={'moveToNextPageInHistoryPage'} />
                 </span>
             </div>
         </div>

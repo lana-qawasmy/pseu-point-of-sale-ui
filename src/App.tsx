@@ -22,6 +22,7 @@ const App = () => {
                             <Route path='/existedItems' element={<Guard><RoleGuard role={['manager', 'admin']}><ViewExistedItems /></RoleGuard></Guard>} />
                             <Route path='/terms' element={<Terms />} />
                             <Route path='/viewSingleItem/:id' element={<SingleItem />} />
+                            <Route path='/viewSingleOrder/:id' element={<SingleItem />} />
                             <Route path='/profile' element={<UserProfile />} />
                         </Routes>
                     </BrowserRouter>
