@@ -1,7 +1,8 @@
 import "./navigation-bar.css";
 import { IconContext } from "react-icons";
 import { MdAddBox, MdSpaceDashboard, MdHistory } from "react-icons/md";
-import { FaClipboardList, FaBoxOpen } from "react-icons/fa";
+import { FaClipboardList } from "react-icons/fa";
+import { AiOutlineEye } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -78,17 +79,17 @@ const NavigationBar = () => {
                             </button>
                         </div>
                     }
-                    {location.pathname.includes('/viewSingleItem') &&
+                    {(location.pathname.includes('/viewSingleItem') || location.pathname.includes('/viewSingleOrder')) &&
                         <div className="optionWrapper">
                             <button
                                 type="button"
-                                className={location.pathname.includes('/viewSingleItem') ? "focusBtn" : ""}
+                                className={(location.pathname.includes('/viewSingleItem') || location.pathname.includes('/viewSingleOrder')) ? "focusBtn" : ""}
                                 onClick={() => {
                                     navigate("/addItem", { replace: false });
                                 }}
                             >
                                 <span>.</span>
-                                <FaBoxOpen />
+                                <AiOutlineEye />
                             </button>
                         </div>
                     }

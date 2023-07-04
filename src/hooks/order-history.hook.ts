@@ -3,9 +3,15 @@ import { useNotification } from '.';
 import { orderService } from '../services';
 import { UserContext } from '../components/providers/user.provider';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { OrderNS } from '../types/order.type';
+
+interface IState {
+    orders: OrderNS.IOrder[];
+    loading: boolean;
+}
 
 const useOrderHistory = () => {
-    const [ordersList, setOrdersList] = React.useState([]);
+    const [ordersList, setOrdersList] = React.useState<IState>({ orders: [], loading: true });
     const [page, setPage] = React.useState(0);
     const [numberOfPages, setNumberOfPages] = React.useState(0);
     // const [dateRange, setDateRange] = React.useState<dateRange>({ start: '2000-01-01', end: new Date().toISOString().split('T')[0] });
@@ -50,7 +56,7 @@ const useOrderHistory = () => {
     const getOrders = async (start: string, end: string, searchTerms?: string) => {
         try {
             const orders = await orderService.getOrders(user.user?.token as string, page, start, end, searchTerms);
-            setOrdersList(orders.orders);
+            setOrdersList({ orders: orders.orders, loading: false });
             setNumberOfPages(orders.numberOfPages);
         } catch (error) {
             console.error(error);
@@ -62,6 +68,7 @@ const useOrderHistory = () => {
     React.useMemo(async () => {
         const date = new Date().toISOString().split('T')[0];
         const search = params.get('searchTerms');
+        setOrdersList((oldState) => ({ ...oldState, loading: true }));
         if (search === undefined)
             await getOrders(params.get('startDate') || '2000-01-01', params.get('endDate') || date);
         else
@@ -79,7 +86,8 @@ const useOrderHistory = () => {
 
     return {
         params,
-        ordersList,
+        ordersList: ordersList.orders,
+        loading: ordersList.loading,
         page,
         numberOfPages,
         setPage,

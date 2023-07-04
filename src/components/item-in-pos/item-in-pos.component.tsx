@@ -7,7 +7,7 @@ import { ItemsContext } from '../providers/items.provider';
 import React from 'react';
 
 interface IProps {
-    selectedCategory: CollectionNS.ICollection | null;
+    selectedCollection: CollectionNS.ICollection | null;
     item: ItemNS.Item;
     DeletedPrice?: number;
     OnSelect: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;

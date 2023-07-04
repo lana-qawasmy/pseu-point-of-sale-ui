@@ -1,40 +1,41 @@
 import "./sell-bar.css";
 import React from "react";
 import { ItemNS } from "../../types";
-import { Button } from "../core";
+import { Button, Input } from "../core";
 import SellCard from "../sell-card/sell-card.component";
-import { useNotification } from '../../hooks';
+import  { useNotification } from '../../hooks';
 import { OrderNS } from '../../types/order.type';
 import { UserContext } from '../providers/user.provider';
 import { orderService } from '../../services';
-interface IProps {
-    selectedItems: {
-        item: ItemNS.Item;
-        number: number;
-    }[];
-    setSelectedItems: React.Dispatch<
-        React.SetStateAction<
-            {
-                item: ItemNS.Item;
-                number: number;
-            }[]
-        >
-    >;
-    price: number;
+import { useDiscount } from "../../hooks";
+interface Iprops {
+      selectedItems: {
+            item: ItemNS.Item;
+            number: number;
+      }[];
+      setSelectedItems: React.Dispatch<
+            React.SetStateAction<
+                  {
+                        item: ItemNS.Item;
+                        number: number;
+                  }[]
+            >
+      >;
+      price: number;
 }
-const SellBar = (props: IProps) => {
-    const { selectedItems, setSelectedItems, price } = props;
+const SellBar = (props: Iprops) => {
+    const {selectedItems, setSelectedItems, price} = props
     const [totalPrice, setTotalPrice] = React.useState<number>(0);
-    const user = React.useContext(UserContext);
-    const { setNotification } = useNotification();
     const tax = 0.10;
-    const discount = 5;
-    React.useEffect(() => {
-        if (price !== 0)
-            setTotalPrice((price + (price * tax)) - discount);
+    const discount = useDiscount();
+    const { setNotification } = useNotification();
+    const user = React.useContext(UserContext);
+    React.useEffect(()=>{
+        if(price !==0)
+        setTotalPrice((price + (price * tax)) - (price * (discount.discount / 100)));
         else setTotalPrice(0);
-    }, [price]);
-    const itemsNumber = React.useMemo(() => {
+      },[price , discount]);
+    const itemsNumber = React.useMemo(()=>{
         let count = 0;
         selectedItems.map(item => {
             count += item.number;
@@ -88,21 +89,40 @@ const SellBar = (props: IProps) => {
                 </div>
                 <div className="row">
                     <span>Subtotal</span>
-                    <span>{price.toFixed(2)}$</span>
-                </div>
-                <div className="row">
-                    <span>discount</span>
-                    <span>-{discount.toFixed(2)}$</span>
+                    <span>{price.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <div className="row">
                     <span>Tax({(tax * 10).toFixed(2)}%)</span>
                     <span>{(tax * price).toFixed(2)}$</span>
                 </div>
+                <div className="row">
+                    <span>discount</span>
+                    <span>{discount.discount}%</span>
+                </div>
+                <form className="row" onSubmit={discount.handleDiscount}>
+                    <Input
+                        PlaceHolder='Discount code'
+                        Height={39}
+                        Radius={10}
+                        Color="#03045e"
+                        name="code"
+                        onChange={e => discount.setDiscountCode(e.target.value)}
+                    />
+                    <Button
+                        HtmlType='submit'
+                        Width='100'
+                        Radius="10"
+                        Color="#03045e"
+                        FontSize="12"
+                    >
+                        Apply discount
+                    </Button>
+                </form>
             </div>
             <div className="sectionThree">
                 <div className="row">
                     <span>Total</span>
-                    <span>{totalPrice.toFixed(2)}$</span>
+                    <span>{totalPrice.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <Button
                     HtmlType="button"

@@ -8,33 +8,34 @@ import { useNavigate } from "react-router-dom";
 
 interface IState {
   items: ItemNS.Item[];
-  categories: CollectionNS.ICollection[];
+  collections: CollectionNS.ICollection[];
   loading: {
     itemsLoading: boolean;
-    categoriesLoading: boolean;
+    collectionsLoading: boolean;
   };
 }
 
 const usePOSView = () => {
   const user = React.useContext(UserContext);
-  const [selectedCategory, setSelectedCategory] =
-    React.useState<CollectionNS.ICollection | null>(null);
+  const [selectedCollection, setSelectedCollection] = React.useState<CollectionNS.ICollection | null>(null);
+  const navigate = useNavigate();
+  const [state, setState] = React.useState<IState>({
+    items: [],
+    collections: [],
+    loading: {
+      collectionsLoading: false,
+      itemsLoading: false
+    },
+  });
+
   const [selectedItems, setSelectedItems] = React.useState<
     { item: ItemNS.Item; number: number }[]
   >([]);
   const [price, setPrice] = useState<number>(0);
-  const navigate = useNavigate();
-  const [state, setState] = React.useState<IState>({
-    items: [],
-    categories: [],
-    loading: {
-      categoriesLoading: false,
-      itemsLoading: false,
-    },
-  });
   const barcode = useBarcode();
   const { setNotification } = useNotification();
   const useParams = useParam();
+
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     useParams.setParams("searchTerms", e.target.value);
@@ -45,29 +46,26 @@ const usePOSView = () => {
       ...oldState,
       loading: {
         itemsLoading: true,
-        categoriesLoading: true,
-      },
+        collectionsLoading: true
+      }
     }));
   };
-  const stopLoadingItemsAndCollections = (
-    items: ItemNS.Item[],
-    collections: CollectionNS.ICollection[]
-  ) => {
+  const stopLoadingItemsAndCollections = (items: ItemNS.Item[], collections: CollectionNS.ICollection[]) => {
     setState((oldState) => ({
       ...oldState,
       items: items,
-      categories: collections,
+      collections: collections,
       loading: {
         itemsLoading: false,
-        categoriesLoading: false,
-      },
+        collectionsLoading: false
+      }
     }));
   };
 
-  const handleSelectedCategory = async (
-    category: CollectionNS.ICollection | null
-  ) => {
-    setSelectedCategory(category);
+
+
+  const handleSelectedCollection = async (collection: CollectionNS.ICollection | null) => {
+    setSelectedCollection(collection);
   };
 
   const getItems = async () => {
@@ -89,15 +87,14 @@ const usePOSView = () => {
         console.error(error);
       }
     }
-  };
+  }
 
   const getItemsForACollection = async () => {
     try {
       const items = await collectionServices.getCollectionItems(
         user.user?.token as string,
-        (selectedCategory && (selectedCategory._id as string)) || "",
-        useParams.params.get("searchTerms") || ""
-      );
+        (selectedCollection && selectedCollection._id as string) || '',
+        useParams.params.get('searchTerms') || '');
       return items;
     } catch (error) {
       console.error(error);
@@ -109,7 +106,7 @@ const usePOSView = () => {
       let items: ItemNS.Item[]
       const update = await itemService.updateItem({ ...item, quantity: item.quantity - 1 }, user.user?.token as string)
       if (update) {
-        if (selectedCategory !== null) {
+        if (setNotification !== null) {
           items = (await getItemsForACollection()) || [];
         } else {
           items = await getItems();
@@ -164,7 +161,7 @@ const usePOSView = () => {
     loadingItemsAndCollections();
     let items: ItemNS.Item[];
     try {
-      if (selectedCategory !== null) {
+      if (selectedCollection !== null) {
         items = (await getItemsForACollection()) || [];
       } else {
         items = await getItems();
@@ -177,22 +174,22 @@ const usePOSView = () => {
       console.error(error);
     }
     // eslint-disable-next-line
-  }, [useParams.params, selectedCategory, selectedItems]);
+  }, [useParams.params, selectedCollection, selectedItems]);
 
   return {
-    selectedCategory,
+    selectedCollection,
     itemsLoading: state.loading.itemsLoading,
-    categoriesLoading: state.loading.categoriesLoading,
+    collectionsLoading: state.loading.collectionsLoading,
     itemsTable: state.items,
-    categoriesList: state.categories,
+    collectionsList: state.collections,
+    selectedItems,
+    price,
     useParams,
     navigate,
-    handleSelectedCategory,
+    handleSelectedCollection,
     handleSearch,
     handleSelectedItems,
-    selectedItems,
     setSelectedItems,
-    price,
   };
 };
 

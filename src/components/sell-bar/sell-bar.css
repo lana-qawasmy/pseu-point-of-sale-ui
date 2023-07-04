@@ -1,4 +1,4 @@
-.sellBarContainer{
+.sellBarContainer {
     background-color: white;
     width: 25%;
     margin-top: 74px;
@@ -12,7 +12,8 @@
     z-index: 4;
 }
 
-.sellBarContainer span, .sellBarContainer h2{
+.sellBarContainer span,
+.sellBarContainer h2 {
     color: #030463;
 }
 
@@ -25,7 +26,7 @@
     width: 100%;
 }
 
-.sectionTwo{
+.sectionTwo {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,30 +36,27 @@
     width: 100%;
 }
 
-.sectionOne h2{
+.sectionOne h2 {
     width: 60%;
     text-align: left;
 }
 
-.row{
-    margin-bottom: 22px;
-    height: 1px;
-    margin-top: 22px;
+.row {
+    margin-bottom: 12px;
+    margin-top: 12px;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    column-gap: 72px;
-    row-gap: 29px;
 }
 
-.sectionThree{
+.sectionThree {
     margin-top: 14px;
     display: flex;
     flex-direction: column;
     row-gap: 35px;
 }
 
-.sectionThree .buttonContainer{
+.sectionThree .buttonContainer {
     width: 100%;
     display: flex;
     align-items: center;
@@ -66,7 +64,7 @@
     overflow: auto;
 }
 
-.sectionThree .row span{
+.sectionThree .row span {
     font-size: 25px;
     font-weight: 700;
 }
