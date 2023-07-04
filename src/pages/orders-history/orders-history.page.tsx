@@ -1,5 +1,5 @@
 import './orders-history.page.css';
-import { Button, SearchBar } from '../../components/core';
+import { Button, SearchBar, Spinner } from '../../components/core';
 import Order from '../../components/order/order.component';
 import { useOrderHistory } from '../../hooks';
 import { OrderNS } from '../../types/order.type';
@@ -10,6 +10,7 @@ const OrdersHistory = () => {
         ordersList,
         page,
         numberOfPages,
+        loading,
         setPage,
         handleSearch,
         handleStartDateChange,
@@ -64,24 +65,26 @@ const OrdersHistory = () => {
                         <th>Date</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={`${loading ? 'loading' : ''}`}>
                     {
-                        ordersList ?
-                            ordersList.map((order: OrderNS.IOrder) => {
-                                return <Order
-                                    key={order._id + 'orderPage'}
-                                    orderNo={order.orderNumber as number}
-                                    cashierName={order.cashierName}
-                                    total={order.total}
-                                    time={order.time as string}
-                                    date={order.date as string}
-                                />;
-                            })
-                            : <tr>
-                                <td className='emptyOrders'>
-                                    There isn't any orders
-                                </td>
-                            </tr>
+                        loading ?
+                            <span className='loading'><Spinner /></span>
+                            : ordersList ?
+                                ordersList.map((order: OrderNS.IOrder) => {
+                                    return <Order
+                                        key={order._id + 'orderPage'}
+                                        orderNo={order.orderNumber as number}
+                                        cashierName={order.cashierName}
+                                        total={order.total}
+                                        time={order.time as string}
+                                        date={order.date as string}
+                                    />;
+                                }) :
+                                <tr>
+                                    <td className='emptyOrders'>
+                                        There isn't any orders
+                                    </td>
+                                </tr>
                     }
                 </tbody>
             </table>
@@ -98,7 +101,7 @@ const OrdersHistory = () => {
                     Previous Page
                 </Button>
                 <span className='pageNumber'>
-                    <strong>Page:&nbsp;{page + 1}</strong>
+                    <strong>Page&nbsp;{page + 1}</strong>
                 </span>
                 <Button
                     Color='#080961'
