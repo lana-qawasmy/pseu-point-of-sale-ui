@@ -123,7 +123,7 @@ const usePOSView = () => {
       console.error(error)
     }
     if (!(selectedItems.length > 0)) {
-      setSelectedItems([{ item: item, number: 1 }]);
+      setSelectedItems([{ item: { ...item, quantity: item.quantity - 1 }, number: 1 }]);
     } else {
       let tempArray = [...selectedItems];
       const isThere = tempArray.findIndex((tempItem) => tempItem.item.name === item.name);
