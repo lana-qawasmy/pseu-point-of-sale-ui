@@ -3,6 +3,7 @@ import { Button, SearchBar, Spinner } from '../../components/core';
 import Order from '../../components/order/order.component';
 import { useOrderHistory } from '../../hooks';
 import { OrderNS } from '../../types/order.type';
+import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
 
 const OrdersHistory = () => {
     const {
@@ -89,32 +90,45 @@ const OrdersHistory = () => {
                 </tbody>
             </table>
             <div className='buttonsInOrdersTable' >
-                <Button
-                    HtmlType='button'
-                    Radius={'3'}
-                    Ratio='10/4'
-                    Width='120'
-                    Disabled={page === 0}
-                    Color='#080961'
-                    onClick={() => setPage((currentPage) => currentPage - 1)}
+                <span
+                    className={`arrow ${page === 0 ? 'disabled' : ''}`}
+                    onClick={() => page !== 0 && setPage((currentPage) => currentPage - 1)}
+                    onMouseOver={() => {
+                        let x = document.getElementById('moveToPrevPageInHistoryPage');
+                        if (x) {
+                            x.style.fill = '#080961';
+                        }
+                    }}
+                    onMouseLeave={() => {
+                        let x = document.getElementById('moveToPrevPageInHistoryPage');
+                        if (x) {
+                            x.style.fill = '#adadaf';
+                        }
+                    }}
                 >
-                    Previous Page
-                </Button>
+                    <MdArrowBackIosNew color='#adadaf' id={'moveToPrevPageInHistoryPage'}/>
+                </span>
                 <span className='pageNumber'>
                     <strong>Page&nbsp;{page + 1}</strong>
                 </span>
-                <Button
-                    Color='#080961'
-                    HtmlType='button'
-                    Radius={'3'}
-                    Ratio='10/4'
-                    Width='120'
-                    Type='Primary'
-                    Disabled={numberOfPages - 1 <= page}
-                    onClick={() => setPage((currentPage) => currentPage + 1)}
+                <span
+                    className={`arrow ${numberOfPages - 1 <= page ? 'disabled' : ''}`}
+                    onClick={() => (numberOfPages - 1 > page) && setPage((currentPage) => currentPage + 1)}
+                    onMouseOver={() => {
+                        let x = document.getElementById('moveToNextPageInHistoryPage');
+                        if (x) {
+                            x.style.fill = '#080961';
+                        }
+                    }}
+                    onMouseLeave={() => {
+                        let x = document.getElementById('moveToNextPageInHistoryPage');
+                        if (x) {
+                            x.style.fill = '#adadaf';
+                        }
+                    }}
                 >
-                    Next Page
-                </Button>
+                    <MdArrowForwardIos color='#adadaf'  id={'moveToNextPageInHistoryPage'}/>
+                </span>
             </div>
         </div>
     );

@@ -140,9 +140,10 @@
 .orderHistoryPage  .buttonsInOrdersTable {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     padding-left: 40px;
     width: 92.8%;
+    gap: 30px;
 }
 
 .orderHistoryPage  .buttonsInOrdersTable .pageNumber {
@@ -150,6 +151,7 @@
     justify-content: center;
     align-items: center;
     color: var(--primaryColor);
+    user-select: none;
 }
 
 .orderHistoryPage .ordersTable tbody.loading{
@@ -157,3 +159,16 @@
     justify-content: center;
     align-items: center;
 }
+
+.buttonsInOrdersTable .arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+.buttonsInOrdersTable .arrow.disabled
+{
+    cursor: not-allowed;
+}
+
