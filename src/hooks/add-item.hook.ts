@@ -84,6 +84,13 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
             });
             return;
         }
+        if (Number(target.quantity.value) < 0) {
+            setNotification({
+                message: "quantity value must be positive or zero!",
+                status: "warning",
+            });
+            return;
+        }
         const date = new Date()
         initialItem &&
             initialItem.priceHistory[initialItem.priceHistory.length - 1].price !== price &&
