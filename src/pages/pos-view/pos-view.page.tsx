@@ -2,7 +2,7 @@ import './pos-view.css';
 import '../../components/core/collection-block/collection-block.css';
 import { CollectionBar, ItemInPOS, SellBar } from '../../components';
 import { usePOSView } from '../../hooks';
-import { SearchBar } from '../../components/core';
+import { SearchBar, Spinner } from '../../components/core';
 
 const PosView = () => {
     const {
@@ -47,10 +47,10 @@ const PosView = () => {
                         Padding={10}
                     />
                 </div>
-                <div className="itemsContainer">
+                <div className={`itemsContainer ${itemsLoading ? 'loading' : ''}`}>
                     {
                         itemsLoading
-                            ? <span>Loading...</span>
+                            ? <span className='loading'><Spinner /></span>
                             :
                             itemsTable?.map((item) => {
                                 return item.priceHistory[0] && (
