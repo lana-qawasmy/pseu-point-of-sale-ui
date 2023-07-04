@@ -14,6 +14,10 @@
     border: 1px solid #023e8a;
 }
 
+.outOfStock {
+    opacity: .5;
+}
+
 .mainItemContainer>.itemImage {
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
@@ -47,10 +51,12 @@
     flex-direction: column;
     align-items: flex-start;
 }
+
 .mainItemContainer>.infoWrapper>.nameWrapper>.out {
     font-size: 14px;
     color: rgb(255, 0, 0);
 }
+
 .mainItemContainer>.infoWrapper>.nameWrapper>.itemName {
     display: flex;
     color: #03045e;

@@ -21,7 +21,7 @@ const Item = (props: IProps) => {
     const [displayACK, setDisplayACK] = React.useState(false);
     const [edit, setEdit] = React.useState<boolean>(false)
     return (
-        <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''}`}>
+        <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''} ${!props.item.quantity && 'outOfStock' }`}>
             {edit &&
                 <PopUp setDisplayPopup={setEdit}>
                     <ItemForm edit setEdit={setEdit} item={props.item} />
