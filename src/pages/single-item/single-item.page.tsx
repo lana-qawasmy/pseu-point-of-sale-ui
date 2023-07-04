@@ -22,7 +22,6 @@ const SingleItem = () => {
                 <span className="certainPrice">
                   {formatPrice(item.priceHistory[0].price)} $
                 </span>
-                <span className="discount">{formatPrice(22.0)} $</span>
               </div>
               <span className="description">{item.description}</span>
             </div>
