@@ -30,7 +30,8 @@ const SellCard = (props: IProps) => {
             <div className="counter">
                 <button onClick={()=>handleCounter('decrement')}>-</button>
                 <span className="numberOfElements">{selectedItems[index].number}</span>
-                <button onClick={()=>handleCounter('increment')}>+</button>
+                <button className={selectedItems[index].item.quantity > 0 ? '' : 'soldOut'}
+              onClick={() => handleCounter('increment')} >+</button>
             </div>
             <span>{(selectedItems[index].item.priceHistory[0].price) as number}$</span>
             </div>

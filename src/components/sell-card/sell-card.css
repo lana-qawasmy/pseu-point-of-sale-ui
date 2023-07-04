@@ -64,7 +64,8 @@
 .bottom {
     position: relative;
     display: flex;
-    width: 100%;
+    justify-content: space-between;
+    width: 85%;
     margin-bottom: 4px;
 }
 
