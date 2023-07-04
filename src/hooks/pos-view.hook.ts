@@ -105,7 +105,6 @@ const usePOSView = () => {
   };
 
   const handleSelectedItems = async (item: ItemNS.Item) => {
-    console.log('in progress...')
     try {
       let items: ItemNS.Item[]
       const update = await itemService.updateItem({ ...item, quantity: item.quantity - 1 }, user.user?.token as string)
@@ -129,10 +128,10 @@ const usePOSView = () => {
       let tempArray = [...selectedItems];
       const isThere = tempArray.findIndex((tempItem) => tempItem.item.name === item.name);
       if (isThere === -1) {
-        setSelectedItems([...tempArray, { item: item, number: 1 }]);
+        setSelectedItems([...tempArray, { item: { ...item, quantity: item.quantity - 1 }, number: 1 }]);
       } else {
         tempArray[isThere] = {
-          item: item,
+          item: { ...item, quantity: item.quantity - 1 },
           number: tempArray[isThere].number + 1,
         };
         setSelectedItems([...tempArray]);
@@ -178,7 +177,7 @@ const usePOSView = () => {
       console.error(error);
     }
     // eslint-disable-next-line
-  }, [useParams.params, selectedCategory , selectedItems]);
+  }, [useParams.params, selectedCategory, selectedItems]);
 
   return {
     selectedCategory,
