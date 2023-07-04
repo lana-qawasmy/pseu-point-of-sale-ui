@@ -9,3 +9,4 @@ export { default as SearchBar } from './search-bar/search-bar.component';
 export { default as Header } from './header/header.component';
 export { default as RoleGuard } from './guard-manager/guard-manager.component';
 export { default as PopUp } from './pop-up/pop-up.component';
+export { default as Spinner } from './spinner/spinner.component';
