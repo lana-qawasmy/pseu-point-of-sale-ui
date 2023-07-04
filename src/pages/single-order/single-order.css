@@ -1,0 +1,10 @@
+.singleOrderPage{
+    display: flex;
+    flex-direction: column;
+    margin-top: 72px;
+    margin-left: 63px;
+    max-width: 100%;
+    height: 92vh;
+    overflow: auto;
+    font-family: Inter;
+}

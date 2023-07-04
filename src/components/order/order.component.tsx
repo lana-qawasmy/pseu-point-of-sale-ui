@@ -19,7 +19,7 @@ const Order = (props: IProps) => {
     return (
         <tr
             className='orderContainer'
-            onClick={() => navigate(`/singleOrderPage/${_id}`, { replace: false })}
+            onClick={() => navigate(`/viewSingleOrder/${_id}`, { replace: false })}
         >
             <td>{orderNo}</td>
             <td>{cashierName.toLowerCase()}</td>

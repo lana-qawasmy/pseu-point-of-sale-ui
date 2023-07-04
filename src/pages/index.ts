@@ -7,3 +7,4 @@ export { default as ViewExistedItems } from './view-existed-items/view-existed-i
 export { default as Terms } from './terms/terms.page';
 export { default as UserProfile } from './user-profile/user-profile.page';
 export { default as SingleItem } from './single-item/single-item.page';
+export { default as SingleOrder } from './single-order/single-order.page';
