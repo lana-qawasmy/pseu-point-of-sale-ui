@@ -18,6 +18,7 @@ const useSingleItem = () => {
       setItem({
         addedBy: response.addedBy,
         barcode: response.barcode,
+        quantity: response.quantity,
         description: response.description,
         image: response.image,
         name: response.name,

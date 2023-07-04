@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 49%;
+    height: 43%;
     border-bottom: 5px dotted #e0e2e8;
     width: 100%;
 }
@@ -31,7 +31,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 28%;
+    height: 35%;
     border-bottom: 5px dotted #e0e2e8;
     width: 100%;
 }

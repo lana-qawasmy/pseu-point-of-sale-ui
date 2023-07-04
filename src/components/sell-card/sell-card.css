@@ -64,7 +64,8 @@
 .bottom {
     position: relative;
     display: flex;
-    width: 100%;
+    justify-content: space-between;
+    width: 85%;
     margin-bottom: 4px;
 }
 
@@ -87,6 +88,9 @@
     border-radius: 6px;
     cursor: pointer;
     transition: 0.3s;
+}
+.rightSection .counter .soldOut {
+    cursor: no-drop;
 }
 
 .rightSection .counter button:active {

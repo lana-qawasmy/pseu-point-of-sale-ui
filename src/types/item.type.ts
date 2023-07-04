@@ -5,9 +5,10 @@ namespace ItemNS {
         name: string,
         image: string,
         barcode: string,
+        quantity: number,
         description: string,
         addedBy: string,
-        priceHistory: [{ date: Date, price: Number; }] | {date: Date , price: Number}[],
+        priceHistory: [{ date: Date, price: Number; }] | { date: Date, price: Number }[],
     };
 }
 

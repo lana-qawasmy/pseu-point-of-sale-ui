@@ -37,6 +37,15 @@ const useViewItems = () => {
 
     const { setNotification } = useNotification();
     const useParams = useParam();
+    React.useEffect(() => {
+        if (itemContext.items) {
+            setState((oldState) => ({
+                ...oldState,
+                items: getTableWithState(itemContext.items || [])
+            }));
+        }
+        // eslint-disable-next-line 
+    }, [itemContext.items]);
 
     const loadingItems = () => {
         setState((oldState) => ({

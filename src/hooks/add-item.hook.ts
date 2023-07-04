@@ -66,6 +66,7 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
     };
     interface ItemInputElement extends HTMLInputElement {
         price: HTMLInputElement;
+        quantity: HTMLInputElement;
         itemName: HTMLInputElement;
         image: HTMLInputElement;
         barcode: HTMLInputElement;
@@ -79,6 +80,13 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
         if (!imageIcon.state) {
             setNotification({
                 message: "The image icon is required",
+                status: "warning",
+            });
+            return;
+        }
+        if (Number(target.quantity.value) < 0) {
+            setNotification({
+                message: "quantity value must be positive or zero!",
                 status: "warning",
             });
             return;
@@ -98,6 +106,7 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
                     _id: initialItem._id,
                     name: target.itemName.value,
                     description: target.description.value,
+                    quantity: Number(target.quantity.value),
                     image: imageIcon.value,
                     barcode: target.barcode.value,
                     addedBy: user.user?._id || "unknown",
@@ -110,6 +119,7 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
                     name: target.itemName.value,
                     description: target.description.value,
                     image: imageIcon.value,
+                    quantity: Number(target.quantity.value),
                     barcode: target.barcode.value,
                     addedBy: user.user?._id || "unknown",
                     priceHistory: priceHistory,
