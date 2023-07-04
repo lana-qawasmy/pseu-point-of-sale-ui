@@ -104,12 +104,25 @@ const usePOSView = () => {
     }
   };
 
-  const handleSelectedItems = (item: ItemNS.Item) => {
+  const handleSelectedItems = async (item: ItemNS.Item) => {
     console.log('in progress...')
-    setState((oldState) => ({
-      ...oldState,
-      items: state.items.map(thisItem => (item.name !== thisItem.name ? thisItem : { ...thisItem, quantity: thisItem.quantity - 1 })),
-    }));
+    try {
+      let items: ItemNS.Item[]
+      const update = await itemService.updateItem({ ...item, quantity: item.quantity - 1 }, user.user?.token as string)
+      if (update) {
+        if (selectedCategory !== null) {
+          items = (await getItemsForACollection()) || [];
+        } else {
+          items = await getItems();
+        }
+        setState((oldState) => ({
+          ...oldState,
+          items
+        }))
+      }
+    } catch (error) {
+      console.error(error)
+    }
     if (!(selectedItems.length > 0)) {
       setSelectedItems([{ item: item, number: 1 }]);
     } else {
@@ -165,7 +178,7 @@ const usePOSView = () => {
       console.error(error);
     }
     // eslint-disable-next-line
-  }, [useParams.params, selectedCategory]);
+  }, [useParams.params, selectedCategory , selectedItems]);
 
   return {
     selectedCategory,
