@@ -113,12 +113,33 @@ const getCollectionItems = (token: string, collectionId: string, searchTerms?: s
     }
 };
 
+const deleteCollection = (token: string, collection: CollectionNS.ICollection) => {
+    try {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/collection/deleteCollection?userId=${collection.addedBy}&collectionId=${collection._id}`, {
+            method: 'DELETE',
+            headers: {
+                'authorization': token,
+            },
+        })
+            .then(async (response) => {
+                return await response.json();
+            }).catch((error) => {
+                console.error(error);
+                return false;
+            });
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
+
 const collectionServices = {
     addCollection,
     getCollections,
     getCollection,
     updateCollection,
     getCollectionItems,
+    deleteCollection,
 };
 
 export default collectionServices;

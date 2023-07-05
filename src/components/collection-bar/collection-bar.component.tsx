@@ -24,6 +24,7 @@ interface IProps {
         name: string;
     }>>;
     handleSubmitNewCollection?: () => Promise<void>;
+    handleDeleteCollection?: (collection: CollectionNS.ICollection) => void;
 }
 const CollectionBar = (props: IProps) => {
     return (
@@ -46,6 +47,7 @@ const CollectionBar = (props: IProps) => {
                         : props.collectionList.map((collection: CollectionNS.ICollection, index: number) => {
                             return (
                                 <CollectionBlock
+                                    handleDeleteCollection={props.handleDeleteCollection}
                                     selectedCollectionId=
                                     {
                                         props.selectedCollection !== null &&
