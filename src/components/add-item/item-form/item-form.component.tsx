@@ -33,7 +33,8 @@ const ItemForm = (props?: IProps) => {
                         Height={30}
                         Radius={15}
                         Required
-                        PlaceHolder="Name"
+                        PlaceHolder="Item"
+                        Label='Name'
                         DefaultValue={props?.item?.name || ''}
                     />
                 </div>
@@ -44,7 +45,8 @@ const ItemForm = (props?: IProps) => {
                         Height={30}
                         Radius={15}
                         Required
-                        PlaceHolder="Price"
+                        PlaceHolder="25"
+                        Label='Price'
                         Type="number"
                         DefaultValue={props?.item?.priceHistory[priceHistorySize - 1].price.toString() || ''}
                     />
@@ -56,7 +58,8 @@ const ItemForm = (props?: IProps) => {
                         Height={30}
                         Radius={15}
                         Required
-                        PlaceHolder="Quantity"
+                        PlaceHolder="0"
+                        Label='Quantity'
                         Type="number"
                         DefaultValue={props?.item?.quantity.toString() || ''}
                     />
@@ -67,8 +70,10 @@ const ItemForm = (props?: IProps) => {
                         Width={210}
                         Height={50}
                         Radius={15}
+                        Required
                         Type="textArea"
-                        PlaceHolder="Description"
+                        PlaceHolder="Mention item's details"
+                        Label='Description'
                         DefaultValue={props?.item?.description || ''}
                     />
                 </div>
@@ -105,7 +110,8 @@ const ItemForm = (props?: IProps) => {
                         Height={30}
                         Radius={15}
                         Required
-                        PlaceHolder="Barcode"
+                        PlaceHolder="Aa-1234"
+                        Label='Barcode'
                         onChange={e => item.setBarcodeInput(e.target.value)}
                         DefaultValue={props?.item?.barcode || Barcode.result || item.barcodeInput}
                     />
