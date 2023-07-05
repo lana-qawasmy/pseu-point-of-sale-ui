@@ -70,6 +70,7 @@ const ItemForm = (props?: IProps) => {
                         Width={210}
                         Height={50}
                         Radius={15}
+                        Required
                         Type="textArea"
                         PlaceHolder="Mention item's details"
                         Label='Description'
