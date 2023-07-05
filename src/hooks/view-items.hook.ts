@@ -148,6 +148,30 @@ const useViewItems = () => {
         }
     };
 
+    const handleDeleteCollection = async (collection: CollectionNS.ICollection) => {
+        try {
+            const deleteCollection = await collectionServices.deleteCollection(user.user?.token as string, collection);
+            if (deleteCollection) {
+                setNotification({ message: 'Collection deleted successfully', status: 'success' });
+                const newState = await getItemsAndCollections();
+                if (newState) {
+                    setState((oldState) => ({
+                        ...oldState,
+                        collections: newState?.collections,
+                        items: newState.newItemTable,
+                        loading: {
+                            collectionsLoading: false,
+                            itemsLoading: false
+                        }
+                    }));
+                }
+            }
+        } catch (error) {
+            console.error(error);
+            setNotification({ message: 'Collection isn\'t deleted', status: 'error' });
+        }
+    };
+
     const handleChangeSelectItem = async (itemId: string | undefined, collectionId: string) => {
         loadingItemsAndCollections();
         if (selectedCollection !== null) {
@@ -290,6 +314,7 @@ const useViewItems = () => {
         handleDelete,
         handleSearch,
         handleSelectedCollection,
+        handleDeleteCollection,
     };
 };
 
