@@ -5,13 +5,15 @@
     margin-top: 72px;
     margin-left: 63px;
     max-width: 100%;
-    height: 92vh;
+    height: 91vh;
     overflow: auto;
     font-family: Inter;
-    box-shadow: -2px -2px 1px 5px #ccc;
 }
 
 .singleOrderPage>.orderInfo {
+    position: sticky;
+    top: 0px;
+    left: 0px;
     color: rgb(3 4 94);
     font-size: 20px;
     font-weight: bold;
