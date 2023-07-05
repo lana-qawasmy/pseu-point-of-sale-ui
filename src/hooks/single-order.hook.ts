@@ -16,7 +16,7 @@ interface IOrder {
     cashierName: String;
     total: Number;
     time?: string;
-    date?: string;
+    date?: Date;
     items?: {
         item: ItemNS.Item;
         quantity: number;
