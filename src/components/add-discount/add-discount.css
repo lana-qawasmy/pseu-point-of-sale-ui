@@ -1,0 +1,49 @@
+.addDiscountContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.addDiscountContainer>h1{
+    text-align: left;
+    color: #03045e;
+}
+.addDiscountContainer>.firstSection{
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    column-gap: 4px;
+}
+
+.addDiscountContainer>.firstSection>.innerWrapper,
+.addDiscountContainer>.secondSection>.innerWrapper{
+    display: flex;
+    align-items: center;
+
+}
+
+.addDiscountContainer>.firstSection span{
+    color: #03045e;
+}
+.addDiscountContainer>.secondSection{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 57px;
+
+}
+
+.addDiscountContainer>.secondSection>.buttonContainer{
+    margin-top: 17px;
+}
+
+.addDiscountContainer>.secondSection>.buttonsWrapper{
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 30px;
+    padding-right: 30px;
+    justify-content: space-between;
+    margin-top: 8px;
+}
