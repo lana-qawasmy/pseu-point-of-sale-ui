@@ -3,7 +3,14 @@ import "./add-discount.css";
 import { useAddDiscount } from "../../hooks";
 
 const AddDiscount = () => {
-    const {input,setInput,handleNumberInput,disableButton} = useAddDiscount();
+  const {
+    input,
+    setInput,
+    handleNumberInput,
+    disableButton,
+    handlSave,
+    emptyInputs,
+  } = useAddDiscount();
   return (
     <div className="addDiscountContainer">
       <h1>Add new discount</h1>
@@ -16,9 +23,11 @@ const AddDiscount = () => {
           Height={25}
           Width={250}
           Radius={20}
-          onChange={e=>{setInput((oldState) => ({...oldState,code: e.target.value}))}}
+          onChange={(e) => {
+            setInput((oldState) => ({ ...oldState, code: e.target.value }));
+          }}
           value={input.code}
-          />
+        />
         <div className="innerWrapper">
           <Input
             Label="Percentage"
@@ -28,9 +37,11 @@ const AddDiscount = () => {
             Height={25}
             Width={80}
             Radius={20}
-            onChange={e=>{handleNumberInput(e.target.value, 'percentage')}}
-            value={input.percentage.toString()}
-            />
+            onChange={(e) => {
+              handleNumberInput(e.target.value, "percentage");
+            }}
+            value={input.value.toString()}
+          />
           <span>%</span>
         </div>
         <div className="innerWrapper">
@@ -42,19 +53,22 @@ const AddDiscount = () => {
             Height={25}
             Width={80}
             Radius={20}
-            onChange={e=>{handleNumberInput(e.target.value, 'interval')}}
-            value={input.interval.toString()}
-            />
+            onChange={(e) => {
+              handleNumberInput(e.target.value, "interval");
+            }}
+            value={input.daysInterval.toString()}
+          />
           <span>day</span>
         </div>
       </div>
       <div className="secondSection">
         <div className="buttonsWrapper">
-          <Button
-            HtmlType="button"
-            Type="Danger"
-            Width="100"
-            Radius="20"
+          <Button 
+          HtmlType="button" 
+          Type="Danger" 
+          Width="100" 
+          Radius="20"
+          onClick={emptyInputs}
           >
             Cancel
           </Button>
@@ -64,6 +78,7 @@ const AddDiscount = () => {
             Width="100"
             Radius="20"
             Disabled={disableButton}
+            onClick={handlSave}
           >
             Save
           </Button>
