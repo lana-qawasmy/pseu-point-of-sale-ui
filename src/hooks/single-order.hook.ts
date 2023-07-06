@@ -20,7 +20,7 @@ interface IOrder {
     items?: {
         item: ItemNS.Item;
         quantity?: number;
-    }[];
+    }[] | ItemNS.Item[];
     discountCode?: String;
     tax?: Number;
 }
