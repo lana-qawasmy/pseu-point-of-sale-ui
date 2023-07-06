@@ -1,18 +1,26 @@
 import "./single-order.css";
 import useSingleOrder from "../../hooks/single-order.hook";
-import { OrderCard } from '../../components';
+import { Order, OrderCard } from '../../components';
 import { ItemNS } from '../../types';
+import React, { useEffect } from "react";
 
 
 const SingleOrder = () => {
     const { order } = useSingleOrder();
     const orderItems: ItemNS.Item[] = order?.items as ItemNS.Item[];
-    let subtotal: number = 0;
-    orderItems.forEach(item =>{
-        const price = item.priceHistory[0].price
-        subtotal = subtotal + (item.quantity* (price as number)) 
-    })
-    console.log(order)
+    const [subtotal , setSubtotal] = React.useState(0)
+    useEffect(() => {
+        let tempSubtotal = 0;
+        if (order) {
+            console.log('processing...')
+            console.log(orderItems)
+            orderItems.forEach(item => {
+                const price = item.priceHistory[0].price
+                tempSubtotal += (item.quantity * (price as number))
+            })
+            setSubtotal(tempSubtotal)
+        }
+    }, [order])
     return (
         <div className='singleOrderPage'>
             <div className="orderInfo">
@@ -39,7 +47,9 @@ const SingleOrder = () => {
                 </div>
             </div>
             <div className="orderDetails">
-            <h2>Order Details </h2>
+                <h2>Order Details</h2>
+                <div className='OrderItems'> <OrderCard item={orderItems[0]}/></div>
+                <div className="itemsQuantity"># Items : {order?.items?.length} </div>
             </div>
         </div>
     );
