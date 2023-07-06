@@ -8,6 +8,7 @@
     height: 93vh;
     overflow: auto;
     font-family: Inter;
+    background: rgba (243, 244, 248, 1);
 }
 
 .singleOrderPage>.orderInfo {
@@ -17,7 +18,6 @@
     color: rgb(3 4 94);
     font-size: 20px;
     font-weight: bold;
-    background: #ededed;
     width: 27%;
     text-align: left;
     padding: 4%;
@@ -26,13 +26,16 @@
     flex-direction: column;
     row-gap: 30px;
 }
+
 .singleOrderPage>.orderInfo>.wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0px;
 }
-.singleOrderPage>.orderInfo>.wrapper>.left , .singleOrderPage>.orderInfo>.wrapper>.right {
+
+.singleOrderPage>.orderInfo>.wrapper>.left,
+.singleOrderPage>.orderInfo>.wrapper>.right {
     display: flex;
     flex-direction: column;
     row-gap: 30px;
@@ -42,7 +45,7 @@
     margin-left: 10px;
 }
 
-.singleOrderPage>.orderInfo .grey { 
+.singleOrderPage>.orderInfo .grey {
     font-weight: normal;
     color: #999;
 }
@@ -52,8 +55,25 @@
 }
 
 .singleOrderPage>.orderDetails {
-    text-align: left;
+    background: white;
+    height: 70vh;
     width: 70%;
+    margin-right: 50px;
     margin-top: 5%;
+    border-radius: 30px;
+    box-shadow: 2px 2px 5px 1px #ccc;
     color: rgb(3 4 94);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 35px;
+    box-sizing: border-box;
+}
+.singleOrderPage>.orderDetails>.itemsQuantity {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 30px;
+    padding-top: 20px;
+    border-top: 2px dashed #aaa;
 }
