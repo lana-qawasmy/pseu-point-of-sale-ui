@@ -13,7 +13,7 @@
 .profilePage {
   margin-left: 60px;
   display: flex;
-  column-gap: 130px;
+  column-gap: 220px;
 }
 
 .userProfileContainer .imageWrapper {
@@ -103,6 +103,7 @@
 
 .arrowIcon {
   transition: 0.2s;
+  padding-left: 5px;
   transition-timing-function: ease-in;
 }
 

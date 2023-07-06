@@ -16,6 +16,7 @@ const AddDiscount = () => {
       <h1>Add new discount</h1>
       <div className="firstSection">
         <Input
+          Color="#ccc"
           Label="Discount code"
           Required
           PlaceHolder="2023-summer"
@@ -36,6 +37,7 @@ const AddDiscount = () => {
             Height={25}
             Width={100}
             Radius={20}
+            Color="#ccc"
             onChange={(e) => {
               handleNumberInput(e.target.value, "percentage");
             }}
@@ -44,6 +46,7 @@ const AddDiscount = () => {
         </div>
         <div className="innerWrapper">
           <Input
+            Color="#ccc"
             Type="number"
             Label="Interval (days)"
             PlaceHolder="22"
@@ -60,12 +63,12 @@ const AddDiscount = () => {
       </div>
       <div className="secondSection">
         <div className="buttonsWrapper">
-          <Button 
-          HtmlType="button" 
-          Type="Danger" 
-          Width="100" 
-          Radius="20"
-          onClick={emptyInputs}
+          <Button
+            HtmlType="button"
+            Type="Danger"
+            Width="100"
+            Radius="20"
+            onClick={emptyInputs}
           >
             Cancel
           </Button>

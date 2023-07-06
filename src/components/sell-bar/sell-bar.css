@@ -21,7 +21,7 @@
     display: flex;
     justify-content: center;
     /* align-items: center; */
-    column-gap: 47px;
+    column-gap: 97px;
 }
 .sellBarContainer form .TextInputWrapper{
     margin-bottom: 8px;
