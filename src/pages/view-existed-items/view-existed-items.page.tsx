@@ -25,6 +25,7 @@ const ViewExistedItems = () => {
         handleDelete,
         handleSearch,
         handleSelectedCollection,
+        handleDeleteCollection,
     } = useViewItems();
 
 
@@ -42,6 +43,7 @@ const ViewExistedItems = () => {
                 handleInputValidation={handleInputValidation}
                 handleSubmitNewCollection={handleSubmitNewCollection}
                 handleSelectedCollection={handleSelectedCollection}
+                handleDeleteCollection={handleDeleteCollection}
             />
             <div className="searchBarWrapper">
                 <SearchBar
