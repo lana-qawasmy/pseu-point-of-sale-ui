@@ -14,3 +14,4 @@ export { default as useBarcode } from './barcode-scanner';
 export { default as useSingleItem } from './singleItem.hook';
 export { default as formatPrice } from './formatPrice.hook';
 export { default as useEditRoles } from './edit-roles.hook';
+export { default as useAddDiscount } from './add-discount.hook';

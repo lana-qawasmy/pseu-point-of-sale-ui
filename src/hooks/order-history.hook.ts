@@ -80,7 +80,7 @@ const useOrderHistory = () => {
         if (user.user === undefined)
             return navigate('/signin', { replace: false });
         const date = new Date().toISOString().split('T')[0];
-        setParamsOverride2('startDate', '2000-01-01', 'endDate', date);
+        setParamsOverride2('startDate', new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 30).toISOString().split('T')[0], 'endDate', date);
         // eslint-disable-next-line
     }, [user, navigate]);
 

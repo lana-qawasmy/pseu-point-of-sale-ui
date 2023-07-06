@@ -172,6 +172,7 @@
     padding-left: 40px;
     width: 92.8%;
     gap: 30px;
+    margin-top: 16px;
 }
 
 .orderHistoryPage .buttonsInOrdersTable .pageNumber {
