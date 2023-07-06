@@ -6,7 +6,7 @@ interface IProps {
 }
 const OrderCard = (props: IProps) => {
     return (
-        <div>
+        <div className='orderCard' >
             <img src={props.item?.image} alt={props.item?.name} />
             <div className='itemInfo'>
                 <span>{props.item?.name}</span>
