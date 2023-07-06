@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     background-color: #fff;
-    width: 300px;
+    width: 370px;
     border-radius: 10px;
     box-shadow: #00000059 0px 5px 15px;
     padding-top: 15px;
@@ -25,6 +25,7 @@
 
 .addItemFormTitle {
     margin-bottom: 30px;
+    margin-top: 20px;
 }
 
 .addItemFormTitle>span {
@@ -51,6 +52,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 #addItemInputSelector {
@@ -113,4 +115,6 @@
     padding: 0px 20px;
     box-sizing: border-box;
     justify-content: space-evenly;
+    margin-top: 16px;
+    margin-bottom: 7px;
 }
