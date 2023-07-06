@@ -21,44 +21,41 @@ const AddDiscount = () => {
           PlaceHolder="2023-summer"
           Type="text"
           Height={25}
-          Width={250}
           Radius={20}
           onChange={(e) => {
             setInput((oldState) => ({ ...oldState, code: e.target.value }));
           }}
           value={input.code}
         />
-        <div className="innerWrapper">
+        <div className="innerWrapper" style={{ marginRight: 15 }}>
           <Input
-            Label="Percentage"
+            Label="Percentage %"
             PlaceHolder="10"
             Required
             Type="number"
             Height={25}
-            Width={80}
+            Width={100}
             Radius={20}
             onChange={(e) => {
               handleNumberInput(e.target.value, "percentage");
             }}
             value={input.value.toString()}
           />
-          <span>%</span>
         </div>
         <div className="innerWrapper">
           <Input
             Type="number"
-            Label="Interval"
+            Label="Interval (days)"
             PlaceHolder="22"
             Required
             Height={25}
-            Width={80}
+            Width={110}
             Radius={20}
             onChange={(e) => {
               handleNumberInput(e.target.value, "interval");
             }}
             value={input.daysInterval.toString()}
           />
-          <span>day</span>
         </div>
       </div>
       <div className="secondSection">

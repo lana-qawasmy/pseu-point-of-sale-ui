@@ -25,6 +25,15 @@
 .addDiscountContainer>.firstSection span{
     color: #03045e;
 }
+.addDiscountContainer>.firstSection > .TextInputWrapper{
+    flex: 1;
+    margin-right: 15px;
+}
+.addDiscountContainer>.firstSection > .TextInputWrapper > input{
+    width: 100% !important;
+    box-sizing: border-box;
+    height: 29px !important;
+}
 .addDiscountContainer>.secondSection{
     display: flex;
     width: 100%;
@@ -42,8 +51,6 @@
     display: flex;
     width: 100%;
     box-sizing: border-box;
-    padding-left: 30px;
-    padding-right: 30px;
     justify-content: space-between;
     margin-top: 8px;
 }

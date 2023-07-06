@@ -22,11 +22,15 @@
     padding-bottom: 15px;
 }
 
+
+.addItemFormTitle {
+    margin-bottom: 30px;
+}
+
 .addItemFormTitle>span {
     font-weight: 700;
     color: #03045e;
     font-size: 25px;
-    margin-bottom: 15px;
 }
 
 

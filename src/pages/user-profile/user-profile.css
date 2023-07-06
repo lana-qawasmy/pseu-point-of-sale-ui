@@ -13,8 +13,7 @@
 .profilePage {
   margin-left: 60px;
   display: flex;
-  justify-content: space-around;
-  column-gap: 30px;
+  column-gap: 130px;
 }
 
 .userProfileContainer .imageWrapper {
@@ -139,7 +138,7 @@
   width: auto;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 6px;
+  margin-top: 15px;
   border-bottom: 1px solid #b5b5b5;
 }
 

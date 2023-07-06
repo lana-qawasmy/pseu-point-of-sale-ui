@@ -10,7 +10,6 @@
   
   .userSearchWrapper {
     display: flex;
-    width: -moz-fit-content;
     width: fit-content;
     height: 30px;
     border: 1px solid #bebebe;
@@ -28,12 +27,28 @@
   }
 
   .usersListContainer{
-    min-height: 104px;
+    max-height: 140px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    margin-top: 10px
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
+
+  .usersListContainer::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #888;
+}
+
+.usersListContainer::-webkit-scrollbar-track {
+  background-color: #cecece;
+}
+
+.usersListContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+    border-radius: 10px;
+}
 
   .usersListContainer>div{
     width: 99%;
