@@ -5,7 +5,7 @@
     margin-top: 72px;
     margin-left: 63px;
     max-width: 100%;
-    height: 91vh;
+    height: 93vh;
     overflow: auto;
     font-family: Inter;
 }
@@ -18,7 +18,7 @@
     font-size: 20px;
     font-weight: bold;
     background: #ededed;
-    width: 30%;
+    width: 25%;
     text-align: left;
     padding: 4%;
     box-sizing: border-box;
@@ -53,7 +53,7 @@
 
 .singleOrderPage>.orderDetails {
     text-align: left;
-    width: 60%;
+    width: 70%;
     margin-top: 5%;
     color: rgb(3 4 94);
 }

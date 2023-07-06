@@ -19,7 +19,7 @@ interface IOrder {
     date?: Date;
     items?: {
         item: ItemNS.Item;
-        quantity: number;
+        quantity?: number;
     }[];
     discountCode?: String;
     tax?: Number;
