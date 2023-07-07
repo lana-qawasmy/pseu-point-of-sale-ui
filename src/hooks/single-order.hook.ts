@@ -111,7 +111,7 @@ const useSingleOrder = () => {
             }).catch(error => {
                 console.error(error)
             })
-        // eslind-disable-next-line
+        // eslint-disable-next-line
     }, [])
     
     return {order , orderItems , subtotal , splitDate , splitTime}

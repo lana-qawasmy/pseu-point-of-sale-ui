@@ -17,7 +17,7 @@ const SingleOrder = () => {
                         <span>Subtotal : </span>
                         <span>Disocunt code : </span>
                         <span>Tax(10%) : </span>
-                        <span>Total : </span>
+                        <span style={{fontSize: '24px' , fontWeight:"bolder"}}>Total : </span>
                     </div>
                     <div className="right">
                         <span className="name info">{order?.cashierName}</span>
@@ -26,7 +26,7 @@ const SingleOrder = () => {
                         <span className="info">{subtotal} $</span>
                         <span className="info">{order?.discountCode || 'No discount!'}</span>
                         <span className="info">{subtotal * 0.1} $</span>
-                        <span className="info">{order?.total.toString()} $</span>
+                        <span className="info" style={{fontSize:"24px" , fontWeight:"bolder"}}>{order?.total.toString()} $</span>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@ const SingleOrder = () => {
                         <OrderCard item={item} key={item._id} />
                     )}
                 </div>
-                <div className="itemsQuantity"># Items : {order?.items?.length} </div>
+                <div className="itemsQuantity"># of tems : {order?.items?.length} </div>
             </div>
         </div>
     );

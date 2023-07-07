@@ -56,7 +56,7 @@ const NavigationBar = () => {
                     <div className="optionWrapper">
                         <button
                             type="button"
-                            className={location.pathname === "/ordersHistory" ? "focusBtn" : ""}
+                            className={(location.pathname === "/ordersHistory" || location.pathname.includes('/viewSingleOrder')) ? "focusBtn" : ""}
                             onClick={() => {
                                 navigate("/ordersHistory", { replace: false });
                             }}
@@ -79,11 +79,11 @@ const NavigationBar = () => {
                             </button>
                         </div>
                     }
-                    {(location.pathname.includes('/viewSingleItem') || location.pathname.includes('/viewSingleOrder')) &&
+                    {location.pathname.includes('/viewSingleItem')  &&
                         <div className="optionWrapper">
                             <button
                                 type="button"
-                                className={(location.pathname.includes('/viewSingleItem') || location.pathname.includes('/viewSingleOrder')) ? "focusBtn" : ""}
+                                className={location.pathname.includes('/viewSingleItem') ? "focusBtn" : ""}
                                 onClick={() => {
                                     navigate("/addItem", { replace: false });
                                 }}
