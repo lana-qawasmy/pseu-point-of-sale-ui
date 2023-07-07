@@ -1,24 +1,10 @@
 import "./single-order.css";
 import useSingleOrder from "../../hooks/single-order.hook";
 import { OrderCard } from '../../components';
-import { ItemNS } from '../../types';
-import React, { useEffect } from "react";
 
 
 const SingleOrder = () => {
-    const { order } = useSingleOrder();
-    const orderItems: ItemNS.Item[] = order?.items as ItemNS.Item[];
-    const [subtotal, setSubtotal] = React.useState(0)
-    useEffect(() => {
-        let tempSubtotal = 0;
-        if (order) {
-            orderItems.forEach(item => {
-                const price = item.priceHistory[0].price
-                tempSubtotal += (item.quantity * (price as number))
-            })
-            setSubtotal(tempSubtotal)
-        }
-    }, [order])
+    const { order, orderItems, splitDate, splitTime, subtotal } = useSingleOrder();
     return (
         <div className='singleOrderPage'>
             <div className="orderInfo">
@@ -35,8 +21,8 @@ const SingleOrder = () => {
                     </div>
                     <div className="right">
                         <span className="name info">{order?.cashierName}</span>
-                        <span className="info grey">{order?.time?.toString()}</span>
-                        <span className="info grey">{new Date(order?.date || Date.now()).toLocaleDateString()}</span>
+                        <span className="info grey">{splitTime}</span>
+                        <span className="info grey">{splitDate}</span>
                         <span className="info">{subtotal} $</span>
                         <span className="info">{order?.discountCode || 'No discount!'}</span>
                         <span className="info">{subtotal * 0.1} $</span>

@@ -16,7 +16,7 @@ interface IOrder {
     cashierName: String;
     total: Number;
     time?: string;
-    date?: Date;
+    date?: string;
     items?: {
         item: ItemNS.Item;
         quantity?: number;
@@ -31,6 +31,28 @@ const useSingleOrder = () => {
     const userContext = React.useContext(UserContext)
     const [order, setOrder] = React.useState<IOrder>();
     const notification = useNotification()
+    const orderItems: ItemNS.Item[] = order?.items as ItemNS.Item[];
+    const [subtotal, setSubtotal] = React.useState(0)
+    const date = order?.date as string;
+    const time = order?.time as String;
+    const [splitDate, setSplitDate] = React.useState('');
+    const [splitTime, setSplitTime] = React.useState('');
+    React.useEffect(() => {
+        let tempSubtotal = 0;
+        if (order) {
+            const tempDate = date.split('T')[0].split('-').reverse().map((dateComponent) => (dateComponent[0] === '0') ? dateComponent[1] : dateComponent).join('/');
+            const timeArray = time.split(':');
+            const tempTime = timeArray[0] + ':' + timeArray[1] + ' ' + timeArray[2][3] + timeArray[2][4]
+            setSplitDate(tempDate)
+            setSplitTime(tempTime)
+            orderItems.forEach(item => {
+                const price = item.priceHistory[0].price
+                tempSubtotal += (item.quantity * (price as number))
+            })
+            setSubtotal(tempSubtotal)
+        }
+        // eslint-disable-next-line
+    }, [order])
 
     const fetchOrderDetails = async () => {
         try {
@@ -92,7 +114,7 @@ const useSingleOrder = () => {
         // eslind-disable-next-line
     }, [])
     
-    return {order}
+    return {order , orderItems , subtotal , splitDate , splitTime}
 }
 
 export default useSingleOrder;
