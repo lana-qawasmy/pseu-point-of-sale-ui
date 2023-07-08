@@ -37,8 +37,10 @@ const useSingleOrder = () => {
     const time = order?.time as String;
     const [splitDate, setSplitDate] = React.useState('');
     const [splitTime, setSplitTime] = React.useState('');
+    const [itemsNo, setItemsNo] = React.useState(0);
     React.useEffect(() => {
         let tempSubtotal = 0;
+        let tempItemsNo = 0;
         if (order) {
             const tempDate = date.split('T')[0].split('-').reverse().map((dateComponent) => (dateComponent[0] === '0') ? dateComponent[1] : dateComponent).join('/');
             const timeArray = time.split(':');
@@ -48,7 +50,9 @@ const useSingleOrder = () => {
             orderItems.forEach(item => {
                 const price = item.priceHistory[0].price;
                 tempSubtotal += (item.quantity * (price as number));
+                tempItemsNo += item.quantity;
             });
+            setItemsNo(tempItemsNo)
             setSubtotal(tempSubtotal);
         }
         // eslint-disable-next-line
@@ -114,7 +118,7 @@ const useSingleOrder = () => {
         // eslint-disable-next-line
     }, []);
 
-    return { order, orderItems, subtotal, splitDate, splitTime };
+    return { order, orderItems, subtotal, splitDate, splitTime , itemsNo };
 };
 
 export default useSingleOrder;

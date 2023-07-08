@@ -5,7 +5,7 @@ import { formatPrice } from '../../hooks';
 
 
 const SingleOrder = () => {
-    const { order, orderItems, splitDate, splitTime, subtotal } = useSingleOrder();
+    const { order, orderItems, splitDate, splitTime, subtotal , itemsNo } = useSingleOrder();
     return (
         <div className='singleOrderPage'>
             <div className="orderInfo">
@@ -27,7 +27,7 @@ const SingleOrder = () => {
                         <span className="info">{formatPrice(subtotal)} $</span>
                         <span className="info">{order?.discountCode || 'No discount!'}</span>
                         <span className="info">{formatPrice(subtotal * 0.1)} $</span>
-                        <span className="info" style={{ fontSize: "24px", fontWeight: "bolder" }}>{formatPrice(order?.total as number || 0)} $</span>
+                        <span className="info" >{formatPrice(order?.total as number || 0)} $</span>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@ const SingleOrder = () => {
                         <OrderCard item={item} key={item._id} />
                     )}
                 </div>
-                <div className="itemsQuantity"># of items : {order?.items?.length} </div>
+                <div className="itemsQuantity"># of items : {itemsNo} </div>
             </div>
         </div>
     );
