@@ -76,6 +76,7 @@ const Input = (props: IProps) => {
                         onChange={e => (props.onChange && props.onChange(e))}
                     />
                     : <input
+                        step={0.1}
                         id={props.id}
                         name={props.name || 'input'}
                         className={`input ${props.Status ? props.Status : 'valid'}`}
