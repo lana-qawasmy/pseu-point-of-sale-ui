@@ -20,7 +20,7 @@ const OrdersHistory = () => {
 
     return (
         <div className='orderHistoryPage'>
-            <h2>Order History</h2>
+            <h2 title='Order History'>Order History</h2>
             <table className='ordersTable'>
                 <thead>
                     <tr className='filterBarInOrderHistoryPage'>
@@ -38,6 +38,7 @@ const OrdersHistory = () => {
                         <td className='dateSearchInOrderHistoryPage'>
                             <td className='dateInputWrapper'>
                                 <input
+                                    title='Start date'
                                     id='dateStartPicker'
                                     type="date"
                                     min={'2000-01-01'}
@@ -49,11 +50,12 @@ const OrdersHistory = () => {
                                     <MdDateRange size={22} color='#757575' />
                                 </td>
                             </td>
-                            <strong>
+                            <strong title='To'>
                                 To
                             </strong>
                             <td className='dateInputWrapper'>
                                 <input
+                                    title='End date'
                                     type="date"
                                     min={params.get('startDate') || ''}
                                     max={new Date().toISOString().split('T')[0]}
@@ -67,11 +69,11 @@ const OrdersHistory = () => {
                         </td>
                     </tr>
                     <tr className='headerInOrdersTable'>
-                        <th>Order No.</th>
-                        <th>Cashier Name</th>
-                        <th>Total</th>
-                        <th>Time</th>
-                        <th>Date</th>
+                        <th title='Order No.'>Order No.</th>
+                        <th title='Cashier Name'>Cashier Name</th>
+                        <th title='Total'>Total</th>
+                        <th title='Time'>Time</th>
+                        <th title='Date'>Date</th>
                     </tr>
                 </thead>
                 <tbody className={`${loading ? 'loading' : ''}`}>
@@ -91,8 +93,8 @@ const OrdersHistory = () => {
                                     />;
                                 }) :
                                 <tr>
-                                    <td className='emptyOrders'>
-                                        There isn't any orders
+                                    <td className='emptyOrders' title='No Orders with that filter'>
+                                        There isn't any orders matches the filters
                                     </td>
                                 </tr>
                     }
@@ -100,6 +102,7 @@ const OrdersHistory = () => {
             </table>
             <div className='buttonsInOrdersTable' >
                 <span
+                    title='Previous page'
                     className={`arrow ${page === 0 ? 'disabled' : ''}`}
                     onClick={() => page !== 0 && setPage((currentPage) => currentPage - 1)}
                     onMouseOver={() => {
@@ -117,10 +120,11 @@ const OrdersHistory = () => {
                 >
                     <MdArrowBackIosNew color='#adadaf' size={20} id={'moveToPrevPageInHistoryPage'} />
                 </span>
-                <span className='pageNumber'>
+                <span title={`Page: ${page + 1}`} className='pageNumber'>
                     <strong>Page&nbsp;{page + 1}</strong>
                 </span>
                 <span
+                    title='Next page'
                     className={`arrow ${numberOfPages - 1 <= page ? 'disabled' : ''}`}
                     onClick={() => (numberOfPages - 1 > page) && setPage((currentPage) => currentPage + 1)}
                     onMouseOver={() => {
