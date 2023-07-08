@@ -25,7 +25,7 @@ const SingleOrder = () => {
                         <span className="info grey">{splitTime}</span>
                         <span className="info grey">{splitDate}</span>
                         <span className="info">{formatPrice(subtotal)} $</span>
-                        <span className="info">{order?.discountCode || 'No discount!'}</span>
+                        <span className="info" style={{color: 'rgb(239, 71, 111'}} >{order?.discountCode || 'No discount!'}</span>
                         <span className="info">{formatPrice(subtotal * 0.1)} $</span>
                         <span className="info" >{formatPrice(order?.total as number || 0)} $</span>
                     </div>

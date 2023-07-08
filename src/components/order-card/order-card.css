@@ -9,6 +9,11 @@
     border-radius: 15px;
 }
 
+.orderCard > img {
+    width: 70px;
+    height: 70px;
+}
+
 .orderCard >.itemInfo {
     width: 90%;
     display: flex;
