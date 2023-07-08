@@ -54,6 +54,7 @@ const SellBar = (props: IProps) => {
             total: totalPrice,
             items: items,
             tax: tax,
+            discountCode: discount.discountCode,
         };
         const addOrder = await orderService.addOrder(user.user?.token as string, order);
         if (addOrder) {
