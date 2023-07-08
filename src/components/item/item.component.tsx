@@ -1,7 +1,7 @@
 import './item.css';
 import { CollectionNS, ItemNS } from '../../types';
 import { PopUp } from '../core';
-import { ItemForm } from '../'
+import { ItemForm } from '../';
 import { GoTrashcan } from 'react-icons/go';
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 import { FiEdit } from 'react-icons/fi';
@@ -20,41 +20,44 @@ interface IProps {
 const Item = (props: IProps) => {
     const { _id, name, image, priceHistory, addedBy, quantity } = props.item;
     const [displayACK, setDisplayACK] = React.useState(false);
-    const [edit, setEdit] = React.useState<boolean>(false)
+    const [edit, setEdit] = React.useState<boolean>(false);
     return (
         <>
-            {edit &&
+            {
+                edit &&
                 <PopUp setDisplayPopup={setEdit}>
                     <ItemForm edit setEdit={setEdit} item={props.item} />
                 </PopUp>
             }
             <div className={`mainItemContainer ${props.Selected ? 'isSelected' : ''} ${quantity ? '' : 'outOfStock'}`}>
 
-                <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
+                <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' title={`${name} image`} />
                 <div className='infoWrapper'>
                     <span className="nameWrapper">
                         <span className='itemName'>
                             {name}
                         </span>
                         {quantity
-                            ? <span className='in'><span>In stock,</span> <span style={{ color: '#999' }}>{quantity} pieces left</span></span>
-                            : <span className='out'>Out of stock</span>}
+                            ? <span className='in'>
+                                <span title='In stock'>In stock,</span> <span style={{ color: '#999' }} title={`${quantity} pieces left`}>{quantity} pieces left</span>
+                            </span>
+                            : <span className='out' title='Out of stock'>Out of stock</span>}
 
                     </span>
                     <div className='itemPrice'>
-                        <span className='currentItemPrice'>
+                        <span className='currentItemPrice' title='Price'>
                             {priceHistory[0].price.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$ &nbsp;&nbsp;
                         </span>
                         {
                             props.DeletedPrice &&
-                            <span className='deletedItemPrice'>
+                            <span className='deletedItemPrice' title='Deleted price'>
                                 {props.DeletedPrice.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$
                             </span>
                         }
                     </div>
                 </div>
                 {
-                    props.OnDelete && <span className='goTrashCan'>
+                    props.OnDelete && <span title='Delete Item' className='goTrashCan'>
                         <GoTrashcan
                             size={22}
                             id={_id + '1'}
@@ -80,11 +83,11 @@ const Item = (props: IProps) => {
                     displayACK &&
                     <div className='deleteACK'>
 
-                        <button className='ACKButton' onClick={() => setDisplayACK(false)}>
+                        <button className='ACKButton' title='No ' onClick={() => setDisplayACK(false)}>
                             No
                         </button>
 
-                        <button className='ACKButton' onClick={() => props.OnDelete && props.OnDelete(addedBy, _id as string)}>
+                        <button className='ACKButton' title='Yes' onClick={() => props.OnDelete && props.OnDelete(addedBy, _id as string)}>
                             Yes
                         </button>
 
@@ -92,7 +95,7 @@ const Item = (props: IProps) => {
                 }
                 {
                     (!props.Selected) && props.OnSelect && props.selectedCollection !== null &&
-                    <span className='grCheckbox'>
+                    <span className='grCheckbox' title='Select item'>
                         <GrCheckbox
                             size={20}
                             id={_id + '2'}
@@ -116,7 +119,7 @@ const Item = (props: IProps) => {
                 }
                 {
                     props.Selected && props.OnSelect && props.selectedCollection !== null &&
-                    <span className='grCheckbox'>
+                    <span className='grCheckbox' title='Unselect item'>
                         <GrCheckboxSelected
                             size={20}
                             color='#023e8a'
@@ -126,7 +129,7 @@ const Item = (props: IProps) => {
                 }
                 {
                     props.Editable &&
-                    <span className='fiEdit'>
+                    <span className='fiEdit' title='Edit item'>
                         <FiEdit
                             size={20}
                             id={_id + '3'}
