@@ -67,7 +67,7 @@ const useSingleOrder = () => {
                     return order.items.find((orderItem: IOrderItem) => item._id === orderItem.item);
                 });
                 order.items.sort((a: IOrderItem, b: IOrderItem) => {
-                    if (a < b) {
+                    if (a.item < b.item) {
                         return -1;
                     }
                     if (a > b) {
@@ -76,10 +76,12 @@ const useSingleOrder = () => {
                     return 0;
                 });
                 orderItems.sort((a: ItemNS.Item, b: ItemNS.Item) => {
-                    if (a < b) {
+                    const aId = a._id || ''
+                    const bId = b._id || ''
+                    if (aId < bId) {
                         return -1;
                     }
-                    if (a > b) {
+                    if ( aId > bId) {
                         return 1;
                     }
                     return 0;
