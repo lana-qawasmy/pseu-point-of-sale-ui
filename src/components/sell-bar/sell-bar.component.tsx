@@ -24,7 +24,7 @@ interface IProps {
     price: number;
 }
 const SellBar = (props: IProps) => {
-    const { selectedItems, setSelectedItems, price } = props
+    const { selectedItems, setSelectedItems, price } = props;
     const [totalPrice, setTotalPrice] = React.useState<number>(0);
     const tax = 0.10;
     const discount = useDiscount();
@@ -54,13 +54,14 @@ const SellBar = (props: IProps) => {
             total: totalPrice,
             items: items,
             tax: tax,
+            discountCode: discount.discountCode,
         };
         const addOrder = await orderService.addOrder(user.user?.token as string, order);
         if (addOrder) {
             setNotification({ message: 'Order performed successfully', status: 'success' });
             setSelectedItems([]);
-            discount.setDiscountCode('')
-            discount.setDiscount(0)
+            discount.setDiscountCode('');
+            discount.setDiscount(0);
         }
         else {
             setNotification({ message: 'Something went wrong', status: 'error' });
@@ -85,16 +86,16 @@ const SellBar = (props: IProps) => {
             </div>
             <div className="sectionTwo">
                 <div className="row">
-                    <span>Item</span>
-                    <span>{itemsNumber} (Items)</span>
+                    <span title='Number of items'>Item</span>
+                    <span title='Number of items'>{itemsNumber} (Items)</span>
                 </div>
                 <div className="row">
-                    <span>Subtotal</span>
-                    <span>{price.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
+                    <span title='Subtotal'>Subtotal</span>
+                    <span title='Subtotal'>{price.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <div className="row" >
-                    <span>Discount</span>
-                    <span style={{ color: "#ef476f", fontWeight: 'bold' }}>{discount.discount}%</span>
+                    <span title='Discount'>Discount</span>
+                    <span title='Discount' style={{ color: "#ef476f", fontWeight: 'bold' }}>{discount.discount}%</span>
                 </div>
                 <form className="row" onSubmit={(e) => discount.handleDiscount(e)}>
                     <Input
@@ -108,6 +109,7 @@ const SellBar = (props: IProps) => {
                         value={discount.discountCode}
                     />
                     <Button
+                        Title='Apply discount'
                         HtmlType='submit'
                         Width='80'
                         Radius="10"
@@ -118,16 +120,17 @@ const SellBar = (props: IProps) => {
                     </Button>
                 </form>
                 <div className="row" >
-                    <span>Tax({(tax * 100)}%)</span>
-                    <span>{(tax * price).toFixed(2)}$</span>
+                    <span title='Tax'>Tax({(tax * 100)}%)</span>
+                    <span title='Tax'>{(tax * price).toFixed(2)}$</span>
                 </div>
             </div>
             <div className="sectionThree">
                 <div className="row">
-                    <span>Total</span>
-                    <span>{totalPrice.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
+                    <span title='Total'>Total</span>
+                    <span title='Total'>{totalPrice.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
                 <Button
+                    Title='Process Transaction'
                     HtmlType="button"
                     Type="Primary"
                     Width="350"

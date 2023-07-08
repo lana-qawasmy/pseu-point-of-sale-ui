@@ -1,7 +1,7 @@
 import './spinner.css';
 const Spinner = () => {
     return (
-        <div className="fn-loader"></div>
+        <div className="fn-loader" title='Spinner'></div>
     );
 };
 

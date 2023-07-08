@@ -1,6 +1,7 @@
 import './button.css';
 interface IProps {
     HtmlType: "button" | "submit",
+    Title?: string;
     Type?: 'Primary' | 'Secondary' | 'Tertiary' | 'Danger' | 'Ghost',
     Ratio?: string,
     Width?: string,
@@ -28,7 +29,7 @@ const Button = (props: IProps) => {
         border: `${props.Border || ""}`,
     };
     return (
-        <div className='buttonContainer'>
+        <div className='buttonContainer' title={`${props.Title}`}>
             <button type={props.HtmlType}
                 className={`${props.Type || 'Primary'}`}
                 style={style}

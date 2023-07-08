@@ -13,6 +13,7 @@ const Header = () => {
     match &&= location.pathname !== "/signin";
     match &&= location.pathname !== "/signup";
     match &&= location.pathname !== "/terms";
+    match &&= location.pathname !== "/404";
     return (
         <>
             {
@@ -20,10 +21,14 @@ const Header = () => {
                     <div className='header'>
                         < div
                             className='userImage'
+                            title='Profile image'
                             style={{ backgroundImage: `url('${userContext.user?.image || defaultUserImage}')` }}
                             onClick={() => navigate('/profile')}
                         />
-                        < span className='userName' onClick={() => navigate('/profile')} >
+                        <span
+                            className='userName' onClick={() => navigate('/profile')}
+                            title={`${userContext.user?.fullName}`}
+                        >
                             {userContext.user?.fullName}
                         </span >
                     </div > : null

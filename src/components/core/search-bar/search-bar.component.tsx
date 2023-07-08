@@ -2,7 +2,7 @@
 import './search-bar.css';
 import { MagnifyingGlass } from 'phosphor-react';
 
-interface Iprops {
+interface IProps {
     Height?: number,
     Width?: number,
     Id: string,
@@ -20,7 +20,7 @@ interface Iprops {
 
 
 
-const SearchBar = (props: Iprops) => {
+const SearchBar = (props: IProps) => {
     const styles = {
         height: props.Height || '30px',
         width: props.Width || '250px',
@@ -41,7 +41,7 @@ const SearchBar = (props: Iprops) => {
                     className='searchInput'
                     onChange={e => (props.OnChange && props.OnChange(e))}
                 />
-                <div className="magnifying">
+                <div className="magnifying" title='Search'>
                     <MagnifyingGlass size={25} weight="bold" color={props.FontColor || '#aaa'} />
                 </div>
             </div>

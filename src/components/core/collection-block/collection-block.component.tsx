@@ -11,6 +11,7 @@ interface IProps {
     collection: CollectionNS.ICollection;
     selectedCollectionId: string | null;
     handleDeleteCollection?: (collection: CollectionNS.ICollection) => void;
+    Title?: string;
 }
 
 const CollectionBlock = (props: IProps) => {
@@ -21,6 +22,7 @@ const CollectionBlock = (props: IProps) => {
     const [displayACK, setDisplayACK] = useState(false);
     return (
         <button
+            title={props.Title || ''}
             className={`${props.selectedCollectionId && props.selectedCollectionId === props.collection._id ? 'focus' : 'collectionBlockContainer'}`}
             style={style} name={props.collection.name}
             onClick={e => props.OnClick && props.OnClick(e)}

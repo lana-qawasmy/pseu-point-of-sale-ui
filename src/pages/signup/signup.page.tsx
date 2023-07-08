@@ -4,9 +4,7 @@ import { Button, Input } from '../../components/core';
 import { useSignUp } from '../../hooks';
 import { PasswordAndConfirmation } from '../../components/signup';
 
-
 import { mainPagePic } from '../../assets';
-
 
 const Signup = () => {
     const { inputState, setInputState, addUser, uploadImage } = useSignUp();
@@ -24,13 +22,14 @@ const Signup = () => {
         <div className="signupPageContainer">
             <div className="signupPageTitleContainer">
                 <h1>Create Your Account</h1>
-                <h2>Already have an account? <Link to={'/signin'}>Login</Link></h2>
+                <h2>Already have an account? <Link title='SingIn page' to={'/signin'}>Login</Link></h2>
             </div>
             <div className="signupPageBodyContainer">
                 <form className="signupPageFormContainer">
                     <div className="signupFormHeader">
-                        <div className="userImageIcon" >
+                        <div className="userImageIcon">
                             <label
+                                title='Profile image'
                                 htmlFor='imageFile'
                                 style={style}
                             >
@@ -96,6 +95,7 @@ const Signup = () => {
                         </div>
                         <div className="signupFormCheckbox">
                             <h3
+                                title={`${inputState.checked ? 'Uncheck the terms' : 'check the terms'}`}
                                 onClick={(e) => {
                                     setInputState((oldState) => ({ ...oldState, checked: !inputState.checked }));
                                 }}
@@ -104,10 +104,9 @@ const Signup = () => {
                                     id='checkboxInSignUp'
                                     type="checkbox"
                                     checked={inputState.checked}
-                                    onChange={e => { }}
                                 />
                                 I agree to all statements included in the&nbsp;
-                                <Link to={'/terms'}
+                                <Link title='terms of service' to={'/terms'}
                                     target="_blank"
                                     rel="noreferrer"
                                 >terms of service
@@ -117,6 +116,7 @@ const Signup = () => {
                     </div>
                     <div className="registerButtonWrapper">
                         <Button
+                            Title='Register'
                             HtmlType='button'
                             FontWeight={'inherit'}
                             FontSize='16'

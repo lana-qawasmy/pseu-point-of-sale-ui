@@ -18,6 +18,7 @@ const Order = (props: IProps) => {
     const navigate = useNavigate();
     return (
         <tr
+            title={`Order number ${orderNo}`}
             className='orderContainer'
             onClick={() => navigate(`/viewSingleOrder/${_id}`, { replace: false })}
         >

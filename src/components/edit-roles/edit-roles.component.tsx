@@ -11,7 +11,7 @@ const EditRoles = () => {
   } = useEditRoles();
   return (
     <div className="editRolesContainer">
-        <h1 style={{textAlign: "left"}}>Users List</h1>
+        <h1 style={{textAlign: "left"}} title='Users List'>Users List</h1>
       <div className="userSearchWrapper">
         <input
           type="text"
@@ -22,15 +22,15 @@ const EditRoles = () => {
             setSearch(e.target.value);
           }}
         />
-        <i className="fa fa-user icon">
+        <i className="fa fa-user icon" title='Search'>
           <BsSearch />
         </i>
       </div>
       <div className="usersListContainer">
           {usersList?.map((user, index) => {
             return (
-              <div key={index}>
-                <span key={index}>{user.fullName}</span>
+              <div key={index} >
+                <span key={index} title={`${user.fullName}`}>{user.fullName}</span>
                 <div className="selectWrapper">
                 <select
                   onChange={(e) =>

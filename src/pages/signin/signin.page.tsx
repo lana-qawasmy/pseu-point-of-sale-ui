@@ -10,12 +10,13 @@ const Signin = () => {
     return !signin.user ? (
         <div className='signin'>
             <div className='signinWrapper'>
-                <img src={partialLogo} alt="" />
+                <img src={partialLogo} alt="QPay icon" title='QPay icon' />
                 <form className='signinForm' onSubmit={signin.handleValidation}>
                     <Input Height={40} Width={360} Radius={15} PlaceHolder='example@gmail.com' name='email' Label='Email' />
                     <PasswordInput height={40} Width={360} Radius={15} Placeholder='Password' name='password' state='none' Label=' Password' />
                     {!signin.validLogin && <span>Email or password is incorrect , please try again.</span>}
                     <Button
+                        Title='Login'
                         HtmlType='submit'
                         FontWeight={'inherit'}
                         FontSize='16'
@@ -28,10 +29,10 @@ const Signin = () => {
                 </form>
                 <p>
                     Don't have an account?
-                    <Link to={'/signup'}>Signup</Link>
+                    <Link title='Singup page' to={'/signup'}>Signup</Link>
                 </p>
             </div>
-            <img src={mainPagePic} alt="main pic" className='mainPic' />
+            <img title='Cashing image' src={mainPagePic} alt="main pic" className='mainPic' />
 
         </div>
     ) : <></>;
