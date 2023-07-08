@@ -19,15 +19,19 @@ const PriceHistory = (props: IProps) => {
 
     return (
         <div className="priceHistoryContainer">
-            <div className="priceHistoryAnchor"
+            <div
+                className="priceHistoryAnchor"
+                title='Price History'
                 onClick={() => { showPriceHistoryList ? setShowPriceHistoryList(false) : setShowPriceHistoryList(true); }}
             >
                 <div className="leftSection"><h2>Price history</h2></div>
-                <div className="rightSection"><IoIosArrowDropdown
-                    size={'30px'}
-                    color='#2c64c6'
-                    className={`arrowIcon ${showPriceHistoryList ? "flipUp" : ""}`}
-                /></div>
+                <div className="rightSection">
+                    <IoIosArrowDropdown
+                        size={'30px'}
+                        color='#2c64c6'
+                        className={`arrowIcon ${showPriceHistoryList ? "flipUp" : ""}`}
+                    />
+                </div>
             </div>
             <hr />
             <div className={`listContainer ${showPriceHistoryList ? "slideIn" : "slideOut"}`}>
@@ -35,10 +39,10 @@ const PriceHistory = (props: IProps) => {
                     priceHistory.map((item, index) => {
                         return (
                             <div className="priceElement" key={Math.random()}>
-                                <div className="priceLeftSection" key={Math.random()}>
+                                <div className="priceLeftSection" key={Math.random()} title='Price'>
                                     {item.price.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$
                                 </div>
-                                <div className="priceRightSection" key={Math.random()}>
+                                <div className="priceRightSection" key={Math.random()} title='Date'>
                                     {formatDate(item.date)}
                                 </div>
                             </div>
