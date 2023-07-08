@@ -39,7 +39,7 @@ const PasswordInput = (props: IProps) => {
 
     return (
         <div className='passwordWrapper' >
-            <label htmlFor="passwordInput">
+            <label title={`${props.Label}`} htmlFor="passwordInput">
                 {props.Label || ""}
                 {props.Required
                     ? <span
@@ -65,6 +65,7 @@ const PasswordInput = (props: IProps) => {
                     onChange={e => password.setValue(e.target.value)}
                 />
                 <button
+                    title={`${password.showPassword ? 'UnShow password' : 'Show password'}`}
                     onClick={() => password.setShowPassword(!password.showPassword)}
                     className='passwordInput'
                     style={eyeStyle}
