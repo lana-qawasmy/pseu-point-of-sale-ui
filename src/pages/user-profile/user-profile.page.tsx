@@ -101,6 +101,7 @@ const UserProfile = () => {
           >
             Edit password{" "}
             <BiDownArrow
+            size={'13px'}
               className={`arrowIcon ${showPasswordContainer ? "flipUp" : ""}`}
             />
           </span>

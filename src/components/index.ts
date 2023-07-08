@@ -10,3 +10,4 @@ export { default as EditRoles } from './edit-roles/edit-roles.component';
 export { default as Guard } from './guard/guard.component';
 export { default as Order } from './order/order.component';
 export { default as OrderCard } from './order-card/order-card.component';
+export { default as AddDiscount } from './add-discount/add-discount.component';

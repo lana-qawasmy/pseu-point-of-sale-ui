@@ -1,0 +1,60 @@
+.addDiscountContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.addDiscountContainer .TextInputWrapper>.inputLabelAndRequired>.label{
+    font-size: 14px;
+}
+
+.addDiscountContainer>h1{
+    text-align: left;
+    color: #03045e;
+    margin: 30px 0 20px 0;
+}
+.addDiscountContainer>.firstSection{
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    column-gap: 4px;
+}
+
+.addDiscountContainer>.firstSection>.innerWrapper,
+.addDiscountContainer>.secondSection>.innerWrapper{
+    display: flex;
+    align-items: center;
+
+}
+
+.addDiscountContainer>.firstSection span{
+    color: #03045e;
+}
+.addDiscountContainer>.firstSection > .TextInputWrapper{
+    flex: 1;
+    margin-right: 15px;
+}
+.addDiscountContainer>.firstSection > .TextInputWrapper > input{
+    width: 100% !important;
+    box-sizing: border-box;
+    height: 29px !important;
+}
+.addDiscountContainer>.secondSection{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 57px;
+
+}
+
+.addDiscountContainer>.secondSection>.buttonContainer{
+    margin-top: 17px;
+}
+
+.addDiscountContainer>.secondSection>.buttonsWrapper{
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    margin-top: 8px;
+}

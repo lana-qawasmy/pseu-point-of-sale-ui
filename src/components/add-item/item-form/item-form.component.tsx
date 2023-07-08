@@ -106,7 +106,7 @@ const ItemForm = (props?: IProps) => {
                 <div className="addItemInputWrapper">
                     <Input
                         name="barcode"
-                        Width={180}
+                        Width={210}
                         Height={30}
                         Radius={15}
                         Required
@@ -117,8 +117,20 @@ const ItemForm = (props?: IProps) => {
                     />
                 </div>
                 <div className="addItemSubmitButton">
+                    {
+                        props?.edit &&
+                        <Button
+                            HtmlType="button"
+                            Color="#023e8a"
+                            FontWeight={"bold"}
+                            Radius="20"
+                            Ratio="20/9"
+                            Width="90"
+                            onClick={e => props.setEdit && props.setEdit(false)}
+                        >
+                            Cancel
+                        </Button>}
                     <Button HtmlType="submit" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90">{props?.edit ? 'Edit' : 'Add'}</Button>
-                    {props?.edit && <Button HtmlType="button" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90" onClick={e => props.setEdit && props.setEdit(false)}>Cancel</Button>}
 
                 </div>
             </form>

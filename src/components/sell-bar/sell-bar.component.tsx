@@ -3,39 +3,39 @@ import React from "react";
 import { ItemNS } from "../../types";
 import { Button, Input } from "../core";
 import SellCard from "../sell-card/sell-card.component";
-import  { useNotification } from '../../hooks';
+import { useNotification } from '../../hooks';
 import { OrderNS } from '../../types/order.type';
 import { UserContext } from '../providers/user.provider';
 import { orderService } from '../../services';
 import { useDiscount } from "../../hooks";
-interface Iprops {
-      selectedItems: {
-            item: ItemNS.Item;
-            number: number;
-      }[];
-      setSelectedItems: React.Dispatch<
-            React.SetStateAction<
-                  {
-                        item: ItemNS.Item;
-                        number: number;
-                  }[]
-            >
-      >;
-      price: number;
+interface IProps {
+    selectedItems: {
+        item: ItemNS.Item;
+        number: number;
+    }[];
+    setSelectedItems: React.Dispatch<
+        React.SetStateAction<
+            {
+                item: ItemNS.Item;
+                number: number;
+            }[]
+        >
+    >;
+    price: number;
 }
-const SellBar = (props: Iprops) => {
-    const {selectedItems, setSelectedItems, price} = props
+const SellBar = (props: IProps) => {
+    const { selectedItems, setSelectedItems, price } = props
     const [totalPrice, setTotalPrice] = React.useState<number>(0);
     const tax = 0.10;
     const discount = useDiscount();
     const { setNotification } = useNotification();
     const user = React.useContext(UserContext);
-    React.useEffect(()=>{
-        if(price !==0)
-        setTotalPrice((price + (price * tax)) - (price * (discount.discount / 100)));
+    React.useEffect(() => {
+        if (price !== 0)
+            setTotalPrice((price + (price * tax)) - (price * (discount.discount / 100)));
         else setTotalPrice(0);
-      },[price , discount]);
-    const itemsNumber = React.useMemo(()=>{
+    }, [price, discount]);
+    const itemsNumber = React.useMemo(() => {
         let count = 0;
         selectedItems.map(item => {
             count += item.number;
@@ -59,6 +59,8 @@ const SellBar = (props: Iprops) => {
         if (addOrder) {
             setNotification({ message: 'Order performed successfully', status: 'success' });
             setSelectedItems([]);
+            discount.setDiscountCode('')
+            discount.setDiscount(0)
         }
         else {
             setNotification({ message: 'Something went wrong', status: 'error' });
@@ -68,7 +70,6 @@ const SellBar = (props: Iprops) => {
     return (
         <div className="sellBarContainer">
             <div className="sectionOne">
-                <h2>Details Items</h2>
                 <div className="cardContainer">
                     {selectedItems?.map((item, index) => {
                         return (
@@ -91,33 +92,35 @@ const SellBar = (props: Iprops) => {
                     <span>Subtotal</span>
                     <span>{price.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}$</span>
                 </div>
-                <div className="row">
-                    <span>Tax({(tax * 10).toFixed(2)}%)</span>
-                    <span>{(tax * price).toFixed(2)}$</span>
+                <div className="row" >
+                    <span>Discount</span>
+                    <span style={{ color: "#ef476f", fontWeight: 'bold' }}>{discount.discount}%</span>
                 </div>
-                <div className="row">
-                    <span>discount</span>
-                    <span>{discount.discount}%</span>
-                </div>
-                <form className="row" onSubmit={discount.handleDiscount}>
+                <form className="row" onSubmit={(e) => discount.handleDiscount(e)}>
                     <Input
                         PlaceHolder='Discount code'
-                        Height={39}
+                        Height={28}
+                        Width={90}
                         Radius={10}
                         Color="#03045e"
                         name="code"
                         onChange={e => discount.setDiscountCode(e.target.value)}
+                        value={discount.discountCode}
                     />
                     <Button
                         HtmlType='submit'
-                        Width='100'
+                        Width='80'
                         Radius="10"
                         Color="#03045e"
                         FontSize="12"
                     >
-                        Apply discount
+                        Apply
                     </Button>
                 </form>
+                <div className="row" >
+                    <span>Tax({(tax * 100)}%)</span>
+                    <span>{(tax * price).toFixed(2)}$</span>
+                </div>
             </div>
             <div className="sectionThree">
                 <div className="row">

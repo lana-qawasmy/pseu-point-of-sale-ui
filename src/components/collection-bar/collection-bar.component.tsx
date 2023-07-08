@@ -2,7 +2,6 @@ import "./collection-bar.css";
 import { CollectionBlock, Spinner } from "../core";
 import { CollectionNS } from '../../types';
 import AddNewCollectionBlock from '../add-new-collection-block/add-new-collection-block.component';
-import { Link } from 'react-router-dom';
 interface IProps {
     disableAddBlock: boolean;
     selectedCollection: CollectionNS.ICollection | null;
@@ -24,6 +23,7 @@ interface IProps {
         name: string;
     }>>;
     handleSubmitNewCollection?: () => Promise<void>;
+    handleDeleteCollection?: (collection: CollectionNS.ICollection) => void;
 }
 const CollectionBar = (props: IProps) => {
     return (
@@ -46,6 +46,7 @@ const CollectionBar = (props: IProps) => {
                         : props.collectionList.map((collection: CollectionNS.ICollection, index: number) => {
                             return (
                                 <CollectionBlock
+                                    handleDeleteCollection={props.handleDeleteCollection}
                                     selectedCollectionId=
                                     {
                                         props.selectedCollection !== null &&
@@ -75,9 +76,6 @@ const CollectionBar = (props: IProps) => {
                         <div className="iconWrapper">➕</div>
                         <div className="collectionText">Add</div>
                     </button>
-                    <div className="seeAllWrapper">
-                        <Link to={'/viewCollections'}>See All</Link>
-                    </div>
                 </div>
                 <AddNewCollectionBlock
                     handleSubmitNewCollection={props.handleSubmitNewCollection}

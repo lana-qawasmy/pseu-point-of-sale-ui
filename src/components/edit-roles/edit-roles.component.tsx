@@ -1,6 +1,7 @@
 import "./edit-roles.css";
 import { BsSearch } from "react-icons/bs";
 import { useEditRoles } from "../../hooks";
+import AddDiscount from "../add-discount/add-discount.component";
 const EditRoles = () => {
   const {
     search,
@@ -54,6 +55,7 @@ const EditRoles = () => {
             );
           })}
       </div>
+      <AddDiscount />
     </div>
   );
 };

@@ -28,10 +28,10 @@
     user-select: none;
     cursor: pointer;
     padding: 0px 5px 0px;
-    transform: scale(1.2);
+    transform: scale(1.09);
     background-color: #03045e ;
     color: #ffffff;
-    border: 7px solid #ffffff;
+    border: 2px solid #327df8;
     font-weight: 500;
 }
 
