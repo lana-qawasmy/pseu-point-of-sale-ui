@@ -1,6 +1,7 @@
 import "./single-order.css";
 import useSingleOrder from "../../hooks/single-order.hook";
 import { OrderCard } from '../../components';
+import { formatPrice } from '../../hooks';
 
 
 const SingleOrder = () => {
@@ -11,22 +12,22 @@ const SingleOrder = () => {
                 <h1>Order #{order?.orderNumber}</h1>
                 <div className="wrapper">
                     <div className="left">
-                        <span>Cachier : </span>
+                        <span>Cashier : </span>
                         <span>Time : </span>
                         <span>Date : </span>
                         <span>Subtotal : </span>
-                        <span>Disocunt code : </span>
+                        <span>Discount code : </span>
                         <span>Tax(10%) : </span>
-                        <span style={{fontSize: '24px' , fontWeight:"bolder"}}>Total : </span>
+                        <span style={{ fontSize: '24px', fontWeight: "bolder" }}>Total : </span>
                     </div>
                     <div className="right">
                         <span className="name info">{order?.cashierName}</span>
                         <span className="info grey">{splitTime}</span>
                         <span className="info grey">{splitDate}</span>
-                        <span className="info">{subtotal} $</span>
+                        <span className="info">{formatPrice(subtotal)} $</span>
                         <span className="info">{order?.discountCode || 'No discount!'}</span>
-                        <span className="info">{subtotal * 0.1} $</span>
-                        <span className="info" style={{fontSize:"24px" , fontWeight:"bolder"}}>{order?.total.toString()} $</span>
+                        <span className="info">{formatPrice(subtotal * 0.1)} $</span>
+                        <span className="info" style={{ fontSize: "24px", fontWeight: "bolder" }}>{formatPrice(order?.total as number || 0)} $</span>
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@ const SingleOrder = () => {
                         <OrderCard item={item} key={item._id} />
                     )}
                 </div>
-                <div className="itemsQuantity"># of tems : {order?.items?.length} </div>
+                <div className="itemsQuantity"># of items : {order?.items?.length} </div>
             </div>
         </div>
     );
