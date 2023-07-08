@@ -21,9 +21,9 @@ const App = () => {
                             <Route path='/ordersHistory' element={<Guard><OrdersHistory /></Guard>} />
                             <Route path='/existedItems' element={<Guard><RoleGuard role={['manager', 'admin']}><ViewExistedItems /></RoleGuard></Guard>} />
                             <Route path='/terms' element={<Terms />} />
-                            <Route path='/viewSingleItem/:id' element={<SingleItem />} />
-                            <Route path='/viewSingleOrder/:id' element={<SingleOrder />} />
-                            <Route path='/profile' element={<UserProfile />} />
+                            <Route path='/viewSingleItem/:id' element={<Guard><SingleItem /></Guard>} />
+                            <Route path='/viewSingleOrder/:id' element={<Guard><SingleOrder /></Guard>} />
+                            <Route path='/profile' element={<Guard><UserProfile /></Guard>} />
                         </Routes>
                     </BrowserRouter>
                 </ItemsProvider>
