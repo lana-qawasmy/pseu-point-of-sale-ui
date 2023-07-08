@@ -135,6 +135,7 @@ const useAddItem = (item: ItemNS.Item | undefined) => {
                     target.itemName.value = "";
                     target.price.value = "";
                     target.description.value = "";
+                    target.quantity.value = "";
                     try {
                         let items = await itemService.getItems(user.user?.token as string, '');
                         if (items && itemsContext.setItems) {
