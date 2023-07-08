@@ -8,7 +8,6 @@ interface IProps {
     edit?: boolean;
     setEdit?: React.Dispatch<React.SetStateAction<boolean>>;
     item?: ItemNS.Item;
-
 }
 
 const ItemForm = (props?: IProps) => {
@@ -24,7 +23,7 @@ const ItemForm = (props?: IProps) => {
                 }
             }} className="addItemFormContainer">
                 <div className="addItemFormTitle">
-                    <span>{props?.edit ? 'Edit ' : 'Add New '} Item</span>
+                    <span title='Add new item'>{props?.edit ? 'Edit ' : 'Add New '} Item</span>
                 </div>
                 <div className="addItemInputWrapper">
                     <Input
@@ -79,6 +78,7 @@ const ItemForm = (props?: IProps) => {
                 </div>
                 <div className="addItemUploadImageWrapper">
                     <div
+                        title='Item image'
                         className="imageWrapper"
                         style={{ backgroundImage: `url('${item.imageIcon.value}')` }}
                         onClick={() => {
@@ -88,9 +88,14 @@ const ItemForm = (props?: IProps) => {
                         }}
                     ></div>
                     <div className="imageSelector">
-                        <label htmlFor="addItemInputSelector" style={item.uploadStatus}>
+                        <label
+                            htmlFor="addItemInputSelector"
+                            style={item.uploadStatus}
+                            title='Click to upload item image'
+                        >
                             <span>Upload item picture</span>
                             <input
+
                                 type="file"
                                 id="addItemInputSelector"
                                 accept="image/png, image/gif, image/jpeg"
@@ -120,6 +125,7 @@ const ItemForm = (props?: IProps) => {
                     {
                         props?.edit &&
                         <Button
+                            Title='Cancel'
                             HtmlType="button"
                             Color="#023e8a"
                             FontWeight={"bold"}
@@ -130,7 +136,7 @@ const ItemForm = (props?: IProps) => {
                         >
                             Cancel
                         </Button>}
-                    <Button HtmlType="submit" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90">{props?.edit ? 'Edit' : 'Add'}</Button>
+                    <Button Title={`Click to ${props?.edit ? 'edit' : 'add'} item`} HtmlType="submit" Color="#023e8a" FontWeight={"bold"} Radius="20" Ratio="20/9" Width="90">{props?.edit ? 'Edit' : 'Add'}</Button>
 
                 </div>
             </form>

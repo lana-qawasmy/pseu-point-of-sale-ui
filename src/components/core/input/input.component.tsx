@@ -50,7 +50,7 @@ const Input = (props: IProps) => {
             <span className='inputLabelAndRequired'>
                 {
                     (props.Label)
-                        ? <span className='label'>
+                        ? <span className='label' title={`${props.Label}`}>
                             {props.Label || ''}
                         </span>
                         : false
