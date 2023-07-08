@@ -21,15 +21,22 @@ const NavigationBar = () => {
 
     return location.pathname !== "/signin" &&
         location.pathname !== "/signup" &&
+        location.pathname !== "/404" &&
         location.pathname !== "/terms" ? (
         <div className="navigationBarContainer">
-            <div className="logoContainer" onClick={() => navigate("/", { replace: false })}></div>
+            <div
+                className="logoContainer"
+                onClick={() => navigate("/", { replace: false })}
+                title='QPay icon'
+            >
+            </div>
             <div className="optionsContainer">
                 <IconContext.Provider
                     value={{ color: "#e0e2e8", size: "2em", className: "radioIcons" }}
                 >{(userContext.user?.role === 'manager' || userContext.user?.role === 'admin') &&
                     <div className="optionWrapper">
                         <button
+                            title='Add new item page'
                             type="button"
                             className={location.pathname === "/addItem" ? "focusBtn" : ""}
                             onClick={() => {
@@ -43,6 +50,7 @@ const NavigationBar = () => {
                     }
                     <div className="optionWrapper">
                         <button
+                            title='POS page'
                             type="button"
                             className={location.pathname === "/" ? "focusBtn" : ""}
                             onClick={() => {
@@ -55,6 +63,7 @@ const NavigationBar = () => {
                     </div>
                     <div className="optionWrapper">
                         <button
+                            title='Order history Page'
                             type="button"
                             className={(location.pathname === "/ordersHistory" || location.pathname.includes('/viewSingleOrder')) ? "focusBtn" : ""}
                             onClick={() => {
@@ -68,6 +77,7 @@ const NavigationBar = () => {
                     {(userContext.user?.role === 'manager' || userContext.user?.role === 'admin') &&
                         <div className="optionWrapper">
                             <button
+                                title='View existed items page'
                                 type="button"
                                 className={location.pathname === "/existedItems" ? "focusBtn" : ""}
                                 onClick={() => {
@@ -79,9 +89,10 @@ const NavigationBar = () => {
                             </button>
                         </div>
                     }
-                    {location.pathname.includes('/viewSingleItem')  &&
+                    {location.pathname.includes('/viewSingleItem') &&
                         <div className="optionWrapper">
                             <button
+                                title='View item/order page'
                                 type="button"
                                 className={location.pathname.includes('/viewSingleItem') ? "focusBtn" : ""}
                                 onClick={() => {
@@ -97,8 +108,8 @@ const NavigationBar = () => {
             </div>
             <div className="logoutContainer">
                 <div className="optionWrapper">
-
                     <button
+                        title='Profile page'
                         type="button"
                         className={location.pathname === "/profile" ? "focusBtn" : ""}
                         onClick={() => {
@@ -108,7 +119,10 @@ const NavigationBar = () => {
                         <span>.</span>
                         <CgProfile size={'2em'} color={`${location.pathname === "/profile" ? '#03045e' : '#e0e2e8'}`} className='radioIcons' />
                     </button>
-                    <button onClick={logOut} className='logoutButton'>
+                    <button
+                        title='Logout'
+                        onClick={logOut} className='logoutButton'
+                    >
                         <RiLogoutBoxRFill color="#e0e2e8" size="2.3em" />
                     </button>
                 </div>
