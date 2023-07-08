@@ -9,9 +9,12 @@
     border-radius: 15px;
 }
 
-.orderCard > img {
-    width: 70px;
+.orderCard > .image {
+    width: 100px;
     height: 70px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .orderCard >.itemInfo {
