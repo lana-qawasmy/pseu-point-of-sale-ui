@@ -22,6 +22,27 @@ const getOrders = (token: string, page: number, start: string, end: string, sear
     }
 };
 
+const getOrder = (orderId : string , token : string) => {
+    try {
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/order/getOrder/${orderId}`, {
+            method: 'GET',
+            headers: {
+                'authorization': token
+            }
+        })
+            .then(async (response) => {
+                return await response.json();
+            })
+            .catch((error) => {
+                console.error(error);
+                return false;
+            });
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
 const addOrder = (token: string, order: OrderNS.IOrder) => {
     const cashierName = order.cashierName;
     const discountCode = order.discountCode;
@@ -61,4 +82,5 @@ const addOrder = (token: string, order: OrderNS.IOrder) => {
 export default {
     getOrders,
     addOrder,
+    getOrder
 };
