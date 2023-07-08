@@ -1,4 +1,4 @@
-.collectionBlockContainer{
+.collectionBlockContainer {
     transition: 0.3s;
     background-color: #ffffff;
     display: flex;
@@ -13,9 +13,10 @@
     cursor: pointer;
     border: none;
     padding: 0px 5px 0px;
+    position: relative;
 }
 
- .focus{
+.focus {
     transition: 0.3s;
     display: flex;
     flex-direction: column;
@@ -27,22 +28,86 @@
     font-family: 'Inter';
     user-select: none;
     cursor: pointer;
+    position: relative;
     padding: 0px 5px 0px;
     transform: scale(1.09);
-    background-color: #03045e ;
+    background-color: #03045e;
     color: #ffffff;
     border: 2px solid #327df8;
     font-weight: 500;
 }
 
-.iconWrapper{
+.iconWrapper {
     font-size: 40px;
     margin-bottom: 7px;
 }
 
-.collectionText{
+.collectionText {
     font-size: 15px;
     margin-bottom: 0.3em;
     width: 90px;
     overflow-wrap: anywhere;
+}
+
+.collectionBlockContainer .deleteIcon,
+.focus .deleteIcon {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+.deleteIcon .deleteACK {
+    display: flex;
+    border: 1px solid rgb(209, 207, 207);
+    width: 90px;
+    height: 30px;
+    position: absolute;
+    right: -22px;
+    bottom: -28px;
+    z-index: 1;
+    border-radius: 5px;
+    background-color: #fff;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 10px 10px 10px #e0e2e8;
+
+}
+
+.deleteIcon .deleteACK .ACKButton {
+    display: flex;
+    font-weight: 500;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 7px;
+    cursor: pointer;
+}
+
+
+.deleteIcon .deleteACK .ACKButton:last-child {
+    background-color: red;
+    border: none;
+
+}
+
+.deleteIcon .deleteACK .ACKButton:first-child {
+    background-color: gray;
+    border: none;
+
+}
+
+.deleteIcon .deleteACK .ACKButton:first-child:hover {
+    background-color: rgb(44, 100, 198);
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+
+}
+
+.deleteIcon .deleteACK .ACKButton:last-child:hover {
+    background-color: rgb(255, 29, 29);
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
 }

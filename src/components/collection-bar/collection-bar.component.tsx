@@ -28,7 +28,7 @@ interface IProps {
 const CollectionBar = (props: IProps) => {
     return (
         <div className="collectionBarContainer">
-            <div className="allBlock">
+            <div className="allBlock" title='All collection'>
                 <button
                     className={`${props.selectedCollection === null ? "focus" : "collectionBlockContainer"}`}
                     style={{ height: "100px", width: "100px" }}
@@ -46,6 +46,7 @@ const CollectionBar = (props: IProps) => {
                         : props.collectionList.map((collection: CollectionNS.ICollection, index: number) => {
                             return (
                                 <CollectionBlock
+                                    Title={collection.name + ' collection'}
                                     handleDeleteCollection={props.handleDeleteCollection}
                                     selectedCollectionId=
                                     {
@@ -67,6 +68,7 @@ const CollectionBar = (props: IProps) => {
             {!props.disableAddBlock && <>
                 <div className="addNewBlock">
                     <button
+                        title='Add new collection'
                         className="collectionBlockContainer"
                         disabled={props.disableAddBlock}
                         style={{ height: "100px", width: "100px" }}

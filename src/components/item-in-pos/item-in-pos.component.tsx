@@ -17,7 +17,7 @@ interface IProps {
 const ItemInPOS = (props: IProps) => {
     const { _id, name, image, priceHistory, quantity } = props.item;
     const notification = useNotification();
-    const itemsContext = React.useContext(ItemsContext)
+    const itemsContext = React.useContext(ItemsContext);
     const handleLinkClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.stopPropagation();
         props.navigate(`/viewSingleItem/${_id}`, { replace: false });
@@ -31,14 +31,14 @@ const ItemInPOS = (props: IProps) => {
                 quantity && itemsContext.setItems && itemsContext.items &&
                     itemsContext.setItems(itemsContext.items?.map(
                         item => {
-                            return item.name === name ? item : { ...item, quantity: quantity - 1 }
-                        }))
+                            return item.name === name ? item : { ...item, quantity: quantity - 1 };
+                        }));
                 quantity
                     ? props.OnSelect(e)
-                    : notification.setNotification({ message: 'This item is out of stock!', status: 'error' })
+                    : notification.setNotification({ message: 'This item is out of stock!', status: 'error' });
             }}
         >
-            <div className='goExternalLink' onClick={(e) => handleLinkClick(e)}>
+            <div className='goExternalLink' onClick={(e) => handleLinkClick(e)} title={`${name} page`}>
                 <GoLinkExternal
                     id={'goExternalLink' + _id}
                     size={20}
@@ -59,23 +59,23 @@ const ItemInPOS = (props: IProps) => {
                     }}
                 />
             </div>
-            <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' />
+            <div style={{ backgroundImage: `url('${image}')` }} className='itemImage' title={`${name} image`} />
             <div className='infoWrapper'>
-                <span className='itemName'>
+                <span className='itemName' title={name}>
                     <span className="name">{name}</span>
                     {
                         quantity
-                            ? <span className='inStock'>In stock</span>
-                            : <span className='outOfStock'>Out of stock</span>
+                            ? <span className='inStock' title='In stock'>In stock</span>
+                            : <span className='outOfStock' title='Out of stock'>Out of stock</span>
                     }
                 </span>
                 <div className='itemPrice'>
-                    <span className='currentItemPrice'>
+                    <span className='currentItemPrice' title='Price'>
                         {priceHistory[0].price && priceHistory[0].price.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}$ &nbsp;&nbsp;
                     </span>
                     {
                         props.DeletedPrice &&
-                        <span className='deletedItemPrice'>
+                        <span className='deletedItemPrice' title='Deleted Price'>
                             {props.DeletedPrice.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}
                         </span>
                     }
