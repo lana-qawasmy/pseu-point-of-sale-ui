@@ -22,7 +22,7 @@ interface IProps {
     DefaultValue?: string;
 
     Status?: boolean;
-
+    Step?: number;
     FontSize?: number;
     FontWeight?: 'bold' | 'bolder' | 'lighter' | 'normal' | 'inherit' | 'initial' | 'unset' |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
@@ -76,7 +76,7 @@ const Input = (props: IProps) => {
                         onChange={e => (props.onChange && props.onChange(e))}
                     />
                     : <input
-                        step={0.1}
+                        step={props.Step || 1}
                         id={props.id}
                         name={props.name || 'input'}
                         className={`input ${props.Status ? props.Status : 'valid'}`}

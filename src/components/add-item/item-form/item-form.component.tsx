@@ -12,7 +12,6 @@ interface IProps {
 
 const ItemForm = (props?: IProps) => {
     const item = useAddItem(props?.item || undefined);
-    const priceHistorySize = props?.item?.priceHistory.length || 0;
     const Barcode = useBarcode();
     return (
         <div className="addItemPageContainer">
@@ -47,7 +46,8 @@ const ItemForm = (props?: IProps) => {
                         PlaceHolder="25"
                         Label='Price'
                         Type="number"
-                        DefaultValue={props?.item?.priceHistory[priceHistorySize - 1].price.toString() || ''}
+                        DefaultValue={props?.item?.priceHistory[0].price.toString() || ''}
+                        Step={0.1}
                     />
                 </div>
                 <div className="addItemInputWrapper">
