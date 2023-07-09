@@ -11,7 +11,7 @@ const OrderCard = (props: IProps) => {
         <div className='orderCard' >
             <div title={`${props.item?.name} page`} className='image' style={{ backgroundImage: `url('${props.item?.image}')` }}></div>
             <div className='itemInfo'>
-                <span title={`${props.item?.name} page`} style={{ fontWeight: 'bolder', fontSize: '20px', textTransform: 'capitalize' }}>{props.item?.name}</span>
+                <span title={`${props.item?.name} page`} style={{ fontWeight: 'bolder', fontSize: '18px', textTransform: 'capitalize' }}>{props.item?.name}</span>
                 <span title={`Quantity`}>#{props.item?.quantity}</span>
                 <span title={`Price`} className={priceClass}>${props.item?.priceHistory[0].price.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 1 })}</span>
             </div>
