@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms, SingleItem, UserProfile, SingleOrder } from './pages';
+import { Signin, ViewExistedItems, Signup, AddItem, PosView, OrdersHistory, Terms, SingleItem, UserProfile, SingleOrder, NotFound } from './pages';
 import { UserProvider, ItemsProvider } from './components/providers';
 import { Header, NavigationBar, RoleGuard } from './components/core';
 import { Notification, Guard } from './components';
@@ -24,6 +24,7 @@ const App = () => {
                             <Route path='/viewSingleItem/:id' element={<Guard><SingleItem /></Guard>} />
                             <Route path='/viewSingleOrder/:id' element={<Guard><SingleOrder /></Guard>} />
                             <Route path='/profile' element={<Guard><UserProfile /></Guard>} />
+                            <Route path="/*" element={<NotFound />} />
                         </Routes>
                     </BrowserRouter>
                 </ItemsProvider>
