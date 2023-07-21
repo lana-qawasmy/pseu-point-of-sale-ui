@@ -1,6 +1,8 @@
-# PSEU Point Of Sales
+# PSEU Point Of Sales UI
 
 > Website provides a way to manage a point of sale
+
+> To see PSEU Point Of Sales API [click here](https://github.com/Momen-G-Ar/pseu-point-of-sale-api)
 
 ## Table of Content
 
