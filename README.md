@@ -1,46 +1,64 @@
-# Getting Started with Create React App
+# PSEU Point Of Sales UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Website provides a way to manage a point of sale
 
-## Available Scripts
+> To see PSEU Point Of Sales API [click here](https://github.com/Momen-G-Ar/pseu-point-of-sale-api)
 
-In the project directory, you can run:
+## Table of Content
 
-### `npm start`
+-   [General Information](#general-information)
+-   [Technologies](#technologies)
+-   [Features](#features)
+-   [Built with](#built-with)
+-   [Requirements](#requirements)
+-   [Version](#version)
+-   [Author](#author)
+-   [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## General Information
+This project is implemented for practice purposes. The main motivation for this project is practicing on the MERN stack.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies
+ * React
+ * CSS
 
-### `npm test`
+## Features 
+ * SingIn and SignUp with validation
+ * Add Items to your point of sales and have the ability to edit them
+ * Add Collections to your point of sales
+ * Choose the Items for each Collection
+ * The ability to add items using **BarCode Scanner**
+ * Handle Transactions in a save way with good management to the database
+ * Edit the roles and information of each user in the application
+ * Add discounts for a specific ranges of days and use them in the transaction processes
+ * Display the price history of each item in its page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ Future work:
+ * Display the Added discounts in a list and edit each discount by name or code
+ * Display all collection and add the ability to edit collection name and icon
+ * Make the design suitable for the usage on mobiles and tables
 
-### `npm run build`
+## Built with
+ * [React](https://react.dev/): Javascript Library using [TypeScript](https://www.typescriptlang.org/)
+ * CSS: For Styles
+ * [Canva](https://www.canva.com/): For the Design
+ * [Phosphor React](https://www.npmjs.com/package/phosphor-react) and [React Icons](https://react-icons.github.io/react-icons/): for the Icons
+ * [React router dom](https://www.npmjs.com/package/react-router-dom): For the Routing
+ * [React toastify](https://www.npmjs.com/package/react-toastify): For the Notification
+ * [React zxing](https://www.npmjs.com/package/react-zxing): For the BarCode Scanner
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Requirements
+ * Clone the repo file from the GitHub
+ * Write ` npm i ` in the console to install the requirements
+ * If you want a sample data for the database [Click here](https://github.com/lana-qawasmy/pseu-point-of-sale-dbFiles) 
+## Version
+ It is the first version
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Authors
+  * [Abdallah Alnaime](mailto:181004@ppu.edu.ps) - MERN stack developer
+  * [Momin Arafa](mailto:mominarafa@gmail.com) - MERN stack developer
+  * [Lana Qawasmy](mailto:lanaqawasmy7@gmail.com) - MERN stack developer
+  * [Raghad Salem](mailto:raghadnadersalem20022017@gmail.com) - MERN stack developer
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+No License
